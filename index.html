@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- GA4 PLACEHOLDER: Replace with your Google Analytics GA4 tag when ready -->
+
+<title>Human at Work | The AI Career Intelligence Brief by Boubacar</title>
+<meta name="description" content="Former global HR leader publishes the weekly brief your leadership should already be sending. Take the free AI Exposure Score and find out exactly where you stand and what to do about it.">
+<meta name="author" content="Boubacar">
+<meta name="keywords" content="AI job security, AI restructure, AI exposure score, will AI take my job, HR insider, AI at work, career strategy AI, AI layoff, workforce AI transformation">
+<link rel="canonical" href="https://humanatwork.ai">
+
+<meta property="og:title" content="Are you on the keep list or the cut list?">
+<meta property="og:description" content="41% of employers plan AI-driven headcount reductions. Take the 2-minute AI Exposure Score and know where you stand and what to do about it.">
+<meta property="og:url" content="https://humanatwork.ai">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Human at Work">
+<meta property="og:image" content="https://humanatwork.ai/og-image.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Are you on the keep list or the cut list?">
+<meta name="twitter:description" content="Former global HR leader publishes the insider read on AI and your career. Free assessment. Weekly brief.">
+<meta name="theme-color" content="#0D1B2A">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Human at Work",
+      "url": "https://humanatwork.ai",
+      "description": "The insider read on AI and your career. Weekly brief by Boubacar, former global HR leader.",
+      "author": {
+        "@type": "Person",
+        "name": "Boubacar",
+        "jobTitle": "Former Global HR Leader, Founder of Catalyst Works Consulting",
+        "url": "https://catalystworks.consulting"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Human at Work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Human at Work is a weekly intelligence brief for workers navigating AI transformation at their companies. Founded by Boubacar, a former global HR leader with 15 years at Fortune-scale companies across MENA, Africa, the US, and Europe, it publishes what leadership should already be saying out loud about workforce planning and what workers can do about it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the AI Exposure Score?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The AI Exposure Score is a free 10-question assessment that evaluates your real risk level based on factors HR actually uses when making restructure decisions: role replaceability, task predictability, organizational visibility, company AI adoption pace, and team headcount signals. It takes two minutes and produces a personalized score plus three specific defense moves."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is Boubacar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Boubacar is a former global HR leader who spent 15 years at Fortune-scale companies across MENA, Africa, the US, and Europe. He has been in the rooms where restructure decisions got made and has sat across the table from people to deliver that news. He now runs Catalyst Works Consulting and publishes Human at Work."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ── */
+:root {
+  --navy:        #0D1B2A;
+  --cream:       #FAF7F2;
+  --amber:       #D4872A;
+  --cyan:        #00B4C6;
+  --carbon:      #131920;
+  --ink:         #1A1A1A;
+  --muted-dark:  rgba(255,255,255,0.55);
+  --muted-light: rgba(26,26,26,0.55);
+  --bd-dark:     rgba(255,255,255,0.07);
+  --bd-light:    rgba(26,26,26,0.09);
+  --score-low:   #2ECC8A;
+  --score-mid:   #E07B39;
+  --score-high:  #C0392B;
+  --ff-d: 'Playfair Display', Georgia, serif;
+  --ff-u: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --ff-m: 'DM Mono', 'Courier New', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-u); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+
+/* ── UTILITIES ── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; top: -100px; left: 16px;
+  background: var(--cyan); color: var(--navy);
+  padding: 8px 16px; font-family: var(--ff-u);
+  font-weight: 600; font-size: 14px;
+  border-radius: 3px; z-index: 9999;
+  transition: top 0.2s; text-decoration: none;
+}
+.skip-link:focus { top: 16px; }
+
+/* Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .result-wrap { transition: none; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Grain */
+.grain {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* Dot grid */
+.dot-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(13,27,42,0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Eyebrow */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--ff-m); font-size: 11px;
+  letter-spacing: 0.16em; color: var(--amber);
+  text-transform: uppercase; margin-bottom: 28px;
+}
+.eyebrow::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--amber); opacity: 0.7; flex-shrink: 0;
+}
+.eyebrow-light { color: var(--amber); }
+.eyebrow-dark  { color: var(--amber); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(13,27,42,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--bd-dark);
+}
+.nav-wordmark { display: flex; flex-direction: column; gap: 2px; }
+.nav-wordmark .brand {
+  font-family: var(--ff-d); font-weight: 700; font-size: 18px;
+  color: #fff; letter-spacing: -0.01em; text-decoration: none;
+}
+.nav-wordmark .byline {
+  font-family: var(--ff-m); font-size: 10px;
+  color: var(--amber); letter-spacing: 0.1em;
+}
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a {
+  font-family: var(--ff-u); font-size: 14px; font-weight: 500;
+  color: rgba(255,255,255,0.72); text-decoration: none;
+  position: relative; padding-bottom: 2px; transition: color 0.2s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--amber);
+  transition: width 0.22s ease;
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--ff-u); font-weight: 600; font-size: 15px;
+  color: var(--navy); background: var(--cyan);
+  border: none; border-radius: 3px; padding: 12px 26px;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+.btn-primary:hover {
+  background: #00cfe3; transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,180,198,0.28); animation: none;
+}
+.btn-primary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.btn-primary-lg { font-size: 16px; padding: 16px 36px; }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,180,198,0); }
+  50%       { box-shadow: 0 0 22px 4px rgba(0,180,198,0.16); }
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; background: var(--navy);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 130px 48px 100px; position: relative; overflow: hidden;
+}
+.hero-bg-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Crect x='31' y='31' width='10' height='10' rx='1' fill='none' stroke='%23D4872A' stroke-width='0.6' opacity='0.07' transform='rotate(45 36 36)'/%3E%3Crect x='11' y='11' width='6' height='6' rx='1' fill='none' stroke='%23D4872A' stroke-width='0.4' opacity='0.04' transform='rotate(45 14 14)'/%3E%3Crect x='51' y='51' width='6' height='6' rx='1' fill='none' stroke='%23D4872A' stroke-width='0.4' opacity='0.04' transform='rotate(45 54 54)'/%3E%3Cline x1='36' y1='0' x2='36' y2='72' stroke='%23D4872A' stroke-width='0.3' opacity='0.035'/%3E%3Cline x1='0' y1='36' x2='72' y2='36' stroke='%23D4872A' stroke-width='0.3' opacity='0.035'/%3E%3C/svg%3E");
+}
+.hero-inner { position: relative; z-index: 1; max-width: 920px; }
+
+.hero h1 {
+  font-family: var(--ff-d); font-weight: 900;
+  font-size: clamp(36px, 5.5vw, 68px);
+  line-height: 1.08; color: #fff;
+  letter-spacing: -0.02em; margin-bottom: 8px;
+}
+.rotating-wrap { color: var(--amber); font-style: italic; }
+#rotating-title { transition: opacity 0.35s ease; }
+
+.hero-credential {
+  font-family: var(--ff-u); font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.72; color: rgba(255,255,255,0.68);
+  max-width: 640px; margin: 28px 0 20px;
+  border-left: 3px solid var(--amber); padding-left: 20px;
+  font-style: italic;
+}
+
+.hero-sub {
+  font-family: var(--ff-u); font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.7; color: var(--muted-dark);
+  max-width: 560px; margin: 0 0 44px;
+}
+
+.hero-ctas { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.trust-signal {
+  font-family: var(--ff-m); font-size: 11px;
+  color: var(--muted-dark); letter-spacing: 0.06em; line-height: 1.9;
+}
+
+.scroll-hint {
+  position: absolute; bottom: 44px; left: 48px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1;
+}
+.scroll-hint span {
+  font-family: var(--ff-m); font-size: 9px;
+  letter-spacing: 0.2em; color: rgba(255,255,255,0.25); text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--amber), transparent);
+  animation: scroll-drop 1.8s ease-in-out infinite;
+}
+@keyframes scroll-drop {
+  0%   { transform: scaleY(0); transform-origin: top;    opacity: 0; }
+  50%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+  100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--amber); padding: 60px 48px;
+  display: grid; grid-template-columns: repeat(3,1fr);
+}
+.stat-item {
+  padding: 0 48px;
+  border-right: 1px solid rgba(255,255,255,0.22);
+  text-align: center;
+}
+.stat-item:first-child { padding-left: 0; text-align: left; }
+.stat-item:last-child  { border-right: none; padding-right: 0; text-align: right; }
+.stat-num-wrap {
+  display: flex; align-items: baseline; gap: 2px;
+  margin-bottom: 10px; justify-content: center;
+}
+.stat-item:first-child .stat-num-wrap { justify-content: flex-start; }
+.stat-item:last-child  .stat-num-wrap { justify-content: flex-end; }
+.stat-number {
+  font-family: var(--ff-m); font-size: clamp(44px,6vw,66px);
+  font-weight: 500; color: #fff; line-height: 1;
+}
+.stat-pct {
+  font-family: var(--ff-m); font-size: clamp(22px,3vw,36px);
+  font-weight: 400; color: rgba(255,255,255,0.8); line-height: 1;
+}
+.stat-label {
+  font-family: var(--ff-u); font-size: 15px; font-weight: 500;
+  color: rgba(255,255,255,0.92); line-height: 1.45; margin-bottom: 8px;
+}
+.stat-source {
+  font-family: var(--ff-m); font-size: 10px;
+  color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
+}
+
+/* ── WEEKLY SIGNAL ── */
+.weekly-signal {
+  background: var(--cream); padding: 80px 48px;
+  border-bottom: 1px solid var(--bd-light);
+}
+.signal-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: start;
+}
+.signal-badge { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.signal-dot {
+  width: 8px; height: 8px; background: var(--cyan);
+  border-radius: 50%; animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.signal-label {
+  font-family: var(--ff-m); font-size: 10px;
+  letter-spacing: 0.18em; color: var(--cyan); text-transform: uppercase;
+}
+.signal-date {
+  font-family: var(--ff-m); font-size: 11px;
+  color: var(--muted-light); letter-spacing: 0.1em; margin-bottom: 14px;
+}
+.signal-headline {
+  font-family: var(--ff-d); font-weight: 700;
+  font-size: clamp(22px,2.8vw,34px); color: var(--navy);
+  line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.01em;
+}
+.signal-body {
+  font-family: var(--ff-u); font-size: 17px;
+  line-height: 1.78; color: var(--ink); opacity: 0.85;
+}
+.signal-archive-label {
+  font-family: var(--ff-m); font-size: 10px;
+  letter-spacing: 0.15em; color: var(--muted-light);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.signal-archive { list-style: none; }
+.signal-archive li { border-top: 1px solid var(--bd-light); padding: 14px 0; }
+.signal-archive li:last-child { border-bottom: 1px solid var(--bd-light); }
+.signal-archive a {
+  font-family: var(--ff-u); font-size: 14px; color: var(--ink);
+  text-decoration: none; opacity: 0.72;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  transition: opacity 0.15s, color 0.15s;
+}
+.signal-archive a:hover { opacity: 1; color: var(--amber); }
+.arc-date {
+  font-family: var(--ff-m); font-size: 10px;
+  color: var(--muted-light); flex-shrink: 0; letter-spacing: 0.06em;
+}
+
+/* ── PROBLEM ── */
+.section-dark {
+  background: var(--navy); padding: 100px 48px;
+  position: relative; overflow: hidden;
+}
+.section-dark-inner {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+}
+.problem-grid {
+  display: grid; grid-template-columns: 58% 1fr; gap: 80px; align-items: start;
+}
+
+.section-h2-light {
+  font-family: var(--ff-d); font-weight: 700;
+  font-size: clamp(26px,3.2vw,44px);
+  color: #fff; line-height: 1.15;
+  letter-spacing: -0.02em; margin-bottom: 28px;
+}
+.body-dark {
+  font-family: var(--ff-u); font-size: 18px;
+  line-height: 1.78; color: var(--muted-dark);
+}
+.body-dark p + p { margin-top: 20px; }
+
+.pull-quote {
+  border-left: 3px solid var(--amber);
+  padding: 4px 0 4px 28px; margin-top: 4px;
+}
+.pull-quote blockquote {
+  font-family: var(--ff-d); font-style: italic; font-weight: 700;
+  font-size: clamp(17px,2.2vw,26px); color: #fff;
+  line-height: 1.45; margin-bottom: 18px;
+}
+.pull-quote cite {
+  font-family: var(--ff-m); font-size: 11px;
+  color: var(--amber); letter-spacing: 0.08em; font-style: normal;
+}
+
+/* ── ASSESSMENT PITCH ── */
+.section-light {
+  background: var(--cream); padding: 100px 48px;
+  position: relative; overflow: hidden;
+}
+.section-light-inner {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+}
+.section-h2 {
+  font-family: var(--ff-d); font-weight: 700;
+  font-size: clamp(26px,3.2vw,44px);
+  color: var(--navy); line-height: 1.15;
+  letter-spacing: -0.02em; margin-bottom: 16px;
+}
+.section-sub {
+  font-family: var(--ff-u); font-size: 18px;
+  color: var(--muted-light); max-width: 560px;
+  line-height: 1.65; margin-bottom: 52px;
+}
+
+.cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 48px; }
+.card {
+  background: #fff; border: 1px solid var(--bd-light);
+  border-top: 3px solid var(--amber); border-radius: 4px;
+  padding: 32px 28px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover { box-shadow: 0 8px 32px rgba(13,27,42,0.09); transform: translateY(-2px); }
+.card-icon { width: 36px; height: 36px; margin-bottom: 20px; }
+.card h3 {
+  font-family: var(--ff-d); font-weight: 700; font-size: 20px;
+  color: var(--navy); margin-bottom: 12px; line-height: 1.2;
+}
+.card p {
+  font-family: var(--ff-u); font-size: 15px;
+  color: var(--muted-light); line-height: 1.68; margin-bottom: 20px;
+}
+.card-tag { font-family: var(--ff-m); font-size: 10px; letter-spacing: 0.12em; color: var(--cyan); }
+.card-tag.amber { color: var(--amber); }
+
+.cta-area { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.micro {
+  font-family: var(--ff-m); font-size: 10px;
+  letter-spacing: 0.1em; color: var(--muted-light);
+}
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 55% 1fr; gap: 80px; align-items: start; }
+.credentials {
+  margin-top: 36px; border-top: 1px solid var(--bd-dark);
+  padding-top: 28px; font-family: var(--ff-m); font-size: 12px;
+  line-height: 2; color: rgba(255,255,255,0.52);
+}
+.cred-name { font-size: 14px; color: #fff; font-weight: 500; display: block; margin-bottom: 4px; }
+.cred-rule { color: var(--amber); opacity: 0.35; display: block; margin: 2px 0; }
+
+.video-placeholder {
+  aspect-ratio: 16/9; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--bd-dark); border-radius: 4px;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 16px; cursor: pointer;
+  transition: background 0.2s;
+}
+.video-placeholder:hover { background: rgba(255,255,255,0.07); }
+.play-btn {
+  width: 64px; height: 64px; background: var(--cyan);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.video-label {
+  font-family: var(--ff-m); font-size: 10px;
+  letter-spacing: 0.15em; color: var(--muted-dark);
+  text-align: center; text-transform: uppercase;
+}
+.video-sub { font-family: var(--ff-u); font-size: 13px; color: rgba(255,255,255,0.35); text-align: center; }
+
+.about-pull { margin-top: 28px; border-left: 3px solid var(--amber); padding: 4px 0 4px 20px; }
+.about-pull p {
+  font-family: var(--ff-d); font-style: italic; font-weight: 700;
+  font-size: clamp(16px,2vw,22px); color: #fff; line-height: 1.45;
+}
+
+/* ── NEWSLETTER ── */
+.newsletter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.feature-list { list-style: none; margin: 28px 0 36px; display: flex; flex-direction: column; gap: 12px; }
+.feature-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-family: var(--ff-u); font-size: 16px; color: var(--ink); line-height: 1.5;
+}
+.feature-list li::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--amber); border-radius: 50%;
+  flex-shrink: 0; margin-top: 8px;
+}
+.social-proof {
+  margin-top: 28px; border-top: 1px solid var(--bd-light);
+  padding-top: 24px; display: flex; flex-direction: column; gap: 10px;
+}
+.proof-quote { font-family: var(--ff-u); font-size: 14px; color: var(--muted-light); line-height: 1.55; font-style: italic; }
+
+.form-box {
+  background: var(--navy); border-radius: 6px;
+  padding: 44px 40px; position: relative; overflow: hidden;
+}
+.form-box-inner { position: relative; z-index: 1; }
+.form-label-top {
+  font-family: var(--ff-m); font-size: 10px;
+  letter-spacing: 0.18em; color: var(--cyan);
+  text-transform: uppercase; margin-bottom: 12px; display: block;
+}
+.form-headline {
+  font-family: var(--ff-d); font-weight: 700;
+  font-size: 24px; color: #fff; line-height: 1.2; margin-bottom: 8px;
+}
+.form-sub {
+  font-family: var(--ff-u); font-size: 14px;
+  color: var(--muted-dark); line-height: 1.6; margin-bottom: 24px;
+}
+.form-stack { display: flex; flex-direction: column; gap: 10px; }
+.email-input {
+  width: 100%; padding: 14px 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--bd-dark); border-radius: 3px;
+  font-family: var(--ff-u); font-size: 15px; color: #fff;
+  outline: none; transition: border-color 0.2s;
+}
+.email-input::placeholder { color: rgba(255,255,255,0.32); }
+.email-input:focus { border-color: var(--cyan); }
+.form-btn {
+  width: 100%; padding: 14px 24px;
+  background: var(--cyan); color: var(--navy);
+  font-family: var(--ff-u); font-weight: 600; font-size: 15px;
+  border: none; border-radius: 3px; cursor: pointer;
+  transition: background 0.2s;
+}
+.form-btn:hover { background: #00cfe3; }
+.form-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.form-micro {
+  font-family: var(--ff-m); font-size: 10px;
+  color: rgba(255,255,255,0.28); letter-spacing: 0.08em; text-align: center;
+}
+
+/* ── CONTENT HUB ── */
+.section-content {
+  background: var(--cream); padding: 100px 48px;
+  border-top: 1px solid var(--bd-light);
+}
+.content-inner { max-width: 1100px; margin: 0 auto; }
+.articles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 48px; }
+.article-card {
+  background: #fff; border: 1px solid var(--bd-light); border-radius: 4px;
+  padding: 28px 24px; text-decoration: none;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.article-card:hover { box-shadow: 0 8px 32px rgba(13,27,42,0.09); transform: translateY(-2px); }
+.article-date { font-family: var(--ff-m); font-size: 10px; letter-spacing: 0.1em; color: var(--muted-light); }
+.article-title { font-family: var(--ff-d); font-weight: 700; font-size: 18px; color: var(--navy); line-height: 1.3; }
+.article-excerpt { font-family: var(--ff-u); font-size: 14px; color: var(--muted-light); line-height: 1.65; flex: 1; }
+.article-link { font-family: var(--ff-m); font-size: 11px; letter-spacing: 0.1em; color: var(--cyan); margin-top: 4px; }
+
+/* ── FAQ ── */
+.faq-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.faq-list { margin-top: 48px; }
+details { border-top: 1px solid var(--bd-dark); }
+details:last-child { border-bottom: 1px solid var(--bd-dark); }
+summary {
+  font-family: var(--ff-u); font-size: 17px; font-weight: 600; color: #fff;
+  padding: 22px 0; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  transition: color 0.15s;
+}
+summary::-webkit-details-marker { display: none; }
+summary:hover { color: var(--amber); }
+.faq-icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--amber); transition: transform 0.2s ease; }
+details[open] summary .faq-icon { transform: rotate(45deg); }
+details[open] summary { color: var(--amber); }
+.faq-answer {
+  font-family: var(--ff-u); font-size: 16px;
+  line-height: 1.75; color: var(--muted-dark); padding: 0 0 24px; max-width: 680px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--carbon); padding: 64px 48px 32px;
+  border-top: 1px solid var(--bd-dark);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 48px; max-width: 1100px; margin: 0 auto 48px;
+}
+.footer-brand .brand-name {
+  font-family: var(--ff-d); font-weight: 700; font-size: 20px;
+  color: #fff; text-decoration: none; display: block;
+}
+.footer-tagline {
+  font-family: var(--ff-m); font-size: 11px;
+  color: var(--amber); letter-spacing: 0.08em; margin-top: 8px; margin-bottom: 4px;
+}
+.footer-by { font-family: var(--ff-u); font-size: 13px; color: var(--muted-dark); }
+.footer-col-label {
+  font-family: var(--ff-m); font-size: 10px;
+  letter-spacing: 0.15em; color: rgba(255,255,255,0.28);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-family: var(--ff-u); font-size: 14px;
+  color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.15s;
+}
+.footer-links a:hover { color: var(--amber); }
+.footer-bottom {
+  border-top: 1px solid var(--bd-dark); padding-top: 24px;
+  max-width: 1100px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-bottom span { font-family: var(--ff-m); font-size: 11px; color: rgba(255,255,255,0.25); }
+
+/* ── ASSESSMENT OVERLAY ── */
+.assessment-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: var(--navy); overflow-y: auto; overscroll-behavior: contain;
+}
+.assessment-overlay.open { display: flex; flex-direction: column; }
+
+.assessment-top-bar {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(13,27,42,0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--bd-dark); padding: 0 32px;
+}
+.assessment-bar-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0 0;
+}
+.assessment-brand {
+  font-family: var(--ff-m); font-size: 10px;
+  letter-spacing: 0.15em; color: var(--cyan); text-transform: uppercase;
+}
+.assessment-counter { font-family: var(--ff-m); font-size: 11px; color: var(--muted-dark); }
+.close-btn {
+  background: none; border: none; font-family: var(--ff-m);
+  font-size: 12px; color: var(--muted-dark); cursor: pointer;
+  letter-spacing: 0.08em; padding: 4px 8px; transition: color 0.15s;
+}
+.close-btn:hover { color: #fff; }
+.close-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.progress-bar-wrap { height: 3px; background: rgba(255,255,255,0.08); margin-top: 12px; }
+.progress-bar-fill { height: 100%; background: var(--cyan); width: 0%; transition: width 0.4s ease; }
+
+.assessment-body {
+  position: relative; z-index: 1; flex: 1;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 60px 24px 80px;
+}
+.question-wrap { max-width: 680px; width: 100%; }
+
+.q-number { font-family: var(--ff-m); font-size: 11px; letter-spacing: 0.18em; color: var(--cyan); margin-bottom: 20px; }
+.q-text { font-family: var(--ff-d); font-weight: 700; font-size: clamp(20px,3vw,30px); color: #fff; line-height: 1.25; margin-bottom: 32px; }
+.answers-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.answer-option {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--bd-dark);
+  border-left: 3px solid transparent; border-radius: 3px; padding: 16px 20px;
+  cursor: pointer; transition: background 0.15s, border-left-color 0.15s;
+  text-align: left; width: 100%;
+}
+.answer-option:hover { background: rgba(255,255,255,0.07); border-left-color: var(--cyan); }
+.answer-option.selected { background: rgba(0,180,198,0.1); border-left-color: var(--cyan); }
+.answer-option:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.answer-letter { font-family: var(--ff-m); font-size: 12px; color: var(--amber); flex-shrink: 0; margin-top: 1px; }
+.answer-text { font-family: var(--ff-u); font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+
+.q-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 32px; }
+.btn-back {
+  background: none; border: none; font-family: var(--ff-m);
+  font-size: 12px; color: var(--muted-dark); cursor: pointer;
+  letter-spacing: 0.08em; transition: color 0.15s; padding: 0;
+}
+.btn-back:hover { color: #fff; }
+.btn-next {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--ff-u); font-weight: 600; font-size: 15px;
+  color: var(--navy); background: var(--cyan);
+  border: none; border-radius: 3px; padding: 13px 28px;
+  cursor: pointer; transition: background 0.2s, opacity 0.2s;
+  opacity: 0; pointer-events: none;
+}
+.btn-next.visible { opacity: 1; pointer-events: auto; }
+.btn-next:hover { background: #00cfe3; }
+.btn-next:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+/* Result */
+.result-wrap {
+  max-width: 680px; width: 100%;
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.result-wrap.animated { opacity: 1; transform: none; }
+
+.result-card {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--bd-dark);
+  border-radius: 4px; padding: 44px 40px;
+  border-left: 4px solid var(--score-low); margin-bottom: 24px;
+}
+.result-card.medium { border-left-color: var(--score-mid); }
+.result-card.high   { border-left-color: var(--score-high); }
+
+.result-status { font-family: var(--ff-m); font-size: 10px; letter-spacing: 0.18em; color: var(--score-low); text-transform: uppercase; margin-bottom: 12px; }
+.result-card.medium .result-status { color: var(--score-mid); }
+.result-card.high   .result-status { color: var(--score-high); }
+.result-score { font-family: var(--ff-m); font-size: 52px; font-weight: 500; color: var(--score-low); line-height: 1; margin-bottom: 20px; }
+.result-card.medium .result-score { color: var(--score-mid); }
+.result-card.high   .result-score { color: var(--score-high); }
+.result-headline { font-family: var(--ff-d); font-weight: 900; font-size: clamp(22px,2.8vw,30px); color: #fff; line-height: 1.2; margin-bottom: 16px; }
+.result-body { font-family: var(--ff-u); font-size: 16px; line-height: 1.75; color: var(--muted-dark); }
+
+.result-email-section {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--bd-dark);
+  border-radius: 4px; padding: 36px 40px;
+}
+.result-email-label { font-family: var(--ff-m); font-size: 10px; letter-spacing: 0.18em; color: var(--cyan); text-transform: uppercase; margin-bottom: 12px; display: block; }
+.result-email-headline { font-family: var(--ff-d); font-weight: 700; font-size: 22px; color: #fff; margin-bottom: 8px; }
+.result-email-sub { font-family: var(--ff-u); font-size: 14px; color: var(--muted-dark); line-height: 1.6; margin-bottom: 20px; }
+.result-micro { font-family: var(--ff-m); font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.08em; text-align: center; margin-top: 8px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .signal-inner, .about-grid, .newsletter-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 20px 80px; }
+  .stats-bar { grid-template-columns: 1fr; padding: 44px 20px; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 28px 0; text-align: left; }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-num-wrap, .stat-item:last-child .stat-num-wrap { justify-content: flex-start; }
+  .weekly-signal, .section-dark, .section-light, .section-content, .section-content { padding: 72px 20px; }
+  .problem-grid, .cards-grid, .articles-grid { grid-template-columns: 1fr; }
+  footer { padding: 48px 20px 24px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .scroll-hint { left: 20px; }
+  .form-box { padding: 32px 24px; }
+  .result-card, .result-email-section { padding: 28px 24px; }
+  .assessment-body { padding: 40px 20px 60px; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <div class="nav-wordmark">
+    <a href="/" class="brand">Human at Work</a>
+    <span class="byline">by Boubacar</span>
+  </div>
+  <ul class="nav-links" role="list">
+    <li><a href="#signal">This Week</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#newsletter">Newsletter</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="btn-primary" id="nav-cta-btn" aria-haspopup="dialog">Take the Assessment &rarr;</button>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-bg-grid" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <p class="eyebrow eyebrow-light">What leadership should be saying out loud</p>
+    <h1 id="hero-heading">
+      Your company is going AI&#8209;first.<br>
+      Are you &mdash; <span class="rotating-wrap" aria-live="polite"><span id="rotating-title">an operations manager</span></span> &mdash; ready for what comes next?
+    </h1>
+
+    <p class="hero-credential">
+      "I have been in those rooms. I have made those lists. I have also sat across the table from people and delivered the news. That experience is why I built this &mdash; not to expose anyone, but to make sure workers have what leadership should already be giving them."
+    </p>
+
+    <p class="hero-sub">Take the 2-minute AI Exposure Score and know exactly where you stand &mdash; and what to do about it this week.</p>
+
+    <div class="hero-ctas">
+      <button class="btn-primary btn-primary-lg" id="hero-cta-btn" aria-haspopup="dialog">
+        Take the Free Assessment
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="trust-signal">
+        Used by professionals in operations &middot; finance &middot; marketing &middot; HR<br>
+        No tools pitch. No doom. The real read.
+      </p>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar" aria-label="Key workforce statistics">
+  <div class="stat-item reveal">
+    <div class="stat-num-wrap">
+      <span class="stat-number" data-target="41">0</span><span class="stat-pct">%</span>
+    </div>
+    <p class="stat-label">of employers plan AI-driven headcount cuts</p>
+    <span class="stat-source">WEF Future of Jobs Report, 2025</span>
+  </div>
+  <div class="stat-item reveal" style="transition-delay:.1s">
+    <div class="stat-num-wrap">
+      <span class="stat-number" data-target="39">0</span><span class="stat-pct">%</span>
+    </div>
+    <p class="stat-label">of existing skills will be outdated by 2030</p>
+    <span class="stat-source">WEF Future of Jobs Report, 2025</span>
+  </div>
+  <div class="stat-item reveal" style="transition-delay:.2s">
+    <div class="stat-num-wrap">
+      <span class="stat-number" data-target="56">0</span><span class="stat-pct">%</span>
+    </div>
+    <p class="stat-label">wage premium for workers with AI skills</p>
+    <span class="stat-source">PwC Global AI Jobs Barometer, 2025</span>
+  </div>
+</section>
+
+<!-- WEEKLY SIGNAL -->
+<section class="weekly-signal" id="signal" aria-labelledby="signal-heading">
+  <div class="signal-inner">
+    <div class="reveal">
+      <div class="signal-badge">
+        <span class="signal-dot" aria-hidden="true"></span>
+        <span class="signal-label">This Week's Signal</span>
+      </div>
+      <p class="signal-date">APR 19 2026</p>
+      <h2 class="signal-headline" id="signal-heading">The all-staff email that said nothing</h2>
+      <p class="signal-body">This week three major financial services firms sent AI transformation updates to their full workforce. All three used variations of the same phrase: "AI will augment your work, not replace it." None mentioned the workforce planning meetings that preceded those emails. What gets said in those meetings is different from what gets sent. This brief exists to close that gap.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.1s">
+      <p class="signal-archive-label">Previous Signals</p>
+      <ul class="signal-archive" role="list">
+        <li>
+          <a href="#" aria-label='Read: What "efficiency initiative" really means'>
+            What "efficiency initiative" really means
+            <span class="arc-date">APR 12</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" aria-label="Read: The three questions HR asks before a restructure">
+            The three questions HR asks before a restructure
+            <span class="arc-date">APR 05</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" aria-label="Read: Why your manager stopped sharing updates">
+            Why your manager stopped sharing updates
+            <span class="arc-date">MAR 29</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section-dark" aria-labelledby="problem-heading">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="section-dark-inner">
+    <div class="problem-grid">
+      <div class="reveal">
+        <p class="eyebrow eyebrow-dark">What is actually happening</p>
+        <h2 class="section-h2-light" id="problem-heading">Here is what is actually happening right now</h2>
+        <div class="body-dark">
+          <p>The WEF's 2025 Future of Jobs report surveyed 1,000 employers across 55 economies. 41% plan to reduce headcount as AI automates their operations.</p>
+          <p>That decision is already being made in rooms you are not in, by people who are not telling you.</p>
+          <p>Your manager knows which roles are being evaluated. Leadership knows the restructure timeline. And most career advice you are reading right now is written by people who have never sat in a workforce planning meeting.</p>
+          <p>The workers who survive these restructures are not the ones who learned the most tools. They are the ones who understood how the decision was being made and positioned themselves accordingly before the announcement came.</p>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.12s">
+        <div class="pull-quote">
+          <blockquote>"I have built the programs that helped people through restructuring. I know what both sides of that table feel like and what actually determines who lands where."</blockquote>
+          <cite>Boubacar &middot; Founder, Human at Work</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENT PITCH -->
+<section class="section-light" id="assessment-pitch" aria-labelledby="pitch-heading">
+  <div class="dot-grid" aria-hidden="true"></div>
+  <div class="section-light-inner">
+    <p class="eyebrow eyebrow-light">The AI Exposure Score</p>
+    <h2 class="section-h2 reveal" id="pitch-heading">Two minutes. Three things you will know that most workers never find out.</h2>
+    <p class="section-sub reveal" style="transition-delay:.08s">Not a generic quiz. A role-specific read based on how HR actually evaluates exposure.</p>
+
+    <div class="cards-grid">
+      <div class="card reveal">
+        <svg class="card-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <circle cx="18" cy="18" r="9" stroke="#00B4C6" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="3.5" fill="#00B4C6" opacity="0.5"/>
+          <circle cx="18" cy="18" r="1.2" fill="#00B4C6"/>
+          <line x1="18" y1="5" x2="18" y2="9" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="27" x2="18" y2="31" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="5"  y1="18" x2="9"  y2="18" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="27" y1="18" x2="31" y2="18" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>Your real risk level</h3>
+        <p>A role-specific read based on how HR actually evaluates exposure. Not the generic automation percentage you have seen everywhere.</p>
+        <span class="card-tag">ROLE-SPECIFIC</span>
+      </div>
+      <div class="card reveal" style="transition-delay:.1s">
+        <svg class="card-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <rect x="7" y="9" width="22" height="2" rx="1" fill="#00B4C6"/>
+          <rect x="7" y="16" width="15" height="2" rx="1" fill="#00B4C6" opacity="0.7"/>
+          <rect x="7" y="23" width="10" height="2" rx="1" fill="#00B4C6" opacity="0.4"/>
+          <path d="M27 21l4 4-4 4" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Your specific defense moves</h3>
+        <p>Three concrete actions calibrated to your exact score. Executable inside your current role this week. Not "build your personal brand."</p>
+        <span class="card-tag">ACTIONABLE</span>
+      </div>
+      <div class="card reveal" style="transition-delay:.2s">
+        <svg class="card-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path d="M18 7l2.2 6.8H27l-5.7 4.1 2.2 6.8L18 20.6l-5.5 4.1 2.2-6.8L9 13.8h6.8L18 7z" stroke="#D4872A" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <h3>Your severance trigger signals</h3>
+        <p>The early signals HR watches before a restructure is announced. Know what to look for before the all-hands meeting happens.</p>
+        <span class="card-tag amber">INSIDER</span>
+      </div>
+    </div>
+
+    <div class="cta-area reveal">
+      <button class="btn-primary btn-primary-lg" id="pitch-cta-btn" aria-haspopup="dialog">
+        Get Your Score &mdash; It's Free
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="micro">NO TOOLS PITCH &nbsp;&middot;&nbsp; NO EMAIL REQUIRED TO START &nbsp;&middot;&nbsp; 2 MINUTES</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section-dark" id="about" aria-labelledby="about-heading">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="section-dark-inner">
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="eyebrow eyebrow-dark">Why this exists</p>
+        <h2 class="section-h2-light" id="about-heading">Why this exists</h2>
+        <div class="body-dark">
+          <p>I built Human at Work because I kept watching the same thing happen.</p>
+          <p>Companies would announce AI transformation initiatives. Workers would search "will AI take my job" and get the same recycled list of safe occupations. Leadership would send a reassuring all-staff email that said nothing meaningful.</p>
+          <p>And then, six months later, the restructure would land.</p>
+          <p>The workers who survived were not the ones who had learned the most tools. They were the ones who understood how the decision was being made and positioned themselves accordingly before the announcement came.</p>
+          <p>That is what this is. Not a tools tutorial. Not a doom newsletter. The read from someone who has sat on both sides of that table.</p>
+        </div>
+
+        <div class="credentials">
+          <span class="cred-name">Boubacar</span>
+          <span class="cred-rule">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</span>
+          15 years &middot; Global HR Leader<br>
+          Fortune-scale companies<br>
+          MENA &middot; Africa &middot; US &middot; Europe
+          <span class="cred-rule">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</span>
+          Founder, Catalyst Works Consulting<br>
+          <a href="https://catalystworks.consulting" target="_blank" rel="noopener" style="color:var(--amber);text-decoration:none;">catalystworks.consulting</a>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:.12s">
+        <!-- VIDEO EMBED PLACEHOLDER: Replace this block with your Loom or YouTube embed when ready -->
+        <div class="video-placeholder" role="img" aria-label="Video placeholder: 90-second briefing — Why I built this">
+          <div class="play-btn" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p class="video-label">90-Second Briefing &mdash; Why I Built This</p>
+          <p class="video-sub">Watch before you subscribe.</p>
+        </div>
+        <div class="about-pull">
+          <p>"The workers who survived were not the ones who had learned the most tools."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section-light" id="newsletter" aria-labelledby="newsletter-heading">
+  <div class="dot-grid" aria-hidden="true"></div>
+  <div class="section-light-inner">
+    <div class="newsletter-grid">
+      <div class="reveal">
+        <p class="eyebrow eyebrow-light">The Weekly Brief</p>
+        <h2 class="section-h2" id="newsletter-heading">The brief your leadership should already be publishing.</h2>
+        <ul class="feature-list" role="list">
+          <li>The signals that precede a restructure, in plain language</li>
+          <li>How to position your role before the cuts are mapped</li>
+          <li>Performance review language that keeps you in the keep column</li>
+          <li>What AI-adjacent internal moves actually look like in practice</li>
+          <li>Severance intelligence: what to ask for, when to ask for it</li>
+        </ul>
+        <div class="social-proof" aria-label="Reader feedback">
+          <p class="proof-quote">"Finally someone saying what we're all thinking internally."</p>
+          <p class="proof-quote">"I forwarded this to six colleagues the day I found it."</p>
+          <p class="proof-quote">"This is what HR leadership sounds like when the filter is off."</p>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="form-box">
+          <div class="grain" aria-hidden="true"></div>
+          <div class="form-box-inner">
+            <span class="form-label-top">Subscribe Free</span>
+            <h3 class="form-headline">Get the brief every week.</h3>
+            <p class="form-sub">Strategic and political intelligence on what is actually happening in workforce planning and what to do about it.</p>
+            <!-- BEEHIIV EMBED 2: Replace the form below with your Beehiiv embed code for the Human at Work newsletter -->
+            <div class="form-stack">
+              <label for="newsletter-email" class="sr-only">Your email address</label>
+              <input type="email" id="newsletter-email" name="email" class="email-input" placeholder="your@email.com&hellip;" autocomplete="email" spellcheck="false">
+              <button type="button" class="form-btn">Get the Brief &rarr;</button>
+            </div>
+            <p class="form-micro" style="margin-top:12px">WEEKLY &nbsp;&middot;&nbsp; NO SPAM &nbsp;&middot;&nbsp; UNSUBSCRIBE ANYTIME</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT HUB -->
+<section class="section-content" aria-labelledby="content-heading">
+  <div class="content-inner">
+    <p class="eyebrow eyebrow-light">From the Brief</p>
+    <h2 class="section-h2 reveal" id="content-heading">Recent Intelligence</h2>
+    <p class="section-sub reveal" style="transition-delay:.08s">Published weekly. Written for workers, not for HR departments.</p>
+    <div class="articles-grid">
+      <a href="#" class="article-card reveal" aria-label='Read: What "efficiency initiative" really means for your role'>
+        <span class="article-date">APR 12 2026</span>
+        <h3 class="article-title">What "efficiency initiative" really means for your role</h3>
+        <p class="article-excerpt">When leadership uses this phrase, there is a specific internal process already underway. Here is what it looks like from the inside and what to do in the next 30 days.</p>
+        <span class="article-link">READ &rarr;</span>
+      </a>
+      <a href="#" class="article-card reveal" style="transition-delay:.1s" aria-label="Read: The three questions HR asks before a restructure">
+        <span class="article-date">APR 05 2026</span>
+        <h3 class="article-title">The three questions HR asks before a restructure</h3>
+        <p class="article-excerpt">Workforce planning meetings follow a pattern. The three questions asked about every role determine who stays and who goes. Most workers never know what they are.</p>
+        <span class="article-link">READ &rarr;</span>
+      </a>
+      <a href="#" class="article-card reveal" style="transition-delay:.2s" aria-label="Read: How to make your value visible before it gets evaluated">
+        <span class="article-date">MAR 29 2026</span>
+        <h3 class="article-title">How to make your value visible before it gets evaluated</h3>
+        <p class="article-excerpt">Visibility is not self-promotion. It is making sure the people who make restructure decisions can articulate what you do before the meeting starts.</p>
+        <span class="article-link">READ &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-dark" id="faq" aria-labelledby="faq-heading">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="faq-inner">
+    <p class="eyebrow eyebrow-dark">Frequently Asked</p>
+    <h2 class="section-h2-light reveal" id="faq-heading">What people ask before they subscribe</h2>
+    <div class="faq-list reveal" style="transition-delay:.08s">
+
+      <details open>
+        <summary>What is Human at Work?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="faq-answer">Human at Work is a weekly intelligence brief for workers navigating AI transformation at their companies. Founded by Boubacar, a former global HR leader with 15 years at Fortune-scale companies across MENA, Africa, the US, and Europe, it publishes what leadership should already be saying out loud about workforce planning and what workers can do about it.</p>
+      </details>
+
+      <details>
+        <summary>What is the AI Exposure Score?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="faq-answer">The AI Exposure Score is a free 10-question assessment that evaluates your real risk level based on factors HR actually uses when making restructure decisions: role replaceability, task predictability, organizational visibility, company AI adoption pace, and team headcount signals. It takes two minutes and produces a personalized score plus three specific defense moves.</p>
+      </details>
+
+      <details>
+        <summary>Who is Boubacar?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="faq-answer">Boubacar is a former global HR leader who spent 15 years at Fortune-scale companies across MENA, Africa, the US, and Europe. He has been in the rooms where restructure decisions got made and has sat across the table from people to deliver that news. He now runs Catalyst Works Consulting and publishes Human at Work.</p>
+      </details>
+
+      <details>
+        <summary>Is this about learning AI tools?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="faq-answer">No. Human at Work is tool-agnostic by design. The frameworks, strategies, and intelligence published here hold up regardless of which AI systems your company deploys. The focus is mindset, positioning, and political intelligence. The human side of surviving and thriving through AI transformation.</p>
+      </details>
+
+      <details>
+        <summary>How is this different from other AI career newsletters?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="faq-answer">Most AI career content is written by people who have never been in a workforce planning meeting. Human at Work is written from the inside by someone who has made those decisions and delivered that news. The content is strategic and political, not instructional.</p>
+      </details>
+
+      <details>
+        <summary>Is it really free?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="faq-answer">The AI Exposure Score and the weekly newsletter are free. Human at Work also publishes paid resources for workers who want to go deeper. The free brief is complete and useful on its own.</p>
+      </details>
+
+      <details>
+        <summary>How do I know if this is for me?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </summary>
+        <p class="faq-answer">If you work at a company that has mentioned AI, automation, or "transformation" in the last 12 months, this is for you. If you have wondered whether your role is at risk and have not found a satisfying answer, this is for you. If you are tired of being told to "learn prompting" without anyone explaining the actual organizational dynamics at play, this is for you.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="brand-name">Human at Work</a>
+      <p class="footer-tagline">The insider read on AI and your career.</p>
+      <p class="footer-by">by Boubacar</p>
+    </div>
+    <div>
+      <p class="footer-col-label">Navigate</p>
+      <ul class="footer-links" role="list">
+        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="#" id="footer-assessment-btn">Take the Assessment</a></li>
+        <li><a href="#about">About Boubacar</a></li>
+        <li><a href="https://catalystworks.consulting" target="_blank" rel="noopener">Catalyst Works &rarr;</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-label">Contact</p>
+      <ul class="footer-links" role="list">
+        <li><a href="mailto:contact@humanatwork.ai">contact@humanatwork.ai</a></li>
+        <li><a href="https://linkedin.com/in/boubacarbarry" target="_blank" rel="noopener" aria-label="Boubacar on LinkedIn">LinkedIn &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Human at Work. All rights reserved.</span>
+    <span>humanatwork.ai</span>
+  </div>
+</footer>
+
+<!-- ASSESSMENT OVERLAY -->
+<div class="assessment-overlay" id="assessment-overlay" role="dialog" aria-modal="true" aria-labelledby="assessment-overlay-title">
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="assessment-top-bar">
+    <div class="assessment-bar-row">
+      <span class="assessment-brand" id="assessment-overlay-title">Human at Work // AI Exposure Score</span>
+      <span class="assessment-counter" id="q-counter" aria-live="polite">Question 1 of 10</span>
+      <button class="close-btn" id="close-assessment" aria-label="Close assessment">CLOSE &times;</button>
+    </div>
+    <div class="progress-bar-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Assessment progress">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="assessment-body">
+    <div class="question-wrap" id="question-wrap"></div>
+    <div class="result-wrap"   id="result-wrap"></div>
+  </div>
+</div>
+
+<script src="assessment.js" defer></script>
+</body>
+</html>
