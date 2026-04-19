@@ -348,9 +348,10 @@
       bookText.appendChild(bookH);
       bookText.appendChild(bookP);
 
-      // CALENDLY LINK: Replace href with humanatwork.ai 30-min Calendly URL
       const bookBtn = document.createElement('a');
-      bookBtn.href = '#book';
+      bookBtn.href = 'https://calendly.com/boubacarbarry/ai-readiness-call-human-at-work';
+      bookBtn.target = '_blank';
+      bookBtn.rel = 'noopener';
       bookBtn.className = 'btn-book';
       bookBtn.textContent = 'Book Your Free 30-Min Call \u2192';
 
