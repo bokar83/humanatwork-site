@@ -330,6 +330,35 @@
     emailSec.appendChild(micro);
 
     resultWrap.appendChild(card);
+
+    // Booking CTA for medium and high scores
+    if (tier === 'medium' || tier === 'high') {
+      const bookSec = document.createElement('div');
+      bookSec.className = 'result-book-section';
+
+      const bookText = document.createElement('div');
+      bookText.className = 'result-book-text';
+
+      const bookH = document.createElement('h4');
+      bookH.textContent = 'Talk through your score with Boubacar.';
+
+      const bookP = document.createElement('p');
+      bookP.textContent = 'A free 30-minute AI Readiness Call. No pitch. Just a straight read on your situation and your next moves.';
+
+      bookText.appendChild(bookH);
+      bookText.appendChild(bookP);
+
+      // CALENDLY LINK: Replace href with humanatwork.ai 30-min Calendly URL
+      const bookBtn = document.createElement('a');
+      bookBtn.href = '#book';
+      bookBtn.className = 'btn-book';
+      bookBtn.textContent = 'Book Your Free 30-Min Call \u2192';
+
+      bookSec.appendChild(bookText);
+      bookSec.appendChild(bookBtn);
+      resultWrap.appendChild(bookSec);
+    }
+
     resultWrap.appendChild(emailSec);
     resultWrap.style.display = 'block';
 
@@ -416,5 +445,53 @@
 
   const closeBtn = document.getElementById('close-assessment');
   if (closeBtn) closeBtn.addEventListener('click', closeAssessment);
+
+  // ── STICKY BOOKING BAR ──
+  const bookingBar = document.getElementById('booking-bar');
+  const dismissBar = document.getElementById('dismiss-bar');
+  let barDismissed = false;
+
+  if (bookingBar && dismissBar) {
+    // Show after scrolling past the hero
+    const showThreshold = window.innerHeight * 0.9;
+    window.addEventListener('scroll', () => {
+      if (barDismissed) return;
+      if (window.scrollY > showThreshold) {
+        bookingBar.classList.add('visible');
+      } else {
+        bookingBar.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    dismissBar.addEventListener('click', () => {
+      barDismissed = true;
+      bookingBar.classList.remove('visible');
+    });
+  }
+
+  // ── TRACKER COUNTER ──
+  const trackerEl = document.getElementById('tracker-count');
+  if (trackerEl) {
+    // 2025 confirmed US AI-related layoff total (update weekly)
+    const TRACKER_TOTAL = 152000;
+    const trackerObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const start = performance.now();
+          const dur = 1800;
+          const tick = (now) => {
+            const t = Math.min((now - start) / dur, 1);
+            const ease = 1 - Math.pow(1 - t, 3);
+            const val = Math.round(ease * TRACKER_TOTAL);
+            trackerEl.textContent = val.toLocaleString('en-US');
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          trackerObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    trackerObs.observe(trackerEl);
+  }
 
 })();

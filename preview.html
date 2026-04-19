@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human at Work — Direction B Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:        #0D1B2A;
+    --cream:       #FAF7F2;
+    --amber:       #D4872A;
+    --cyan:        #00B4C6;
+    --carbon:      #131920;
+    --ink:         #1A1A1A;
+    --muted-dark:  rgba(255,255,255,0.52);
+    --muted-light: rgba(26,26,26,0.55);
+    --border-dark:  rgba(255,255,255,0.07);
+    --border-light: rgba(26,26,26,0.09);
+    --amber-low:   #2ECC8A;
+    --orange-mid:  #E07B39;
+    --clay-high:   #C0392B;
+
+    --ff-display: 'Playfair Display', Georgia, serif;
+    --ff-ui:      'Plus Jakarta Sans', system-ui, sans-serif;
+    --ff-mono:    'DM Mono', 'Courier New', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-ui);
+    background: var(--cream);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(13,27,42,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .nav-wordmark {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .nav-wordmark .brand {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .nav-wordmark .byline {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-cta {
+    font-family: var(--ff-ui);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    background: var(--cyan);
+    border: none;
+    border-radius: 3px;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: #00cfe3; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Adinkra-inspired background grid — very subtle */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect x='27' y='27' width='6' height='6' rx='1' fill='%23D4872A' opacity='0.06' transform='rotate(45 30 30)'/%3E%3Crect x='12' y='12' width='6' height='6' rx='1' fill='%23D4872A' opacity='0.04' transform='rotate(45 15 15)'/%3E%3Crect x='42' y='42' width='6' height='6' rx='1' fill='%23D4872A' opacity='0.04' transform='rotate(45 45 45)'/%3E%3Cline x1='15' y1='0' x2='15' y2='60' stroke='%23D4872A' stroke-width='0.4' opacity='0.04'/%3E%3Cline x1='45' y1='0' x2='45' y2='60' stroke='%23D4872A' stroke-width='0.4' opacity='0.04'/%3E%3Cline x1='0' y1='15' x2='60' y2='15' stroke='%23D4872A' stroke-width='0.4' opacity='0.04'/%3E%3Cline x1='0' y1='45' x2='60' y2='45' stroke='%23D4872A' stroke-width='0.4' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* Grain texture */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+  }
+
+  .eyebrow {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--amber);
+    opacity: 0.6;
+  }
+
+  .hero h1 {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.08;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 .rotating-wrap {
+    display: inline-block;
+    min-width: 320px;
+  }
+
+  .hero h1 .rotating {
+    color: var(--amber);
+    font-style: italic;
+    transition: opacity 0.4s ease;
+  }
+
+  .hero-sub {
+    font-family: var(--ff-ui);
+    font-size: clamp(17px, 2vw, 20px);
+    line-height: 1.65;
+    color: var(--muted-dark);
+    max-width: 580px;
+    margin: 28px 0 44px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--ff-ui);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--navy);
+    background: var(--cyan);
+    border: none;
+    border-radius: 3px;
+    padding: 16px 32px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  .btn-primary:hover {
+    background: #00cfe3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,180,198,0.3);
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,180,198,0); }
+    50% { box-shadow: 0 0 20px 4px rgba(0,180,198,0.18); }
+  }
+
+  .trust-signal {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--muted-dark);
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+  }
+  .scroll-hint span {
+    font-family: var(--ff-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--muted-dark);
+    text-transform: uppercase;
+  }
+  .scroll-arrow {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--amber), transparent);
+    animation: scroll-drop 1.6s ease-in-out infinite;
+  }
+  @keyframes scroll-drop {
+    0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+    50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--amber);
+    padding: 56px 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .stat-item {
+    padding: 0 40px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+  }
+  .stat-item:first-child { padding-left: 0; }
+  .stat-item:last-child { border-right: none; padding-right: 0; }
+
+  .stat-number {
+    font-family: var(--ff-mono);
+    font-size: clamp(44px, 6vw, 64px);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-family: var(--ff-ui);
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .stat-source {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  .section-problem {
+    background: var(--cream);
+    padding: 100px 48px;
+  }
+
+  .problem-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 58% 42%;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-eyebrow {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--amber);
+    opacity: 0.6;
+  }
+
+  .section-h2 {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: clamp(28px, 3.5vw, 44px);
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+
+  .body-text {
+    font-family: var(--ff-ui);
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+
+  .body-text p + p { margin-top: 20px; }
+
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    padding: 8px 0 8px 28px;
+    margin-top: 8px;
+  }
+
+  .pull-quote blockquote {
+    font-family: var(--ff-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .pull-quote cite {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    font-style: normal;
+  }
+
+  /* ── ASSESSMENT PITCH ── */
+  .section-assessment {
+    background: var(--navy);
+    padding: 100px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-assessment::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .assessment-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-h2-light {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: clamp(28px, 3.5vw, 48px);
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-family: var(--ff-ui);
+    font-size: 18px;
+    color: var(--muted-dark);
+    max-width: 600px;
+    margin: 0 auto 56px;
+    line-height: 1.65;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+    text-align: left;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-dark);
+    border-radius: 4px;
+    padding: 32px 28px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(212,135,42,0.3);
+  }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 20px;
+    color: var(--cyan);
+  }
+
+  .card h3 {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .card p {
+    font-family: var(--ff-ui);
+    font-size: 15px;
+    color: var(--muted-dark);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .card-tag {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--cyan);
+  }
+  .card-tag.amber { color: var(--amber); }
+
+  /* ── ASSESSMENT OVERLAY (preview) ── */
+  .section-result-preview {
+    background: var(--cream);
+    padding: 100px 48px;
+  }
+
+  .result-preview-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .result-card {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 40px rgba(13,27,42,0.08);
+    padding: 48px;
+    border-left: 4px solid var(--amber-low);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .result-card.medium { border-left-color: var(--orange-mid); }
+  .result-card.high   { border-left-color: var(--clay-high); }
+
+  .result-status {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--amber-low);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .result-card.medium .result-status { color: var(--orange-mid); }
+  .result-card.high   .result-status { color: var(--clay-high); }
+
+  .result-score {
+    font-family: var(--ff-mono);
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  .result-headline {
+    font-family: var(--ff-display);
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .result-body {
+    font-family: var(--ff-ui);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+    opacity: 0.8;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--carbon);
+    padding: 60px 48px 32px;
+    border-top: 1px solid var(--border-dark);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 48px;
+    max-width: 1100px;
+    margin: 0 auto 48px;
+  }
+
+  .footer-brand .brand {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+  }
+  .footer-tagline {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+  .footer-sub {
+    font-family: var(--ff-ui);
+    font-size: 13px;
+    color: var(--muted-dark);
+  }
+
+  .footer-col-label {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-links a {
+    font-family: var(--ff-ui);
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-links a:hover { color: var(--amber); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border-dark);
+    padding-top: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom span {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero h1 { font-size: 36px; }
+    .hero h1 .rotating-wrap { min-width: 0; display: block; }
+    .stats-bar { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 0 0 32px; text-align: left; }
+    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .section-problem { padding: 72px 24px; }
+    .problem-inner { grid-template-columns: 1fr; gap: 48px; }
+    .section-assessment { padding: 72px 24px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .section-result-preview { padding: 72px 24px; }
+    .result-card { padding: 32px 24px; }
+    footer { padding: 48px 24px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .scroll-hint { left: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wordmark">
+    <span class="brand">Human at Work</span>
+    <span class="byline">by Boubacar</span>
+  </div>
+  <a href="#assessment" class="nav-cta">Take the Assessment &rarr;</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">For workers HR won't brief</p>
+    <h1>
+      Your company is going AI&#8209;first.<br>
+      Are you — <span class="rotating-wrap"><span class="rotating" id="rotating-title">an operations manager</span></span><br>
+      ready for what comes next?
+    </h1>
+    <p class="hero-sub">
+      Most workers find out too late. Take the 2-minute AI Exposure Score and know exactly where you stand — and what to do about it this week.
+    </p>
+    <div class="hero-ctas">
+      <a href="#assessment" class="btn-primary">
+        Take the Free Assessment
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="trust-signal">
+        Used by professionals in operations · finance · marketing · HR<br>
+        No tools pitch. No doom. The insider read.
+      </p>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar" aria-label="Key statistics">
+  <div class="stat-item reveal">
+    <span class="stat-number" data-target="41">0</span><span class="stat-number" style="font-size:clamp(28px,3vw,40px)">%</span>
+    <p class="stat-label">of employers plan AI-driven headcount cuts</p>
+    <span class="stat-source">WEF Future of Jobs Report, 2025</span>
+  </div>
+  <div class="stat-item reveal" style="transition-delay:0.1s">
+    <span class="stat-number" data-target="39">0</span><span class="stat-number" style="font-size:clamp(28px,3vw,40px)">%</span>
+    <p class="stat-label">of existing skills will be outdated by 2030</p>
+    <span class="stat-source">WEF Future of Jobs Report, 2025</span>
+  </div>
+  <div class="stat-item reveal" style="transition-delay:0.2s">
+    <span class="stat-number" data-target="56">0</span><span class="stat-number" style="font-size:clamp(28px,3vw,40px)">%</span>
+    <p class="stat-label">wage premium for workers with AI skills</p>
+    <span class="stat-source">PwC Global AI Jobs Barometer, 2025</span>
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section class="section-problem">
+  <div class="problem-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">What is actually happening</p>
+      <h2 class="section-h2">Here's what's actually happening right now</h2>
+      <div class="body-text">
+        <p>The WEF's 2025 Future of Jobs report surveyed 1,000 employers across 55 economies. 41% plan to reduce headcount as AI automates their operations.</p>
+        <p>That decision is already being made — in rooms you are not in, by people who are not telling you.</p>
+        <p>Your HR department knows the restructure timeline. They are not sharing it. Your manager knows which roles are being evaluated. They are not telling you.</p>
+        <p>And most career advice you are reading right now — "learn prompting," "be adaptable," "upskill continuously" — is written by people who have never sat in a workforce planning meeting.</p>
+      </div>
+    </div>
+    <div class="pull-quote reveal" style="transition-delay:0.12s">
+      <blockquote>
+        "I spent 15 years as a global HR director at Fortune-scale companies across MENA, Africa, the US, and Europe. I was in those rooms. I know what those conversations sound like."
+      </blockquote>
+      <cite>— Boubacar · Founder, Human at Work</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENT PITCH -->
+<section class="section-assessment" id="assessment-pitch">
+  <div class="assessment-inner">
+    <p class="eyebrow" style="justify-content:center; margin-bottom:16px">The AI Exposure Score</p>
+    <h2 class="section-h2-light reveal">Two minutes. Three things you will know<br>that most workers never find out.</h2>
+    <p class="section-sub reveal" style="transition-delay:0.08s">Not a generic quiz. A role-specific read based on how HR actually evaluates exposure.</p>
+
+    <div class="cards-grid">
+      <div class="card reveal">
+        <svg class="card-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <circle cx="18" cy="18" r="10" stroke="#00B4C6" stroke-width="1.5"/>
+          <circle cx="18" cy="18" r="4" fill="#00B4C6" opacity="0.6"/>
+          <circle cx="18" cy="18" r="1.5" fill="#00B4C6"/>
+          <line x1="18" y1="4" x2="18" y2="8" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="28" x2="18" y2="32" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="18" x2="8" y2="18" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="28" y1="18" x2="32" y2="18" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>Your real risk level</h3>
+        <p>A role-specific read based on how HR actually evaluates exposure — not how consultants model it from the outside.</p>
+        <span class="card-tag">ROLE-SPECIFIC</span>
+      </div>
+      <div class="card reveal" style="transition-delay:0.1s">
+        <svg class="card-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <rect x="8" y="10" width="20" height="2" rx="1" fill="#00B4C6"/>
+          <rect x="8" y="17" width="14" height="2" rx="1" fill="#00B4C6" opacity="0.7"/>
+          <rect x="8" y="24" width="10" height="2" rx="1" fill="#00B4C6" opacity="0.4"/>
+          <path d="M26 22l4 4-4 4" stroke="#00B4C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Your specific defense moves</h3>
+        <p>Three concrete actions calibrated to your exact score. Not "build your personal brand." Actual moves executable inside your current role this week.</p>
+        <span class="card-tag">ACTIONABLE</span>
+      </div>
+      <div class="card reveal" style="transition-delay:0.2s">
+        <svg class="card-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true" style="color:var(--amber)">
+          <path d="M18 6l2.5 7.5H28l-6.5 4.7 2.5 7.5L18 21l-6 4.7 2.5-7.5L8 13.5h7.5L18 6z" stroke="#D4872A" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <h3>Your severance trigger signals</h3>
+        <p>The early signals HR watches before a restructure is announced. Know what to look for before the all-hands meeting happens.</p>
+        <span class="card-tag amber">INSIDER</span>
+      </div>
+    </div>
+
+    <a href="#" class="btn-primary reveal" style="display:inline-flex; transition-delay:0.1s">
+      Get Your Score — It's Free &rarr;
+    </a>
+    <p class="trust-signal reveal" style="margin-top:16px; transition-delay:0.15s">NO TOOLS PITCH &nbsp;·&nbsp; NO EMAIL REQUIRED TO START &nbsp;·&nbsp; 2 MINUTES</p>
+  </div>
+</section>
+
+<!-- RESULT CARD PREVIEW -->
+<section class="section-result-preview">
+  <div class="result-preview-inner">
+    <p class="section-eyebrow">Assessment result preview</p>
+    <h2 class="section-h2" style="margin-bottom:32px">What your result feels like</h2>
+
+    <div class="result-card reveal">
+      <p class="result-status">// SIGNAL: MONITORED</p>
+      <div class="result-score">3/10</div>
+      <h3 class="result-headline">You are better positioned than most.</h3>
+      <p class="result-body">Your role, visibility, and company context put you in a lower-risk tier. That does not mean zero risk — it means you have time to move from reactive to proactive. Your three moves this week focus on locking in your advantage before the landscape shifts around you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand">Human at Work</div>
+      <p class="footer-tagline">The insider read on AI and your career.</p>
+      <p class="footer-sub">by Boubacar</p>
+    </div>
+    <div>
+      <p class="footer-col-label">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Take the Assessment</a></li>
+        <li><a href="#">About Boubacar</a></li>
+        <li><a href="https://catalystworks.consulting" target="_blank" rel="noopener">Catalyst Works &rarr;</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-label">Contact</p>
+      <ul class="footer-links">
+        <li><a href="mailto:contact@humanatwork.ai">contact@humanatwork.ai</a></li>
+        <li><a href="https://linkedin.com/in/boubacarbarry" target="_blank" rel="noopener">LinkedIn &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Human at Work. All rights reserved.</span>
+    <span>humanatwork.ai</span>
+  </div>
+</footer>
+
+<script>
+  // Rotating job titles
+  const titles = [
+    'an operations manager',
+    'a finance analyst',
+    'an HR professional',
+    'a marketing director',
+    'a project lead',
+    'an account manager'
+  ];
+  let idx = 0;
+  const rotEl = document.getElementById('rotating-title');
+  setInterval(() => {
+    rotEl.style.opacity = '0';
+    setTimeout(() => {
+      idx = (idx + 1) % titles.length;
+      rotEl.textContent = titles[idx];
+      rotEl.style.opacity = '1';
+    }, 400);
+  }, 2800);
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Stats counter
+  const statNums = document.querySelectorAll('.stat-number[data-target]');
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        const duration = 1200;
+        const start = performance.now();
+        const tick = (now) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target);
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        statObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => statObserver.observe(el));
+</script>
+</body>
+</html>
