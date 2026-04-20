@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive | Human at Work</title>
+<meta name="description" content="Every weekly brief. Search and filter by topic. Written for workers navigating AI-era restructuring, not for HR departments.">
+<link rel="canonical" href="https://humanatwork.ai/archive.html">
+<meta property="og:title" content="Archive | Human at Work">
+<meta property="og:description" content="Every weekly brief, searchable. Plain English intelligence on AI-era restructuring.">
+<meta property="og:url" content="https://humanatwork.ai/archive.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Human at Work">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0D1B2A">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1B2A;--cream:#FAF7F2;--amber:#D4872A;--cyan:#00B4C6;
+  --carbon:#131920;--ink:#1A1A1A;--muted-dark:rgba(255,255,255,0.55);
+  --muted-light:rgba(26,26,26,0.55);--bd-dark:rgba(255,255,255,0.07);
+  --bd-light:rgba(26,26,26,0.09);
+  --ff-d:'Playfair Display',Georgia,serif;
+  --ff-u:'Plus Jakarta Sans',system-ui,sans-serif;
+  --ff-m:'DM Mono','Courier New',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-u);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* NAV */
+body > nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(13,27,42,1);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd-dark)}
+.nav-wordmark{display:flex;flex-direction:column;gap:2px}
+.nav-brand{font-family:var(--ff-d);font-weight:700;font-size:18px;color:#fff;text-decoration:none}
+.nav-byline{font-family:var(--ff-m);font-size:10px;color:var(--amber);letter-spacing:0.1em}
+.nav-back{font-family:var(--ff-m);font-size:12px;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:0.08em;transition:color 0.15s}
+.nav-back:hover{color:var(--amber)}
+
+/* ARCHIVE HEADER */
+.archive-wrap{max-width:880px;margin:0 auto;padding:120px 24px 80px}
+.archive-eyebrow{font-family:var(--ff-m);font-size:11px;letter-spacing:0.18em;color:var(--cyan);text-transform:uppercase;display:block;margin-bottom:16px}
+.archive-h1{font-family:var(--ff-d);font-weight:900;font-size:clamp(32px,4.5vw,52px);color:var(--navy);line-height:1.05;letter-spacing:-0.02em;margin-bottom:18px}
+.archive-deck{font-family:var(--ff-u);font-size:clamp(16px,1.6vw,18px);color:var(--muted-light);line-height:1.65;max-width:620px;margin-bottom:48px}
+
+/* CONTROLS */
+.controls{display:grid;grid-template-columns:1fr auto;gap:16px;margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--bd-light)}
+.search-wrap{position:relative}
+.search-input{width:100%;padding:14px 16px 14px 44px;background:#fff;border:1px solid var(--bd-light);border-radius:3px;font-family:var(--ff-u);font-size:15px;color:var(--navy);outline:none;transition:border-color 0.2s}
+.search-input:focus{border-color:var(--navy)}
+.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted-light);pointer-events:none}
+.filter-group{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter-chip{font-family:var(--ff-m);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:10px 14px;background:transparent;border:1px solid var(--bd-light);border-radius:2px;color:var(--muted-light);cursor:pointer;transition:all 0.15s}
+.filter-chip:hover{color:var(--navy);border-color:var(--navy)}
+.filter-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* RESULTS */
+.results-meta{font-family:var(--ff-m);font-size:11px;letter-spacing:0.12em;color:var(--muted-light);text-transform:uppercase;margin-bottom:20px}
+.brief-list{list-style:none;display:flex;flex-direction:column}
+.brief-item{border-top:1px solid var(--bd-light);padding:28px 0;display:grid;grid-template-columns:110px 1fr auto;gap:24px;align-items:center;transition:background 0.15s}
+.brief-item:last-child{border-bottom:1px solid var(--bd-light)}
+.brief-item:hover{background:rgba(26,26,26,0.02)}
+.brief-item a{text-decoration:none;color:inherit;display:contents}
+.brief-date{font-family:var(--ff-m);font-size:11px;letter-spacing:0.08em;color:var(--muted-light)}
+.brief-body{display:flex;flex-direction:column;gap:6px}
+.brief-topic{font-family:var(--ff-m);font-size:10px;letter-spacing:0.16em;color:var(--amber);text-transform:uppercase}
+.brief-title{font-family:var(--ff-d);font-weight:700;font-size:clamp(18px,2vw,22px);color:var(--navy);line-height:1.3;letter-spacing:-0.01em}
+.brief-item:hover .brief-title{color:var(--amber)}
+.brief-arrow{font-family:var(--ff-m);font-size:14px;color:var(--muted-light);transition:color 0.15s,transform 0.2s}
+.brief-item:hover .brief-arrow{color:var(--amber);transform:translateX(4px)}
+
+.empty-state{padding:60px 0;text-align:center}
+.empty-text{font-family:var(--ff-u);font-size:16px;color:var(--muted-light);margin-bottom:12px}
+.empty-reset{font-family:var(--ff-m);font-size:12px;letter-spacing:0.1em;color:var(--navy);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0}
+
+/* FOOTER */
+footer{background:var(--carbon);padding:48px 24px 24px;border-top:1px solid var(--bd-dark);margin-top:80px}
+.footer-inner{max-width:880px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-brand{font-family:var(--ff-d);font-weight:700;font-size:16px;color:#fff;text-decoration:none}
+.footer-copy{font-family:var(--ff-m);font-size:11px;color:rgba(255,255,255,0.25)}
+
+@media(max-width:768px){
+  body > nav{padding:14px 20px}
+  .archive-wrap{padding:96px 20px 60px}
+  .controls{grid-template-columns:1fr;gap:14px}
+  .brief-item{grid-template-columns:1fr;gap:8px;padding:22px 0}
+  .brief-arrow{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-wordmark">
+    <a href="/" class="nav-brand">Human at Work</a>
+    <span class="nav-byline">by Boubacar</span>
+  </div>
+  <a href="/" class="nav-back">&larr; Back to Home</a>
+</nav>
+
+<main>
+<div class="archive-wrap">
+  <span class="archive-eyebrow">The Brief &middot; Archive</span>
+  <h1 class="archive-h1">Every brief, searchable.</h1>
+  <p class="archive-deck">Weekly intelligence on AI-era restructuring, written in plain English for workers navigating it. Search by phrase. Filter by topic.</p>
+
+  <div class="controls" role="search">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="search-input" id="searchInput" placeholder="Search the archive" aria-label="Search briefs">
+    </div>
+    <div class="filter-group" role="group" aria-label="Filter by topic">
+      <button class="filter-chip active" data-topic="all">All</button>
+      <button class="filter-chip" data-topic="restructure-intel">Restructure Intel</button>
+      <button class="filter-chip" data-topic="signal-reading">Signal Reading</button>
+      <button class="filter-chip" data-topic="career-positioning">Career Positioning</button>
+    </div>
+  </div>
+
+  <p class="results-meta" id="resultsMeta">Showing 4 briefs</p>
+
+  <ul class="brief-list" id="briefList" role="list">
+    <li class="brief-item" data-topic="restructure-intel" data-text='what efficiency initiative really means for your role when leadership uses this phrase internal process 30 days'>
+      <a href="brief-apr-12.html" aria-label='Read: What "efficiency initiative" really means for your role'>
+        <span class="brief-date">APR 12 2026</span>
+        <div class="brief-body">
+          <span class="brief-topic">Restructure Intel</span>
+          <h2 class="brief-title">What "efficiency initiative" really means for your role</h2>
+        </div>
+        <span class="brief-arrow">READ &rarr;</span>
+      </a>
+    </li>
+    <li class="brief-item" data-topic="restructure-intel" data-text='three questions HR asks before a restructure workforce planning meetings who stays goes'>
+      <a href="brief-apr-05.html" aria-label="Read: The three questions HR asks before a restructure">
+        <span class="brief-date">APR 05 2026</span>
+        <div class="brief-body">
+          <span class="brief-topic">Restructure Intel</span>
+          <h2 class="brief-title">The three questions HR asks before a restructure</h2>
+        </div>
+        <span class="brief-arrow">READ &rarr;</span>
+      </a>
+    </li>
+    <li class="brief-item" data-topic="signal-reading" data-text='why your manager stopped sharing updates silence meetings information flow'>
+      <a href="brief-mar-29.html" aria-label="Read: Why your manager stopped sharing updates">
+        <span class="brief-date">MAR 29 2026</span>
+        <div class="brief-body">
+          <span class="brief-topic">Signal Reading</span>
+          <h2 class="brief-title">Why your manager stopped sharing updates</h2>
+        </div>
+        <span class="brief-arrow">READ &rarr;</span>
+      </a>
+    </li>
+    <li class="brief-item" data-topic="career-positioning" data-text='how to make your value visible before it gets evaluated self-promotion restructure decisions'>
+      <a href="brief-mar-22.html" aria-label="Read: How to make your value visible before it gets evaluated">
+        <span class="brief-date">MAR 22 2026</span>
+        <div class="brief-body">
+          <span class="brief-topic">Career Positioning</span>
+          <h2 class="brief-title">How to make your value visible before it gets evaluated</h2>
+        </div>
+        <span class="brief-arrow">READ &rarr;</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="empty-state" id="emptyState" style="display:none">
+    <p class="empty-text">No briefs match your search.</p>
+    <button class="empty-reset" id="resetBtn">Reset filters</button>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-brand">Human at Work</a>
+    <span class="footer-copy">&copy; 2026 Human at Work. Published by Boubacar.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var searchInput = document.getElementById('searchInput');
+  var chips = document.querySelectorAll('.filter-chip');
+  var items = document.querySelectorAll('.brief-item');
+  var emptyState = document.getElementById('emptyState');
+  var resultsMeta = document.getElementById('resultsMeta');
+  var resetBtn = document.getElementById('resetBtn');
+  var currentTopic = 'all';
+  var currentQuery = '';
+
+  function applyFilters(){
+    var q = currentQuery.trim().toLowerCase();
+    var visible = 0;
+    items.forEach(function(item){
+      var text = (item.getAttribute('data-text') || '').toLowerCase();
+      var topic = item.getAttribute('data-topic');
+      var topicMatch = currentTopic === 'all' || topic === currentTopic;
+      var searchMatch = q === '' || text.indexOf(q) !== -1;
+      if(topicMatch && searchMatch){
+        item.style.display = '';
+        visible++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    if(visible === 0){
+      emptyState.style.display = 'block';
+      resultsMeta.textContent = 'No matches';
+    } else {
+      emptyState.style.display = 'none';
+      resultsMeta.textContent = 'Showing ' + visible + ' ' + (visible === 1 ? 'brief' : 'briefs');
+    }
+  }
+
+  searchInput.addEventListener('input', function(e){
+    currentQuery = e.target.value;
+    applyFilters();
+  });
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      currentTopic = chip.getAttribute('data-topic');
+      applyFilters();
+    });
+  });
+
+  resetBtn.addEventListener('click', function(){
+    searchInput.value = '';
+    currentQuery = '';
+    currentTopic = 'all';
+    chips.forEach(function(c){ c.classList.remove('active'); });
+    document.querySelector('.filter-chip[data-topic="all"]').classList.add('active');
+    applyFilters();
+  });
+})();
+</script>
+
+</body>
+</html>
