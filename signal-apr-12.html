@@ -42,7 +42,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-back:hover{color:var(--amber)}
 
 /* ARTICLE */
-.article-wrap{max-width:720px;margin:0 auto;padding:172px 24px 100px}
+.article-hero{background:var(--navy);padding:100px 24px 56px;margin-top:0}
+.article-hero-inner{max-width:720px;margin:0 auto}
+.article-wrap{max-width:720px;margin:0 auto;padding:56px 24px 100px}
+.article-hero .article-h1{color:#fff}
+.article-hero .article-deck{color:rgba(255,255,255,0.7);border-bottom-color:rgba(255,255,255,0.12)}
+.article-hero .article-eyebrow{color:var(--amber)}
+.article-hero .meta-sep{color:rgba(255,255,255,0.3)}
+.article-hero .meta-date{color:rgba(255,255,255,0.45)}
 .article-meta{display:flex;align-items:center;gap:16px;margin-bottom:36px;flex-wrap:wrap}
 .meta-label{font-family:var(--ff-m);font-size:10px;letter-spacing:0.18em;color:var(--cyan);text-transform:uppercase}
 .meta-date{font-family:var(--ff-m);font-size:11px;color:var(--muted-light);letter-spacing:0.08em}
@@ -98,7 +105,8 @@ footer{background:var(--carbon);padding:48px 24px 24px;border-top:1px solid var(
 
 @media(max-width:768px){
   nav{padding:14px 20px}
-  .article-wrap{padding:100px 20px 72px}
+  .article-hero{padding:80px 20px 40px}
+  .article-wrap{padding:40px 20px 72px}
   .cta-form{flex-direction:column}
   .cta-input,.cta-btn{width:100%}
 }
@@ -115,7 +123,9 @@ footer{background:var(--carbon);padding:48px 24px 24px;border-top:1px solid var(
 </nav>
 
 <main>
-<article class="article-wrap">
+
+<div class="article-hero">
+<div class="article-hero-inner">
 
   <div class="article-meta">
     <span class="meta-label">Weekly Signal</span>
@@ -126,7 +136,10 @@ footer{background:var(--carbon);padding:48px 24px 24px;border-top:1px solid var(
   <span class="article-eyebrow">From the Brief</span>
   <h1 class="article-h1">What "efficiency initiative" really means for your role</h1>
   <p class="article-deck">When leadership uses this phrase in an all-staff email, a specific internal process is already underway. Here is what it looks like from the inside and what to do in the next 30 days.</p>
+</div>
+</div>
 
+<article class="article-wrap">
   <div class="article-body">
 
     <p>I have sat in a lot of rooms where the phrase "efficiency initiative" got decided on. Not coined, decided on. There is usually an earlier draft with more specific language. That draft gets walked back before it reaches you.</p>

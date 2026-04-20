@@ -25,7 +25,14 @@ html{scroll-behavior:smooth}body{font-family:var(--ff-u);background:var(--cream)
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(13,27,42,1);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd-dark)}
 .nav-wordmark{display:flex;flex-direction:column;gap:2px}.nav-brand{font-family:var(--ff-d);font-weight:700;font-size:18px;color:#fff;text-decoration:none}.nav-byline{font-family:var(--ff-m);font-size:10px;color:var(--amber);letter-spacing:0.1em}.nav-back{font-family:var(--ff-m);font-size:12px;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:0.08em;transition:color 0.15s}.nav-back:hover{color:var(--amber)}
-.article-wrap{max-width:720px;margin:0 auto;padding:172px 24px 100px}
+.article-hero{background:var(--navy);padding:100px 24px 56px;margin-top:0}
+.article-hero-inner{max-width:720px;margin:0 auto}
+.article-wrap{max-width:720px;margin:0 auto;padding:56px 24px 100px}
+.article-hero .article-h1{color:#fff}
+.article-hero .article-deck{color:rgba(255,255,255,0.7);border-bottom-color:rgba(255,255,255,0.12)}
+.article-hero .article-eyebrow{color:var(--amber)}
+.article-hero .meta-sep{color:rgba(255,255,255,0.3)}
+.article-hero .meta-date{color:rgba(255,255,255,0.45)}
 .article-meta{display:flex;align-items:center;gap:16px;margin-bottom:36px;flex-wrap:wrap}
 .meta-label{font-family:var(--ff-m);font-size:10px;letter-spacing:0.18em;color:var(--amber);text-transform:uppercase}.meta-date{font-family:var(--ff-m);font-size:11px;color:var(--muted-light);letter-spacing:0.08em}.meta-sep{color:var(--muted-light);font-family:var(--ff-m);font-size:11px}
 .article-eyebrow{font-family:var(--ff-m);font-size:11px;letter-spacing:0.16em;color:var(--cyan);text-transform:uppercase;display:block;margin-bottom:16px}
@@ -38,7 +45,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .article-cta{background:var(--amber);border-radius:4px;padding:40px;margin-top:64px;text-align:center}.cta-label{font-family:var(--ff-m);font-size:10px;letter-spacing:0.18em;color:var(--navy);text-transform:uppercase;opacity:0.7;margin-bottom:12px;display:block}.cta-h{font-family:var(--ff-d);font-weight:700;font-size:24px;color:var(--navy);margin-bottom:8px}.cta-sub{font-family:var(--ff-u);font-size:15px;color:rgba(13,27,42,0.75);line-height:1.6;margin-bottom:24px}.cta-form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap}.cta-input{flex:1;min-width:200px;padding:13px 16px;background:#fff;border:1px solid rgba(13,27,42,0.15);border-radius:3px;font-family:var(--ff-u);font-size:15px;color:var(--navy);outline:none}.cta-input:focus{border-color:var(--navy)}.cta-btn{padding:13px 24px;background:var(--navy);color:#fff;font-family:var(--ff-u);font-weight:600;font-size:15px;border:none;border-radius:3px;cursor:pointer;white-space:nowrap}.cta-btn:hover{background:#1a3050}.cta-micro{font-family:var(--ff-m);font-size:10px;color:rgba(13,27,42,0.5);letter-spacing:0.08em;margin-top:12px}
 .related{margin-top:80px;padding-top:48px;border-top:1px solid var(--bd-light)}.related-label{font-family:var(--ff-m);font-size:10px;letter-spacing:0.15em;color:var(--muted-light);text-transform:uppercase;margin-bottom:24px}.related-links{display:flex;flex-direction:column;gap:0}.related-link{display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;padding:14px 0;border-bottom:1px solid var(--bd-light)}.related-link:last-child{border-bottom:none}.related-title{font-family:var(--ff-u);font-weight:500;font-size:16px;color:var(--navy);transition:color 0.15s}.related-link:hover .related-title{color:var(--amber)}.related-arrow{font-family:var(--ff-m);font-size:11px;color:var(--muted-light);flex-shrink:0}
 footer{background:var(--carbon);padding:48px 24px 24px;border-top:1px solid var(--bd-dark)}.footer-inner{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}.footer-brand{font-family:var(--ff-d);font-weight:700;font-size:16px;color:#fff;text-decoration:none}.footer-copy{font-family:var(--ff-m);font-size:11px;color:rgba(255,255,255,0.25)}
-@media(max-width:768px){nav{padding:14px 20px}.article-wrap{padding:100px 20px 72px}.cta-form{flex-direction:column}.cta-input,.cta-btn{width:100%}.book-cta-mid{flex-direction:column}}
+@media(max-width:768px){nav{padding:14px 20px}.article-hero{padding:80px 20px 40px}
+  .article-wrap{padding:40px 20px 72px}.cta-form{flex-direction:column}.cta-input,.cta-btn{width:100%}.book-cta-mid{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -52,7 +60,9 @@ footer{background:var(--carbon);padding:48px 24px 24px;border-top:1px solid var(
 </nav>
 
 <main>
-<article class="article-wrap">
+
+<div class="article-hero">
+<div class="article-hero-inner">
 
   <div class="article-meta">
     <span class="meta-label">Intel Brief</span>
@@ -63,7 +73,10 @@ footer{background:var(--carbon);padding:48px 24px 24px;border-top:1px solid var(
   <span class="article-eyebrow">Inside the Room</span>
   <h1 class="article-h1">What "efficiency initiative" really means for your role</h1>
   <p class="article-deck">When leadership uses this phrase in an all-staff email, a specific internal process is already underway. Here is what it looks like from the inside, and what to do in the next 30 days before the window closes.</p>
+</div>
+</div>
 
+<article class="article-wrap">
   <div class="article-body">
 
     <p>I have been in the rooms where this phrase gets decided on. Not coined. Decided on. There is almost always an earlier draft with more direct language. That draft gets walked back before it reaches your inbox.</p>
