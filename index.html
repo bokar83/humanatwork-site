@@ -1001,10 +1001,34 @@ footer {
   line-height: 1.5;
 }
 
+/* ── HERO SUBSCRIBE FORM ── */
+.hero-subscribe { margin-bottom: 0; }
+.hero-form {
+  display: flex; gap: 10px; margin-top: 14px;
+  flex-wrap: wrap; align-items: stretch;
+}
+.hero-email-input {
+  flex: 1; min-width: 220px; padding: 13px 16px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 3px;
+  font-family: var(--ff-u); font-size: 15px; color: #fff;
+  outline: none; transition: border-color 0.2s;
+}
+.hero-email-input::placeholder { color: rgba(255,255,255,0.38); }
+.hero-email-input:focus { border-color: var(--cyan); background: rgba(255,255,255,0.11); }
+.hero-form-btn {
+  padding: 13px 24px; background: var(--amber); color: var(--navy);
+  font-family: var(--ff-u); font-weight: 600; font-size: 15px;
+  border: none; border-radius: 3px; cursor: pointer; white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+}
+.hero-form-btn:hover { background: #e8973a; transform: translateY(-1px); }
+.hero-form-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero-split { grid-template-columns: 1fr; }
-  .hero-right { display: none; }
+  .hero-right { display: flex; flex-direction: column; gap: 16px; }
   .signal-inner, .about-grid, .newsletter-grid { grid-template-columns: 1fr; gap: 48px; }
   .booking-bar { padding: 14px 20px; }
   .booking-bar-text { display: none; }
@@ -1013,6 +1037,8 @@ footer {
   nav { padding: 14px 20px; }
   .nav-links { display: none; }
   .hero { padding: 100px 20px 80px; }
+  .hero-split { gap: 32px; }
+  .hf-slot { display: none; }
   .stats-bar { grid-template-columns: 1fr; padding: 44px 20px; }
   .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 28px 0; text-align: left; }
   .stat-item:last-child { border-bottom: none; }
@@ -1026,6 +1052,9 @@ footer {
   .form-box { padding: 32px 24px; }
   .result-card, .result-email-section { padding: 28px 24px; }
   .assessment-body { padding: 40px 20px 60px; }
+  .hero-form { flex-direction: column; }
+  .hero-email-input { min-width: unset; }
+  .hero-form-btn { width: 100%; text-align: center; }
 }
 </style>
 </head>
@@ -1075,28 +1104,33 @@ footer {
       <p class="eyebrow eyebrow-light">What leadership should be saying out loud</p>
       <h1 id="hero-heading">
         Your company is going AI&#8209;first.<br>
-        Are you &mdash; <span class="rotating-wrap" aria-live="polite"><span id="rotating-title">an operations manager</span></span> &mdash; ready for what comes next?
+        Are you, <span class="rotating-wrap" aria-live="polite"><span id="rotating-title">an operations manager</span></span>, ready for what comes next?
       </h1>
 
       <p class="hero-credential">
-        "I have been in those rooms. I have made those lists. I have also sat across the table from people and delivered the news. That experience is why I built this &mdash; not to expose anyone, but to make sure workers have what leadership should already be giving them."
+        "I have been in those rooms. I have made those lists. I have also sat across the table from people and delivered the news. That experience is why I built this. Not to expose anyone. To make sure workers have what leadership should already be giving them."
       </p>
 
-      <p class="hero-sub">Take the 2-minute AI Exposure Score. Book a free 30-min AI Readiness Call. Know exactly where you stand and what to do this week.</p>
+      <!-- HERO EMAIL CAPTURE -->
+      <div class="hero-subscribe">
+        <p class="hero-sub">Get the weekly signal every Sunday. Written from inside the room.</p>
+        <form class="hero-form" onsubmit="return false;" aria-label="Subscribe to Human at Work">
+          <label for="hero-email" class="sr-only">Your email address</label>
+          <input type="email" id="hero-email" name="email" class="hero-email-input" placeholder="your@email.com" autocomplete="email" spellcheck="false">
+          <button type="submit" class="hero-form-btn">Get the Brief &rarr;</button>
+        </form>
+        <p class="trust-signal" style="margin-top:10px">Free. Every Sunday. No pitch. No doom.</p>
+      </div>
 
-      <div class="hero-ctas">
+      <div class="hero-ctas" style="margin-top:28px">
         <button class="btn-primary btn-primary-lg" id="hero-cta-btn" aria-haspopup="dialog">
-          Take the Free Assessment
+          Take the Free AI Exposure Score
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <!-- CALENDLY LINK: Replace href with humanatwork.ai 30-min call Calendly URL -->
         <a href="https://calendly.com/boubacarbarry/ai-readiness-call-human-at-work" target="_blank" rel="noopener" class="btn-book" id="hero-book-btn">
           Book a Free 30-Min Call &rarr;
         </a>
       </div>
-      <p class="trust-signal" style="margin-top:16px">
-        No tools pitch. No doom. The real read from inside the room.
-      </p>
     </div>
 
     <!-- RIGHT: live data panel -->
@@ -1109,7 +1143,7 @@ footer {
         <div class="hf-play" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="white"><path d="M6 4l12 6-12 6V4z"/></svg>
         </div>
-        <p class="hf-label">90 seconds &mdash; Why I Built This</p>
+        <p class="hf-label">90 seconds: Why I Built This</p>
         <p class="hf-sub">Boubacar, from inside the room</p>
       </div>
 
@@ -1117,7 +1151,7 @@ footer {
       <div class="tracker-card" aria-label="Live AI layoff tracker">
         <p class="tracker-label">
           <span class="tracker-live-dot" aria-hidden="true"></span>
-          US AI-Driven Layoffs &mdash; 2025
+          US AI-Driven Layoffs // 2025
         </p>
         <div class="tracker-number"><span id="tracker-count">0</span> <span>jobs</span></div>
         <p class="tracker-desc">Confirmed AI-related workforce reductions announced by US companies this year. Updated weekly.</p>
@@ -1201,19 +1235,19 @@ footer {
       <p class="signal-archive-label">Previous Signals</p>
       <ul class="signal-archive" role="list">
         <li>
-          <a href="#" aria-label='Read: What "efficiency initiative" really means'>
+          <a href="signal-apr-12.html" aria-label='Read: What "efficiency initiative" really means'>
             What "efficiency initiative" really means
             <span class="arc-date">APR 12</span>
           </a>
         </li>
         <li>
-          <a href="#" aria-label="Read: The three questions HR asks before a restructure">
+          <a href="signal-apr-05.html" aria-label="Read: The three questions HR asks before a restructure">
             The three questions HR asks before a restructure
             <span class="arc-date">APR 05</span>
           </a>
         </li>
         <li>
-          <a href="#" aria-label="Read: Why your manager stopped sharing updates">
+          <a href="signal-mar-29.html" aria-label="Read: Why your manager stopped sharing updates">
             Why your manager stopped sharing updates
             <span class="arc-date">MAR 29</span>
           </a>
@@ -1294,7 +1328,7 @@ footer {
 
     <div class="cta-area reveal">
       <button class="btn-primary btn-primary-lg" id="pitch-cta-btn" aria-haspopup="dialog">
-        Get Your Score &mdash; It's Free
+        Get Your Score. It's Free.
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <p class="micro">NO TOOLS PITCH &nbsp;&middot;&nbsp; NO EMAIL REQUIRED TO START &nbsp;&middot;&nbsp; 2 MINUTES</p>
@@ -1336,7 +1370,7 @@ footer {
           <div class="play-btn" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
           </div>
-          <p class="video-label">90-Second Briefing &mdash; Why I Built This</p>
+          <p class="video-label">90-Second Briefing: Why I Built This</p>
           <p class="video-sub">Watch before you subscribe.</p>
         </div>
         <div class="about-pull">
@@ -1396,19 +1430,19 @@ footer {
     <h2 class="section-h2 reveal" id="content-heading">Recent Intelligence</h2>
     <p class="section-sub reveal" style="transition-delay:.08s">Published weekly. Written for workers, not for HR departments.</p>
     <div class="articles-grid">
-      <a href="#" class="article-card reveal" aria-label='Read: What "efficiency initiative" really means for your role'>
+      <a href="article-efficiency-initiative.html" class="article-card reveal" aria-label='Read: What "efficiency initiative" really means for your role'>
         <span class="article-date">APR 12 2026</span>
         <h3 class="article-title">What "efficiency initiative" really means for your role</h3>
         <p class="article-excerpt">When leadership uses this phrase, there is a specific internal process already underway. Here is what it looks like from the inside and what to do in the next 30 days.</p>
         <span class="article-link">READ &rarr;</span>
       </a>
-      <a href="#" class="article-card reveal" style="transition-delay:.1s" aria-label="Read: The three questions HR asks before a restructure">
+      <a href="article-three-questions.html" class="article-card reveal" style="transition-delay:.1s" aria-label="Read: The three questions HR asks before a restructure">
         <span class="article-date">APR 05 2026</span>
         <h3 class="article-title">The three questions HR asks before a restructure</h3>
         <p class="article-excerpt">Workforce planning meetings follow a pattern. The three questions asked about every role determine who stays and who goes. Most workers never know what they are.</p>
         <span class="article-link">READ &rarr;</span>
       </a>
-      <a href="#" class="article-card reveal" style="transition-delay:.2s" aria-label="Read: How to make your value visible before it gets evaluated">
+      <a href="article-visibility.html" class="article-card reveal" style="transition-delay:.2s" aria-label="Read: How to make your value visible before it gets evaluated">
         <span class="article-date">MAR 29 2026</span>
         <h3 class="article-title">How to make your value visible before it gets evaluated</h3>
         <p class="article-excerpt">Visibility is not self-promotion. It is making sure the people who make restructure decisions can articulate what you do before the meeting starts.</p>
@@ -1444,7 +1478,7 @@ footer {
         <summary>Who is Boubacar?
           <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </summary>
-        <p class="faq-answer">Boubacar is a former global HR leader who spent 15 years at Fortune-scale companies across MENA, Africa, the US, and Europe. He has been in the rooms where restructure decisions got made and has sat across the table from people to deliver that news. He now runs Catalyst Works Consulting and publishes Human at Work.</p>
+        <p class="faq-answer">Boubacar is a former global HR leader who spent 15 years at Fortune-scale companies across MENA, Africa, the US, and Europe. He has been in the rooms where restructure decisions got made. He has built the workforce planning programs. He has also sat across the table from people to deliver that news. Human at Work exists because workers deserve the same clarity leadership already has.</p>
       </details>
 
       <details>
@@ -1502,7 +1536,7 @@ footer {
     <div>
       <p class="footer-col-label">Contact</p>
       <ul class="footer-links" role="list">
-        <li><a href="mailto:contact@humanatwork.ai">contact@humanatwork.ai</a></li>
+        <li><a href="mailto:signal@humanatwork.ai">signal@humanatwork.ai</a></li>
         <li><a href="https://linkedin.com/in/boubacarbarry" target="_blank" rel="noopener" aria-label="Boubacar on LinkedIn">LinkedIn &rarr;</a></li>
       </ul>
     </div>

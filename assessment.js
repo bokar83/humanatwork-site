@@ -454,7 +454,7 @@
 
   if (bookingBar && dismissBar) {
     // Show after scrolling past the hero
-    const showThreshold = window.innerHeight * 0.9;
+    const showThreshold = window.innerHeight * 0.4;
     window.addEventListener('scroll', () => {
       if (barDismissed) return;
       if (window.scrollY > showThreshold) {
