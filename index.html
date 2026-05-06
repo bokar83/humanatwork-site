@@ -855,6 +855,121 @@ footer {
 }
 
 /* HyperFrames video slot */
+/* ── FOUNDER THESIS CARD (replaces video placeholder) ── */
+.founder-thesis-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--bd-dark);
+  border-radius: 4px;
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.founder-thesis-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212,135,42,0.06) 0%, rgba(0,180,198,0.04) 100%);
+  pointer-events: none;
+}
+.ftc-eyebrow {
+  font-family: var(--ff-m);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--amber);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ftc-dot {
+  width: 6px; height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: ftc-pulse 2.4s ease-in-out infinite;
+}
+@keyframes ftc-pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+.ftc-quote {
+  font-family: var(--ff-d);
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ink-light);
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-height: 3.5em;
+  transition: opacity 0.4s;
+}
+.ftc-attr {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ftc-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber) 0%, var(--cyan) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-m);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-dark);
+  flex-shrink: 0;
+}
+.ftc-name {
+  font-family: var(--ff-u);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-light);
+  margin-bottom: 3px;
+}
+.ftc-role {
+  font-family: var(--ff-u);
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.4;
+}
+.ftc-proof-row {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--bd-dark);
+  padding-top: 16px;
+  margin-top: 4px;
+}
+.ftc-proof-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ftc-proof-num {
+  font-family: var(--ff-d);
+  font-size: 1.45rem;
+  color: var(--cyan);
+  line-height: 1;
+}
+.ftc-proof-label {
+  font-family: var(--ff-u);
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.35;
+}
+.ftc-proof-divider {
+  width: 1px;
+  background: var(--bd-dark);
+  margin: 0 16px;
+  flex-shrink: 0;
+}
+
 .hf-slot {
   aspect-ratio: 16/9;
   background: rgba(255,255,255,0.03);
@@ -1146,15 +1261,38 @@ footer {
     <!-- RIGHT: live data panel -->
     <div class="hero-right" aria-label="Live AI workforce data">
 
-      <!-- HyperFrames video slot -->
-      <!-- HYPERFRAMES EMBED: Replace this block with your HyperFrames composition when ready -->
-      <div class="hf-slot" role="img" aria-label="Video: Why I built Human at Work — 90 seconds with Boubacar">
-        <div class="hf-slot-bg" aria-hidden="true"></div>
-        <div class="hf-play" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="white"><path d="M6 4l12 6-12 6V4z"/></svg>
+      <!-- Founder thesis card (replaces video placeholder until real video is ready) -->
+      <div class="founder-thesis-card" role="region" aria-label="Why Boubacar built Human at Work">
+        <div class="ftc-eyebrow">
+          <span class="ftc-dot" aria-hidden="true"></span>
+          From the founder
         </div>
-        <p class="hf-label">90 seconds: Why I Built This</p>
-        <p class="hf-sub">Boubacar, from inside the room</p>
+        <blockquote class="ftc-quote" id="ftc-quote">
+          Every AI tool your employees use without your knowledge is a liability waiting to be discovered.
+        </blockquote>
+        <div class="ftc-attr">
+          <div class="ftc-avatar" aria-hidden="true">BB</div>
+          <div>
+            <p class="ftc-name">Boubacar Barry</p>
+            <p class="ftc-role">Built AI operations that run at 3am. Now helping operators do the same.</p>
+          </div>
+        </div>
+        <div class="ftc-proof-row" aria-label="Three real numbers">
+          <div class="ftc-proof-item">
+            <span class="ftc-proof-num">269</span>
+            <span class="ftc-proof-label">unsanctioned AI tools per 1,000 employees</span>
+          </div>
+          <div class="ftc-proof-divider" aria-hidden="true"></div>
+          <div class="ftc-proof-item">
+            <span class="ftc-proof-num">74%</span>
+            <span class="ftc-proof-label">of workers use AI tools their employer did not approve</span>
+          </div>
+          <div class="ftc-proof-divider" aria-hidden="true"></div>
+          <div class="ftc-proof-item">
+            <span class="ftc-proof-num" style="font-size:1.1rem;line-height:1.2;">"Zero."</span>
+            <span class="ftc-proof-label">what most companies budget for AI governance before something goes wrong</span>
+          </div>
+        </div>
       </div>
 
       <!-- Live Layoff Tracker -->
@@ -1588,5 +1726,28 @@ footer {
 </div>
 
 <script src="assessment.js" defer></script>
+<script>
+(function() {
+  var quotes = [
+    "Every AI tool your employees use without your knowledge is a liability waiting to be discovered.",
+    "The companies winning with AI are not the ones with the most tools. They are the ones with the clearest rules.",
+    "Shadow AI is not a tech problem. It is a leadership problem dressed up as a tech problem.",
+    "Your AI policy does not need to be perfect. It needs to exist before something goes wrong.",
+    "The question is not whether your team uses AI. The question is whether you know what they are putting into it."
+  ];
+  var el = document.getElementById('ftc-quote');
+  if (!el) return;
+  var i = 0;
+  function rotate() {
+    el.style.opacity = '0';
+    setTimeout(function() {
+      i = (i + 1) % quotes.length;
+      el.textContent = quotes[i];
+      el.style.opacity = '1';
+    }, 400);
+  }
+  setInterval(rotate, 9000);
+})();
+</script>
 </body>
 </html>
