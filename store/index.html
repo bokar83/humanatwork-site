@@ -38,33 +38,69 @@ body {
 }
 a { color: var(--brick); text-decoration: underline; text-decoration-color: var(--hairline-strong); }
 a:hover { text-decoration-color: var(--brick); }
-.site-nav { background: var(--ink); color: var(--paper); padding: 14px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.site-nav { background: var(--ink); color: var(--paper); padding: 12px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 .site-nav-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
 .site-nav a { color: var(--paper); text-decoration: none; letter-spacing: 0.1em; }
 .site-nav a:hover { color: var(--brick); }
 .site-nav .brand { font-family: var(--serif); font-size: 14px; letter-spacing: 0.04em; text-transform: none; font-weight: 600; }
-.site-nav ul { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; }
-.filter-bar { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--hairline-strong); padding: 20px 24px; box-shadow: 0 4px 12px rgba(20, 18, 16, 0.04); }
-.filter-bar-inner { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-.filter-bar h1 { font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; }
+.site-nav ul { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+.site-nav .nav-external::after { content: " 97"; opacity: 0.7; }
+
+/* Compact sticky filter bar (single row, ~58px tall on desktop). */
+.filter-bar { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--hairline-strong); padding: 12px 24px; box-shadow: 0 4px 12px rgba(20, 18, 16, 0.04); }
+.filter-bar-inner { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.filter-title-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.filter-bar h1 { font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; line-height: 1; }
 .filter-bar h1 .brick { color: var(--brick); }
-.header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
-.browse-all-cta { display: inline-block; padding: 10px 18px; background: var(--ink); color: var(--paper); text-decoration: none; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--ink); white-space: nowrap; }
-.browse-all-cta:hover { background: var(--brick); border-color: var(--brick); color: var(--paper); text-decoration: none; }
-.intro { font-size: 15px; color: var(--ink-soft); max-width: 640px; line-height: 1.55; }
-.search-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-.search-row input { flex: 1 1 240px; padding: 10px 14px; border: 1px solid var(--hairline-strong); background: var(--paper); font-family: var(--body); font-size: 15px; color: var(--ink); border-radius: 0; }
-.search-row input:focus { outline: none; border-color: var(--brick); }
-.tier-chips { display: flex; gap: 8px; flex-wrap: wrap; }
-.tier-chips button { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--hairline-strong); background: var(--paper); color: var(--ink); cursor: pointer; transition: all 0.12s ease; }
-.tier-chips button:hover { border-color: var(--brick); color: var(--brick); }
-.tier-chips button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.catalog-stats { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-.growth-note { max-width: 880px; margin: 24px auto 0; padding: 14px 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); border: 1px dashed var(--hairline-strong); text-align: center; }
-main { max-width: 880px; margin: 24px auto; padding: 0 24px; display: flex; flex-direction: column; gap: 28px; }
+.live-tagline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.live-tagline .live-count { color: var(--brick); font-weight: 600; }
+
+/* Pill row + search icon (single row, inline). */
+.filter-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tier-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.tier-pills button {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 10px; border: 1px solid var(--hairline-strong); background: var(--paper);
+  color: var(--ink); cursor: pointer; transition: all 0.12s ease; line-height: 1.2; border-radius: 999px;
+}
+.tier-pills button:hover { border-color: var(--brick); color: var(--brick); }
+.tier-pills button.active { background: var(--brick); color: var(--paper); border-color: var(--brick); }
+.tier-pills .count { opacity: 0.75; margin-left: 4px; font-weight: 600; }
+.tier-pills button.active .count { opacity: 1; }
+
+.search-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; padding: 0; border-radius: 999px;
+  border: 1px solid var(--hairline-strong); background: var(--paper);
+  color: var(--ink); cursor: pointer; font-family: var(--mono); font-size: 12px;
+  transition: all 0.12s ease; margin-left: auto;
+}
+.search-toggle:hover { border-color: var(--brick); color: var(--brick); }
+.search-toggle.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.search-toggle .kbd { display: inline-block; font-size: 9px; opacity: 0.55; margin-left: 4px; }
+
+.search-wrap { display: none; padding-top: 8px; }
+.search-wrap.expanded { display: block; }
+.search-wrap input {
+  width: 100%; padding: 8px 12px; border: 1px solid var(--hairline-strong);
+  background: var(--paper); font-family: var(--body); font-size: 14px;
+  color: var(--ink); border-radius: 0;
+}
+.search-wrap input:focus { outline: none; border-color: var(--brick); }
+
+main { max-width: 880px; margin: 20px auto; padding: 0 24px; display: flex; flex-direction: column; gap: 24px; }
+
+/* Intro aside, sits between card 1 and card 2 below the fold. */
+.intro-aside {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 18px; line-height: 1.5; color: var(--ink-soft);
+  border-left: 2px solid var(--brick); padding: 4px 0 4px 18px;
+  margin: 0;
+}
 .sku-card { background: var(--paper); border: 1px solid var(--hairline); padding: 36px; scroll-margin-top: 220px; transition: border-color 0.16s ease; }
 .sku-card:hover { border-color: var(--hairline-strong); }
 .sku-card.hidden { display: none; }
+.intro-aside.hidden { display: none; }
 .card-header { margin-bottom: 16px; }
 .badges { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 12px; flex-wrap: wrap; }
 .tier-badge { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 10px; background: var(--ink); color: var(--paper); }
@@ -87,15 +123,16 @@ footer.site-footer a { color: var(--muted); text-decoration: none; }
 footer.site-footer a:hover { color: var(--brick); }
 @media (max-width: 720px) {
   body { font-size: 16px; }
-  .filter-bar { padding: 14px 16px; }
-  .filter-bar h1 { font-size: 18px; }
-  .intro { font-size: 14px; }
-  .tier-chips button { font-size: 10px; padding: 6px 10px; }
-  main { padding: 0 14px; gap: 18px; margin: 18px auto; }
+  .filter-bar { padding: 10px 14px; }
+  .filter-bar h1 { font-size: 17px; }
+  .live-tagline { font-size: 10px; letter-spacing: 0.08em; }
+  .tier-pills button { font-size: 10px; padding: 4px 8px; }
+  .intro-aside { font-size: 15px; padding-left: 14px; }
+  main { padding: 0 14px; gap: 16px; margin: 14px auto; }
   .sku-card { padding: 22px; }
   .card-title { font-size: 22px; }
-  .site-nav { padding: 12px 16px; font-size: 11px; }
-  .site-nav ul { gap: 16px; }
+  .site-nav { padding: 10px 14px; font-size: 11px; }
+  .site-nav ul { gap: 14px; }
 }
 </style>
 </head>
@@ -108,31 +145,31 @@ footer.site-footer a:hover { color: var(--brick); }
         <li><a href="/">Newsletter</a></li>
         <li><a href="/archive.html">Archive</a></li>
         <li><a href="/store/">Store</a></li>
+        <li><a href="https://bokar83.gumroad.com" target="_blank" rel="noopener" class="nav-external">Gumroad</a></li>
       </ul>
     </div>
   </nav>
 
   <header class="filter-bar">
     <div class="filter-bar-inner">
-      <div class="header-row">
-        <h1>The store <span class="brick">·</span> operator kits by Boubacar</h1>
-        <a class="browse-all-cta" href="https://bokar83.gumroad.com" target="_blank" rel="noopener">Browse all on Gumroad &rarr;</a>
+      <div class="filter-title-row">
+        <h1>The store</h1>
+        <span class="live-tagline"><span class="live-count">11 LIVE</span> &middot; more drop daily this week</span>
       </div>
-      <p class="intro">Kits, packs, and templates from the daily work. Each one is what I actually paste, run, and ship. Built from live operator data, not theory. New kits drop daily this week.</p>
-      <div class="search-row">
-        <input id="search-input" type="text" placeholder="search kit name, tag, or topic" autocomplete="off" />
-        <div class="tier-chips">
-          <button data-tier="all" class="active">All (11)</button>
-          <button data-tier="starter">Starter ($27 to $49) (2)</button>
-          <button data-tier="mid">Mid ($79 to $147) (6)</button>
-          <button data-tier="premium">Premium ($197 to $297) (3)</button>
+      <div class="filter-controls">
+        <div class="tier-pills" role="tablist" aria-label="filter by tier">
+          <button data-tier="all" class="active" role="tab" aria-selected="true">all<span class="count">11</span></button>
+          <button data-tier="starter" role="tab" aria-selected="false">starter<span class="count">2</span></button>
+          <button data-tier="mid" role="tab" aria-selected="false">mid<span class="count">6</span></button>
+          <button data-tier="premium" role="tab" aria-selected="false">premium<span class="count">3</span></button>
         </div>
+        <button class="search-toggle" id="search-toggle" type="button" aria-label="toggle search" aria-expanded="false" title="search (press / to focus)">&#x1F50D;<span class="kbd">/</span></button>
       </div>
-      <div class="catalog-stats" id="catalog-stats">11 kits live</div>
+      <div class="search-wrap" id="search-wrap">
+        <input id="search-input" type="text" placeholder="search kit name, tag, or topic" autocomplete="off" aria-label="search kits" />
+      </div>
     </div>
   </header>
-
-  <div class="growth-note">More kits drop daily this week. Refresh for the latest.</div>
 
   <main>
 <article class="sku-card" data-tier="premium" data-slug="catalyst-operator-bundle" data-tags="consulting bundle operator bundle consulting practice agentshq ai consulting solo consultant operator" data-name="catalyst ai operator bundle" id="catalyst-operator-bundle">
@@ -150,6 +187,8 @@ footer.site-footer a:hover { color: var(--brick); }
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
+
+<aside class="intro-aside">Kits I actually paste, run, and ship. Built from live operator data, not theory.</aside>
 
 <article class="sku-card" data-tier="premium" data-slug="how-we-built-agentshq" data-tags="multi-agent ai agents operator playbook agentshq governance ai infrastructure claude code" data-name="the multi-agent operator&#x27;s playbook" id="how-we-built-agentshq">
   <header class="card-header">
@@ -321,11 +360,12 @@ footer.site-footer a:hover { color: var(--brick); }
   <script>
 (function() {
   const cards = Array.from(document.querySelectorAll('.sku-card'));
-  const chips = Array.from(document.querySelectorAll('.tier-chips button'));
+  const pills = Array.from(document.querySelectorAll('.tier-pills button'));
   const searchBox = document.querySelector('#search-input');
+  const searchWrap = document.querySelector('#search-wrap');
+  const searchToggle = document.querySelector('#search-toggle');
   const noResults = document.querySelector('.no-results');
-  const stats = document.querySelector('#catalog-stats');
-  const total = cards.length;
+  const introAside = document.querySelector('.intro-aside');
   let activeTier = 'all';
   let activeQuery = '';
 
@@ -343,15 +383,21 @@ footer.site-footer a:hover { color: var(--brick); }
       card.classList.toggle('hidden', !show);
       if (show) visible++;
     });
+    // Hide the intro aside when filtering is active (less visual noise on
+    // narrow result sets).
+    if (introAside) {
+      const filterActive = activeTier !== 'all' || q.length > 0;
+      introAside.classList.toggle('hidden', filterActive);
+    }
     noResults.classList.toggle('visible', visible === 0);
-    if (stats) stats.textContent = visible + ' of ' + total + ' kits shown';
   }
 
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      activeTier = chip.dataset.tier;
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => { p.classList.remove('active'); p.setAttribute('aria-selected', 'false'); });
+      pill.classList.add('active');
+      pill.setAttribute('aria-selected', 'true');
+      activeTier = pill.dataset.tier;
       applyFilters();
     });
   });
@@ -359,6 +405,38 @@ footer.site-footer a:hover { color: var(--brick); }
   searchBox.addEventListener('input', (e) => {
     activeQuery = e.target.value;
     applyFilters();
+  });
+
+  function openSearch() {
+    searchWrap.classList.add('expanded');
+    searchToggle.classList.add('active');
+    searchToggle.setAttribute('aria-expanded', 'true');
+    searchBox.focus();
+  }
+  function closeSearch() {
+    searchWrap.classList.remove('expanded');
+    searchToggle.classList.remove('active');
+    searchToggle.setAttribute('aria-expanded', 'false');
+    if (searchBox.value) {
+      searchBox.value = '';
+      activeQuery = '';
+      applyFilters();
+    }
+  }
+  searchToggle.addEventListener('click', () => {
+    if (searchWrap.classList.contains('expanded')) closeSearch();
+    else openSearch();
+  });
+  // "/" focuses search (skip when typing in an input/textarea).
+  document.addEventListener('keydown', (e) => {
+    const tag = (e.target && e.target.tagName) || '';
+    if (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA' && !e.metaKey && !e.ctrlKey) {
+      e.preventDefault();
+      openSearch();
+    } else if (e.key === 'Escape' && searchWrap.classList.contains('expanded')) {
+      closeSearch();
+      searchToggle.focus();
+    }
   });
 })();
   </script>
