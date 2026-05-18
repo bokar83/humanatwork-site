@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Store · Human at Work · kits by Boubacar</title>
+<meta name="description" content="The Human at Work store. Operator kits, prompt packs, and Notion templates from Boubacar. New kits drop daily this week.">
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Spectral:ital,wght@0,400;0,500;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #161513;
+  --ink-soft: #2A2620;
+  --paper: #F4EFE6;
+  --bone: #E6DDC8;
+  --brick: #A8341F;
+  --brick-deep: #8A2818;
+  --sage: #3E4A2E;
+  --muted: #6B655C;
+  --hairline: rgba(20, 18, 16, 0.12);
+  --hairline-strong: rgba(20, 18, 16, 0.32);
+  --serif: "Fraunces", "Iowan Old Style", "Georgia", serif;
+  --body: "Spectral", "Iowan Old Style", "Georgia", serif;
+  --mono: "JetBrains Mono", "Menlo", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 80px;
+}
+a { color: var(--brick); text-decoration: underline; text-decoration-color: var(--hairline-strong); }
+a:hover { text-decoration-color: var(--brick); }
+.site-nav { background: var(--ink); color: var(--paper); padding: 14px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.site-nav-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.site-nav a { color: var(--paper); text-decoration: none; letter-spacing: 0.1em; }
+.site-nav a:hover { color: var(--brick); }
+.site-nav .brand { font-family: var(--serif); font-size: 14px; letter-spacing: 0.04em; text-transform: none; font-weight: 600; }
+.site-nav ul { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; }
+.filter-bar { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--hairline-strong); padding: 20px 24px; box-shadow: 0 4px 12px rgba(20, 18, 16, 0.04); }
+.filter-bar-inner { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.filter-bar h1 { font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; }
+.filter-bar h1 .brick { color: var(--brick); }
+.header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.browse-all-cta { display: inline-block; padding: 10px 18px; background: var(--ink); color: var(--paper); text-decoration: none; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--ink); white-space: nowrap; }
+.browse-all-cta:hover { background: var(--brick); border-color: var(--brick); color: var(--paper); text-decoration: none; }
+.intro { font-size: 15px; color: var(--ink-soft); max-width: 640px; line-height: 1.55; }
+.search-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.search-row input { flex: 1 1 240px; padding: 10px 14px; border: 1px solid var(--hairline-strong); background: var(--paper); font-family: var(--body); font-size: 15px; color: var(--ink); border-radius: 0; }
+.search-row input:focus { outline: none; border-color: var(--brick); }
+.tier-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.tier-chips button { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 14px; border: 1px solid var(--hairline-strong); background: var(--paper); color: var(--ink); cursor: pointer; transition: all 0.12s ease; }
+.tier-chips button:hover { border-color: var(--brick); color: var(--brick); }
+.tier-chips button.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.catalog-stats { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.growth-note { max-width: 880px; margin: 24px auto 0; padding: 14px 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); border: 1px dashed var(--hairline-strong); text-align: center; }
+main { max-width: 880px; margin: 24px auto; padding: 0 24px; display: flex; flex-direction: column; gap: 28px; }
+.sku-card { background: var(--paper); border: 1px solid var(--hairline); padding: 36px; scroll-margin-top: 220px; transition: border-color 0.16s ease; }
+.sku-card:hover { border-color: var(--hairline-strong); }
+.sku-card.hidden { display: none; }
+.card-header { margin-bottom: 16px; }
+.badges { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 12px; flex-wrap: wrap; }
+.tier-badge { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 10px; background: var(--ink); color: var(--paper); }
+.tier-badge.tier-starter { background: var(--sage); }
+.tier-badge.tier-mid { background: var(--ink); }
+.tier-badge.tier-premium { background: var(--brick-deep); }
+.permalink { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: 0.04em; }
+.permalink:hover { color: var(--brick); }
+.card-title { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.15; letter-spacing: -0.015em; margin-bottom: 12px; color: var(--ink); }
+.tagline { font-size: 16px; color: var(--ink-soft); line-height: 1.55; }
+.card-footer { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--hairline); padding-top: 22px; }
+.tags { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.cta { display: inline-block; align-self: flex-start; padding: 12px 26px; background: var(--brick); color: var(--paper); text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+.cta:hover { background: var(--brick-deep); text-decoration: none; }
+.no-testimonial-note { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.no-results { text-align: center; padding: 60px 20px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); display: none; }
+.no-results.visible { display: block; }
+footer.site-footer { max-width: 880px; margin: 60px auto 0; padding: 32px 24px; border-top: 1px solid var(--hairline-strong); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer.site-footer a { color: var(--muted); text-decoration: none; }
+footer.site-footer a:hover { color: var(--brick); }
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .filter-bar { padding: 14px 16px; }
+  .filter-bar h1 { font-size: 18px; }
+  .intro { font-size: 14px; }
+  .tier-chips button { font-size: 10px; padding: 6px 10px; }
+  main { padding: 0 14px; gap: 18px; margin: 18px auto; }
+  .sku-card { padding: 22px; }
+  .card-title { font-size: 22px; }
+  .site-nav { padding: 12px 16px; font-size: 11px; }
+  .site-nav ul { gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="primary">
+    <div class="site-nav-inner">
+      <a href="/" class="brand">Human at Work</a>
+      <ul role="list">
+        <li><a href="/">Newsletter</a></li>
+        <li><a href="/archive.html">Archive</a></li>
+        <li><a href="/store/">Store</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="filter-bar">
+    <div class="filter-bar-inner">
+      <div class="header-row">
+        <h1>The store <span class="brick">·</span> operator kits by Boubacar</h1>
+        <a class="browse-all-cta" href="https://bokar83.gumroad.com" target="_blank" rel="noopener">Browse all on Gumroad &rarr;</a>
+      </div>
+      <p class="intro">Kits, packs, and templates from the daily work. Each one is what I actually paste, run, and ship. Built from live operator data, not theory. New kits drop daily this week.</p>
+      <div class="search-row">
+        <input id="search-input" type="text" placeholder="search kit name, tag, or topic" autocomplete="off" />
+        <div class="tier-chips">
+          <button data-tier="all" class="active">All (11)</button>
+          <button data-tier="starter">Starter ($27 to $49) (2)</button>
+          <button data-tier="mid">Mid ($79 to $147) (6)</button>
+          <button data-tier="premium">Premium ($197 to $297) (3)</button>
+        </div>
+      </div>
+      <div class="catalog-stats" id="catalog-stats">11 kits live</div>
+    </div>
+  </header>
+
+  <div class="growth-note">More kits drop daily this week. Refresh for the latest.</div>
+
+  <main>
+<article class="sku-card" data-tier="premium" data-slug="catalyst-operator-bundle" data-tags="consulting bundle operator bundle consulting practice agentshq ai consulting solo consultant operator" data-name="catalyst ai operator bundle" id="catalyst-operator-bundle">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-premium">PREMIUM · $297</span>
+      <a class="permalink" href="#catalyst-operator-bundle" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Catalyst AI Operator Bundle</h2>
+    <p class="tagline">The four-asset sequence that earns the first audit. For the $150 to $400 an hour solo consultant who hit a referral ceiling.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">consulting bundle · operator bundle · consulting practice · ai consulting · solo consultant · operator</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/catalyst-operator-bundle" target="_blank" rel="noopener">I want this · $297</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="premium" data-slug="how-we-built-agentshq" data-tags="multi-agent ai agents operator playbook agentshq governance ai infrastructure claude code" data-name="the multi-agent operator&#x27;s playbook" id="how-we-built-agentshq">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-premium">PREMIUM · $297</span>
+      <a class="permalink" href="#how-we-built-agentshq" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">The Multi-Agent Operator&#x27;s Playbook</h2>
+    <p class="tagline">Three AI agents started stepping on each other. Most multi-agent content is a launch announcement. This is the maintenance manual.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">multi-agent · ai agents · operator playbook · governance · ai infrastructure · claude code</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/how-we-built-agentshq" target="_blank" rel="noopener">I want this · $297</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="premium" data-slug="ai-department-of-one" data-tags="solo founder ai operator ai workflows operator playbook sop founder agentshq" data-name="ai department of one" id="ai-department-of-one">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-premium">PREMIUM · $197</span>
+      <a class="permalink" href="#ai-department-of-one" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">AI Department of One</h2>
+    <p class="tagline">You are doing ops, content, and sales by yourself. The bottleneck is decisions, not effort. This is the kit for that.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">solo founder · ai operator · ai workflows · operator playbook · sop · founder</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/ai-department-of-one" target="_blank" rel="noopener">I want this · $197</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="mid" data-slug="hr-career-memoir" data-tags="career pivot ai careers hr to tech mid-career layoff recovery career change narrative" data-name="hr to ai: the 30-day pivot" id="hr-career-memoir">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-mid">MID · $147</span>
+      <a class="permalink" href="#hr-career-memoir" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">HR to AI: The 30-Day Pivot</h2>
+    <p class="tagline">Mid-career, AI moving fast, the corporate HR ladder feels narrower every year. The 30 day pivot out of HR into operator work.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">career pivot · ai careers · hr to tech · mid-career · layoff recovery · career change · narrative</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/hr-career-memoir" target="_blank" rel="noopener">I want this · $147</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="mid" data-slug="cold-email-pack" data-tags="cold email cold outreach b2b sales email templates sales templates consulting operator" data-name="reply-first cold email pack" id="cold-email-pack">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-mid">MID · $147</span>
+      <a class="permalink" href="#cold-email-pack" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Reply-First Cold Email Pack</h2>
+    <p class="tagline">Written from a CSV, not theory. 1,200 sends, 47 replies, 11 calls, 4 clients. Reply-first templates plus the rubric that picks the right shape.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">cold email · cold outreach · b2b sales · email templates · sales templates · consulting · operator</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/cold-email-pack" target="_blank" rel="noopener">I want this · $147</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="mid" data-slug="content-multiplier" data-tags="content marketing ai content linkedin social media content workflow creator ai workflows" data-name="1 idea into 7 posts (multiplier)" id="content-multiplier">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-mid">MID · $97</span>
+      <a class="permalink" href="#content-multiplier" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">1 Idea Into 7 Posts (Multiplier)</h2>
+    <p class="tagline">One idea into seven posts. Voice-loading workflow that stops AI from sounding like AI. The fix is not better prompts.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">content marketing · ai content · linkedin · social media · content workflow · creator · ai workflows</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/content-multiplier" target="_blank" rel="noopener">I want this · $97</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="mid" data-slug="audit-pattern-catalog" data-tags="cold email b2b sales outreach sales rubric consulting reply rate operator" data-name="audit pattern catalog" id="audit-pattern-catalog">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-mid">MID · $97</span>
+      <a class="permalink" href="#audit-pattern-catalog" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Audit Pattern Catalog</h2>
+    <p class="tagline">One cold template does not fit one list. Three shapes plus the 8 question rubric that picks the right one in 90 seconds.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">cold email · b2b sales · outreach · sales rubric · consulting · reply rate · operator</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/audit-pattern-catalog" target="_blank" rel="noopener">I want this · $97</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="mid" data-slug="career-os-notion" data-tags="notion template job hunt career job search ats interview tracker ai prompts" data-name="career os notion template" id="career-os-notion">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-mid">MID · $79</span>
+      <a class="permalink" href="#career-os-notion" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Career OS Notion Template</h2>
+    <p class="tagline">Forty tabs, twelve docs, three spreadsheets, one notebook. The job hunt is not hard work, it is lookup cost. This is the consolidation.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">notion template · job hunt · career · job search · ats · interview tracker · ai prompts</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/career-os-notion" target="_blank" rel="noopener">I want this · $79</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="mid" data-slug="paste-pack" data-tags="ai prompts ai workflows operator paste pack productivity claude chatgpt" data-name="the prompt atlas" id="paste-pack">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-mid">MID · $79</span>
+      <a class="permalink" href="#paste-pack" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">The Prompt Atlas</h2>
+    <p class="tagline">You keep rewriting the same prompt from scratch. A survivor list, not a wishlist. 25 prompts pasted more than twice.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">ai prompts · ai workflows · operator · paste pack · productivity · claude · chatgpt</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/paste-pack" target="_blank" rel="noopener">I want this · $79</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="aiReadyNotionStack" data-tags="ai hr planning tracker" data-name="the ai-ready notion stack" id="aiReadyNotionStack">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $49</span>
+      <a class="permalink" href="#aiReadyNotionStack" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">The AI-Ready Notion Stack</h2>
+    <p class="tagline">A Notion workspace for the operator using AI daily. Planner, tracker, prompt library, and the small set of templates that compound.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">ai · hr · planning · tracker</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/aiReadyNotionStack" target="_blank" rel="noopener">I want this · $49</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="start-ai-24h" data-tags="ai ai workflows productivity operator starter kit mid-career prompts" data-name="start ai: 5 workflows in 24 hours" id="start-ai-24h">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $27</span>
+      <a class="permalink" href="#start-ai-24h" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Start AI: 5 Workflows in 24 Hours</h2>
+    <p class="tagline">You keep opening ChatGPT and closing it without finishing. Casual AI use never compounds. Named workflows do. The 24 hour install.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">ai · ai workflows · productivity · operator · starter kit · mid-career · prompts</div>
+    <a class="cta" href="https://bokar83.gumroad.com/l/start-ai-24h" target="_blank" rel="noopener">I want this · $27</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+    <div class="no-results">no kits match the current filter</div>
+  </main>
+
+  <footer class="site-footer">
+    <span>Human at Work · Boubacar</span>
+    <span><a href="/">Back to newsletter</a></span>
+  </footer>
+
+  <script>
+(function() {
+  const cards = Array.from(document.querySelectorAll('.sku-card'));
+  const chips = Array.from(document.querySelectorAll('.tier-chips button'));
+  const searchBox = document.querySelector('#search-input');
+  const noResults = document.querySelector('.no-results');
+  const stats = document.querySelector('#catalog-stats');
+  const total = cards.length;
+  let activeTier = 'all';
+  let activeQuery = '';
+
+  function applyFilters() {
+    const q = activeQuery.toLowerCase().trim();
+    let visible = 0;
+    cards.forEach(card => {
+      const tier = card.dataset.tier;
+      const name = card.dataset.name || '';
+      const tags = card.dataset.tags || '';
+      const slug = card.dataset.slug || '';
+      const tierMatch = activeTier === 'all' || activeTier === tier;
+      const queryMatch = !q || name.includes(q) || tags.includes(q) || slug.includes(q);
+      const show = tierMatch && queryMatch;
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    noResults.classList.toggle('visible', visible === 0);
+    if (stats) stats.textContent = visible + ' of ' + total + ' kits shown';
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeTier = chip.dataset.tier;
+      applyFilters();
+    });
+  });
+
+  searchBox.addEventListener('input', (e) => {
+    activeQuery = e.target.value;
+    applyFilters();
+  });
+})();
+  </script>
+</body>
+</html>
