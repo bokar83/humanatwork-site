@@ -175,7 +175,9 @@ nav {
   padding: 18px 48px;
   background: rgba(13,27,42,0.94);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--bd-dark);
+  /* Seamless hardrule (feedback_seamless_no_frame_lines.md 2026-05-18):
+     no border-bottom hairline; soft drop-shadow carries the lift instead. */
+  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12);
 }
 .nav-wordmark { display: flex; flex-direction: column; gap: 2px; }
 .nav-wordmark .brand {
@@ -642,7 +644,8 @@ footer {
 .assessment-top-bar {
   position: sticky; top: 0; z-index: 10;
   background: rgba(13,27,42,0.96); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--bd-dark); padding: 0 32px;
+  /* Seamless hardrule: no border-bottom hairline. */
+  box-shadow: 0 8px 24px rgba(13, 27, 42, 0.12); padding: 0 32px;
 }
 .assessment-bar-row {
   display: flex; align-items: center; justify-content: space-between;
@@ -1030,7 +1033,9 @@ footer {
   z-index: 300;
   background: rgba(13,27,42,0.97);
   backdrop-filter: blur(16px);
-  border-top: 1px solid var(--bd-dark);
+  /* Seamless hardrule: no border-top hairline; soft upward shadow lifts the
+     bar off the body content without drawing a frame line. */
+  box-shadow: 0 -8px 24px rgba(13, 27, 42, 0.12);
   padding: 14px 48px;
   display: flex;
   align-items: center;
@@ -1095,7 +1100,11 @@ footer {
   padding: 4px;
   transition: color 0.15s;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+.booking-bar-dismiss svg { display: block; }
 .booking-bar-dismiss:hover { color: rgba(255,255,255,0.7); }
 
 /* Booking CTA in result */
@@ -1195,7 +1204,7 @@ footer {
   <div class="booking-bar-actions">
     <!-- CALENDLY LINK: Replace href with humanatwork.ai 30-min Calendly URL -->
     <a href="https://calendly.com/boubacarbarry/ai-readiness-call-human-at-work" target="_blank" rel="noopener" class="btn-book" id="bar-book-btn">Book Your Free Call &rarr;</a>
-    <button class="booking-bar-dismiss" id="dismiss-bar" aria-label="Dismiss booking bar">&times;</button>
+    <button class="booking-bar-dismiss" id="dismiss-bar" aria-label="Dismiss booking bar"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
   </div>
 </div>
 
