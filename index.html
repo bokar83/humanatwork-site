@@ -1202,6 +1202,58 @@ footer {
   .hero-email-input { min-width: unset; }
   .hero-form-btn { width: 100%; text-align: center; }
 }
+
+/* HAW native lead-capture form (root: hero + newsletter section).
+   Inherits palette from each containing surface. Hero is on dark bg
+   so the input is light-on-dark; newsletter section is on paper bg
+   so the input is dark-on-paper. Both seamless: no decorative borders
+   beyond what already lives on the parent surface. */
+.haw-lead-form { display: flex; gap: 10px; flex-wrap: wrap; align-items: stretch; width: 100%; }
+.haw-lead-form .lead-email {
+  flex: 1 1 auto; min-width: 0;
+  padding: 12px 14px;
+  font-family: var(--body); font-size: 15px;
+  outline: none;
+}
+.haw-lead-form .lead-submit {
+  flex: 0 0 auto;
+  padding: 12px 22px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  border: 0; cursor: pointer; transition: background 0.12s ease, transform 0.12s ease;
+}
+.haw-lead-form .lead-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* Hero variant: dark surface, amber CTA. Matches existing
+   .hero-email-input + .hero-form-btn styling without re-declaring colors. */
+.hero-lead-form .lead-email {
+  background: rgba(255,255,255,0.06); color: var(--paper);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+.hero-lead-form .lead-email::placeholder { color: rgba(255,255,255,0.38); }
+.hero-lead-form .lead-email:focus { border-color: var(--cyan); background: rgba(255,255,255,0.11); }
+.hero-lead-form .lead-submit {
+  background: var(--amber, #f0a13b); color: var(--ink, #161513);
+}
+.hero-lead-form .lead-submit:hover { background: #e8973a; transform: translateY(-1px); }
+
+/* Newsletter-section variant: paper surface, brick CTA. */
+.newsletter-lead-form .lead-email {
+  background: var(--paper, #F4EFE6); color: var(--ink, #161513);
+  border: 1px solid rgba(20, 18, 16, 0.32);
+}
+.newsletter-lead-form .lead-email:focus { border-color: var(--brick, #A8341F); }
+.newsletter-lead-form .lead-submit {
+  background: var(--brick, #A8341F); color: var(--paper, #F4EFE6);
+}
+.newsletter-lead-form .lead-submit:hover { background: var(--brick-deep, #8A2818); }
+
+.haw-lead-result { font-family: var(--body); font-size: 14px; margin-top: 8px; }
+.haw-lead-result.ok { color: #4caf6a; }
+.haw-lead-result.err { color: #d65a3f; }
+@media (max-width: 720px) {
+  .haw-lead-form { flex-direction: column; }
+  .haw-lead-form .lead-submit { width: 100%; text-align: center; }
+}
 </style>
 <script defer data-domain="humanatwork.ai" src="https://plausible.io/js/script.outbound-links.tagged-events.js"></script>
 </head>
@@ -1260,23 +1312,18 @@ footer {
         "I have been in those rooms. I have made those lists. I have also sat across the table from people and delivered the news. That experience is why I built this. Not to expose anyone. To make sure workers have what leadership should already be giving them."
       </p>
 
-      <!-- HERO EMAIL CAPTURE -->
-      <div class="hero-subscribe">
+      <!-- HERO EMAIL CAPTURE (native form -> agentsHQ /api/orc/beehiiv-subscribe) -->
+      <div class="hero-subscribe" data-plausible-source="root_hero">
         <p class="hero-sub">Get the weekly signal every Sunday. Written from inside the room.</p>
-        <!-- BEEHIIV EMBED 1: hero form. Swap PLACEHOLDER once Beehiiv form created. -->
-        <div class="hero-form-wrap" data-plausible-source="root_hero">
-          <iframe
-            src="https://embeds.beehiiv.com/PLACEHOLDER?utm_source=haw_root&amp;utm_medium=hero_form&amp;utm_campaign=store_launch"
-            data-test-id="beehiiv-embed-hero"
-            class="hero-iframe"
-            title="Subscribe to Human at Work"
-            loading="lazy"
-            scrolling="no"
-            frameborder="0"
-            allow="web-share"
-            style="width:100%;min-height:88px;border:0;display:block;background:transparent"
-          ></iframe>
-        </div>
+        <form class="haw-lead-form hero-lead-form" id="haw-subscribe-hero" method="post" action="https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe" novalidate>
+          <label class="sr-only" for="haw-email-hero">Email address</label>
+          <input class="lead-email" id="haw-email-hero" type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+          <input type="hidden" name="utm_source" value="haw_root">
+          <input type="hidden" name="utm_content" id="haw-utm-content-hero" value="">
+          <input type="hidden" name="form_location" value="root_subfold">
+          <button class="lead-submit" type="submit">Notify me</button>
+        </form>
+        <div class="haw-lead-result" id="haw-subscribe-hero-result" role="status" aria-live="polite" hidden></div>
         <p class="trust-signal" style="margin-top:10px">Free. Every Sunday. No spam.</p>
       </div>
 
@@ -1597,19 +1644,15 @@ footer {
             <h3 class="form-headline">Get the brief every week.</h3>
             <p class="form-sub">Strategic and political intelligence on what is actually happening in workforce planning and what to do about it.</p>
             <!-- BEEHIIV EMBED 2: newsletter section form. Swap PLACEHOLDER once Beehiiv form created. -->
-            <div class="form-stack" data-plausible-source="root_newsletter_section">
-              <iframe
-                src="https://embeds.beehiiv.com/PLACEHOLDER?utm_source=haw_root&amp;utm_medium=newsletter_section&amp;utm_campaign=store_launch"
-                data-test-id="beehiiv-embed-newsletter"
-                class="newsletter-iframe"
-                title="Subscribe to Human at Work"
-                loading="lazy"
-                scrolling="no"
-                frameborder="0"
-                allow="web-share"
-                style="width:100%;min-height:88px;border:0;display:block;background:transparent"
-              ></iframe>
-            </div>
+            <form class="haw-lead-form newsletter-lead-form" id="haw-subscribe-newsletter" method="post" action="https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe" novalidate data-plausible-source="root_newsletter_section">
+              <label class="sr-only" for="haw-email-newsletter">Email address</label>
+              <input class="lead-email email-input" id="haw-email-newsletter" type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+              <input type="hidden" name="utm_source" value="haw_root">
+              <input type="hidden" name="utm_content" id="haw-utm-content-newsletter" value="">
+              <input type="hidden" name="form_location" value="root_newsletter">
+              <button class="lead-submit form-btn" type="submit">Get the Brief</button>
+            </form>
+            <div class="haw-lead-result" id="haw-subscribe-newsletter-result" role="status" aria-live="polite" hidden></div>
             <p class="form-micro" style="margin-top:12px">WEEKLY &nbsp;&middot;&nbsp; NO SPAM &nbsp;&middot;&nbsp; UNSUBSCRIBE ANYTIME</p>
           </div>
         </div>
@@ -1792,33 +1835,86 @@ footer {
 })();
 </script>
 <script>
-// LeadCapture event: listen for postMessage from any Beehiiv embed iframe
-// on this page (hero + newsletter section). Fires Plausible custom event
-// 'LeadCapture' with source = root_hero or root_newsletter_section.
+// HAW native lead-capture: hero + newsletter forms both POST JSON to
+// agentsHQ /api/orc/beehiiv-subscribe. Wire one shared handler that walks
+// every form.haw-lead-form on the page, hydrates utm_content from the URL,
+// fires Plausible LeadCapture on success.
 (function() {
-  function sourceFromFrame(frame) {
-    var wrap = frame && frame.closest && frame.closest('[data-plausible-source]');
-    return wrap ? wrap.getAttribute('data-plausible-source') : 'root_unknown';
+  function sourceFor(form) {
+    var node = form.closest('[data-plausible-source]') || form;
+    return node.getAttribute && node.getAttribute('data-plausible-source') || 'root_unknown';
   }
-  window.addEventListener('message', function(event) {
-    try {
-      if (!event.origin || event.origin.indexOf('beehiiv.com') === -1) return;
-      var payload = typeof event.data === 'string' ? event.data : JSON.stringify(event.data || '');
-      if (payload && payload.toLowerCase().indexOf('subscrib') !== -1) {
-        var source = 'root_unknown';
-        var frames = document.querySelectorAll('iframe[src*="beehiiv.com"]');
-        for (var i = 0; i < frames.length; i++) {
-          if (frames[i].contentWindow === event.source) {
-            source = sourceFromFrame(frames[i]);
-            break;
+  function showResult(resultEl, kind, msg) {
+    if (!resultEl) return;
+    resultEl.hidden = false;
+    resultEl.classList.remove('ok', 'err');
+    resultEl.classList.add(kind);
+    resultEl.textContent = msg;
+  }
+  // Hydrate utm_content hidden inputs from URL query.
+  try {
+    var params = new URLSearchParams(window.location.search || '');
+    var utmContent = (params.get('utm_content') || '').slice(0, 120);
+    if (utmContent) {
+      var inputs = document.querySelectorAll('input[name="utm_content"]');
+      for (var i = 0; i < inputs.length; i++) inputs[i].value = utmContent;
+    }
+  } catch (e) { /* ignore */ }
+
+  var forms = document.querySelectorAll('form.haw-lead-form');
+  for (var i = 0; i < forms.length; i++) {
+    (function(form) {
+      var resultEl = document.getElementById(form.id + '-result');
+      form.addEventListener('submit', function(ev) {
+        ev.preventDefault();
+        var btn = form.querySelector('.lead-submit');
+        var originalLabel = btn ? btn.textContent : '';
+        var emailInput = form.querySelector('input[name="email"]');
+        var email = (emailInput && emailInput.value || '').trim();
+        if (!email || email.indexOf('@') === -1) {
+          showResult(resultEl, 'err', 'Please enter a valid email.');
+          return;
+        }
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+        var payload = {
+          email: email,
+          utm_source: (form.querySelector('input[name="utm_source"]') || {}).value || 'haw_root',
+          utm_content: (form.querySelector('input[name="utm_content"]') || {}).value || '',
+          form_location: (form.querySelector('input[name="form_location"]') || {}).value || 'root_subfold'
+        };
+        fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function(r) {
+          return r.json().then(function(data) { return { status: r.status, data: data }; });
+        }).then(function(res) {
+          if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+          if (res.data && res.data.ok) {
+            showResult(resultEl, 'ok', "You're on the list. Watch your inbox for the next signal.");
+            form.style.display = 'none';
+            if (typeof window.plausible === 'function') {
+              window.plausible('LeadCapture', {
+                props: { source: sourceFor(form), utm: payload.utm_content || 'none' }
+              });
+            }
+          } else if (res.data && res.data.error === 'duplicate') {
+            showResult(resultEl, 'ok', "You're already subscribed. Nothing to do.");
+            form.style.display = 'none';
+          } else if (res.data && res.data.error === 'invalid_email') {
+            showResult(resultEl, 'err', 'That email did not look right. Try another.');
+          } else if (res.data && res.data.error === 'rate_limited') {
+            showResult(resultEl, 'err', 'Too many submissions. Wait a minute and try again.');
+          } else {
+            showResult(resultEl, 'err', 'Something went wrong on our end. Try again in a moment.');
           }
-        }
-        if (typeof window.plausible === 'function') {
-          window.plausible('LeadCapture', { props: { source: source } });
-        }
-      }
-    } catch (e) { /* swallow */ }
-  }, false);
+        }).catch(function() {
+          if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+          showResult(resultEl, 'err', 'Network error. Try again in a moment.');
+        });
+      });
+    })(forms[i]);
+  }
 })();
 </script>
 </body>
