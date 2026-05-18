@@ -1263,12 +1263,21 @@ footer {
       <!-- HERO EMAIL CAPTURE -->
       <div class="hero-subscribe">
         <p class="hero-sub">Get the weekly signal every Sunday. Written from inside the room.</p>
-        <form class="hero-form" onsubmit="return false;" aria-label="Subscribe to Human at Work">
-          <label for="hero-email" class="sr-only">Your email address</label>
-          <input type="email" id="hero-email" name="email" class="hero-email-input" placeholder="your@email.com" autocomplete="email" spellcheck="false">
-          <button type="submit" class="hero-form-btn">Get the Brief &rarr;</button>
-        </form>
-        <p class="trust-signal" style="margin-top:10px">Free. Every Sunday. No pitch. No doom.</p>
+        <!-- BEEHIIV EMBED 1: hero form. Swap PLACEHOLDER once Beehiiv form created. -->
+        <div class="hero-form-wrap" data-plausible-source="root_hero">
+          <iframe
+            src="https://embeds.beehiiv.com/PLACEHOLDER?utm_source=haw_root&amp;utm_medium=hero_form&amp;utm_campaign=store_launch"
+            data-test-id="beehiiv-embed-hero"
+            class="hero-iframe"
+            title="Subscribe to Human at Work"
+            loading="lazy"
+            scrolling="no"
+            frameborder="0"
+            allow="web-share"
+            style="width:100%;min-height:88px;border:0;display:block;background:transparent"
+          ></iframe>
+        </div>
+        <p class="trust-signal" style="margin-top:10px">Free. Every Sunday. No spam.</p>
       </div>
 
       <div class="hero-ctas" style="margin-top:28px">
@@ -1587,11 +1596,19 @@ footer {
             <span class="form-label-top">Subscribe Free</span>
             <h3 class="form-headline">Get the brief every week.</h3>
             <p class="form-sub">Strategic and political intelligence on what is actually happening in workforce planning and what to do about it.</p>
-            <!-- BEEHIIV EMBED 2: Replace the form below with your Beehiiv embed code for the Human at Work newsletter -->
-            <div class="form-stack">
-              <label for="newsletter-email" class="sr-only">Your email address</label>
-              <input type="email" id="newsletter-email" name="email" class="email-input" placeholder="your@email.com&hellip;" autocomplete="email" spellcheck="false">
-              <button type="button" class="form-btn">Get the Brief &rarr;</button>
+            <!-- BEEHIIV EMBED 2: newsletter section form. Swap PLACEHOLDER once Beehiiv form created. -->
+            <div class="form-stack" data-plausible-source="root_newsletter_section">
+              <iframe
+                src="https://embeds.beehiiv.com/PLACEHOLDER?utm_source=haw_root&amp;utm_medium=newsletter_section&amp;utm_campaign=store_launch"
+                data-test-id="beehiiv-embed-newsletter"
+                class="newsletter-iframe"
+                title="Subscribe to Human at Work"
+                loading="lazy"
+                scrolling="no"
+                frameborder="0"
+                allow="web-share"
+                style="width:100%;min-height:88px;border:0;display:block;background:transparent"
+              ></iframe>
             </div>
             <p class="form-micro" style="margin-top:12px">WEEKLY &nbsp;&middot;&nbsp; NO SPAM &nbsp;&middot;&nbsp; UNSUBSCRIBE ANYTIME</p>
           </div>
@@ -1772,6 +1789,36 @@ footer {
     }, 400);
   }
   setInterval(rotate, 9000);
+})();
+</script>
+<script>
+// LeadCapture event: listen for postMessage from any Beehiiv embed iframe
+// on this page (hero + newsletter section). Fires Plausible custom event
+// 'LeadCapture' with source = root_hero or root_newsletter_section.
+(function() {
+  function sourceFromFrame(frame) {
+    var wrap = frame && frame.closest && frame.closest('[data-plausible-source]');
+    return wrap ? wrap.getAttribute('data-plausible-source') : 'root_unknown';
+  }
+  window.addEventListener('message', function(event) {
+    try {
+      if (!event.origin || event.origin.indexOf('beehiiv.com') === -1) return;
+      var payload = typeof event.data === 'string' ? event.data : JSON.stringify(event.data || '');
+      if (payload && payload.toLowerCase().indexOf('subscrib') !== -1) {
+        var source = 'root_unknown';
+        var frames = document.querySelectorAll('iframe[src*="beehiiv.com"]');
+        for (var i = 0; i < frames.length; i++) {
+          if (frames[i].contentWindow === event.source) {
+            source = sourceFromFrame(frames[i]);
+            break;
+          }
+        }
+        if (typeof window.plausible === 'function') {
+          window.plausible('LeadCapture', { props: { source: source } });
+        }
+      }
+    } catch (e) { /* swallow */ }
+  }, false);
 })();
 </script>
 </body>
