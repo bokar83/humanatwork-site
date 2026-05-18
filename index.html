@@ -10,18 +10,26 @@
 <meta name="description" content="Former global HR leader publishes the weekly brief your leadership should already be sending. Take the free AI Exposure Score and find out exactly where you stand and what to do about it.">
 <meta name="author" content="Boubacar">
 <meta name="keywords" content="AI job security, AI restructure, AI exposure score, will AI take my job, HR insider, AI at work, career strategy AI, AI layoff, workforce AI transformation">
-<link rel="canonical" href="https://humanatwork.ai">
+<link rel="canonical" href="https://humanatwork.ai/">
 
+<!-- OpenGraph (LinkedIn / Slack / FB preview cards) -->
 <meta property="og:title" content="Are you on the keep list or the cut list?">
 <meta property="og:description" content="41% of employers plan AI-driven headcount reductions. Take the 2-minute AI Exposure Score and know where you stand and what to do about it.">
-<meta property="og:url" content="https://humanatwork.ai">
+<meta property="og:url" content="https://humanatwork.ai/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Human at Work">
-<meta property="og:image" content="https://humanatwork.ai/og-image.jpg">
+<meta property="og:image" content="https://humanatwork.ai/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Human at Work: the insider read on AI and your career.">
 
+<!-- Twitter Card (X share preview) -->
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://humanatwork.ai/">
 <meta name="twitter:title" content="Are you on the keep list or the cut list?">
 <meta name="twitter:description" content="Former global HR leader publishes the insider read on AI and your career. Free assessment. Weekly brief.">
+<meta name="twitter:image" content="https://humanatwork.ai/og-home.png">
+<meta name="twitter:image:alt" content="Human at Work: the insider read on AI and your career.">
 <meta name="theme-color" content="#0D1B2A">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="shortcut icon" href="/favicon.svg">
@@ -601,7 +609,10 @@ details[open] summary { color: var(--amber); }
 /* ── FOOTER ── */
 footer {
   background: var(--carbon); padding: 64px 48px 32px;
-  border-top: 1px solid var(--bd-dark);
+  /* Seamless hardrule (feedback_seamless_no_frame_lines.md): no border-top;
+     the dark-vs-body bg-color shift carries the page-to-footer separation,
+     a soft inverted shadow lifts it off the content above. */
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
 }
 .footer-grid {
   display: grid; grid-template-columns: 1.6fr 1fr 1fr;
@@ -628,8 +639,10 @@ footer {
 }
 .footer-links a:hover { color: var(--amber); }
 .footer-bottom {
-  border-top: 1px solid var(--bd-dark); padding-top: 24px;
-  max-width: 1100px; margin: 0 auto;
+  /* Seamless hardrule: no border-top hairline. Vertical margin alone
+     separates the copyright row from the footer-grid. */
+  margin-top: 36px; padding-top: 0;
+  max-width: 1100px; margin-left: auto; margin-right: auto;
   display: flex; justify-content: space-between; align-items: center;
 }
 .footer-bottom span { font-family: var(--ff-m); font-size: 11px; color: rgba(255,255,255,0.25); }
