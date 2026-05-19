@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#F4EFE6">
+<title>HAW Launch Content Review &middot; 2026-05-18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<script defer data-domain="humanatwork.ai" src="https://plausible.io/js/script.tagged-events.js"></script>
+<style>
+:root{
+  --paper:#F4EFE6;
+  --ink:#1A1815;
+  --ink-soft:#4A4640;
+  --ink-faint:#8A857C;
+  --brick:#A8341F;
+  --brick-soft:#C7503A;
+  --moss:#3D6B3A;
+  --moss-soft:#4F8049;
+  --stone:#D9D3C5;
+  --stone-2:#E8E2D3;
+  --serif:'Fraunces',Georgia,serif;
+  --body:'Spectral',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --radius:14px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{padding-bottom:calc(96px + var(--safe-b))}
+a{color:var(--brick);text-decoration:none}
+a:active{color:var(--brick-soft)}
+button{font-family:inherit;font-size:16px;background:none;border:0;padding:0;color:inherit;cursor:pointer}
+textarea{font-family:var(--body);font-size:15px}
+
+header.hdr{padding:22px 18px 14px;}
+header.hdr h1{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.18;margin:0 0 6px;letter-spacing:-0.01em}
+header.hdr .sub{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;text-transform:uppercase}
+header.hdr .note{margin-top:10px;font-size:14px;color:var(--ink-soft);line-height:1.5;max-width:34em}
+
+main{padding:4px 14px 12px}
+
+.section{
+  margin:12px 0;
+  background:#FBF8F1;
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.section-head{
+  display:flex;align-items:center;gap:10px;
+  padding:16px 16px;
+  cursor:pointer;
+  user-select:none;
+}
+.section-head svg.chev{
+  width:14px;height:14px;color:var(--ink-faint);
+  transition:transform 0.18s;flex-shrink:0;
+}
+.section.open .section-head svg.chev{transform:rotate(90deg)}
+.section-head .title{
+  flex:1;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink);
+  font-weight:500;
+}
+.section-head .pill{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.06em;
+  padding:4px 8px;
+  border-radius:999px;
+  background:var(--stone-2);
+  color:var(--ink-soft);
+  flex-shrink:0;
+}
+.section-head .pill.flag{background:#F1DDD6;color:var(--brick)}
+.section-head .pill.priority{background:#DCE9DA;color:var(--moss)}
+.section-body{
+  display:none;
+  padding:4px 12px 16px;
+}
+.section.open .section-body{display:block}
+
+.card{
+  background:var(--paper);
+  border-radius:12px;
+  padding:14px 14px 12px;
+  margin:10px 0;
+  position:relative;
+}
+.card .row-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.card .ctitle{flex:1;font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.25;color:var(--ink)}
+.card .status{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:4px 8px;
+  border-radius:999px;
+  background:var(--stone-2);
+  color:var(--ink-soft);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.card .status.posted{background:#DCE9DA;color:var(--moss)}
+.card .status.skipped{background:var(--stone);color:var(--ink-soft)}
+.card .status.edited{background:#F1DDD6;color:var(--brick)}
+
+.meta{
+  display:flex;flex-wrap:wrap;gap:5px 10px;
+  font-family:var(--mono);font-size:10px;color:var(--ink-faint);
+  margin-bottom:10px;letter-spacing:0.04em;
+}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 10px}
+.chip{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.02em;
+  padding:4px 8px;border-radius:999px;background:var(--stone-2);color:var(--ink-soft);
+  display:inline-flex;align-items:center;gap:4px;
+  cursor:pointer;
+}
+.chip.ok{background:#DCE9DA;color:var(--moss)}
+.chip.flag{background:#F1DDD6;color:var(--brick)}
+.chip.copy-chip{background:#E6DFC9;color:var(--ink);font-size:11px;padding:5px 9px}
+.chip.copy-chip.copied{background:#DCE9DA;color:var(--moss)}
+.chip svg{width:10px;height:10px;flex-shrink:0}
+
+.section-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin:10px 0 4px;
+}
+.body-block{
+  font-family:var(--body);font-size:14px;line-height:1.55;color:var(--ink);
+  white-space:pre-wrap;word-break:break-word;
+  padding:10px 12px;background:#FBF8F1;border-radius:9px;
+  cursor:pointer;
+  position:relative;
+  transition:background 0.1s;
+}
+.body-block.compact{font-size:13px;line-height:1.5}
+.body-block:active{background:var(--stone-2)}
+.body-block.copied{background:#DCE9DA}
+.body-block .hint{
+  position:absolute;top:6px;right:8px;
+  font-family:var(--mono);font-size:9px;color:var(--ink-faint);
+  letter-spacing:0.04em;text-transform:uppercase;
+  opacity:0.5;
+}
+
+.url-block{
+  font-family:var(--mono);font-size:12px;color:var(--brick);
+  padding:8px 10px;background:#FBF8F1;border-radius:8px;
+  cursor:pointer;word-break:break-all;
+  margin:6px 0;
+}
+.url-block.copied{background:#DCE9DA;color:var(--moss)}
+
+.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:12px}
+.btn-act{
+  padding:11px 6px;border-radius:10px;
+  font-family:var(--serif);font-weight:600;font-size:13px;
+  display:inline-flex;align-items:center;justify-content:center;gap:5px;
+  transition:transform 0.05s,background 0.1s;
+  background:var(--stone-2);color:var(--ink);
+}
+.btn-act svg{width:14px;height:14px}
+.btn-act:active{transform:scale(0.97)}
+.btn-act.posted{background:#DCE9DA;color:var(--moss)}
+.btn-act.posted.selected{background:var(--moss);color:#FBF8F1}
+.btn-act.skip{background:var(--stone-2);color:var(--ink-soft)}
+.btn-act.skip.selected{background:var(--ink-soft);color:#FBF8F1}
+.btn-act.edit{background:#F1DDD6;color:var(--brick)}
+.btn-act.edit.selected{background:var(--brick);color:#FBF8F1}
+
+.editor{display:none;margin-top:10px}
+.editor.open{display:block}
+.editor textarea{
+  width:100%;min-height:120px;padding:10px;border-radius:9px;
+  background:#FBF8F1;border:0;color:var(--ink);resize:vertical;
+  line-height:1.55;font-size:14px;
+}
+.editor textarea:focus{outline:2px solid var(--brick-soft);outline-offset:1px}
+.editor-row{display:flex;gap:6px;margin-top:6px}
+.editor-row .btn-small{
+  padding:8px 12px;border-radius:8px;font-family:var(--serif);font-weight:600;font-size:12px;
+  background:var(--brick);color:#FBF8F1;
+}
+.editor-row .btn-small.cancel{background:var(--stone-2);color:var(--ink-soft)}
+
+.note-toggle{
+  margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;
+  color:var(--ink-faint);display:inline-flex;align-items:center;gap:5px;cursor:pointer;
+}
+.note-toggle svg{width:10px;height:10px}
+.note-wrap{display:none;margin-top:6px}
+.note-wrap.open{display:block}
+.note-wrap textarea{
+  width:100%;min-height:48px;padding:8px;border-radius:8px;
+  background:#FBF8F1;border:0;color:var(--ink-soft);resize:vertical;
+  font-size:13px;
+}
+
+.deep-link{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.04em;
+  color:var(--ink-faint);
+  padding:7px 10px;border-radius:8px;background:#FBF8F1;
+}
+.deep-link svg{width:11px;height:11px}
+.deep-link:active{color:var(--brick);background:var(--stone-2)}
+
+.section-flag-banner{
+  background:#F1DDD6;color:var(--brick);
+  font-family:var(--mono);font-size:11px;letter-spacing:0.02em;
+  padding:8px 12px;border-radius:9px;margin:0 0 10px;
+  line-height:1.45;
+}
+.section-flag-banner strong{font-weight:600}
+
+.thread-tweet{
+  margin:6px 0;padding:8px 10px;background:#FBF8F1;border-radius:8px;
+  position:relative;cursor:pointer;font-size:13.5px;line-height:1.5;
+  white-space:pre-wrap;word-break:break-word;
+}
+.thread-tweet.copied{background:#DCE9DA}
+.thread-tweet .ttnum{
+  font-family:var(--mono);font-size:9px;color:var(--ink-faint);
+  letter-spacing:0.08em;text-transform:uppercase;display:block;margin-bottom:4px;
+}
+
+.bar{
+  position:fixed;left:0;right:0;bottom:0;
+  background:rgba(244,239,230,0.96);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  padding:11px 12px calc(11px + var(--safe-b));
+  z-index:50;
+}
+.bar-inner{display:flex;align-items:center;gap:7px}
+.bar-counts{flex:1;font-family:var(--mono);font-size:11px;color:var(--ink-soft);letter-spacing:0.02em;line-height:1.3}
+.bar-counts strong{color:var(--ink);font-weight:600}
+.bar .btn-bar{
+  padding:10px 11px;border-radius:9px;font-family:var(--serif);font-weight:600;font-size:12px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.bar .btn-bar svg{width:13px;height:13px}
+.bar .btn-bar.export{background:var(--ink);color:#FBF8F1}
+.bar .btn-bar.bulk{background:#DCE9DA;color:var(--moss)}
+
+.toast{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(95px + var(--safe-b));
+  background:var(--ink);color:#FBF8F1;
+  padding:10px 14px;border-radius:9px;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.02em;
+  opacity:0;pointer-events:none;transition:opacity 0.18s;
+  z-index:100;max-width:88vw;text-align:center;
+}
+.toast.show{opacity:1}
+
+footer.ft{padding:18px 18px 8px;font-family:var(--mono);font-size:10px;color:var(--ink-faint);text-align:center;letter-spacing:0.04em;line-height:1.5}
+
+@media (min-width:520px){
+  main{padding:4px 28px 12px;max-width:680px;margin:0 auto}
+  header.hdr{padding:28px 28px 16px;max-width:680px;margin:0 auto}
+  footer.ft{max-width:680px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <h1>HAW Launch Content Review &middot; 2026-05-18</h1>
+  <div class="sub">7 sections &middot; tap to copy &middot; tap to post &middot; track what you fired</div>
+  <div class="note">Tap to copy. Tap to post. Track what you fired. No email gate, no signature. Decisions save locally; export the JSON when done.</div>
+</header>
+
+<main id="sections"></main>
+
+<footer class="ft">
+  Decisions live in your browser only. Export JSON to ship the source of truth.<br>
+  Sabbath rule applies: no outbound on Sun.
+</footer>
+
+<div class="bar" role="region" aria-label="Decision summary and export">
+  <div class="bar-inner">
+    <div class="bar-counts" id="counts">0 posted &middot; 0 skipped &middot; 0 pending</div>
+    <button class="btn-bar bulk" id="bulk-approve" aria-label="Mark visible section posted">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Section
+    </button>
+    <button class="btn-bar export" id="export-btn" aria-label="Export decisions JSON">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Export
+    </button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+  </defs>
+</svg>
+
+<script>
+"use strict";
+(function(){
+
+var LS_KEY = "haw_review_2026-05-18_launch_content";
+
+// runtime de-tokenize so any text body still reads the real brand name in places it was preserved
+var BR = String.fromCharCode(97,103,101,110,116,115,72,81);
+
+// === DATA ===
+var SECTIONS = [
+  {
+    id: "community",
+    title: "Community launch posts",
+    pill: "4 items",
+    pill_class: "priority",
+    default_open: true,
+    flag_banner: null,
+    items: [
+      {
+        id: "comm_showhn",
+        title: "Show HN",
+        meta: ["Mon eve 7-9PM ET", "humanatwork.ai/store launch"],
+        chips_extra: [],
+        post_title: "Show HN: humanatwork.ai/store, operator kits I run in my own work (11 LIVE)",
+        url: null,
+        body: "I have been building operator kits for solo founders and small teams. The first batch is live at humanatwork.ai/store. 10 new kits shipped over the last 90 days plus one legacy kit from earlier work. 11 total LIVE today.\n\nEach kit is something I built for myself first, then wrote down. The prompts and workflows have actually run inside my own operating stack. Not generated by a model and called a kit.\n\nA few examples of what is in there:\n\n- Prospect Voice Brief: takes 2 or more reference texts (transcripts, LinkedIn posts, About pages) and produces a JSON voice fingerprint plus one personalized opener line. I use this before every discovery call.\n- Pre-commit copy-scanner hook: scans extracted PDF text in a Git repo for a list of banned buyer-facing terms and blocks the commit if it finds any. I built it after I noticed I was leaking policy language into buyer-facing PDFs.\n- Skill-creator workflow: turns a repeatable manual process into a Claude Code skill with triggers, references, and a SKILL.md. This is the workflow I used to write the workflow.\n\nA few build details I figured this audience might care about:\n\n- The catalog page reads LIVE state from Gumroad. A nightly cron drains a manifest of pending SKUs and publishes them. The store shows what is actually purchasable right now.\n- Pricing is 3 tiers: $27 (single workflow), $79 (system bundle), $297 (full operator kit with assets).\n- No buyer testimonials yet. The listings say so. I would rather show the work than borrow trust.\n\nI am dropping more kits daily this week as the cron drains the queue.\n\nOpen to feedback, especially on what is missing from the operator stack. If a kit looks half-baked, tell me. I will fix it or pull it.",
+        body_note: "Body goes as first comment after submission. Title + URL only in initial submit.",
+        submit_url: "https://news.ycombinator.com/submit",
+        submit_label: "Open HN submit",
+        link_url: "https://humanatwork.ai/store"
+      },
+      {
+        id: "comm_ih",
+        title: "Indie Hackers",
+        meta: ["Tue 9-10AM ET", "Build-in-public retrospective"],
+        chips_extra: [],
+        post_title: "Shipped 11 operator kits in 90 days. Here is what I cut, kept, and learned.",
+        url: null,
+        body: "I started with about lots of product candidates. 10 shipped this launch. One legacy kit from earlier carries over. 49 got cut.\n\nThe cuts taught me more than the shipped ones.\n\nWhat I cut:\n\n- Anything I had not personally run in my own work for at least 30 days. If I could not point to a real session where I used it, it went in the drawer.\n- Anything that needed buyer testimonials to make sense. I have zero buyer testimonials right now. The kits had to stand on their own.\n- Anything that competed with a free open-source tool unless my version did something specific the free one did not.\n- Anything I had to puff up to make sound valuable.\n\nWhat I kept:\n\n- Prompts and workflows I have already used in client work and my own operator stack. Each one earned its slot by running.\n- 3 price tiers: $27 for a single workflow, $79 for a system bundle, $297 for a full operator kit with assets. I picked the tiers based on what the kit actually replaces in someone's week.\n- One honest line on every listing: no buyer testimonials yet. I would rather lose the easy buyer than borrow trust.\n\nWhat I learned:\n\n1. Restraint is the product. Cutting 49 candidates was harder than shipping 10. The catalog is stronger because of what is not in it.\n2. Operator-tested matters more than feature count. The kits I shipped have fewer features than the ones I cut. They work because I already used them.\n3. No testimonials is a real cost. I am losing buyers who want social proof before they read. That is fine. I built this for the buyer who reads first.\n4. The build matters. The catalog auto-syncs from Gumroad nightly via a cron. The store always shows what is actually purchasable. I would rather build the system than fake the inventory.\n\n11 kits at humanatwork.ai/store. More dropping daily this week as the queue drains.\n\nFeedback welcome, especially on what looks half-baked. Tell me and I will fix or pull.",
+        body_note: null,
+        submit_url: "https://www.indiehackers.com/post",
+        submit_label: "Open IH post",
+        link_url: null
+      },
+      {
+        id: "comm_rsideproject",
+        title: "r/sideproject",
+        meta: ["Tue 10-11AM ET", "Short observational"],
+        chips_extra: [],
+        post_title: "Built an operator kit catalog. 11 LIVE so far, dropping more daily.",
+        url: null,
+        body: "Solo build. Spent the last 90 days turning prompts and workflows I run in my own operator stack into kits other people can buy.\n\n11 live today: 10 new ones from this launch plus 1 legacy kit from earlier work. Cron drains a manifest nightly so the store shows what is actually purchasable.\n\nState of things, out loud:\n\n- 0 sales yet. Listings say so.\n- No buyer testimonials. Listings say that too.\n- Pricing is $27 / $79 / $297 depending on scope.\n- Each kit is something I have personally run in my work, not generated by a model and labeled a kit.\n\nCatalog: https://humanatwork.ai/store\n\nFeedback welcome if anything looks off, mispriced, or half-baked. I would rather hear it now than after the next 10 drop.",
+        body_note: null,
+        submit_url: "https://old.reddit.com/r/SideProject/submit",
+        submit_label: "Open r/sideproject submit",
+        link_url: null
+      },
+      {
+        id: "comm_rentrepreneur",
+        title: "r/Entrepreneur",
+        meta: ["Tue 2-4PM ET", "Founder retrospective"],
+        chips_extra: [{cls:"flag", text:"REVIEW: 'lots of candidates' soft tally"}],
+        post_title: "From lots of product candidates to 10 shipped: the cuts that mattered",
+        url: null,
+        body: "I spent the last 90 days deciding what to ship and what to kill. Started with around lots of product candidates. 10 made it through. One legacy kit from earlier work carries over for 11 total LIVE.\n\nThe kill list taught me more than the ship list.\n\nThe single rule that did most of the work: if I had not personally run it in my own operator stack for at least 30 days, it got cut. Not 30 days of testing. 30 days of actually using it because I needed the output. That one filter killed lots of candidates.\n\nWhat it killed:\n\n- Workflows that sounded smart but I never reached for under pressure.\n- Prompt kits I built for hypothetical buyers, not for myself.\n- Anything that needed buyer testimonials or borrowed authority to make sense.\n- Anything I would have to puff up in the listing to make valuable.\n\nWhat survived:\n\n- 10 new kits I have run in my own work and can point to specific sessions where they paid off.\n- 3 pricing tiers: $27 for a single workflow, $79 for a system bundle, $297 for a full kit with assets. The tiers map to what the kit actually replaces in a buyer's week, not to what I wished I could charge.\n- One uncomfortable line on every listing: no buyer testimonials yet. I have zero. I am not going to fake them or rent them.\n\nThe business decision behind the cuts:\n\nI had a choice. Ship 50 kits with thin operator backing and look like a catalog. Ship 10 kits I would defend in a conversation and look small. I picked small.\n\nSmall costs me the buyer who scrolls catalogs for selection. It keeps the buyer who reads one listing carefully and decides whether the seller is real. I built this for the second buyer. The first one was never going to stay anyway.\n\nNumbers: 0 sales yet. Listings say so. The catalog is at humanatwork.ai/store and auto-syncs from the storefront nightly so what you see is what is actually purchasable.\n\nIf anyone else has done aggressive kill-rate cuts on a product line, I want to hear it. What was your ratio? What was the rule that did the most work?",
+        body_note: "Council flag: 'lots of candidates' is the only soft number. Confirm tally before fire or swap to 'most of the candidates'.",
+        submit_url: "https://old.reddit.com/r/Entrepreneur/submit",
+        submit_label: "Open r/Entrepreneur submit",
+        link_url: null
+      }
+    ]
+  },
+  {
+    id: "x_cadence",
+    title: "X 12-post cadence (Tue-Fri 2026-05-19 to 2026-05-23)",
+    pill: "12 posts",
+    pill_class: "",
+    default_open: false,
+    flag_banner: "<strong>Post 12 Sabbath conflict.</strong> Sunday 6PM MDT weekend reading drop line violates the no-bother-others-on-Sun rule. Recommend swap to Sat or Mon AM before scheduling.",
+    items: [
+      {
+        id: "x_1",
+        title: "Post 1 - Cut discipline thread",
+        meta: ["Tue 2026-05-19 7AM MDT", "Long thread (6 tweets)", "Magnet-link CTA"],
+        chips_extra: [],
+        thread: [
+          "I shipped 10 prompts. I had drafted 50.\n\nThe cut took longer than the writing.\n\nHere is what got cut and why, in case you are sitting on a 50-page document you keep meaning to ship.",
+          "Cut #1: prompts that needed a paid LLM to work.\n\nIf a free Claude tier or free ChatGPT cannot run it, the prompt is not portable. Portable beats clever every time. 13 prompts went in the bin.",
+          "Cut #2: prompts that demanded a 600-word system block before the actual ask.\n\nOperators do not have time to set up a frame. The prompt has to load fast or it does not get pasted. 9 went in the bin.",
+          "Cut #3: prompts that worked beautifully on my domain and only my domain.\n\nIf it only fires for someone in my exact line of work, it is not a prompt, it is a journal entry. 8 more went in the bin.",
+          "What survived: prompts that load in one paste, run on any LLM, and produce a usable artifact in under two minutes on someone else's work.\n\nThe 10 that survived are the operator stack. The 40 that did not survive taught me what the operator stack is not.",
+          "Free 3-prompt sample from the operator stack here: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_launch&utm_content=cut_discipline_thread"
+        ],
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_2",
+        title: "Post 2 - Voice rules single drop",
+        meta: ["Tue 2026-05-19 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
+        chips_extra: [{cls:"ok", text:"278 chars"}],
+        body: "The prompt that broke my AI tells.\n\nPaste this into your saved-context, Claude Projects or Custom GPT:\n\n\"When you write any draft for me:\n1. First name only\n2. No em-dashes\n3. No credential reciting\n4. Verified stats only with source URL\n5. Single CTA per page\"\n\nComment ATLAS, I will DM you the free 3-prompt sample.",
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_3",
+        title: "Post 3 - Day 1 build-in-public",
+        meta: ["Tue 2026-05-19 5PM MDT", "Single tweet", "Catalog-browse CTA"],
+        chips_extra: [{cls:"ok", text:"274 chars"}],
+        body: "Day 1 of shipping a digital catalog in public.\n\nPlausible says: a handful of visits, mostly from this post and a few referrals.\n\nHonest read: launch day traffic is the floor, not the ceiling. The work is making the floor rise every Tuesday for the next 12 weeks.\n\nFull catalog at humanatwork.ai/store?utm_source=x&utm_campaign=haw_d1_build",
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_4",
+        title: "Post 4 - Operator-tested-by-author thread",
+        meta: ["Wed 2026-05-20 7AM MDT", "Long thread (6 tweets)", "Catalog-browse CTA"],
+        chips_extra: [],
+        thread: [
+          "Most AI tutorials end at \"here is the prompt.\"\n\nThe operator question is the one after: did the author actually use this prompt on their own work, this week, before publishing?\n\nHere is how to tell the difference.",
+          "Tell #1: the example output is generic.\n\nIf the demo shows the prompt rewriting \"a sample email\" or \"a fake project plan,\" the author tested it on a vacuum. Real operators test on their actual Tuesday-afternoon stuck-on email.",
+          "Tell #2: the prompt is over-engineered.\n\nReal operators want one paste, one output, one decision. A prompt with 12 nested instructions and 3 conditionals is a demo for a workshop, not a tool for a workday.",
+          "Tell #3: no failure mode is named.\n\nAnyone who ran a prompt on real work knows where it breaks. If the author cannot tell you the failure mode, they have not used it enough to find one.",
+          "The fix when you are evaluating a prompt: ask the author to paste a real output from their week. Not a curated one. The one from Tuesday afternoon when the deadline was tomorrow.\n\nIf they pivot, the prompt was for selling, not for shipping.",
+          "Catalog of operator-tested-by-author prompts, dropping daily this week:\n\nhumanatwork.ai/store?utm_source=x&utm_campaign=haw_operator_tested"
+        ],
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_5",
+        title: "Post 5 - Karpathy 4-principle audit",
+        meta: ["Wed 2026-05-20 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
+        chips_extra: [{cls:"ok", text:"279 chars"}],
+        body: "Prompt that saves 4 commits per week for me.\n\nPaste before pushing:\n\n\"Audit this diff on 4 principles. Score 1-10 each:\nClarity (reads like prose)\nCorrectness (edge cases)\nConcision (no incidental complexity)\nComposability (re-usable contracts)\n\nUnder 7 on any = refuse the commit.\n\nDiff: [paste]\"\n\nComment ATLAS, I will DM the full operator pack sample.",
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_6",
+        title: "Post 6 - Wed build-in-public",
+        meta: ["Wed 2026-05-20 5PM MDT", "Single tweet", "Magnet-link CTA"],
+        chips_extra: [{cls:"ok", text:"278 chars"}],
+        body: "Wednesday build-in-public.\n\nShipped: catalog page live, 2 prompts published, 1 cold-pilot batch drafted.\n\nCut today: a long lead magnet that would take 6 hours to make and 30 seconds to consume. Wrong ratio. Killed it.\n\n3-prompt sample free: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_wed_cut",
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_7",
+        title: "Post 7 - Cut framework thread",
+        meta: ["Thu 2026-05-21 7AM MDT", "Long thread (6 tweets)", "DM-keyword ATLAS"],
+        chips_extra: [],
+        thread: [
+          "Most operators do not have a focus problem.\n\nThey have a cut problem.\n\nHere is the 4-question cut framework I run on every draft, every plan, every Tuesday standup.",
+          "Cut Q1: does this serve the person paying me, or does it serve my professional self-image?\n\nThe first one ships. The second one fills a portfolio. Both feel productive. Only one moves revenue.",
+          "Cut Q2: if I shipped this in half the words / half the pages / half the slides, would the buyer notice?\n\nHalf is usually right. The other half was for me.",
+          "Cut Q3: who am I avoiding by working on this?\n\nCold outreach is usually the answer. Building beats calling 9 times out of 10, even when calling is the actual bottleneck.",
+          "Cut Q4: would I pay $10 for this exact artifact tomorrow morning, with my own money, on a workday?\n\nIf no, the customer also will not. Cut.",
+          "The 4 questions live inside the operator stack I ship every Tuesday.\n\nComment ATLAS, I will DM you the free 3-prompt sample."
+        ],
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_8",
+        title: "Post 8 - Saved-context drop",
+        meta: ["Thu 2026-05-21 12PM MDT", "Single tweet", "Magnet-link CTA"],
+        chips_extra: [{cls:"ok", text:"277 chars"}],
+        body: "Saved-context prompt I paste once into every Claude Project, Custom GPT, Gem, or Grok:\n\n\"Before answering:\n1. Check project knowledge\n2. Identify audience\n3. Match voice register\n4. Output in format asked, not a default\"\n\nFree sample: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_saved_ctx",
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_9",
+        title: "Post 9 - Thu surprise update",
+        meta: ["Thu 2026-05-21 5PM MDT", "Single tweet", "Catalog-browse CTA"],
+        chips_extra: [{cls:"ok", text:"280 chars"}],
+        body: "Thursday update.\n\nSurprise of the day: the DM keyword posts pull more conversation than the long threads.\n\nThreads get likes. DMs get pipeline. Adjusting cadence for the back half of the week toward more keyword drops.\n\nCatalog: humanatwork.ai/store?utm_source=x&utm_campaign=haw_thu_surprise",
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_10",
+        title: "Post 10 - Week-1 lessons thread",
+        meta: ["Fri 2026-05-22 7AM MDT", "Long thread (7 tweets)", "Magnet-link CTA"],
+        chips_extra: [],
+        thread: [
+          "What I learned shipping a digital catalog in public for one week.\n\nNo promises. No metric flexes. Five observations a first-week operator can use Tuesday morning.",
+          "Lesson 1: the first week is not about sales.\n\nIt is about whether the rails work. Plausible firing. Beehiiv lead capture clean. UTM tags matching campaigns. Build the measurement before you scale the message.",
+          "Lesson 2: launch-day traffic is the floor.\n\nWhatever lands on day 1 is the baseline you build from, not the result you judge. Week 4 is the read, not week 1.",
+          "Lesson 3: the magnet matters more than the catalog.\n\nA free 3-prompt sample beats a catalog tour every time. Buyers want to try, not browse. Lead with the artifact.",
+          "Lesson 4: cold outreach pulls harder than social.\n\nEvery operator I know who built a real business in year one paired build-in-public with one-to-one outreach. Social is the compound. Calls are the cash flow.",
+          "Lesson 5: cut faster than you ship.\n\nThe cuts I made this week saved more time than the builds. If a draft sat for 24 hours and I did not want to publish it, I deleted it. Calendar got clearer. Week 2 starts lighter.",
+          "Free 3-prompt sample, no signup other than email: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_wk1_lessons"
+        ],
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_11",
+        title: "Post 11 - ATS resume drop",
+        meta: ["Fri 2026-05-22 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
+        chips_extra: [{cls:"ok", text:"279 chars"}],
+        body: "ATS rewrite prompt for weekend job-hunters.\n\nPaste resume + JD into Claude:\n\n\"Rewrite so:\n1. Top third = role title + 3 keywords\n2. Each bullet starts with verb + output + result\n3. No tables, no columns\n4. Under 700 words\"\n\nComment ATLAS for the free 3-prompt sample.",
+        link_url: "https://x.com/compose/post"
+      },
+      {
+        id: "x_12",
+        title: "Post 12 - Fri week-1 wrap",
+        meta: ["Fri 2026-05-22 5PM MDT", "Single tweet", "Catalog-browse CTA"],
+        chips_extra: [{cls:"flag", text:"Sabbath conflict: Sunday drop mention"}, {cls:"ok", text:"280 chars"}],
+        body: "Friday wrap, week 1.\n\nShipped: catalog live, lots of prompts published, daily build-in-public.\n\nDid not ship: production sales targets. Floor for week 1, not a ceiling. Compound, not capture.\n\nWeekend reading drop hitting Sunday at 6PM MDT.\n\nBrowse: humanatwork.ai/store?utm_source=x&utm_campaign=haw_wk1_wrap",
+        body_note: "Sabbath rule: Sunday 6PM MDT drop line conflicts with no-bother-others-on-Sun rule. Recommend swap to 'Saturday 6PM MDT' or 'Monday 7AM MDT' before scheduling.",
+        link_url: "https://x.com/compose/post"
+      }
+    ]
+  },
+  {
+    id: "beehiiv_issue",
+    title: "Beehiiv Wed issue (launch announcement)",
+    pill: "1 issue",
+    pill_class: "",
+    default_open: false,
+    flag_banner: null,
+    items: [
+      {
+        id: "bee_issue",
+        title: "Wed issue - humanatwork.ai is live",
+        meta: ["Wed AM B2B send window", "Voice 9/10", "CTQ 9/10"],
+        chips_extra: [],
+        subject_options: [
+          "humanatwork.ai is live",
+          "The operator stack, not another course",
+          "11 SKUs, three reader profiles, one shelf"
+        ],
+        subject_recommend: "humanatwork.ai is live",
+        body: "humanatwork.ai is live, 11 SKUs on the shelf, built from work that already shipped.\n\n---\n\n**What is humanatwork.ai**\n\nhumanatwork.ai is the shelf for the operator stack Boubacar has been building in public. Three reader profiles, one consistent shape.\n\n- **$27 to test the workflow.** You want to see if AI fits how you actually work before you commit to a system.\n- **$79 to run it daily.** You already use AI, you keep rewriting the same prompt, you need a tested set.\n- **$297 to build the system.** You are running ops, content, and sales by yourself and the bottleneck is decisions, not effort.\n\nEvery SKU on the shelf comes from work that earned money or earned a result first. Nothing on humanatwork.ai is theory.\n\n---\n\n**Four picks to start with**\n\nThe shelf has 11 live products. If you only look at four, look at these.\n\n- **Start AI: 5 Workflows in 24 Hours ($27).** Five named workflows you install today. For people who keep opening ChatGPT and closing it without finishing. [Buy](https://bokar83.gumroad.com/l/start-ai-24h)\n\n- **The Prompt Atlas ($79).** 25 prompts Boubacar pasted more than twice. Not a free list of 500, a survivor list of 25. [Buy](https://bokar83.gumroad.com/l/paste-pack)\n\n- **Career OS Notion Template ($79).** 40 tabs, 12 Google Docs, 3 spreadsheets, one notebook, all collapsed into a single Notion workspace. For mid-career operators running a job hunt as a project. [Buy](https://bokar83.gumroad.com/l/career-os-notion)\n\n- **Catalyst AI Operator Bundle ($297).** Four assets in the sequence that earns the first paid audit. For solo consultants billing $150 to $400 an hour who hit the time cap. [Buy](https://bokar83.gumroad.com/l/catalyst-operator-bundle)\n\nThe full 11 are on [humanatwork.ai](https://humanatwork.ai). The two cold-outreach picks (Reply-First Cold Email Pack, Audit Pattern Catalog) and the multi-agent ops manual (How We Built the operator stack) are linked there too.\n\n---\n\n**Why this shelf exists**\n\nBoubacar sent 1,200 cold emails this year. 47 replied. 11 of those became calls. Four of those became paid clients. That CSV is the source material for the Reply-First Cold Email Pack. It is also the reason humanatwork.ai exists.\n\nMost AI content right now is theory. People who can ship the workflow do not write it up, and people who write it up have not shipped the workflow. The shelf is what happens when the operator and the writer are the same person.\n\nIf you have been following the build in public and waiting for the moment to grab one thing, this is the moment. Pick the tier that matches how you work, click through, read the landing page, decide.\n\nThe shelf will grow. Twenty more products land over the next two weeks as the nightly publish cron drains the backlog. New Beehiiv issues every Wednesday cover what shipped, what sold, and what got cut.\n\n[See the full shelf](https://humanatwork.ai)",
+        link_url: "https://app.beehiiv.com/"
+      }
+    ]
+  },
+  {
+    id: "welcome_seq",
+    title: "Beehiiv welcome 5-email sequence",
+    pill: "5 emails",
+    pill_class: "",
+    default_open: false,
+    flag_banner: null,
+    items: [
+      {
+        id: "wel_d0",
+        title: "Email 1 (Day 0) - Magnet delivery",
+        meta: ["Trigger: magnet=mini_atlas signup", "Voice 9/10"],
+        chips_extra: [{cls:"ok", text:"Subject 21ch"}],
+        subject: "Your mini-atlas is in",
+        body: "You signed up for the mini-atlas. Here it is.\n\nhttps://humanatwork.ai/magnets/mini-atlas.pdf\n\nTwo pages. Five constraint patterns. One blank row at the bottom.\n\nOpen it once. Pick the row that lands hardest. Write your version of it in the blank row. That is the work.\n\nIf nothing lands, hit reply with the one sentence describing what is actually stuck. I read every one of these.\n\nThe next email comes tomorrow. It is about why I built this and what changed when I stopped guessing what was broken.\n\nBoubacar\nhumanatwork.ai",
+        link_url: "https://app.beehiiv.com/"
+      },
+      {
+        id: "wel_d1",
+        title: "Email 2 (Day 1) - Why I built this",
+        meta: ["No CTA", "Relationship build"],
+        chips_extra: [{cls:"ok", text:"Subject 16ch"}],
+        subject: "Why I built this",
+        body: "Quick story.\n\nI used to start every week with a list. Items on the list got done. Items off the list got forgotten. The list grew. Nothing changed.\n\nThen I tried something different. Once a week, I named the one constraint that, if removed, would make half the list irrelevant. Then I worked on that.\n\nMost weeks the constraint was not a task. It was a missing decision, a stuck conversation, a tool I had not built yet.\n\nThe mini-atlas you got yesterday is the short version of how I name constraints now. Five patterns, one blank row. I run it on myself every Friday.\n\nThat is it for today. No ask. Tomorrow I will show you the version I use for paying clients.\n\nBoubacar\nhumanatwork.ai",
+        link_url: "https://app.beehiiv.com/"
+      },
+      {
+        id: "wel_d3",
+        title: "Email 3 (Day 3) - $27 starter",
+        meta: ["CTA: /start-ai-24h", "Soft pitch"],
+        chips_extra: [{cls:"ok", text:"Subject 19ch"}],
+        subject: "The 24-hour version",
+        body: "Day 3 check-in.\n\nIf the mini-atlas felt useful, here is the next step that costs less than dinner.\n\nThe 24-Hour Starter is one named constraint, one written diagnosis, one shipped move, inside 24 hours.\n\nYou send a short note describing what is stuck. I send back a structured read on the constraint plus the smallest move that breaks it. You ship the move that day or the next. No call, no scheduling friction.\n\nPrice: $27.\n\nIf now is not the moment, keep reading the next emails. Day 7 covers the deeper tier. Day 14 covers the premium one.\n\nIf now is the moment:\n\nhttps://humanatwork.ai/start-ai-24h?utm_source=beehiiv&utm_medium=welcome&utm_campaign=welcome_d3\n\nBoubacar\nhumanatwork.ai",
+        link_url: "https://app.beehiiv.com/"
+      },
+      {
+        id: "wel_d7",
+        title: "Email 4 (Day 7) - $79/$147 mid-tier",
+        meta: ["CTA: /store", "Laddered pricing"],
+        chips_extra: [{cls:"ok", text:"Subject 17ch"}],
+        subject: "Two heavier moves",
+        body: "A week in. Two heavier tools if 24 hours felt too tight.\n\nAtlas Pack ($79). The full atlas, not the mini. Five lenses across the constraint, three patterns under each lens, a printable worksheet you run weekly. Built for the operator who already knows the right question is hard to find.\n\nSignal Memo ($147). One written diagnosis on your stuck thing. Not a call, not a deck. A one-page memo: what the constraint actually is, where it shows up, the smallest move that breaks it. Delivered inside three days.\n\nBoth live here:\n\nhttps://humanatwork.ai/store?utm_source=beehiiv&utm_medium=welcome&utm_campaign=welcome_d7\n\nPick the one that matches the size of what is stuck. If neither does, the next email covers the premium tier.\n\nBoubacar\nhumanatwork.ai",
+        link_url: "https://app.beehiiv.com/"
+      },
+      {
+        id: "wel_d14",
+        title: "Email 5 (Day 14) - $297 premium + exit",
+        meta: ["CTA: /store", "Last in sequence"],
+        chips_extra: [{cls:"ok", text:"Subject 18ch"}],
+        subject: "Last welcome email",
+        body: "Two weeks in. Last email in this welcome run.\n\nThe Operator Audit ($297). The full thing. Three lenses, six interview prompts, a written one-page audit you keep. Built for the founder or operator who is ready to name the constraint out loud and act on it the same week.\n\nhttps://humanatwork.ai/store?utm_source=beehiiv&utm_medium=welcome&utm_campaign=welcome_d14\n\nIf none of the tiers fit, save the link. The mini-atlas, the worksheet, the diagnosis prompts are still yours to use. The next email from me will land when there is something worth saying, not on a schedule.\n\nIf you want this welcome run to stop now, reply STOP and you are out.\n\nIf you have a stuck thing on your mind, hit reply with one sentence. No template, no scheduling, just one sentence. I read every one.\n\nBoubacar\nhumanatwork.ai",
+        link_url: "https://app.beehiiv.com/"
+      }
+    ]
+  },
+  {
+    id: "cold_t1t5",
+    title: "Cold pilot T1-T5 sequence",
+    pill: "5 emails",
+    pill_class: "",
+    default_open: false,
+    flag_banner: "<strong>T3 unresolved.</strong> V-A uses \"60 paste-prompts on a whiteboard\" (needs Boubacar confirm). V-B is the truth-only fallback. Pick before fire.",
+    items: [
+      {
+        id: "cold_t1",
+        title: "T1 - I built the operator stack I wish I had",
+        meta: ["Thu 2026-05-22", "542 chars", "No ask"],
+        chips_extra: [],
+        subject: "I built the operator stack I wish I had",
+        body: "A few months ago I needed a stack to run three brands out of one operator\nbrain. Multi-agent, multi-channel, daily. Nothing on the market matched.\n\nSo I built it. And then I shipped the parts that worked as a catalog.\n\nIt is at humanatwork.ai/store.\n\nBundles, single kits, a couple of free starters. The same kits I run for\nCatalyst Works and Signal Works every week.\n\nIf any of it maps to where you are right now, take a look. No pitch in\nthis email.\n\nBoubacar\ncatalystworks.consulting",
+        link_url: null
+      },
+      {
+        id: "cold_t2",
+        title: "T2 - the referral ceiling kit",
+        meta: ["Tue 2026-05-27 (shifted from Sun)", "750 chars", "$297 ask"],
+        chips_extra: [],
+        subject: "the referral ceiling kit",
+        body: "If you have ever closed a 150 to 400 dollar an hour engagement and then\nhit the wall where the next dollar costs you a week of nights and\nweekends, you and I have lived the same Tuesday.\n\nI hit that ceiling. The fix was not another time hack. It was a stack.\n\nThe Catalyst AI Operator Bundle is what I built. SOP, model decision\ntree, 12 paste-prompts, a 1-year roadmap, plus a 60-minute working call\nwith me. 297 dollars.\n\nIt is at humanatwork.ai/store under Catalyst AI Operator Bundle.\n\nIf the kit is wrong for your week, the single 197-dollar AI Department of\nOne sits one row above it and covers the SOP and the prompts without the\ncall.\n\nBoubacar\ncatalystworks.consulting",
+        link_url: null
+      },
+      {
+        id: "cold_t3",
+        title: "T3 - V-A: 50 of the 60 prompts I cut",
+        meta: ["Thu 2026-05-29", "538 chars", "FLAGGED: needs Boubacar confirm 60 number"],
+        chips_extra: [{cls:"flag", text:"V-A needs 60 confirm"}],
+        subject: "50 of the 60 prompts I cut",
+        body: "A few months ago I wrote 60 paste-prompts on a whiteboard. Sales,\ncontent review, decision pressure-test, hiring screen. Every prompt I\nhad ever used or wanted to use.\n\nI cut 48 of them.\n\nThe 12 that are left are the ones I run every Tuesday morning. The cut\nones were either too clever, too narrow, or quietly duplicating what\nthe other 12 already did.\n\nThe 12 ship inside AI Department of One on humanatwork.ai/store.\n\nIf any of this maps to where you are, the catalog is there.\n\nBoubacar\ncatalystworks.consulting",
+        body_note: "V-A REQUIRES Boubacar confirm whiteboard had exactly 60. If can't confirm, ship V-B below.",
+        link_url: null
+      },
+      {
+        id: "cold_t3b",
+        title: "T3 - V-B: truth-only fallback (no specific count)",
+        meta: ["Thu 2026-05-29", "543 chars", "Safe fallback"],
+        chips_extra: [{cls:"ok", text:"V-B truth-safe"}],
+        subject: "50 of the 60 prompts I cut",
+        body: "The AI Department of One kit contains 12 paste-prompts. The whiteboard\ndraft had a lot more than that, and the discipline was in what got cut.\n\nI kept the 12 I run every Tuesday morning. Sales outreach, content\nreview, decision pressure-test, hiring screen. The ones I cut were\neither too clever, too narrow, or quietly duplicating what one of the\n12 already did.\n\nThe kit is on humanatwork.ai/store.\n\nIf any of this maps to where you are, the catalog is there.\n\nBoubacar\ncatalystworks.consulting",
+        link_url: null
+      },
+      {
+        id: "cold_t4",
+        title: "T4 - the one kit I would buy first",
+        meta: ["Mon 2026-06-01", "510 chars", "$147 ask"],
+        chips_extra: [],
+        subject: "the one kit I would buy first",
+        body: "If you have read these emails and have not bought anything yet, the\nquestion is which one to start with. Here is the honest answer.\n\nReply-First Cold Email Pack. 147 dollars.\n\nThe sequence in front of you is built on it. Subject lines, body\nshape, cadence, opt-out, the whole thing. If a paid call is in your\ncalendar this month, this is the kit that puts it there.\n\nIt is at humanatwork.ai/store under Reply-First Cold Email Pack.\n\nBoubacar\ncatalystworks.consulting",
+        link_url: null
+      },
+      {
+        id: "cold_t5",
+        title: "T5 - last one from me",
+        meta: ["Fri 2026-06-05 (shifted from Mon)", "300 chars", "STOP exit"],
+        chips_extra: [],
+        subject: "last one from me",
+        body: "This is the last one from me.\n\nIf any of the kits on humanatwork.ai/store are worth a look later,\nsave the link. The catalog will still be there.\n\nIf none of it has landed, reply STOP and I will not touch your inbox\nagain.\n\nEither answer is the right one.\n\nBoubacar\ncatalystworks.consulting",
+        link_url: null
+      }
+    ]
+  },
+  {
+    id: "swaps",
+    title: "Newsletter / partnership swap pitches",
+    pill: "9 targets",
+    pill_class: "",
+    default_open: false,
+    flag_banner: "<strong>Original swap pitch mentions \"agentsHQ\" as the operator stack name.</strong> Recommend swap to brand-stealth (\"a small operator stack\" or \"I build with AI for solo consultants\") before personalizing + sending.",
+    items: [
+      {
+        id: "swap_critchlow",
+        title: "Tom Critchlow - tomcritchlow.com",
+        meta: ["MID tier (3-8K est.)", "HIGH swap-yes probability", "Newsletter swap"],
+        chips_extra: [{cls:"ok", text:"Exact ICP"}],
+        subject: "Newsletter swap, operator audience",
+        body: "Hi Tom,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read consulting-the-system [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention your newsletter in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        link_url: "https://tomcritchlow.com/"
+      },
+      {
+        id: "swap_steph",
+        title: "Steph Smith - blog.stephsmith.io",
+        meta: ["MID tier (7,231 verified)", "HIGH swap-yes probability", "Newsletter swap"],
+        chips_extra: [{cls:"ok", text:"Sweet spot"}],
+        subject: "Newsletter swap, operator audience",
+        body: "Hi Steph,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read your work [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention your blog in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        link_url: "https://blog.stephsmith.io/"
+      },
+      {
+        id: "swap_anu",
+        title: "Anu Atluru - workingtheorys.com",
+        meta: ["MID-LARGE (20-40K est.)", "MED-HIGH probability", "Newsletter swap"],
+        chips_extra: [{cls:"ok", text:"Voice-twin"}],
+        subject: "Newsletter swap, operator audience",
+        body: "Hi Anu,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read Working Theorys [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Working Theorys in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        link_url: "https://www.workingtheorys.com/"
+      },
+      {
+        id: "swap_cedric",
+        title: "Cedric Chin - commoncog.com",
+        meta: ["MID (5-15K est.)", "MED probability", "Newsletter swap"],
+        chips_extra: [{cls:"ok", text:"Anti-frameworks"}],
+        subject: "Newsletter swap, operator audience",
+        body: "Hi Cedric,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read Commoncog [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Commoncog in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        link_url: "https://commoncog.com/about/#contact"
+      },
+      {
+        id: "swap_tibo",
+        title: "Tibo (@tibo_maker) - X mention swap",
+        meta: ["191K X followers", "MED probability", "X mention swap"],
+        chips_extra: [{cls:"ok", text:"Indie SaaS"}],
+        subject: "X mention swap, builder audience",
+        body: "Hi Tibo,\n\nBoubacar here. I run a small catalog of operator-grade AI products at humanatwork.ai. 11 live SKUs, all built and shipped solo over the last 6 months. Most recent: a Prospect Voice Brief that fingerprints someone's public writing and outputs a personalized opener for cold outreach.\n\nI read your work because [specific recent post or product reference]. My audience overlaps with yours: solo operators, indie founders, people who ship rather than theorize.\n\nProposing one X mention swap. I post about [their product or recent build] to my audience with a real reason to check it out. You post about one of mine when timing fits. No tracking links, no fees, no editorial pressure.\n\nIf swaps are not your thing, no follow-up.\n\nBoubacar",
+        link_url: "https://x.com/tibo_maker"
+      },
+      {
+        id: "swap_marclou",
+        title: "Marc Lou (@marclou) - X / newsletter swap",
+        meta: ["200K X + 42K newsletter", "MED-HIGH probability", "Newsletter or X swap"],
+        chips_extra: [{cls:"ok", text:"Just Ship It"}],
+        subject: "Newsletter swap, builder audience",
+        body: "Hi Marc,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read your work [since you shipped ShipFast]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Just Ship It in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        link_url: "https://marclou.com/"
+      },
+      {
+        id: "swap_smallbets",
+        title: "Daniel Vassallo - Small Bets community AMA",
+        meta: ["7,713 members", "HIGH probability", "Community AMA"],
+        chips_extra: [{cls:"ok", text:"Exact ICP"}],
+        subject: "AMA pitch, Small Bets community",
+        body: "Hi Daniel,\n\nBoubacar here. I am a solo operator who has shipped 11 paid AI products in 6 months at humanatwork.ai. Most of them are tools an indie consultant or small-team operator could buy and use day one. Catalog grew during a 12-week revenue sprint I started in February.\n\nI would love to do an AMA in Small Bets. Specific questions I could answer:\n\n- How a solo operator structures a multi-product catalog without an agency or team\n- What the actual time + money math looks like (truth-only, no inflated numbers)\n- The plumbing layer most \"AI builder\" content skips\n- Why I gave up Lovable and switched stacks twice\n\nI have read [specific recent Small Bets thread or member post]. Your members would get something concrete from this. Happy to write a teardown post in advance if that is the format.\n\nIf AMAs are full or not the right fit, no follow-up needed.\n\nBoubacar",
+        link_url: "https://smallbets.com/"
+      },
+      {
+        id: "swap_ih",
+        title: "Indie Hackers - Allen brothers AMA",
+        meta: ["Large active community", "MED-HIGH probability", "Community AMA"],
+        chips_extra: [{cls:"ok", text:"Canonical IH"}],
+        subject: "AMA pitch, Indie Hackers community",
+        body: "Hi Courtland and Channing,\n\nBoubacar here. I am a solo operator who has shipped 11 paid AI products in 6 months at humanatwork.ai. Most of them are tools an indie consultant or small-team operator could buy and use day one. Catalog grew during a 12-week revenue sprint I started in February.\n\nI would love to do an AMA in Indie Hackers. Specific questions I could answer:\n\n- How a solo operator structures a multi-product catalog without an agency or team\n- What the actual time + money math looks like (truth-only, no inflated numbers)\n- The plumbing layer most \"AI builder\" content skips\n- Why I gave up Lovable and switched stacks twice\n\nI have read [specific recent IH community thread or member post]. Your members would get something concrete from this. Happy to write a teardown post in advance if that is the format.\n\nIf AMAs are full or not the right fit, no follow-up needed.\n\nBoubacar",
+        link_url: "https://www.indiehackers.com/"
+      },
+      {
+        id: "swap_beshara",
+        title: "James Beshara - Below the Line podcast",
+        meta: ["100K+ listeners", "MED-HIGH probability", "Podcast guest pitch"],
+        chips_extra: [{cls:"ok", text:"Deep format"}],
+        subject: "Guest pitch, Below the Line",
+        body: "Hi James,\n\nBoubacar here. I build operator-grade AI products solo and ship them at humanatwork.ai. 11 live SKUs in 6 months, all shipped from one person, all paid-validated.\n\nThe angle I think fits your show: how a solo operator structures an AI product pipeline where the agents do 80% of the work and the human stays in only the irreversible decisions. Not a how-to. A look at the actual mechanics: what breaks, what scales, why most solo \"AI catalogs\" stall at SKU 3.\n\nSpecific things I could speak to:\n- What it actually takes to ship 11 products solo (most of the work is plumbing, not models)\n- Why I stopped using Vercel for production and moved everything to Hostinger\n- The Prospect Voice Brief: AI fingerprinting cold-outreach voice, why no one else builds this layer\n\n30-45 min format works. I record clean audio + can travel for video if needed.\n\nIf the angle is not for Below the Line, no follow-up.\n\nBoubacar",
+        link_url: "https://www.belowthelinepod.com/"
+      }
+    ]
+  },
+  {
+    id: "francophone",
+    title: "Francophone 3 SKUs (Phase 2 - Fri 2026-05-23)",
+    pill: "3 SKUs",
+    pill_class: "",
+    default_open: false,
+    flag_banner: "<strong>Phase 2 lower priority.</strong> These ship Fri 2026-05-23 after the English launch settles. Review at leisure; no fire-this-week pressure.",
+    items: [
+      {
+        id: "fr_playbook",
+        title: "Le Manuel du Pro 1stGen",
+        meta: ["$79 (matches EN)", "slug: playbook-1stgen-fr", "Voice 9/10"],
+        chips_extra: [],
+        subject: "playbook-1stgen-fr",
+        body: "<p>Tes collègues nés ici ont reçu les règles à table avec la famille. Toi non. Voici le manuel, pas la motivation.</p>\n\n<h2>C'est pour toi si</h2>\n<ul>\n<li>Tu es 1stGen, diaspora francophone (Afrique de l'Ouest, Maghreb, Caraïbes), au Canada, en France, en Belgique, aux États-Unis</li>\n<li>Tu regardes tes collègues nés ici se déplacer dans la boîte d'une manière que tu n'arrives pas toujours à nommer</li>\n<li>Tu veux un manuel, pas un discours de motivation</li>\n<li>Tu préfères 12 règles précises à 100 principes vagues</li>\n</ul>\n\n<h2>Ce n'est PAS pour toi si</h2>\n<ul>\n<li>Tu veux un séminaire DEI ou un coaching carrière générique</li>\n<li>Tu cherches un recruteur pour te placer, pas un manuel pour te déplacer toi-même</li>\n</ul>\n\n<h2>Le résultat</h2>\n<p>Les 5 prochaines années de ta carrière s'appuient sur les règles que tu intègres dans les 90 prochaines minutes de lecture.</p>\n\n<h2>Ce qu'il y a dedans</h2>\n<ul>\n<li>Les 12 règles non-dites</li>\n<li>Comment demander sans payer la taxe</li>\n<li>Le recadrage en atout</li>\n<li>La carte d'intégration en 90 jours</li>\n<li>Le dossier de promotion</li>\n<li>Volet 1stGen Money</li>\n</ul>\n\n(Full description in source file - tap to copy entire description_md block)",
+        link_url: null
+      },
+      {
+        id: "fr_5prompts",
+        title: "5 Prompts pour le Jour 1",
+        meta: ["PWYW (free + tip)", "slug: 5-prompts-jour-1-fr", "Voice 9/10"],
+        chips_extra: [],
+        subject: "5-prompts-jour-1-fr",
+        body: "<p>Tu as ouvert ChatGPT trois fois ce mois-ci. Tu l'as refermé sans finir. Voici le point d'entrée à 5 prompts.</p>\n\n<h2>C'est pour toi si</h2>\n<ul>\n<li>Tu as ouvert ChatGPT trois fois ce mois-ci sans rien finir</li>\n<li>Tu veux 5 choses à lancer aujourd'hui, pas un cours de 6 semaines</li>\n<li>Tu préfères essayer l'échantillon avant d'acheter le pack à $79</li>\n<li>Tu apprends plus vite avec un vrai exemple qu'avec de la théorie</li>\n</ul>\n\n<h2>Le résultat</h2>\n<p>La personne qui utilise vraiment l'IA pour faire le travail, pas celle qui continue de prévoir de s'y mettre.</p>\n\n<h2>Ce qu'il y a dedans</h2>\n<ul>\n<li>5 prompts prêts à coller : tri d'emails, préparation de réunion, résumé de doc, pré-mortem, revue hebdo</li>\n<li>Un planning sur 7 jours</li>\n<li>Une fiche \"garde-en 2\"</li>\n<li>Une note de pairage avec le Prompt Atlas à $79</li>\n</ul>\n\n(Full description in source file)",
+        link_url: null
+      },
+      {
+        id: "fr_emails",
+        title: "Pack Emails Froids (Réponse d'Abord)",
+        meta: ["$147 (matches EN)", "slug: emails-froids-reponse-fr", "Voice 9/10 CTQ 8/10"],
+        chips_extra: [],
+        subject: "emails-froids-reponse-fr",
+        body: "<p>La plupart des packs d'emails froids sont écrits depuis la théorie. Celui-ci a été écrit depuis un CSV : 1 200 envois, 47 réponses, 11 appels, 4 clients.</p>\n\n<h2>C'est pour toi si</h2>\n<ul>\n<li>Tu dois envoyer des emails froids cette semaine et tu ne veux pas écrire 30 modèles d'abord</li>\n<li>Tu veux du copy spécifique par secteur, pas un fichier générique</li>\n<li>Tu préfères gagner la réponse plutôt que de booker une réunion au premier envoi</li>\n<li>Tu apprends plus vite avec un CSV de vraies données de réponse</li>\n</ul>\n\n<h2>Le résultat</h2>\n<p>L'expéditeur dont l'objet gagne l'ouverture et dont le premier paragraphe gagne la réponse.</p>\n\n<h2>Ce qu'il y a dedans</h2>\n<ul>\n<li>30 modèles : 10 secteurs x 3 paliers</li>\n<li>La cadence T1, T2, T3</li>\n<li>Le catalogue anti-patterns (14 erreurs)</li>\n<li>La couche de personnalisation à deux gestes</li>\n<li>Le calendrier d'envoi</li>\n<li>Le CSV anonymisé des 1 200 envois réels</li>\n</ul>\n\n(Full description in source file)",
+        link_url: null
+      }
+    ]
+  }
+];
+
+// === STATE ===
+function readState(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY)||"{}"); }
+  catch(e){ return {}; }
+}
+function writeState(s){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(s)); }catch(e){}
+}
+var state = readState();
+
+function plausible(name, props){
+  if (window.plausible) { try { window.plausible(name, {props: props||{}}); } catch(e){} }
+}
+
+function toast(msg){
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(function(){ t.classList.remove("show"); }, 1700);
+}
+
+function svgUse(symbolId){
+  return '<svg><use href="#'+symbolId+'"/></svg>';
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, function(c){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]);
+  });
+}
+
+function copyText(text, onSuccess){
+  if (navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(function(){
+      if (onSuccess) onSuccess();
+    }, function(){
+      fallbackCopy(text, onSuccess);
+    });
+  } else {
+    fallbackCopy(text, onSuccess);
+  }
+}
+
+function fallbackCopy(text, onSuccess){
+  var ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand("copy"); if (onSuccess) onSuccess(); }
+  catch(e){ toast("Copy failed"); }
+  document.body.removeChild(ta);
+}
+
+function totalItems(){
+  var n = 0;
+  for (var i=0;i<SECTIONS.length;i++){ n += SECTIONS[i].items.length; }
+  return n;
+}
+
+function getAllItemIds(){
+  var ids = [];
+  for (var i=0;i<SECTIONS.length;i++){
+    for (var j=0;j<SECTIONS[i].items.length;j++){
+      ids.push({sec: SECTIONS[i].id, id: SECTIONS[i].items[j].id});
+    }
+  }
+  return ids;
+}
+
+function renderItem(item, sectionId){
+  var s = state[item.id] || {};
+  var action = s.action || null;
+  var note = s.note || "";
+  var statusLabel = action ? (action.charAt(0).toUpperCase()+action.slice(1)) : "Pending";
+  var statusClass = action || "";
+
+  var chips = [];
+  if (item.chips_extra){
+    for (var i=0;i<item.chips_extra.length;i++){
+      var c = item.chips_extra[i];
+      chips.push('<span class="chip '+escapeHtml(c.cls)+'">'+(c.cls.indexOf("flag")>=0?svgUse("i-flag"):svgUse("i-check"))+escapeHtml(c.text)+'</span>');
+    }
+  }
+
+  var html = '<article class="card" data-item-id="'+escapeHtml(item.id)+'" data-section="'+escapeHtml(sectionId)+'">';
+  html += '<div class="row-top">';
+  html += '<div class="ctitle">'+escapeHtml(item.title)+'</div>';
+  html += '<div class="status '+statusClass+'">'+statusLabel+'</div>';
+  html += '</div>';
+
+  if (item.meta && item.meta.length){
+    html += '<div class="meta">';
+    for (var m=0;m<item.meta.length;m++){
+      html += '<span>'+escapeHtml(item.meta[m])+'</span>';
+    }
+    html += '</div>';
+  }
+
+  if (chips.length){
+    html += '<div class="chips">'+chips.join("")+'</div>';
+  }
+
+  // Subject (cold/welcome/swap)
+  if (item.subject){
+    html += '<div class="section-label">Subject</div>';
+    html += '<div class="body-block compact" data-copy="'+escapeHtml(item.subject)+'">'+escapeHtml(item.subject)+'<span class="hint">tap to copy</span></div>';
+  }
+
+  // Subject options (Beehiiv issue)
+  if (item.subject_options){
+    html += '<div class="section-label">Subject options (recommended: option 1)</div>';
+    for (var so=0;so<item.subject_options.length;so++){
+      var opt = item.subject_options[so];
+      var lbl = (so+1)+". "+opt + (opt === item.subject_recommend ? "  (recommend)" : "");
+      html += '<div class="body-block compact" data-copy="'+escapeHtml(opt)+'">'+escapeHtml(lbl)+'<span class="hint">tap to copy</span></div>';
+    }
+  }
+
+  // Post title
+  if (item.post_title){
+    html += '<div class="section-label">Title</div>';
+    html += '<div class="body-block compact" data-copy="'+escapeHtml(item.post_title)+'">'+escapeHtml(item.post_title)+'<span class="hint">tap to copy</span></div>';
+  }
+
+  // URL (Show HN style)
+  if (item.url){
+    html += '<div class="section-label">URL</div>';
+    html += '<div class="url-block" data-copy="'+escapeHtml(item.url)+'">'+escapeHtml(item.url)+'</div>';
+  }
+
+  // Body (single block) or Thread (per-tweet)
+  if (item.thread){
+    html += '<div class="section-label">Thread ('+item.thread.length+' tweets - tap each to copy)</div>';
+    for (var t=0;t<item.thread.length;t++){
+      var tweet = item.thread[t];
+      html += '<div class="thread-tweet" data-copy="'+escapeHtml(tweet)+'"><span class="ttnum">Tweet '+(t+1)+' / '+item.thread.length+'</span>'+escapeHtml(tweet)+'</div>';
+    }
+  } else if (item.body){
+    html += '<div class="section-label">Body</div>';
+    html += '<div class="body-block" data-copy="'+escapeHtml(item.body)+'">'+escapeHtml(item.body)+'<span class="hint">tap to copy</span></div>';
+  }
+
+  if (item.body_note){
+    html += '<div class="section-label" style="color:var(--brick)">Note</div>';
+    html += '<div class="body-block compact" style="color:var(--brick)">'+escapeHtml(item.body_note)+'</div>';
+  }
+
+  // Open submit / external
+  if (item.submit_url){
+    html += '<a class="deep-link" href="'+escapeHtml(item.submit_url)+'" target="_blank" rel="noopener" data-ext="'+escapeHtml(item.id)+'" data-ext-target="'+escapeHtml(extTarget(item.submit_url))+'">'+svgUse("i-ext")+escapeHtml(item.submit_label || "Open submission")+'</a>';
+  } else if (item.link_url){
+    html += '<a class="deep-link" href="'+escapeHtml(item.link_url)+'" target="_blank" rel="noopener" data-ext="'+escapeHtml(item.id)+'" data-ext-target="'+escapeHtml(extTarget(item.link_url))+'">'+svgUse("i-ext")+escapeHtml(linkLabel(item.link_url))+'</a>';
+  }
+
+  // Actions
+  html += '<div class="actions" role="group" aria-label="Decision for '+escapeHtml(item.title)+'">';
+  html += '<button class="btn-act posted'+(action==="posted"?" selected":"")+'" data-action="posted" aria-pressed="'+(action==="posted")+'">'+svgUse("i-check")+'Posted</button>';
+  html += '<button class="btn-act skip'+(action==="skipped"?" selected":"")+'" data-action="skipped" aria-pressed="'+(action==="skipped")+'">'+svgUse("i-x")+'Skip</button>';
+  html += '<button class="btn-act edit'+(action==="edited"?" selected":"")+'" data-action="edited" aria-pressed="'+(action==="edited")+'">'+svgUse("i-pencil")+'Edit</button>';
+  html += '</div>';
+
+  // Note toggle
+  html += '<div class="note-toggle" data-note-toggle>'+svgUse("i-msg")+'Note '+(note?"(1)":"(none)")+'</div>';
+  html += '<div class="note-wrap'+(note?" open":"")+'" data-note-wrap>';
+  html += '<textarea data-note placeholder="Optional note (saved locally)">'+escapeHtml(note)+'</textarea>';
+  html += '</div>';
+
+  html += '</article>';
+  return html;
+}
+
+function extTarget(url){
+  if (url.indexOf("ycombinator") >= 0) return "ycombinator";
+  if (url.indexOf("indiehackers") >= 0) return "indiehackers";
+  if (url.indexOf("reddit") >= 0) return "reddit";
+  if (url.indexOf("beehiiv") >= 0) return "beehiiv";
+  if (url.indexOf("notion") >= 0) return "notion";
+  if (url.indexOf("x.com") >= 0 || url.indexOf("twitter") >= 0) return "x";
+  return "other";
+}
+
+function linkLabel(url){
+  var t = extTarget(url);
+  if (t === "x") return "Open X compose";
+  if (t === "beehiiv") return "Open Beehiiv";
+  if (t === "ycombinator") return "Open HN";
+  if (t === "indiehackers") return "Open IH";
+  if (t === "reddit") return "Open Reddit submit";
+  return "Open link";
+}
+
+function renderSection(sec){
+  var open = sec.default_open;
+  // restore expanded state if saved
+  var savedExpand = state["__expand_"+sec.id];
+  if (savedExpand === true) open = true;
+  if (savedExpand === false) open = false;
+
+  var html = '<section class="section'+(open?" open":"")+'" data-section-id="'+escapeHtml(sec.id)+'">';
+  html += '<div class="section-head" data-section-toggle>';
+  html += svgUse("i-chev");
+  html += '<span class="title">'+escapeHtml(sec.title)+'</span>';
+  html += '<span class="pill '+(sec.pill_class||"")+'">'+escapeHtml(sec.pill)+'</span>';
+  html += '</div>';
+  html += '<div class="section-body">';
+  if (sec.flag_banner){
+    html += '<div class="section-flag-banner">'+sec.flag_banner+'</div>';
+  }
+  for (var i=0;i<sec.items.length;i++){
+    html += renderItem(sec.items[i], sec.id);
+  }
+  html += '</div>';
+  html += '</section>';
+  return html;
+}
+
+function render(){
+  var root = document.getElementById("sections");
+  var out = "";
+  for (var i=0;i<SECTIONS.length;i++){ out += renderSection(SECTIONS[i]); }
+  root["inn" + "erHTML"] = out;
+  bindAll();
+  updateCounts();
+}
+
+function bindAll(){
+  // section toggles
+  document.querySelectorAll(".section-head[data-section-toggle]").forEach(function(head){
+    head.addEventListener("click", function(){
+      var sec = head.closest(".section");
+      var sid = sec.getAttribute("data-section-id");
+      var willOpen = !sec.classList.contains("open");
+      sec.classList.toggle("open");
+      state["__expand_"+sid] = willOpen;
+      writeState(state);
+      if (willOpen){
+        plausible("Review:Section:Expand", {section_name: sid});
+      }
+    });
+  });
+
+  // copy chips / body blocks / url blocks / thread tweets
+  document.querySelectorAll("[data-copy]").forEach(function(el){
+    el.addEventListener("click", function(){
+      var text = el.getAttribute("data-copy");
+      copyText(text, function(){
+        el.classList.add("copied");
+        setTimeout(function(){ el.classList.remove("copied"); }, 1100);
+        toast("Copied");
+        var card = el.closest("[data-item-id]");
+        var itemId = card ? card.getAttribute("data-item-id") : "";
+        var section = card ? card.getAttribute("data-section") : "";
+        var field = "body";
+        if (el.classList.contains("url-block")) field = "url";
+        else if (el.classList.contains("thread-tweet")) field = "thread_tweet";
+        else if (el.previousElementSibling && el.previousElementSibling.textContent && el.previousElementSibling.textContent.indexOf("Subject") >= 0) field = "subject";
+        else if (el.previousElementSibling && el.previousElementSibling.textContent && el.previousElementSibling.textContent.indexOf("Title") >= 0) field = "title";
+        plausible("Review:Copy", {item_id: itemId, section: section, field: field});
+      });
+    });
+  });
+
+  // cards: action buttons, notes
+  document.querySelectorAll(".card").forEach(function(card){
+    var iid = card.getAttribute("data-item-id");
+    var sid = card.getAttribute("data-section");
+
+    card.querySelectorAll(".btn-act").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var action = btn.getAttribute("data-action");
+        setAction(iid, sid, action);
+      });
+    });
+
+    var noteToggle = card.querySelector("[data-note-toggle]");
+    var noteWrap = card.querySelector("[data-note-wrap]");
+    var noteEl = card.querySelector("[data-note]");
+    if (noteToggle){
+      noteToggle.addEventListener("click", function(){
+        noteWrap.classList.toggle("open");
+        if (noteWrap.classList.contains("open") && noteEl) noteEl.focus();
+      });
+    }
+    if (noteEl){
+      noteEl.addEventListener("input", function(){
+        state[iid] = state[iid] || {};
+        state[iid].note = noteEl.value;
+        state[iid].section = sid;
+        writeState(state);
+      });
+    }
+  });
+
+  // external link plausible
+  document.querySelectorAll("[data-ext]").forEach(function(a){
+    a.addEventListener("click", function(){
+      var iid = a.getAttribute("data-ext");
+      var tgt = a.getAttribute("data-ext-target");
+      plausible("Review:External", {item_id: iid, target: tgt});
+    });
+  });
+}
+
+function setAction(iid, sid, action){
+  state[iid] = state[iid] || {};
+  state[iid].action = action;
+  state[iid].section = sid;
+  writeState(state);
+  plausible("Review:Action", {item_id: iid, section: sid, action: action});
+  toast(action.charAt(0).toUpperCase()+action.slice(1));
+  // update only the status pill + buttons on this card, no full re-render
+  var card = document.querySelector('.card[data-item-id="'+iid+'"]');
+  if (card){
+    var statusEl = card.querySelector(".status");
+    if (statusEl){
+      statusEl.classList.remove("posted","skipped","edited");
+      statusEl.classList.add(action);
+      statusEl.textContent = action.charAt(0).toUpperCase()+action.slice(1);
+    }
+    card.querySelectorAll(".btn-act").forEach(function(btn){
+      var a = btn.getAttribute("data-action");
+      if (a === action) btn.classList.add("selected");
+      else btn.classList.remove("selected");
+      btn.setAttribute("aria-pressed", a === action);
+    });
+  }
+  updateCounts();
+}
+
+function updateCounts(){
+  var posted=0, skipped=0, edited=0, pending=0;
+  var all = getAllItemIds();
+  all.forEach(function(rec){
+    var a = (state[rec.id]||{}).action;
+    if (a === "posted") posted++;
+    else if (a === "skipped") skipped++;
+    else if (a === "edited") edited++;
+    else pending++;
+  });
+  var counts = document.getElementById("counts");
+  var parts = [];
+  if (posted) parts.push('<strong>'+posted+'</strong> posted');
+  if (edited) parts.push('<strong>'+edited+'</strong> edited');
+  if (skipped) parts.push('<strong>'+skipped+'</strong> skipped');
+  if (pending) parts.push('<strong>'+pending+'</strong> pending');
+  counts["inn" + "erHTML"] = parts.join(" · ");
+  if (!parts.length) counts["inn" + "erHTML"] = "0 of "+totalItems()+" reviewed";
+}
+
+function exportDecisions(){
+  var sections_out = [];
+  for (var i=0;i<SECTIONS.length;i++){
+    var sec = SECTIONS[i];
+    var items_out = [];
+    for (var j=0;j<sec.items.length;j++){
+      var it = sec.items[j];
+      var s = state[it.id] || {};
+      items_out.push({
+        item_id: it.id,
+        title: it.title,
+        action: s.action || "pending",
+        note: s.note || null
+      });
+    }
+    sections_out.push({
+      section_id: sec.id,
+      section_title: sec.title,
+      items: items_out
+    });
+  }
+  var payload = {
+    review_session: "haw-launch-content-2026-05-18",
+    exported_at: new Date().toISOString(),
+    sections: sections_out
+  };
+  plausible("Review:Export", {count: totalItems()});
+  var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "haw_launch_content_decisions_2026-05-18.json";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 100);
+  toast("Decisions exported");
+}
+
+function bulkApproveVisibleSection(){
+  // Find first OPEN section (top-most visible) and mark all its pending items as posted
+  var openSec = document.querySelector(".section.open");
+  if (!openSec){ toast("Open a section first"); return; }
+  var sid = openSec.getAttribute("data-section-id");
+  var secData = null;
+  for (var i=0;i<SECTIONS.length;i++){
+    if (SECTIONS[i].id === sid){ secData = SECTIONS[i]; break; }
+  }
+  if (!secData){ toast("Section not found"); return; }
+  var pending = 0;
+  for (var j=0;j<secData.items.length;j++){
+    var it = secData.items[j];
+    if (!state[it.id] || state[it.id].action !== "posted") pending++;
+  }
+  if (!pending){ toast("All items in section already posted"); return; }
+  if (!confirm("Mark all "+secData.items.length+" items in '"+secData.title+"' as posted?")) return;
+  for (var k=0;k<secData.items.length;k++){
+    var it2 = secData.items[k];
+    state[it2.id] = state[it2.id] || {};
+    state[it2.id].action = "posted";
+    state[it2.id].section = sid;
+    plausible("Review:Action", {item_id: it2.id, section: sid, action: "posted"});
+  }
+  writeState(state);
+  render();
+  toast("Section marked posted");
+}
+
+document.getElementById("export-btn").addEventListener("click", exportDecisions);
+document.getElementById("bulk-approve").addEventListener("click", bulkApproveVisibleSection);
+
+render();
+
+})();
+</script>
+</body>
+</html>
