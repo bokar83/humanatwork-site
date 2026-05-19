@@ -27,19 +27,46 @@
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --radius:14px;
   --safe-b:env(safe-area-inset-bottom,0px);
+  --font-size-base:16px;
+  --font-size-body:16px;
+  --font-size-meta:13px;
+  --font-size-h1:24px;
+  --font-size-h2:19px;
+  --font-size-h3:17px;
+  --line-height:1.55;
+}
+@media (min-width:768px){
+  :root{
+    --font-size-base:18px;
+    --font-size-body:18px;
+    --font-size-meta:14px;
+    --font-size-h1:30px;
+    --font-size-h2:22px;
+    --font-size-h3:19px;
+  }
+}
+@media (min-width:1200px){
+  :root{
+    --font-size-base:19px;
+    --font-size-body:19px;
+    --font-size-meta:15px;
+    --font-size-h1:34px;
+    --font-size-h2:24px;
+    --font-size-h3:20px;
+  }
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:var(--font-size-base);line-height:var(--line-height);-webkit-font-smoothing:antialiased}
 body{padding-bottom:calc(96px + var(--safe-b))}
 a{color:var(--brick);text-decoration:none}
 a:active{color:var(--brick-soft)}
-button{font-family:inherit;font-size:16px;background:none;border:0;padding:0;color:inherit;cursor:pointer}
-textarea{font-family:var(--body);font-size:15px}
+button{font-family:inherit;font-size:var(--font-size-base);background:none;border:0;padding:0;color:inherit;cursor:pointer}
+textarea{font-family:var(--body);font-size:var(--font-size-body)}
 
 header.hdr{padding:22px 18px 14px;}
-header.hdr h1{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.18;margin:0 0 6px;letter-spacing:-0.01em}
-header.hdr .sub{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.04em;text-transform:uppercase}
-header.hdr .note{margin-top:10px;font-size:14px;color:var(--ink-soft);line-height:1.5;max-width:34em}
+header.hdr h1{font-family:var(--serif);font-weight:600;font-size:var(--font-size-h1);line-height:1.18;margin:0 0 6px;letter-spacing:-0.01em}
+header.hdr .sub{font-family:var(--mono);font-size:var(--font-size-meta);color:var(--ink-faint);letter-spacing:0.04em;text-transform:uppercase}
+header.hdr .note{margin-top:10px;font-size:var(--font-size-body);color:var(--ink-soft);line-height:1.5;max-width:34em}
 
 main{padding:4px 14px 12px}
 
@@ -63,7 +90,7 @@ main{padding:4px 14px 12px}
 .section-head .title{
   flex:1;
   font-family:var(--mono);
-  font-size:11px;
+  font-size:var(--font-size-meta);
   letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--ink);
@@ -95,7 +122,7 @@ main{padding:4px 14px 12px}
   position:relative;
 }
 .card .row-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
-.card .ctitle{flex:1;font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.25;color:var(--ink)}
+.card .ctitle{flex:1;font-family:var(--serif);font-weight:600;font-size:var(--font-size-h3);line-height:1.25;color:var(--ink)}
 .card .status{
   font-family:var(--mono);
   font-size:9px;
@@ -136,14 +163,14 @@ main{padding:4px 14px 12px}
   color:var(--ink-faint);margin:10px 0 4px;
 }
 .body-block{
-  font-family:var(--body);font-size:14px;line-height:1.55;color:var(--ink);
+  font-family:var(--body);font-size:var(--font-size-body);line-height:1.55;color:var(--ink);
   white-space:pre-wrap;word-break:break-word;
   padding:10px 12px;background:#FBF8F1;border-radius:9px;
   cursor:pointer;
   position:relative;
   transition:background 0.1s;
 }
-.body-block.compact{font-size:13px;line-height:1.5}
+.body-block.compact{font-size:calc(var(--font-size-body) - 1px);line-height:1.5}
 .body-block:active{background:var(--stone-2)}
 .body-block.copied{background:#DCE9DA}
 .body-block .hint{
@@ -270,6 +297,16 @@ footer.ft{padding:18px 18px 8px;font-family:var(--mono);font-size:10px;color:var
   main{padding:4px 28px 12px;max-width:680px;margin:0 auto}
   header.hdr{padding:28px 28px 16px;max-width:680px;margin:0 auto}
   footer.ft{max-width:680px;margin:0 auto}
+}
+@media (min-width:768px){
+  main{max-width:720px}
+  header.hdr{max-width:720px}
+  footer.ft{max-width:720px}
+}
+@media (min-width:1200px){
+  main{max-width:880px}
+  header.hdr{max-width:880px}
+  footer.ft{max-width:880px}
 }
 </style>
 </head>
