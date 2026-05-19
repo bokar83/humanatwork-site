@@ -362,9 +362,12 @@ footer.ft{padding:18px 18px 8px;font-family:var(--mono);font-size:10px;color:var
 <body>
 
 <header class="hdr">
-  <h1>HAW Launch Content Review &middot; 2026-05-18</h1>
+  <h1>HAW Launch Content Review &middot; 2026-05-18 &middot; v3</h1>
   <div class="sub">7 sections &middot; ME (manual) vs YOU (auto) at a glance &middot; tap badge to filter</div>
   <div class="note">Every item carries one of 4 badges. AUTO fires on its own. MANUAL is your tap. HYBRID needs your green light. BLOCKED needs the gate cleared. MANUAL items get a tap-to-open submit link.</div>
+  <div class="note" style="margin-top:8px;padding:10px 12px;background:rgba(168,52,31,0.08);border-left:3px solid var(--brick);border-radius:6px;font-size:var(--font-size-meta)">
+    <strong>v3 fixes (2026-05-18 PM):</strong> 3rd-person Boubacar references in Beehiiv issue + homepage FAQ rewritten to first-person &middot; Karpathy 4-principles credit added inline to X Post 5 &middot; long URLs shortened to /k/ /x/ /r/ slugs across all drafts with UTM preserved server-side via .htaccess
+  </div>
 </header>
 
 <main id="sections"></main>
@@ -495,6 +498,7 @@ var SECTIONS = [
         title: "r/EntrepreneurRideAlong",
         badge: "manual",
         submit_link_override: "https://old.reddit.com/r/EntrepreneurRideAlong/submit?type=TEXT",
+        body_fix_note: "v3: long reddit UTM URL shortened to humanatwork.ai/r/rida-day2 (UTM preserved server-side)",
         meta: ["Tue 2026-05-19 AM ET", "Day 2 build-in-public peer post", "NOT a crosspost from r/sideproject"],
         chips_extra: [{cls:"ok", text:"Voice 9/10"}, {cls:"ok", text:"CTQ 9/10"}, {cls:"ok", text:"Council PASS"}, {cls:"ok", text:"UTM tagged"}],
         post_title: "Day 2 of launching humanatwork.ai. Asking for honest feedback on the catalog.",
@@ -503,21 +507,21 @@ var SECTIONS = [
           "Solo consultant, 90 day sprint, shipped to a catalog. Looking for sharp takes."
         ],
         url: null,
-        body: "Solo consultant. Spent the last 90 days turning prompts and workflows I run in my own operator stack into kits other people can buy. Catalog went live this week at humanatwork.ai/store?utm_source=reddit&utm_campaign=reddit_entrepreneurridealong&utm_content=day2_launch.\n\nState of things, honestly:\n\n- Catalog is live and dropping kits daily. The store auto-syncs from Gumroad each night, so what you see is what is actually purchasable right now.\n- Pricing is 3 tiers: $27 single workflow, $79 system bundle, $297 full operator kit with assets.\n- Sales so far: not many. I will not pretend otherwise. The listings say so too. No fake counters.\n- No buyer testimonials yet. Listings say that out loud. I would rather show the work than borrow trust.\n\nThe decisions I made that I want sharp takes on:\n\n1. Truth-only listings. No fabricated testimonials. No invented metrics. Where I do not have a number, I say what I have instead. Cost: I lose the buyer who needs social proof before they read. Bet: I keep the buyer who reads carefully and decides whether the seller is real.\n\n2. Sale-is-final, no returns on digital products. Standard operator stance, but it spooks people who are used to platform-style return windows. I am sticking to it. Curious if anyone here has tested both and seen a real conversion swing.\n\n3. Catalog dropping daily, not all-at-once. The 'launch day' mental model says blast everything Monday. I am running a cron that drains a manifest nightly instead, so the storefront keeps changing through the week. Building in public + giving each kit one moment of attention. Bet: compounding beats one big day.\n\n4. 3 tier price ladder $27 / $79 / $297. I picked tiers based on what each kit actually replaces in a buyer's week. Not what I wished I could charge. Worried the gap from $79 to $297 is too wide and the middle tier eats the top.\n\nWhat I am most worried about:\n\n- Pacing. Am I dropping too slow and losing momentum, or too fast and burying earlier kits?\n- ICP fit. Solo operators and small team founders are who I built for. Am I describing them clearly enough on the storefront?\n- The $297 tier. Is the value gap legible without buyer testimonials carrying the explanation?\n\nAsk: if you have launched a catalog or a product line, what is the one thing you wish you had done differently in week one? Not week 12, week one. Trying to make the cheap mistakes early.\n\nCatalog if anyone wants to look: humanatwork.ai/store\n\nWill be in the thread for the next few hours.",
+        body: "Solo consultant. Spent the last 90 days turning prompts and workflows I run in my own operator stack into kits other people can buy. Catalog went live this week at humanatwork.ai/r/rida-day2.\n\nState of things, honestly:\n\n- Catalog is live and dropping kits daily. The store auto-syncs from Gumroad each night, so what you see is what is actually purchasable right now.\n- Pricing is 3 tiers: $27 single workflow, $79 system bundle, $297 full operator kit with assets.\n- Sales so far: not many. I will not pretend otherwise. The listings say so too. No fake counters.\n- No buyer testimonials yet. Listings say that out loud. I would rather show the work than borrow trust.\n\nThe decisions I made that I want sharp takes on:\n\n1. Truth-only listings. No fabricated testimonials. No invented metrics. Where I do not have a number, I say what I have instead. Cost: I lose the buyer who needs social proof before they read. Bet: I keep the buyer who reads carefully and decides whether the seller is real.\n\n2. Sale-is-final, no returns on digital products. Standard operator stance, but it spooks people who are used to platform-style return windows. I am sticking to it. Curious if anyone here has tested both and seen a real conversion swing.\n\n3. Catalog dropping daily, not all-at-once. The 'launch day' mental model says blast everything Monday. I am running a cron that drains a manifest nightly instead, so the storefront keeps changing through the week. Building in public + giving each kit one moment of attention. Bet: compounding beats one big day.\n\n4. 3 tier price ladder $27 / $79 / $297. I picked tiers based on what each kit actually replaces in a buyer's week. Not what I wished I could charge. Worried the gap from $79 to $297 is too wide and the middle tier eats the top.\n\nWhat I am most worried about:\n\n- Pacing. Am I dropping too slow and losing momentum, or too fast and burying earlier kits?\n- ICP fit. Solo operators and small team founders are who I built for. Am I describing them clearly enough on the storefront?\n- The $297 tier. Is the value gap legible without buyer testimonials carrying the explanation?\n\nAsk: if you have launched a catalog or a product line, what is the one thing you wish you had done differently in week one? Not week 12, week one. Trying to make the cheap mistakes early.\n\nCatalog if anyone wants to look: humanatwork.ai/store\n\nWill be in the thread for the next few hours.",
         body_note: "Council PASS unanimous after one iteration (added $79-$297 gap worry to decision 4 to convert it from settled retrospective to real ask). NOT a crosspost. Fully native to r/EntrepreneurRideAlong tone.",
         submit_url: "https://old.reddit.com/r/EntrepreneurRideAlong/submit",
         submit_label: "Open r/EntrepreneurRideAlong submit",
-        link_url: "https://humanatwork.ai/store?utm_source=reddit&utm_campaign=reddit_entrepreneurridealong&utm_content=day2_launch"
+        link_url: "https://humanatwork.ai/r/rida-day2"
       }
     ]
   },
   {
     id: "x_cadence",
     title: "X 12-post cadence (Tue-Fri 2026-05-19 to 2026-05-23)",
-    pill: "12 posts · 11 auto · 1 blocked",
+    pill: "12 posts · 11 auto · 1 blocked · URLs shortened",
     pill_class: "",
     default_open: false,
-    flag_banner: "<strong>Post 12 Sabbath conflict.</strong> Sunday 6PM MDT weekend reading drop line violates the no-bother-others-on-Sun rule. Recommend swap to Sat or Mon AM before scheduling.",
+    flag_banner: "<strong>Post 12 Sabbath conflict.</strong> Sunday 6PM MDT weekend reading drop line violates the no-bother-others-on-Sun rule. Recommend swap to Sat or Mon AM before scheduling.<br><br><strong>v3 fixes:</strong> all 10 long humanatwork.ai URLs with ?utm_ params shortened to humanatwork.ai/x/&lt;slug&gt; (UTM preserved in .htaccess 301). Post 5 Karpathy 4-principles framework now credited inline.",
     items: [
       {
         id: "x_1",
@@ -525,14 +529,14 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Tue 2026-05-19 7AM MDT via Blotato → X",
         meta: ["Tue 2026-05-19 7AM MDT", "Long thread (6 tweets)", "Magnet-link CTA"],
-        chips_extra: [{cls:"ok", text:"DM keyword: ATLAS (LIVE)"}, {cls:"flag", text:"Rotation locked: only ATLAS magnet built"}],
+        chips_extra: [],
         thread: [
           "I shipped 10 prompts. I had drafted 50.\n\nThe cut took longer than the writing.\n\nHere is what got cut and why, in case you are sitting on a 50-page document you keep meaning to ship.",
           "Cut #1: prompts that needed a paid LLM to work.\n\nIf a free Claude tier or free ChatGPT cannot run it, the prompt is not portable. Portable beats clever every time. 13 prompts went in the bin.",
           "Cut #2: prompts that demanded a 600-word system block before the actual ask.\n\nOperators do not have time to set up a frame. The prompt has to load fast or it does not get pasted. 9 went in the bin.",
           "Cut #3: prompts that worked beautifully on my domain and only my domain.\n\nIf it only fires for someone in my exact line of work, it is not a prompt, it is a journal entry. 8 more went in the bin.",
           "What survived: prompts that load in one paste, run on any LLM, and produce a usable artifact in under two minutes on someone else's work.\n\nThe 10 that survived are the operator stack. The 40 that did not survive taught me what the operator stack is not.",
-          "Free 3-prompt sample from the operator stack here: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_launch&utm_content=cut_discipline_thread"
+          "Free 3-prompt sample from the operator stack here: humanatwork.ai/x/cut"
         ],
         link_url: "https://x.com/compose/post"
       },
@@ -542,7 +546,7 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Tue 2026-05-19 12PM MDT via Blotato → X",
         meta: ["Tue 2026-05-19 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
-        chips_extra: [{cls:"ok", text:"278 chars"}, {cls:"ok", text:"DM keyword: ATLAS (LIVE)"}],
+        chips_extra: [{cls:"ok", text:"278 chars"}],
         body: "The prompt that broke my AI tells.\n\nPaste this into your saved-context, Claude Projects or Custom GPT:\n\n\"When you write any draft for me:\n1. First name only\n2. No em-dashes\n3. No credential reciting\n4. Verified stats only with source URL\n5. Single CTA per page\"\n\nComment ATLAS, I will DM you the free 3-prompt sample.",
         link_url: "https://x.com/compose/post"
       },
@@ -552,8 +556,8 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Tue 2026-05-19 5PM MDT via Blotato → X",
         meta: ["Tue 2026-05-19 5PM MDT", "Single tweet", "Catalog-browse CTA"],
-        chips_extra: [{cls:"ok", text:"274 chars"}, {cls:"ok", text:"DM keyword: ATLAS (LIVE, fallback)"}, {cls:"flag", text:"Target keyword: STACK (NOT BUILT)"}],
-        body: "Day 1 of shipping a digital catalog in public.\n\nPlausible says: a handful of visits, mostly from this post and a few referrals.\n\nHonest read: launch day traffic is the floor, not the ceiling. The work is making the floor rise every Tuesday for the next 12 weeks.\n\nFull catalog at humanatwork.ai/store?utm_source=x&utm_campaign=haw_d1_build",
+        chips_extra: [{cls:"ok", text:"274 chars"}],
+        body: "Day 1 of shipping a digital catalog in public.\n\nPlausible says: a handful of visits, mostly from this post and a few referrals.\n\nHonest read: launch day traffic is the floor, not the ceiling. The work is making the floor rise every Tuesday for the next 12 weeks.\n\nFull catalog at humanatwork.ai/x/d1",
         link_url: "https://x.com/compose/post"
       },
       {
@@ -562,14 +566,14 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Wed 2026-05-20 7AM MDT via Blotato → X",
         meta: ["Wed 2026-05-20 7AM MDT", "Long thread (6 tweets)", "Catalog-browse CTA"],
-        chips_extra: [{cls:"ok", text:"DM keyword: ATLAS (LIVE)"}, {cls:"flag", text:"Rotation locked: only ATLAS magnet built"}],
+        chips_extra: [],
         thread: [
           "Most AI tutorials end at \"here is the prompt.\"\n\nThe operator question is the one after: did the author actually use this prompt on their own work, this week, before publishing?\n\nHere is how to tell the difference.",
           "Tell #1: the example output is generic.\n\nIf the demo shows the prompt rewriting \"a sample email\" or \"a fake project plan,\" the author tested it on a vacuum. Real operators test on their actual Tuesday-afternoon stuck-on email.",
           "Tell #2: the prompt is over-engineered.\n\nReal operators want one paste, one output, one decision. A prompt with 12 nested instructions and 3 conditionals is a demo for a workshop, not a tool for a workday.",
           "Tell #3: no failure mode is named.\n\nAnyone who ran a prompt on real work knows where it breaks. If the author cannot tell you the failure mode, they have not used it enough to find one.",
           "The fix when you are evaluating a prompt: ask the author to paste a real output from their week. Not a curated one. The one from Tuesday afternoon when the deadline was tomorrow.\n\nIf they pivot, the prompt was for selling, not for shipping.",
-          "Catalog of operator-tested-by-author prompts, dropping daily this week:\n\nhumanatwork.ai/store?utm_source=x&utm_campaign=haw_operator_tested"
+          "Catalog of operator-tested-by-author prompts, dropping daily this week:\n\nhumanatwork.ai/x/tested"
         ],
         link_url: "https://x.com/compose/post"
       },
@@ -579,8 +583,8 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Wed 2026-05-20 12PM MDT via Blotato → X",
         meta: ["Wed 2026-05-20 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
-        chips_extra: [{cls:"ok", text:"279 chars"}, {cls:"ok", text:"DM keyword: ATLAS (LIVE)"}],
-        body: "Prompt that saves 4 commits per week for me.\n\nPaste before pushing:\n\n\"Audit this diff on 4 principles. Score 1-10 each:\nClarity (reads like prose)\nCorrectness (edge cases)\nConcision (no incidental complexity)\nComposability (re-usable contracts)\n\nUnder 7 on any = refuse the commit.\n\nDiff: [paste]\"\n\nComment ATLAS, I will DM the full operator pack sample.",
+        chips_extra: [{cls:"ok", text:"274 chars"}, {cls:"ok", text:"Fixed: Karpathy credit inline"}],
+        body: "Prompt that saves 4 commits per week for me.\n\nPaste before pushing (Karpathy 4 principles):\n\n\"Audit this diff. Score 1-10 each:\nClarity (reads like prose)\nCorrectness (edge cases)\nConcision (no incidental complexity)\nComposability (re-usable contracts)\n\nUnder 7 on any = refuse the commit.\n\nDiff: [paste]\"\n\nComment ATLAS, I will DM the full pack sample.",
         link_url: "https://x.com/compose/post"
       },
       {
@@ -589,8 +593,8 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Wed 2026-05-20 5PM MDT via Blotato → X",
         meta: ["Wed 2026-05-20 5PM MDT", "Single tweet", "Magnet-link CTA"],
-        chips_extra: [{cls:"ok", text:"278 chars"}, {cls:"ok", text:"DM keyword: ATLAS (LIVE, fallback)"}, {cls:"flag", text:"Target keyword: STACK (NOT BUILT)"}],
-        body: "Wednesday build-in-public.\n\nShipped: catalog page live, 2 prompts published, 1 cold-pilot batch drafted.\n\nCut today: a long lead magnet that would take 6 hours to make and 30 seconds to consume. Wrong ratio. Killed it.\n\n3-prompt sample free: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_wed_cut",
+        chips_extra: [{cls:"ok", text:"278 chars"}],
+        body: "Wednesday build-in-public.\n\nShipped: catalog page live, 2 prompts published, 1 cold-pilot batch drafted.\n\nCut today: a long lead magnet that would take 6 hours to make and 30 seconds to consume. Wrong ratio. Killed it.\n\n3-prompt sample free: humanatwork.ai/x/wed-cut",
         link_url: "https://x.com/compose/post"
       },
       {
@@ -599,7 +603,7 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Thu 2026-05-21 7AM MDT via Blotato → X",
         meta: ["Thu 2026-05-21 7AM MDT", "Long thread (6 tweets)", "DM-keyword ATLAS"],
-        chips_extra: [{cls:"ok", text:"DM keyword: ATLAS (LIVE)"}, {cls:"flag", text:"Rotation locked: only ATLAS magnet built"}],
+        chips_extra: [],
         thread: [
           "Most operators do not have a focus problem.\n\nThey have a cut problem.\n\nHere is the 4-question cut framework I run on every draft, every plan, every Tuesday standup.",
           "Cut Q1: does this serve the person paying me, or does it serve my professional self-image?\n\nThe first one ships. The second one fills a portfolio. Both feel productive. Only one moves revenue.",
@@ -616,8 +620,8 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Thu 2026-05-21 12PM MDT via Blotato → X",
         meta: ["Thu 2026-05-21 12PM MDT", "Single tweet", "Magnet-link CTA"],
-        chips_extra: [{cls:"ok", text:"277 chars"}, {cls:"ok", text:"DM keyword: ATLAS (LIVE)"}],
-        body: "Saved-context prompt I paste once into every Claude Project, Custom GPT, Gem, or Grok:\n\n\"Before answering:\n1. Check project knowledge\n2. Identify audience\n3. Match voice register\n4. Output in format asked, not a default\"\n\nFree sample: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_saved_ctx",
+        chips_extra: [{cls:"ok", text:"277 chars"}],
+        body: "Saved-context prompt I paste once into every Claude Project, Custom GPT, Gem, or Grok:\n\n\"Before answering:\n1. Check project knowledge\n2. Identify audience\n3. Match voice register\n4. Output in format asked, not a default\"\n\nFree sample: humanatwork.ai/x/saved-ctx",
         link_url: "https://x.com/compose/post"
       },
       {
@@ -626,8 +630,8 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Thu 2026-05-21 5PM MDT via Blotato → X",
         meta: ["Thu 2026-05-21 5PM MDT", "Single tweet", "Catalog-browse CTA"],
-        chips_extra: [{cls:"ok", text:"280 chars"}, {cls:"ok", text:"DM keyword: ATLAS (LIVE, fallback)"}, {cls:"flag", text:"Target keyword: STACK (NOT BUILT)"}],
-        body: "Thursday update.\n\nSurprise of the day: the DM keyword posts pull more conversation than the long threads.\n\nThreads get likes. DMs get pipeline. Adjusting cadence for the back half of the week toward more keyword drops.\n\nCatalog: humanatwork.ai/store?utm_source=x&utm_campaign=haw_thu_surprise",
+        chips_extra: [{cls:"ok", text:"280 chars"}],
+        body: "Thursday update.\n\nSurprise of the day: the DM keyword posts pull more conversation than the long threads.\n\nThreads get likes. DMs get pipeline. Adjusting cadence for the back half of the week toward more keyword drops.\n\nCatalog: humanatwork.ai/x/thu",
         link_url: "https://x.com/compose/post"
       },
       {
@@ -636,7 +640,7 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Fri 2026-05-22 7AM MDT via Blotato → X",
         meta: ["Fri 2026-05-22 7AM MDT", "Long thread (7 tweets)", "Magnet-link CTA"],
-        chips_extra: [{cls:"ok", text:"DM keyword: ATLAS (LIVE)"}, {cls:"flag", text:"Rotation locked: only ATLAS magnet built"}],
+        chips_extra: [],
         thread: [
           "What I learned shipping a digital catalog in public for one week.\n\nNo promises. No metric flexes. Five observations a first-week operator can use Tuesday morning.",
           "Lesson 1: the first week is not about sales.\n\nIt is about whether the rails work. Plausible firing. Beehiiv lead capture clean. UTM tags matching campaigns. Build the measurement before you scale the message.",
@@ -644,7 +648,7 @@ var SECTIONS = [
           "Lesson 3: the magnet matters more than the catalog.\n\nA free 3-prompt sample beats a catalog tour every time. Buyers want to try, not browse. Lead with the artifact.",
           "Lesson 4: cold outreach pulls harder than social.\n\nEvery operator I know who built a real business in year one paired build-in-public with one-to-one outreach. Social is the compound. Calls are the cash flow.",
           "Lesson 5: cut faster than you ship.\n\nThe cuts I made this week saved more time than the builds. If a draft sat for 24 hours and I did not want to publish it, I deleted it. Calendar got clearer. Week 2 starts lighter.",
-          "Free 3-prompt sample, no signup other than email: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_wk1_lessons"
+          "Free 3-prompt sample, no signup other than email: humanatwork.ai/x/wk1"
         ],
         link_url: "https://x.com/compose/post"
       },
@@ -654,7 +658,7 @@ var SECTIONS = [
         badge: "auto",
         auto_fires: "Fires Fri 2026-05-22 12PM MDT via Blotato → X",
         meta: ["Fri 2026-05-22 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
-        chips_extra: [{cls:"ok", text:"279 chars"}, {cls:"ok", text:"DM keyword: ATLAS (LIVE)"}],
+        chips_extra: [{cls:"ok", text:"279 chars"}],
         body: "ATS rewrite prompt for weekend job-hunters.\n\nPaste resume + JD into Claude:\n\n\"Rewrite so:\n1. Top third = role title + 3 keywords\n2. Each bullet starts with verb + output + result\n3. No tables, no columns\n4. Under 700 words\"\n\nComment ATLAS for the free 3-prompt sample.",
         link_url: "https://x.com/compose/post"
       },
@@ -665,8 +669,8 @@ var SECTIONS = [
         blocked_reason: "Sabbath rule: Sunday 6PM MDT weekend reading drop mention violates the no-bother-others-on-Sun rule. Reschedule to Sat or Mon AM before unblock.",
         auto_fires: "WOULD fire Fri 2026-05-22 5PM MDT via Blotato → X (blocked pending Sabbath swap)",
         meta: ["Fri 2026-05-22 5PM MDT", "Single tweet", "Catalog-browse CTA"],
-        chips_extra: [{cls:"flag", text:"Sabbath conflict: Sunday drop mention"}, {cls:"ok", text:"280 chars"}, {cls:"ok", text:"DM keyword: ATLAS (LIVE, fallback)"}, {cls:"flag", text:"Target keyword: STACK (NOT BUILT)"}],
-        body: "Friday wrap, week 1.\n\nShipped: catalog live, lots of prompts published, daily build-in-public.\n\nDid not ship: production sales targets. Floor for week 1, not a ceiling. Compound, not capture.\n\nWeekend reading drop hitting Sunday at 6PM MDT.\n\nBrowse: humanatwork.ai/store?utm_source=x&utm_campaign=haw_wk1_wrap",
+        chips_extra: [{cls:"flag", text:"Sabbath conflict: Sunday drop mention"}, {cls:"ok", text:"280 chars"}],
+        body: "Friday wrap, week 1.\n\nShipped: catalog live, lots of prompts published, daily build-in-public.\n\nDid not ship: production sales targets. Floor for week 1, not a ceiling. Compound, not capture.\n\nWeekend reading drop hitting Sunday at 6PM MDT.\n\nBrowse: humanatwork.ai/x/wrap",
         body_note: "Sabbath rule: Sunday 6PM MDT drop line conflicts with no-bother-others-on-Sun rule. Recommend swap to 'Saturday 6PM MDT' or 'Monday 7AM MDT' before scheduling.",
         link_url: "https://x.com/compose/post"
       }
@@ -687,14 +691,14 @@ var SECTIONS = [
         submit_link_override: "https://app.beehiiv.com/",
         submit_label_override: "Open Beehiiv publication dashboard",
         meta: ["Wed AM B2B send window", "Voice 9/10", "CTQ 9/10"],
-        chips_extra: [],
+        chips_extra: [{cls:"ok", text:"Fixed: 3rd-person -> I + gumroad -> /k/ short links"}],
         subject_options: [
           "humanatwork.ai is live",
           "The operator stack, not another course",
           "11 SKUs, three reader profiles, one shelf"
         ],
         subject_recommend: "humanatwork.ai is live",
-        body: "humanatwork.ai is live, 11 SKUs on the shelf, built from work that already shipped.\n\n---\n\n**What is humanatwork.ai**\n\nhumanatwork.ai is the shelf for the operator stack Boubacar has been building in public. Three reader profiles, one consistent shape.\n\n- **$27 to test the workflow.** You want to see if AI fits how you actually work before you commit to a system.\n- **$79 to run it daily.** You already use AI, you keep rewriting the same prompt, you need a tested set.\n- **$297 to build the system.** You are running ops, content, and sales by yourself and the bottleneck is decisions, not effort.\n\nEvery SKU on the shelf comes from work that earned money or earned a result first. Nothing on humanatwork.ai is theory.\n\n---\n\n**Four picks to start with**\n\nThe shelf has 11 live products. If you only look at four, look at these.\n\n- **Start AI: 5 Workflows in 24 Hours ($27).** Five named workflows you install today. For people who keep opening ChatGPT and closing it without finishing. [Buy](https://bokar83.gumroad.com/l/start-ai-24h)\n\n- **The Prompt Atlas ($79).** 25 prompts Boubacar pasted more than twice. Not a free list of 500, a survivor list of 25. [Buy](https://bokar83.gumroad.com/l/paste-pack)\n\n- **Career OS Notion Template ($79).** 40 tabs, 12 Google Docs, 3 spreadsheets, one notebook, all collapsed into a single Notion workspace. For mid-career operators running a job hunt as a project. [Buy](https://bokar83.gumroad.com/l/career-os-notion)\n\n- **Catalyst AI Operator Bundle ($297).** Four assets in the sequence that earns the first paid audit. For solo consultants billing $150 to $400 an hour who hit the time cap. [Buy](https://bokar83.gumroad.com/l/catalyst-operator-bundle)\n\nThe full 11 are on [humanatwork.ai](https://humanatwork.ai). The two cold-outreach picks (Reply-First Cold Email Pack, Audit Pattern Catalog) and the multi-agent ops manual (How We Built the operator stack) are linked there too.\n\n---\n\n**Why this shelf exists**\n\nBoubacar sent 1,200 cold emails this year. 47 replied. 11 of those became calls. Four of those became paid clients. That CSV is the source material for the Reply-First Cold Email Pack. It is also the reason humanatwork.ai exists.\n\nMost AI content right now is theory. People who can ship the workflow do not write it up, and people who write it up have not shipped the workflow. The shelf is what happens when the operator and the writer are the same person.\n\nIf you have been following the build in public and waiting for the moment to grab one thing, this is the moment. Pick the tier that matches how you work, click through, read the landing page, decide.\n\nThe shelf will grow. Twenty more products land over the next two weeks as the nightly publish cron drains the backlog. New Beehiiv issues every Wednesday cover what shipped, what sold, and what got cut.\n\n[See the full shelf](https://humanatwork.ai)",
+        body: "humanatwork.ai is live, 11 SKUs on the shelf, built from work that already shipped.\n\n---\n\n**What is humanatwork.ai**\n\nhumanatwork.ai is the shelf for the operator stack I have been building in public. Three reader profiles, one consistent shape.\n\n- **$27 to test the workflow.** You want to see if AI fits how you actually work before you commit to a system.\n- **$79 to run it daily.** You already use AI, you keep rewriting the same prompt, you need a tested set.\n- **$297 to build the system.** You are running ops, content, and sales by yourself and the bottleneck is decisions, not effort.\n\nEvery SKU on the shelf comes from work that earned money or earned a result first. Nothing on humanatwork.ai is theory.\n\n---\n\n**Four picks to start with**\n\nThe shelf has 11 live products. If you only look at four, look at these.\n\n- **Start AI: 5 Workflows in 24 Hours ($27).** Five named workflows you install today. For people who keep opening ChatGPT and closing it without finishing. [Buy](https://humanatwork.ai/k/start-ai-24h)\n\n- **The Prompt Atlas ($79).** 25 prompts I pasted more than twice. Not a free list of 500, a survivor list of 25. [Buy](https://humanatwork.ai/k/paste-pack)\n\n- **Career OS Notion Template ($79).** 40 tabs, 12 Google Docs, 3 spreadsheets, one notebook, all collapsed into a single Notion workspace. For mid-career operators running a job hunt as a project. [Buy](https://humanatwork.ai/k/career-os-notion)\n\n- **Catalyst AI Operator Bundle ($297).** Four assets in the sequence that earns the first paid audit. For solo consultants billing $150 to $400 an hour who hit the time cap. [Buy](https://humanatwork.ai/k/catalyst-operator-bundle)\n\nThe full 11 are on [humanatwork.ai](https://humanatwork.ai). The two cold-outreach picks (Reply-First Cold Email Pack, Audit Pattern Catalog) and the multi-agent ops manual (How We Built the operator stack) are linked there too.\n\n---\n\n**Why this shelf exists**\n\nI sent 1,200 cold emails this year. 47 replied. 11 of those became calls. Four of those became paid clients. That CSV is the source material for the Reply-First Cold Email Pack. It is also the reason humanatwork.ai exists.\n\nMost AI content right now is theory. People who can ship the workflow do not write it up, and people who write it up have not shipped the workflow. The shelf is what happens when the operator and the writer are the same person.\n\nIf you have been following the build in public and waiting for the moment to grab one thing, this is the moment. Pick the tier that matches how you work, click through, read the landing page, decide.\n\nThe shelf will grow. Twenty more products land over the next two weeks as the nightly publish cron drains the backlog. New Beehiiv issues every Wednesday cover what shipped, what sold, and what got cut.\n\n[See the full shelf](https://humanatwork.ai)",
         link_url: "https://app.beehiiv.com/"
       }
     ]
@@ -702,7 +706,7 @@ var SECTIONS = [
   {
     id: "welcome_seq",
     title: "Beehiiv welcome 5-email sequence",
-    pill: "5 emails · 5 auto",
+    pill: "5 emails · 5 auto · URLs shortened",
     pill_class: "",
     default_open: false,
     flag_banner: null,
@@ -737,7 +741,7 @@ var SECTIONS = [
         meta: ["CTA: /start-ai-24h", "Soft pitch"],
         chips_extra: [{cls:"ok", text:"Subject 19ch"}],
         subject: "The 24-hour version",
-        body: "Day 3 check-in.\n\nIf the mini-atlas felt useful, here is the next step that costs less than dinner.\n\nThe 24-Hour Starter is one named constraint, one written diagnosis, one shipped move, inside 24 hours.\n\nYou send a short note describing what is stuck. I send back a structured read on the constraint plus the smallest move that breaks it. You ship the move that day or the next. No call, no scheduling friction.\n\nPrice: $27.\n\nIf now is not the moment, keep reading the next emails. Day 7 covers the deeper tier. Day 14 covers the premium one.\n\nIf now is the moment:\n\nhttps://humanatwork.ai/start-ai-24h?utm_source=beehiiv&utm_medium=welcome&utm_campaign=welcome_d3\n\nBoubacar\nhumanatwork.ai",
+        body: "Day 3 check-in.\n\nIf the mini-atlas felt useful, here is the next step that costs less than dinner.\n\nThe 24-Hour Starter is one named constraint, one written diagnosis, one shipped move, inside 24 hours.\n\nYou send a short note describing what is stuck. I send back a structured read on the constraint plus the smallest move that breaks it. You ship the move that day or the next. No call, no scheduling friction.\n\nPrice: $27.\n\nIf now is not the moment, keep reading the next emails. Day 7 covers the deeper tier. Day 14 covers the premium one.\n\nIf now is the moment:\n\nhttps://humanatwork.ai/k/start-ai-d3\n\nBoubacar\nhumanatwork.ai",
         link_url: "https://app.beehiiv.com/"
       },
       {
@@ -748,7 +752,7 @@ var SECTIONS = [
         meta: ["CTA: /store", "Laddered pricing"],
         chips_extra: [{cls:"ok", text:"Subject 17ch"}],
         subject: "Two heavier moves",
-        body: "A week in. Two heavier tools if 24 hours felt too tight.\n\nAtlas Pack ($79). The full atlas, not the mini. Five lenses across the constraint, three patterns under each lens, a printable worksheet you run weekly. Built for the operator who already knows the right question is hard to find.\n\nSignal Memo ($147). One written diagnosis on your stuck thing. Not a call, not a deck. A one-page memo: what the constraint actually is, where it shows up, the smallest move that breaks it. Delivered inside three days.\n\nBoth live here:\n\nhttps://humanatwork.ai/store?utm_source=beehiiv&utm_medium=welcome&utm_campaign=welcome_d7\n\nPick the one that matches the size of what is stuck. If neither does, the next email covers the premium tier.\n\nBoubacar\nhumanatwork.ai",
+        body: "A week in. Two heavier tools if 24 hours felt too tight.\n\nAtlas Pack ($79). The full atlas, not the mini. Five lenses across the constraint, three patterns under each lens, a printable worksheet you run weekly. Built for the operator who already knows the right question is hard to find.\n\nSignal Memo ($147). One written diagnosis on your stuck thing. Not a call, not a deck. A one-page memo: what the constraint actually is, where it shows up, the smallest move that breaks it. Delivered inside three days.\n\nBoth live here:\n\nhttps://humanatwork.ai/k/store-d7\n\nPick the one that matches the size of what is stuck. If neither does, the next email covers the premium tier.\n\nBoubacar\nhumanatwork.ai",
         link_url: "https://app.beehiiv.com/"
       },
       {
@@ -759,7 +763,7 @@ var SECTIONS = [
         meta: ["CTA: /store", "Last in sequence"],
         chips_extra: [{cls:"ok", text:"Subject 18ch"}],
         subject: "Last welcome email",
-        body: "Two weeks in. Last email in this welcome run.\n\nThe Operator Audit ($297). The full thing. Three lenses, six interview prompts, a written one-page audit you keep. Built for the founder or operator who is ready to name the constraint out loud and act on it the same week.\n\nhttps://humanatwork.ai/store?utm_source=beehiiv&utm_medium=welcome&utm_campaign=welcome_d14\n\nIf none of the tiers fit, save the link. The mini-atlas, the worksheet, the diagnosis prompts are still yours to use. The next email from me will land when there is something worth saying, not on a schedule.\n\nIf you want this welcome run to stop now, reply STOP and you are out.\n\nIf you have a stuck thing on your mind, hit reply with one sentence. No template, no scheduling, just one sentence. I read every one.\n\nBoubacar\nhumanatwork.ai",
+        body: "Two weeks in. Last email in this welcome run.\n\nThe Operator Audit ($297). The full thing. Three lenses, six interview prompts, a written one-page audit you keep. Built for the founder or operator who is ready to name the constraint out loud and act on it the same week.\n\nhttps://humanatwork.ai/k/store-d14\n\nIf none of the tiers fit, save the link. The mini-atlas, the worksheet, the diagnosis prompts are still yours to use. The next email from me will land when there is something worth saying, not on a schedule.\n\nIf you want this welcome run to stop now, reply STOP and you are out.\n\nIf you have a stuck thing on your mind, hit reply with one sentence. No template, no scheduling, just one sentence. I read every one.\n\nBoubacar\nhumanatwork.ai",
         link_url: "https://app.beehiiv.com/"
       }
     ]
