@@ -24,7 +24,7 @@
 # Basic auth gate. Update AuthUserFile to the absolute server path.
 AuthType Basic
 AuthName "humanatwork internal"
-AuthUserFile "/home/u_REPLACE_ME_/htpasswd-funnels"
+AuthUserFile "/home/u507946419/htpasswd-funnels"
 Require valid-user
 
 # Proxy /internal/funnels/* to the orchestrator route. The orchestrator
