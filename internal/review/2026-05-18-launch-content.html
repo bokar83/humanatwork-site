@@ -244,6 +244,53 @@ main{padding:4px 14px 12px}
 .deep-link svg{width:11px;height:11px}
 .deep-link:active{color:var(--brick);background:var(--stone-2)}
 
+/* 4-badge taxonomy: AUTO / MANUAL / HYBRID / BLOCKED */
+.badge{
+  padding:4px 9px;border-radius:4px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:5px;
+  white-space:nowrap;flex-shrink:0;
+  cursor:pointer;
+}
+.badge svg{width:11px;height:11px}
+.badge-auto{background:#3E4A2E33;color:#3E4A2E}
+.badge-manual{background:#A8341F22;color:#A8341F}
+.badge-hybrid{background:#B8862633;color:#8a6418}
+.badge-blocked{background:#6B655C22;color:#6B655C}
+.badge:active{transform:scale(0.97)}
+
+/* Tap-to-open primary button for MANUAL items */
+.btn-submit{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  margin-top:11px;padding:13px 16px;border-radius:10px;
+  background:var(--brick);color:#FBF8F1;
+  font-family:var(--serif);font-weight:600;font-size:14px;
+  letter-spacing:-0.005em;line-height:1.25;
+  text-align:center;
+  transition:transform 0.05s,background 0.1s;
+}
+.btn-submit svg{width:15px;height:15px;flex-shrink:0}
+.btn-submit:active{transform:scale(0.98);background:var(--brick-soft);color:#FBF8F1}
+.btn-submit.blocked{background:var(--ink-soft);color:#FBF8F1}
+.btn-submit.blocked:active{background:var(--ink-faint);color:#FBF8F1}
+
+.auto-fires{
+  font-family:var(--mono);font-size:11px;color:var(--moss);
+  letter-spacing:0.04em;
+  padding:8px 11px;border-radius:8px;background:#DCE9DA;
+  margin-top:11px;line-height:1.4;display:flex;align-items:center;gap:6px;
+}
+.auto-fires svg{width:12px;height:12px;flex-shrink:0}
+
+.blocked-note{
+  font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+  letter-spacing:0.04em;
+  padding:8px 11px;border-radius:8px;background:var(--stone);
+  margin-top:11px;line-height:1.4;display:flex;align-items:flex-start;gap:6px;
+}
+.blocked-note svg{width:12px;height:12px;flex-shrink:0;margin-top:1px}
+
 .section-flag-banner{
   background:#F1DDD6;color:var(--brick);
   font-family:var(--mono);font-size:11px;letter-spacing:0.02em;
@@ -316,8 +363,8 @@ footer.ft{padding:18px 18px 8px;font-family:var(--mono);font-size:10px;color:var
 
 <header class="hdr">
   <h1>HAW Launch Content Review &middot; 2026-05-18</h1>
-  <div class="sub">7 sections &middot; tap to copy &middot; tap to post &middot; track what you fired</div>
-  <div class="note">Tap to copy. Tap to post. Track what you fired. No email gate, no signature. Decisions save locally; export the JSON when done.</div>
+  <div class="sub">7 sections &middot; ME (manual) vs YOU (auto) at a glance &middot; tap badge to filter</div>
+  <div class="note">Every item carries one of 4 badges. AUTO fires on its own. MANUAL is your tap. HYBRID needs your green light. BLOCKED needs the gate cleared. MANUAL items get a tap-to-open submit link.</div>
 </header>
 
 <main id="sections"></main>
@@ -353,6 +400,11 @@ footer.ft{padding:18px 18px 8px;font-family:var(--mono);font-size:10px;color:var
     <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
     <symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
     <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
   </defs>
 </svg>
 
@@ -370,7 +422,7 @@ var SECTIONS = [
   {
     id: "community",
     title: "Community launch posts",
-    pill: "5 items (1 posted)",
+    pill: "5 items · 3 manual · 2 blocked",
     pill_class: "priority",
     default_open: true,
     flag_banner: null,
@@ -378,6 +430,8 @@ var SECTIONS = [
       {
         id: "comm_showhn",
         title: "Show HN",
+        badge: "blocked",
+        blocked_reason: "Account karma gate. Most new accounts get auto-filtered. Build karma 2-3 weeks then retry.",
         meta: ["Mon eve 7-9PM ET", "humanatwork.ai/store launch"],
         chips_extra: [],
         post_title: "Show HN: humanatwork.ai/store, operator kits I run in my own work (11 LIVE)",
@@ -391,6 +445,9 @@ var SECTIONS = [
       {
         id: "comm_ih",
         title: "Indie Hackers",
+        badge: "manual",
+        submit_link_override: "https://www.indiehackers.com/post",
+        submit_label_override: "Open Indie Hackers post composer",
         meta: ["Tue 9-10AM ET", "Build-in-public retrospective"],
         chips_extra: [],
         post_title: "Shipped 11 operator kits in 90 days. Here is what I cut, kept, and learned.",
@@ -404,6 +461,9 @@ var SECTIONS = [
       {
         id: "comm_rsideproject",
         title: "r/sideproject",
+        badge: "manual",
+        badge_label_override: "MANUAL (POSTED)",
+        submit_link_override: "https://old.reddit.com/r/sideproject/submit?type=TEXT",
         meta: ["POSTED Mon 2026-05-18 PM", "Short observational"],
         chips_extra: [{cls:"ok", text:"POSTED 2026-05-18"}],
         post_title: "Built an operator kit catalog. 11 LIVE so far, dropping more daily.",
@@ -417,6 +477,9 @@ var SECTIONS = [
       {
         id: "comm_rentrepreneur",
         title: "r/Entrepreneur",
+        badge: "blocked",
+        blocked_reason: "Karma gate (usually 100+ karma). Try Thu; may auto-filter on a fresh account.",
+        submit_link_override: "https://old.reddit.com/r/Entrepreneur/submit?type=TEXT",
         meta: ["Tue 2-4PM ET", "Founder retrospective"],
         chips_extra: [{cls:"flag", text:"REVIEW: 'lots of candidates' soft tally"}],
         post_title: "From lots of product candidates to 10 shipped: the cuts that mattered",
@@ -430,6 +493,8 @@ var SECTIONS = [
       {
         id: "comm_rrida",
         title: "r/EntrepreneurRideAlong",
+        badge: "manual",
+        submit_link_override: "https://old.reddit.com/r/EntrepreneurRideAlong/submit?type=TEXT",
         meta: ["Tue 2026-05-19 AM ET", "Day 2 build-in-public peer post", "NOT a crosspost from r/sideproject"],
         chips_extra: [{cls:"ok", text:"Voice 9/10"}, {cls:"ok", text:"CTQ 9/10"}, {cls:"ok", text:"Council PASS"}, {cls:"ok", text:"UTM tagged"}],
         post_title: "Day 2 of launching humanatwork.ai. Asking for honest feedback on the catalog.",
@@ -449,7 +514,7 @@ var SECTIONS = [
   {
     id: "x_cadence",
     title: "X 12-post cadence (Tue-Fri 2026-05-19 to 2026-05-23)",
-    pill: "12 posts",
+    pill: "12 posts · 11 auto · 1 blocked",
     pill_class: "",
     default_open: false,
     flag_banner: "<strong>Post 12 Sabbath conflict.</strong> Sunday 6PM MDT weekend reading drop line violates the no-bother-others-on-Sun rule. Recommend swap to Sat or Mon AM before scheduling.",
@@ -457,6 +522,8 @@ var SECTIONS = [
       {
         id: "x_1",
         title: "Post 1 - Cut discipline thread",
+        badge: "auto",
+        auto_fires: "Fires Tue 2026-05-19 7AM MDT via Blotato → X",
         meta: ["Tue 2026-05-19 7AM MDT", "Long thread (6 tweets)", "Magnet-link CTA"],
         chips_extra: [],
         thread: [
@@ -472,6 +539,8 @@ var SECTIONS = [
       {
         id: "x_2",
         title: "Post 2 - Voice rules single drop",
+        badge: "auto",
+        auto_fires: "Fires Tue 2026-05-19 12PM MDT via Blotato → X",
         meta: ["Tue 2026-05-19 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
         chips_extra: [{cls:"ok", text:"278 chars"}],
         body: "The prompt that broke my AI tells.\n\nPaste this into your saved-context, Claude Projects or Custom GPT:\n\n\"When you write any draft for me:\n1. First name only\n2. No em-dashes\n3. No credential reciting\n4. Verified stats only with source URL\n5. Single CTA per page\"\n\nComment ATLAS, I will DM you the free 3-prompt sample.",
@@ -480,6 +549,8 @@ var SECTIONS = [
       {
         id: "x_3",
         title: "Post 3 - Day 1 build-in-public",
+        badge: "auto",
+        auto_fires: "Fires Tue 2026-05-19 5PM MDT via Blotato → X",
         meta: ["Tue 2026-05-19 5PM MDT", "Single tweet", "Catalog-browse CTA"],
         chips_extra: [{cls:"ok", text:"274 chars"}],
         body: "Day 1 of shipping a digital catalog in public.\n\nPlausible says: a handful of visits, mostly from this post and a few referrals.\n\nHonest read: launch day traffic is the floor, not the ceiling. The work is making the floor rise every Tuesday for the next 12 weeks.\n\nFull catalog at humanatwork.ai/store?utm_source=x&utm_campaign=haw_d1_build",
@@ -488,6 +559,8 @@ var SECTIONS = [
       {
         id: "x_4",
         title: "Post 4 - Operator-tested-by-author thread",
+        badge: "auto",
+        auto_fires: "Fires Wed 2026-05-20 7AM MDT via Blotato → X",
         meta: ["Wed 2026-05-20 7AM MDT", "Long thread (6 tweets)", "Catalog-browse CTA"],
         chips_extra: [],
         thread: [
@@ -503,6 +576,8 @@ var SECTIONS = [
       {
         id: "x_5",
         title: "Post 5 - Karpathy 4-principle audit",
+        badge: "auto",
+        auto_fires: "Fires Wed 2026-05-20 12PM MDT via Blotato → X",
         meta: ["Wed 2026-05-20 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
         chips_extra: [{cls:"ok", text:"279 chars"}],
         body: "Prompt that saves 4 commits per week for me.\n\nPaste before pushing:\n\n\"Audit this diff on 4 principles. Score 1-10 each:\nClarity (reads like prose)\nCorrectness (edge cases)\nConcision (no incidental complexity)\nComposability (re-usable contracts)\n\nUnder 7 on any = refuse the commit.\n\nDiff: [paste]\"\n\nComment ATLAS, I will DM the full operator pack sample.",
@@ -511,6 +586,8 @@ var SECTIONS = [
       {
         id: "x_6",
         title: "Post 6 - Wed build-in-public",
+        badge: "auto",
+        auto_fires: "Fires Wed 2026-05-20 5PM MDT via Blotato → X",
         meta: ["Wed 2026-05-20 5PM MDT", "Single tweet", "Magnet-link CTA"],
         chips_extra: [{cls:"ok", text:"278 chars"}],
         body: "Wednesday build-in-public.\n\nShipped: catalog page live, 2 prompts published, 1 cold-pilot batch drafted.\n\nCut today: a long lead magnet that would take 6 hours to make and 30 seconds to consume. Wrong ratio. Killed it.\n\n3-prompt sample free: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_wed_cut",
@@ -519,6 +596,8 @@ var SECTIONS = [
       {
         id: "x_7",
         title: "Post 7 - Cut framework thread",
+        badge: "auto",
+        auto_fires: "Fires Thu 2026-05-21 7AM MDT via Blotato → X",
         meta: ["Thu 2026-05-21 7AM MDT", "Long thread (6 tweets)", "DM-keyword ATLAS"],
         chips_extra: [],
         thread: [
@@ -534,6 +613,8 @@ var SECTIONS = [
       {
         id: "x_8",
         title: "Post 8 - Saved-context drop",
+        badge: "auto",
+        auto_fires: "Fires Thu 2026-05-21 12PM MDT via Blotato → X",
         meta: ["Thu 2026-05-21 12PM MDT", "Single tweet", "Magnet-link CTA"],
         chips_extra: [{cls:"ok", text:"277 chars"}],
         body: "Saved-context prompt I paste once into every Claude Project, Custom GPT, Gem, or Grok:\n\n\"Before answering:\n1. Check project knowledge\n2. Identify audience\n3. Match voice register\n4. Output in format asked, not a default\"\n\nFree sample: humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=haw_saved_ctx",
@@ -542,6 +623,8 @@ var SECTIONS = [
       {
         id: "x_9",
         title: "Post 9 - Thu surprise update",
+        badge: "auto",
+        auto_fires: "Fires Thu 2026-05-21 5PM MDT via Blotato → X",
         meta: ["Thu 2026-05-21 5PM MDT", "Single tweet", "Catalog-browse CTA"],
         chips_extra: [{cls:"ok", text:"280 chars"}],
         body: "Thursday update.\n\nSurprise of the day: the DM keyword posts pull more conversation than the long threads.\n\nThreads get likes. DMs get pipeline. Adjusting cadence for the back half of the week toward more keyword drops.\n\nCatalog: humanatwork.ai/store?utm_source=x&utm_campaign=haw_thu_surprise",
@@ -550,6 +633,8 @@ var SECTIONS = [
       {
         id: "x_10",
         title: "Post 10 - Week-1 lessons thread",
+        badge: "auto",
+        auto_fires: "Fires Fri 2026-05-22 7AM MDT via Blotato → X",
         meta: ["Fri 2026-05-22 7AM MDT", "Long thread (7 tweets)", "Magnet-link CTA"],
         chips_extra: [],
         thread: [
@@ -566,6 +651,8 @@ var SECTIONS = [
       {
         id: "x_11",
         title: "Post 11 - ATS resume drop",
+        badge: "auto",
+        auto_fires: "Fires Fri 2026-05-22 12PM MDT via Blotato → X",
         meta: ["Fri 2026-05-22 12PM MDT", "Single tweet", "DM-keyword ATLAS"],
         chips_extra: [{cls:"ok", text:"279 chars"}],
         body: "ATS rewrite prompt for weekend job-hunters.\n\nPaste resume + JD into Claude:\n\n\"Rewrite so:\n1. Top third = role title + 3 keywords\n2. Each bullet starts with verb + output + result\n3. No tables, no columns\n4. Under 700 words\"\n\nComment ATLAS for the free 3-prompt sample.",
@@ -574,6 +661,9 @@ var SECTIONS = [
       {
         id: "x_12",
         title: "Post 12 - Fri week-1 wrap",
+        badge: "blocked",
+        blocked_reason: "Sabbath rule: Sunday 6PM MDT weekend reading drop mention violates the no-bother-others-on-Sun rule. Reschedule to Sat or Mon AM before unblock.",
+        auto_fires: "WOULD fire Fri 2026-05-22 5PM MDT via Blotato → X (blocked pending Sabbath swap)",
         meta: ["Fri 2026-05-22 5PM MDT", "Single tweet", "Catalog-browse CTA"],
         chips_extra: [{cls:"flag", text:"Sabbath conflict: Sunday drop mention"}, {cls:"ok", text:"280 chars"}],
         body: "Friday wrap, week 1.\n\nShipped: catalog live, lots of prompts published, daily build-in-public.\n\nDid not ship: production sales targets. Floor for week 1, not a ceiling. Compound, not capture.\n\nWeekend reading drop hitting Sunday at 6PM MDT.\n\nBrowse: humanatwork.ai/store?utm_source=x&utm_campaign=haw_wk1_wrap",
@@ -585,7 +675,7 @@ var SECTIONS = [
   {
     id: "beehiiv_issue",
     title: "Beehiiv Wed issue (launch announcement)",
-    pill: "1 issue",
+    pill: "1 issue · manual",
     pill_class: "",
     default_open: false,
     flag_banner: null,
@@ -593,6 +683,9 @@ var SECTIONS = [
       {
         id: "bee_issue",
         title: "Wed issue - humanatwork.ai is live",
+        badge: "manual",
+        submit_link_override: "https://app.beehiiv.com/",
+        submit_label_override: "Open Beehiiv publication dashboard",
         meta: ["Wed AM B2B send window", "Voice 9/10", "CTQ 9/10"],
         chips_extra: [],
         subject_options: [
@@ -609,7 +702,7 @@ var SECTIONS = [
   {
     id: "welcome_seq",
     title: "Beehiiv welcome 5-email sequence",
-    pill: "5 emails",
+    pill: "5 emails · 5 auto",
     pill_class: "",
     default_open: false,
     flag_banner: null,
@@ -617,6 +710,8 @@ var SECTIONS = [
       {
         id: "wel_d0",
         title: "Email 1 (Day 0) - Magnet delivery",
+        badge: "auto",
+        auto_fires: "Fires 0 days after subscribe (tag=magnet=mini_atlas or source=haw_*). ENABLED once Boubacar installs cron + restarts orchestrator",
         meta: ["Trigger: magnet=mini_atlas signup", "Voice 9/10"],
         chips_extra: [{cls:"ok", text:"Subject 21ch"}],
         subject: "Your mini-atlas is in",
@@ -626,6 +721,8 @@ var SECTIONS = [
       {
         id: "wel_d1",
         title: "Email 2 (Day 1) - Why I built this",
+        badge: "auto",
+        auto_fires: "Fires 1 day after subscribe (tag=magnet=mini_atlas or source=haw_*). ENABLED once cron installed",
         meta: ["No CTA", "Relationship build"],
         chips_extra: [{cls:"ok", text:"Subject 16ch"}],
         subject: "Why I built this",
@@ -635,6 +732,8 @@ var SECTIONS = [
       {
         id: "wel_d3",
         title: "Email 3 (Day 3) - $27 starter",
+        badge: "auto",
+        auto_fires: "Fires 3 days after subscribe (tag=magnet=mini_atlas or source=haw_*). ENABLED once cron installed",
         meta: ["CTA: /start-ai-24h", "Soft pitch"],
         chips_extra: [{cls:"ok", text:"Subject 19ch"}],
         subject: "The 24-hour version",
@@ -644,6 +743,8 @@ var SECTIONS = [
       {
         id: "wel_d7",
         title: "Email 4 (Day 7) - $79/$147 mid-tier",
+        badge: "auto",
+        auto_fires: "Fires 7 days after subscribe (tag=magnet=mini_atlas or source=haw_*). ENABLED once cron installed",
         meta: ["CTA: /store", "Laddered pricing"],
         chips_extra: [{cls:"ok", text:"Subject 17ch"}],
         subject: "Two heavier moves",
@@ -653,6 +754,8 @@ var SECTIONS = [
       {
         id: "wel_d14",
         title: "Email 5 (Day 14) - $297 premium + exit",
+        badge: "auto",
+        auto_fires: "Fires 14 days after subscribe (tag=magnet=mini_atlas or source=haw_*). ENABLED once cron installed",
         meta: ["CTA: /store", "Last in sequence"],
         chips_extra: [{cls:"ok", text:"Subject 18ch"}],
         subject: "Last welcome email",
@@ -664,7 +767,7 @@ var SECTIONS = [
   {
     id: "cold_t1t5",
     title: "Cold pilot T1-T5 sequence",
-    pill: "5 emails",
+    pill: "6 emails · 6 blocked (await fire-cmd)",
     pill_class: "",
     default_open: false,
     flag_banner: "<strong>T3 unresolved.</strong> V-A uses \"60 paste-prompts on a whiteboard\" (needs Boubacar confirm). V-B is the truth-only fallback. Pick before fire.",
@@ -672,6 +775,9 @@ var SECTIONS = [
       {
         id: "cold_t1",
         title: "T1 - I built the operator stack I wish I had",
+        badge: "blocked",
+        blocked_reason: "WAITING-FOR-FIRE-CMD: gw fire haw_catalog_promo T1 --authorized=2026-05-22",
+        auto_fires: "Will fire Thu 2026-05-22 via sequence_engine + gw_haw once Boubacar runs the fire command",
         meta: ["Thu 2026-05-22", "542 chars", "No ask"],
         chips_extra: [],
         subject: "I built the operator stack I wish I had",
@@ -681,6 +787,9 @@ var SECTIONS = [
       {
         id: "cold_t2",
         title: "T2 - the referral ceiling kit",
+        badge: "blocked",
+        blocked_reason: "WAITING-FOR-FIRE-CMD: gw fire haw_catalog_promo T2 --authorized=2026-05-27",
+        auto_fires: "Will fire Tue 2026-05-27 (shifted from Sun) via sequence_engine + gw_haw once T1 fires",
         meta: ["Tue 2026-05-27 (shifted from Sun)", "750 chars", "$297 ask"],
         chips_extra: [],
         subject: "the referral ceiling kit",
@@ -690,6 +799,9 @@ var SECTIONS = [
       {
         id: "cold_t3",
         title: "T3 - V-A: 50 of the 60 prompts I cut",
+        badge: "blocked",
+        blocked_reason: "V-A needs Boubacar to verify the whiteboard had exactly 60 prompts. If unverifiable, ship V-B fallback.",
+        auto_fires: "Will fire Thu 2026-05-29 via sequence_engine + gw_haw once V-A or V-B picked + fire command issued",
         meta: ["Thu 2026-05-29", "538 chars", "FLAGGED: needs Boubacar confirm 60 number"],
         chips_extra: [{cls:"flag", text:"V-A needs 60 confirm"}],
         subject: "50 of the 60 prompts I cut",
@@ -700,6 +812,9 @@ var SECTIONS = [
       {
         id: "cold_t3b",
         title: "T3 - V-B: truth-only fallback (no specific count)",
+        badge: "blocked",
+        blocked_reason: "Truth-safe alternate. Picks if V-A 60 count cannot be verified.",
+        auto_fires: "Will fire Thu 2026-05-29 via sequence_engine + gw_haw if V-B picked + fire command issued",
         meta: ["Thu 2026-05-29", "543 chars", "Safe fallback"],
         chips_extra: [{cls:"ok", text:"V-B truth-safe"}],
         subject: "50 of the 60 prompts I cut",
@@ -709,6 +824,9 @@ var SECTIONS = [
       {
         id: "cold_t4",
         title: "T4 - the one kit I would buy first",
+        badge: "blocked",
+        blocked_reason: "WAITING-FOR-FIRE-CMD: gw fire haw_catalog_promo T4 --authorized=2026-06-01",
+        auto_fires: "Will fire Mon 2026-06-01 via sequence_engine + gw_haw once earlier touches land",
         meta: ["Mon 2026-06-01", "510 chars", "$147 ask"],
         chips_extra: [],
         subject: "the one kit I would buy first",
@@ -718,6 +836,9 @@ var SECTIONS = [
       {
         id: "cold_t5",
         title: "T5 - last one from me",
+        badge: "blocked",
+        blocked_reason: "WAITING-FOR-FIRE-CMD: gw fire haw_catalog_promo T5 --authorized=2026-06-05",
+        auto_fires: "Will fire Fri 2026-06-05 (shifted from Mon) via sequence_engine + gw_haw. Final touch + STOP exit",
         meta: ["Fri 2026-06-05 (shifted from Mon)", "300 chars", "STOP exit"],
         chips_extra: [],
         subject: "last one from me",
@@ -729,90 +850,117 @@ var SECTIONS = [
   {
     id: "swaps",
     title: "Newsletter / partnership swap pitches",
-    pill: "9 targets",
+    pill: "9 targets · 9 manual",
     pill_class: "",
     default_open: false,
-    flag_banner: "<strong>Original swap pitch mentions \"agentsHQ\" as the operator stack name.</strong> Recommend swap to brand-stealth (\"a small operator stack\" or \"I build with AI for solo consultants\") before personalizing + sending.",
+    flag_banner: "<strong>Brand-stealth swap applied (2026-05-18).</strong> All 9 pitches rotate across 6 stealth phrasings. Per-pitch tier: MID = \"the small operator stack I build\"-family; aspirational/community = \"I build with AI for solo consultants\"-family. Zero raw brand name in outbound.",
     items: [
       {
         id: "swap_critchlow",
         title: "Tom Critchlow - tomcritchlow.com",
+        badge: "manual",
+        submit_link_override: "mailto:?subject=Newsletter%20swap%2C%20operator%20audience",
+        submit_label_override: "Compose personalized email",
         meta: ["MID tier (3-8K est.)", "HIGH swap-yes probability", "Newsletter swap"],
-        chips_extra: [{cls:"ok", text:"Exact ICP"}],
+        chips_extra: [{cls:"ok", text:"Exact ICP"}, {cls:"ok", text:"Stealth: operator stack"}],
         subject: "Newsletter swap, operator audience",
-        body: "Hi Tom,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read consulting-the-system [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention your newsletter in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        body: "Hi Tom,\n\nBoubacar here. I run the small operator stack I build for solo consultants and indie founders working with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read consulting-the-system [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention your newsletter in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
         link_url: "https://tomcritchlow.com/"
       },
       {
         id: "swap_steph",
         title: "Steph Smith - blog.stephsmith.io",
+        badge: "manual",
+        submit_link_override: "mailto:?subject=Newsletter%20swap%2C%20operator%20audience",
+        submit_label_override: "Compose personalized email",
         meta: ["MID tier (7,231 verified)", "HIGH swap-yes probability", "Newsletter swap"],
-        chips_extra: [{cls:"ok", text:"Sweet spot"}],
+        chips_extra: [{cls:"ok", text:"Sweet spot"}, {cls:"ok", text:"Stealth: workflows I run"}],
         subject: "Newsletter swap, operator audience",
-        body: "Hi Steph,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read your work [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention your blog in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        body: "Hi Steph,\n\nBoubacar here. I publish operator-grade AI workflows I run for myself first, then ship as a small catalog. 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read your work [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention your blog in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
         link_url: "https://blog.stephsmith.io/"
       },
       {
         id: "swap_anu",
         title: "Anu Atluru - workingtheorys.com",
+        badge: "manual",
+        submit_link_override: "mailto:?subject=Newsletter%20swap%2C%20operator%20audience",
+        submit_label_override: "Compose personalized email",
         meta: ["MID-LARGE (20-40K est.)", "MED-HIGH probability", "Newsletter swap"],
-        chips_extra: [{cls:"ok", text:"Voice-twin"}],
+        chips_extra: [{cls:"ok", text:"Voice-twin"}, {cls:"ok", text:"Stealth: catalog from daily work"}],
         subject: "Newsletter swap, operator audience",
-        body: "Hi Anu,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read Working Theorys [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Working Theorys in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        body: "Hi Anu,\n\nBoubacar here. I publish the catalog I built from my daily operator work. Solo consultant running multi-agent AI in production. 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read Working Theorys [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Working Theorys in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
         link_url: "https://www.workingtheorys.com/"
       },
       {
         id: "swap_cedric",
         title: "Cedric Chin - commoncog.com",
+        badge: "manual",
+        submit_link_override: "https://commoncog.com/about/#contact",
+        submit_label_override: "Open Commoncog contact form",
         meta: ["MID (5-15K est.)", "MED probability", "Newsletter swap"],
-        chips_extra: [{cls:"ok", text:"Anti-frameworks"}],
+        chips_extra: [{cls:"ok", text:"Anti-frameworks"}, {cls:"ok", text:"Stealth: own AI workflow stack"}],
         subject: "Newsletter swap, operator audience",
-        body: "Hi Cedric,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read Commoncog [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Commoncog in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        body: "Hi Cedric,\n\nBoubacar here. My own AI workflow stack runs my solo consulting work daily across sales, content, ops, all multi-agent. I publish the parts that survive 30 days of real use as a small catalog. 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read Commoncog [since you wrote about X]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Commoncog in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
         link_url: "https://commoncog.com/about/#contact"
       },
       {
         id: "swap_tibo",
         title: "Tibo (@tibo_maker) - X mention swap",
+        badge: "manual",
+        submit_link_override: "https://x.com/messages/compose?recipient_id=tibo_maker",
+        submit_label_override: "Open X DM to @tibo_maker",
         meta: ["191K X followers", "MED probability", "X mention swap"],
-        chips_extra: [{cls:"ok", text:"Indie SaaS"}],
+        chips_extra: [{cls:"ok", text:"Indie SaaS"}, {cls:"ok", text:"Stealth: build with AI for solo"}],
         subject: "X mention swap, builder audience",
-        body: "Hi Tibo,\n\nBoubacar here. I run a small catalog of operator-grade AI products at humanatwork.ai. 11 live SKUs, all built and shipped solo over the last 6 months. Most recent: a Prospect Voice Brief that fingerprints someone's public writing and outputs a personalized opener for cold outreach.\n\nI read your work because [specific recent post or product reference]. My audience overlaps with yours: solo operators, indie founders, people who ship rather than theorize.\n\nProposing one X mention swap. I post about [their product or recent build] to my audience with a real reason to check it out. You post about one of mine when timing fits. No tracking links, no fees, no editorial pressure.\n\nIf swaps are not your thing, no follow-up.\n\nBoubacar",
+        body: "Hi Tibo,\n\nBoubacar here. I build with AI for solo consultants. Small catalog of operator-grade products shipped from one operator brain. 11 live SKUs at humanatwork.ai, all built and shipped solo over the last 6 months. Most recent: a Prospect Voice Brief that fingerprints someone's public writing and outputs a personalized opener for cold outreach.\n\nI read your work because [specific recent post or product reference]. My audience overlaps with yours: solo operators, indie founders, people who ship rather than theorize.\n\nProposing one X mention swap. I post about [their product or recent build] to my audience with a real reason to check it out. You post about one of mine when timing fits. No tracking links, no fees, no editorial pressure.\n\nIf swaps are not your thing, no follow-up.\n\nBoubacar",
         link_url: "https://x.com/tibo_maker"
       },
       {
         id: "swap_marclou",
         title: "Marc Lou (@marclou) - X / newsletter swap",
+        badge: "manual",
+        submit_link_override: "https://marclou.com/",
+        submit_label_override: "Open marclou.com",
         meta: ["200K X + 42K newsletter", "MED-HIGH probability", "Newsletter or X swap"],
-        chips_extra: [{cls:"ok", text:"Just Ship It"}],
+        chips_extra: [{cls:"ok", text:"Just Ship It"}, {cls:"ok", text:"Stealth: small AI playbooks"}],
         subject: "Newsletter swap, builder audience",
-        body: "Hi Marc,\n\nBoubacar here. I run a small operator stack for solo consultants and indie founders building with AI. Catalog of 11 live SKUs, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read your work [since you shipped ShipFast]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Just Ship It in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
+        body: "Hi Marc,\n\nBoubacar here. I publish small AI playbooks I paste in my own workflow. Solo consultant running multi-agent ops daily. 11 live SKUs at humanatwork.ai, growing weekly. Recent ship: a Prospect Voice Brief that fingerprints a prospect's voice from their public writing and outputs a personalized opener line for first-touch outreach.\n\nI've read your work [since you shipped ShipFast]. My readers would value it. Mostly solo operators, fractional builders, people who ship rather than theorize. Your angle on [specific topic from their last 2-3 issues] lands with that group.\n\nProposing a straight swap. I mention Just Ship It in my next issue with a real reason readers should subscribe. You mention one of mine when timing fits your editorial. No tracking links, no fees, no scheduling pressure.\n\nIf a swap is not how you operate, no follow-up needed.\n\nCatalog if useful: humanatwork.ai\n\nBoubacar",
         link_url: "https://marclou.com/"
       },
       {
         id: "swap_smallbets",
         title: "Daniel Vassallo - Small Bets community AMA",
+        badge: "manual",
+        submit_link_override: "https://smallbets.com/",
+        submit_label_override: "Open Small Bets community",
         meta: ["7,713 members", "HIGH probability", "Community AMA"],
-        chips_extra: [{cls:"ok", text:"Exact ICP"}],
+        chips_extra: [{cls:"ok", text:"Exact ICP"}, {cls:"ok", text:"Stealth: small operator stack"}],
         subject: "AMA pitch, Small Bets community",
-        body: "Hi Daniel,\n\nBoubacar here. I am a solo operator who has shipped 11 paid AI products in 6 months at humanatwork.ai. Most of them are tools an indie consultant or small-team operator could buy and use day one. Catalog grew during a 12-week revenue sprint I started in February.\n\nI would love to do an AMA in Small Bets. Specific questions I could answer:\n\n- How a solo operator structures a multi-product catalog without an agency or team\n- What the actual time + money math looks like (truth-only, no inflated numbers)\n- The plumbing layer most \"AI builder\" content skips\n- Why I gave up Lovable and switched stacks twice\n\nI have read [specific recent Small Bets thread or member post]. Your members would get something concrete from this. Happy to write a teardown post in advance if that is the format.\n\nIf AMAs are full or not the right fit, no follow-up needed.\n\nBoubacar",
+        body: "Hi Daniel,\n\nBoubacar here. I am a solo operator running the small operator stack I build for solo consultants and indie founders. 11 paid AI products shipped in 6 months at humanatwork.ai. Most of them are tools an indie consultant or small-team operator could buy and use day one. Catalog grew during a 12-week revenue sprint I started in February.\n\nI would love to do an AMA in Small Bets. Specific questions I could answer:\n\n- How a solo operator structures a multi-product catalog without an agency or team\n- What the actual time + money math looks like (truth-only, no inflated numbers)\n- The plumbing layer most \"AI builder\" content skips\n- Why I gave up Lovable and switched stacks twice\n\nI have read [specific recent Small Bets thread or member post]. Your members would get something concrete from this. Happy to write a teardown post in advance if that is the format.\n\nIf AMAs are full or not the right fit, no follow-up needed.\n\nBoubacar",
         link_url: "https://smallbets.com/"
       },
       {
         id: "swap_ih",
         title: "Indie Hackers - Allen brothers AMA",
+        badge: "manual",
+        submit_link_override: "https://www.indiehackers.com/",
+        submit_label_override: "Open Indie Hackers",
         meta: ["Large active community", "MED-HIGH probability", "Community AMA"],
-        chips_extra: [{cls:"ok", text:"Canonical IH"}],
+        chips_extra: [{cls:"ok", text:"Canonical IH"}, {cls:"ok", text:"Stealth: build with AI for solo"}],
         subject: "AMA pitch, Indie Hackers community",
-        body: "Hi Courtland and Channing,\n\nBoubacar here. I am a solo operator who has shipped 11 paid AI products in 6 months at humanatwork.ai. Most of them are tools an indie consultant or small-team operator could buy and use day one. Catalog grew during a 12-week revenue sprint I started in February.\n\nI would love to do an AMA in Indie Hackers. Specific questions I could answer:\n\n- How a solo operator structures a multi-product catalog without an agency or team\n- What the actual time + money math looks like (truth-only, no inflated numbers)\n- The plumbing layer most \"AI builder\" content skips\n- Why I gave up Lovable and switched stacks twice\n\nI have read [specific recent IH community thread or member post]. Your members would get something concrete from this. Happy to write a teardown post in advance if that is the format.\n\nIf AMAs are full or not the right fit, no follow-up needed.\n\nBoubacar",
+        body: "Hi Courtland and Channing,\n\nBoubacar here. I build with AI for solo consultants. Small catalog of operator-grade products shipped from one operator brain. 11 paid AI products in 6 months at humanatwork.ai. Most of them are tools an indie consultant or small-team operator could buy and use day one. Catalog grew during a 12-week revenue sprint I started in February.\n\nI would love to do an AMA in Indie Hackers. Specific questions I could answer:\n\n- How a solo operator structures a multi-product catalog without an agency or team\n- What the actual time + money math looks like (truth-only, no inflated numbers)\n- The plumbing layer most \"AI builder\" content skips\n- Why I gave up Lovable and switched stacks twice\n\nI have read [specific recent IH community thread or member post]. Your members would get something concrete from this. Happy to write a teardown post in advance if that is the format.\n\nIf AMAs are full or not the right fit, no follow-up needed.\n\nBoubacar",
         link_url: "https://www.indiehackers.com/"
       },
       {
         id: "swap_beshara",
         title: "James Beshara - Below the Line podcast",
+        badge: "manual",
+        submit_link_override: "https://www.belowthelinepod.com/",
+        submit_label_override: "Open Below the Line",
         meta: ["100K+ listeners", "MED-HIGH probability", "Podcast guest pitch"],
-        chips_extra: [{cls:"ok", text:"Deep format"}],
+        chips_extra: [{cls:"ok", text:"Deep format"}, {cls:"ok", text:"Stealth: workflows I run"}],
         subject: "Guest pitch, Below the Line",
-        body: "Hi James,\n\nBoubacar here. I build operator-grade AI products solo and ship them at humanatwork.ai. 11 live SKUs in 6 months, all shipped from one person, all paid-validated.\n\nThe angle I think fits your show: how a solo operator structures an AI product pipeline where the agents do 80% of the work and the human stays in only the irreversible decisions. Not a how-to. A look at the actual mechanics: what breaks, what scales, why most solo \"AI catalogs\" stall at SKU 3.\n\nSpecific things I could speak to:\n- What it actually takes to ship 11 products solo (most of the work is plumbing, not models)\n- Why I stopped using Vercel for production and moved everything to Hostinger\n- The Prospect Voice Brief: AI fingerprinting cold-outreach voice, why no one else builds this layer\n\n30-45 min format works. I record clean audio + can travel for video if needed.\n\nIf the angle is not for Below the Line, no follow-up.\n\nBoubacar",
+        body: "Hi James,\n\nBoubacar here. I publish operator-grade AI workflows I run for myself first, then ship as a small catalog. 11 live SKUs in 6 months at humanatwork.ai, all shipped from one operator brain, all paid-validated.\n\nThe angle I think fits your show: how a solo operator structures an AI product pipeline where the agents do 80% of the work and the human stays in only the irreversible decisions. Not a how-to. A look at the actual mechanics: what breaks, what scales, why most solo \"AI catalogs\" stall at SKU 3.\n\nSpecific things I could speak to:\n- What it actually takes to ship 11 products solo (most of the work is plumbing, not models)\n- Why I stopped using Vercel for production and moved everything to Hostinger\n- The Prospect Voice Brief: AI fingerprinting cold-outreach voice, why no one else builds this layer\n\n30-45 min format works. I record clean audio + can travel for video if needed.\n\nIf the angle is not for Below the Line, no follow-up.\n\nBoubacar",
         link_url: "https://www.belowthelinepod.com/"
       }
     ]
@@ -820,7 +968,7 @@ var SECTIONS = [
   {
     id: "francophone",
     title: "Francophone 3 SKUs (Phase 2 - Fri 2026-05-23)",
-    pill: "3 SKUs",
+    pill: "3 SKUs · 3 auto (await approval)",
     pill_class: "",
     default_open: false,
     flag_banner: "<strong>Phase 2 lower priority.</strong> These ship Fri 2026-05-23 after the English launch settles. Review at leisure; no fire-this-week pressure.",
@@ -828,6 +976,8 @@ var SECTIONS = [
       {
         id: "fr_playbook",
         title: "Le Manuel du Pro 1stGen",
+        badge: "auto",
+        auto_fires: "Will publish via Gumroad nightly cron once Boubacar approves draft + adds to manifest. AWAITING APPROVAL.",
         meta: ["$79 (matches EN)", "slug: playbook-1stgen-fr", "Voice 9/10"],
         chips_extra: [],
         subject: "playbook-1stgen-fr",
@@ -837,6 +987,8 @@ var SECTIONS = [
       {
         id: "fr_5prompts",
         title: "5 Prompts pour le Jour 1",
+        badge: "auto",
+        auto_fires: "Will publish via Gumroad nightly cron once Boubacar approves draft + adds to manifest. AWAITING APPROVAL.",
         meta: ["PWYW (free + tip)", "slug: 5-prompts-jour-1-fr", "Voice 9/10"],
         chips_extra: [],
         subject: "5-prompts-jour-1-fr",
@@ -846,6 +998,8 @@ var SECTIONS = [
       {
         id: "fr_emails",
         title: "Pack Emails Froids (Réponse d'Abord)",
+        badge: "auto",
+        auto_fires: "Will publish via Gumroad nightly cron once Boubacar approves draft + adds to manifest. AWAITING APPROVAL.",
         meta: ["$147 (matches EN)", "slug: emails-froids-reponse-fr", "Voice 9/10 CTQ 8/10"],
         chips_extra: [],
         subject: "emails-froids-reponse-fr",
@@ -938,6 +1092,22 @@ function getAllItemIds(){
   return ids;
 }
 
+function badgeIcon(badge){
+  if (badge === "auto") return svgUse("i-bot");
+  if (badge === "manual") return svgUse("i-hand");
+  if (badge === "hybrid") return svgUse("i-zap");
+  if (badge === "blocked") return svgUse("i-lock");
+  return "";
+}
+function badgeLabel(badge, override){
+  if (override) return override;
+  if (badge === "auto") return "AUTO";
+  if (badge === "manual") return "MANUAL";
+  if (badge === "hybrid") return "HYBRID";
+  if (badge === "blocked") return "BLOCKED";
+  return "";
+}
+
 function renderItem(item, sectionId){
   var s = state[item.id] || {};
   var action = s.action || null;
@@ -953,9 +1123,12 @@ function renderItem(item, sectionId){
     }
   }
 
-  var html = '<article class="card" data-item-id="'+escapeHtml(item.id)+'" data-section="'+escapeHtml(sectionId)+'" data-status="'+escapeHtml(action||"pending")+'">';
+  var html = '<article class="card" data-item-id="'+escapeHtml(item.id)+'" data-section="'+escapeHtml(sectionId)+'" data-status="'+escapeHtml(action||"pending")+'" data-badge="'+escapeHtml(item.badge||"")+'">';
   html += '<div class="row-top">';
   html += '<div class="ctitle">'+escapeHtml(item.title)+'</div>';
+  if (item.badge){
+    html += '<span class="badge badge-'+escapeHtml(item.badge)+'" data-badge-tap="'+escapeHtml(item.badge)+'" data-item-badge="'+escapeHtml(item.id)+'" role="button" aria-label="'+escapeHtml(badgeLabel(item.badge, item.badge_label_override))+'">'+badgeIcon(item.badge)+escapeHtml(badgeLabel(item.badge, item.badge_label_override))+'</span>';
+  }
   html += '<div class="status '+statusClass+'">'+statusLabel+'</div>';
   html += '</div>';
 
@@ -1016,11 +1189,47 @@ function renderItem(item, sectionId){
     html += '<div class="body-block compact" style="color:var(--brick)">'+escapeHtml(item.body_note)+'</div>';
   }
 
-  // Open submit / external
-  if (item.submit_url){
-    html += '<a class="deep-link" href="'+escapeHtml(item.submit_url)+'" target="_blank" rel="noopener" data-ext="'+escapeHtml(item.id)+'" data-ext-target="'+escapeHtml(extTarget(item.submit_url))+'">'+svgUse("i-ext")+escapeHtml(item.submit_label || "Open submission")+'</a>';
-  } else if (item.link_url){
+  // AUTO badge: show fires-when banner (replaces submit button)
+  if (item.badge === "auto" && item.auto_fires){
+    html += '<div class="auto-fires" role="status">'+svgUse("i-clock")+'<span>'+escapeHtml(item.auto_fires)+'</span></div>';
+  }
+
+  // BLOCKED badge: show blocker note + still surface a (greyed) primary action if there's a submit/link
+  if (item.badge === "blocked"){
+    if (item.blocked_reason){
+      html += '<div class="blocked-note" role="status">'+svgUse("i-lock")+'<span>'+escapeHtml(item.blocked_reason)+'</span></div>';
+    }
+    if (item.auto_fires){
+      html += '<div class="auto-fires" role="status" style="background:var(--stone);color:var(--ink-soft)">'+svgUse("i-clock")+'<span>'+escapeHtml(item.auto_fires)+'</span></div>';
+    }
+  }
+
+  // MANUAL badge: tap-to-open primary submission button (uses override if provided)
+  if (item.badge === "manual"){
+    var manualUrl = item.submit_link_override || item.submit_url || item.link_url;
+    var manualLabel = item.submit_label_override || item.submit_label || (manualUrl ? linkLabel(manualUrl) : null);
+    if (manualUrl && manualLabel){
+      html += '<a class="btn-submit" href="'+escapeHtml(manualUrl)+'" target="_blank" rel="noopener" data-ext="'+escapeHtml(item.id)+'" data-ext-target="'+escapeHtml(extTarget(manualUrl))+'" data-submit-action="open">'+svgUse("i-ext")+escapeHtml(manualLabel)+'</a>';
+    }
+  }
+
+  // Open submit / external fallback (only for items without a badge or non-manual badges)
+  if (item.badge !== "manual" && item.badge !== "auto" && item.badge !== "blocked"){
+    if (item.submit_url){
+      html += '<a class="deep-link" href="'+escapeHtml(item.submit_url)+'" target="_blank" rel="noopener" data-ext="'+escapeHtml(item.id)+'" data-ext-target="'+escapeHtml(extTarget(item.submit_url))+'">'+svgUse("i-ext")+escapeHtml(item.submit_label || "Open submission")+'</a>';
+    } else if (item.link_url){
+      html += '<a class="deep-link" href="'+escapeHtml(item.link_url)+'" target="_blank" rel="noopener" data-ext="'+escapeHtml(item.id)+'" data-ext-target="'+escapeHtml(extTarget(item.link_url))+'">'+svgUse("i-ext")+escapeHtml(linkLabel(item.link_url))+'</a>';
+    }
+  }
+  // Manual items: also surface link_url (e.g. https://humanatwork.ai/store) as smaller deep-link below primary button
+  else if (item.badge === "manual" && item.link_url && item.link_url !== (item.submit_link_override || item.submit_url)){
     html += '<a class="deep-link" href="'+escapeHtml(item.link_url)+'" target="_blank" rel="noopener" data-ext="'+escapeHtml(item.id)+'" data-ext-target="'+escapeHtml(extTarget(item.link_url))+'">'+svgUse("i-ext")+escapeHtml(linkLabel(item.link_url))+'</a>';
+  }
+  // Blocked items: if they have a submit_link_override, surface it as greyed button so reviewer can still inspect the destination
+  else if (item.badge === "blocked" && (item.submit_link_override || item.submit_url || item.link_url)){
+    var blockedUrl = item.submit_link_override || item.submit_url || item.link_url;
+    var blockedLabel = item.submit_label_override || item.submit_label || linkLabel(blockedUrl);
+    html += '<a class="btn-submit blocked" href="'+escapeHtml(blockedUrl)+'" target="_blank" rel="noopener" data-ext="'+escapeHtml(item.id)+'" data-ext-target="'+escapeHtml(extTarget(blockedUrl))+'" data-submit-action="open-blocked">'+svgUse("i-ext")+escapeHtml(blockedLabel)+' (inspect only)</a>';
   }
 
   // Actions
@@ -1162,12 +1371,34 @@ function bindAll(){
     }
   });
 
-  // external link plausible
+  // external link plausible (split: submit buttons fire OpenSubmit, others fire External)
   document.querySelectorAll("[data-ext]").forEach(function(a){
     a.addEventListener("click", function(){
       var iid = a.getAttribute("data-ext");
       var tgt = a.getAttribute("data-ext-target");
-      plausible("Review:External", {item_id: iid, target: tgt});
+      var submitAction = a.getAttribute("data-submit-action");
+      if (submitAction){
+        plausible("Review:Action:OpenSubmit", {item_id: iid, target: tgt, kind: submitAction});
+      } else {
+        plausible("Review:External", {item_id: iid, target: tgt});
+      }
+    });
+  });
+
+  // badge tap (Plausible only; visual filter is via clicking, currently surfaces a toast)
+  document.querySelectorAll("[data-badge-tap]").forEach(function(b){
+    b.addEventListener("click", function(ev){
+      ev.stopPropagation();
+      var badge = b.getAttribute("data-badge-tap");
+      var iid = b.getAttribute("data-item-badge");
+      plausible("Review:Badge:Click", {item_id: iid, badge: badge});
+      var labels = {
+        auto: "AUTO. Fires on its own. No tap needed.",
+        manual: "MANUAL. Your tap. Use the submit link below.",
+        hybrid: "HYBRID. Auto with a green-light gate.",
+        blocked: "BLOCKED. See the lock note for what to clear."
+      };
+      toast(labels[badge] || badge.toUpperCase());
     });
   });
 }
@@ -1198,6 +1429,21 @@ function setAction(iid, sid, action){
   updateCounts();
 }
 
+function getBadgeTotals(){
+  var auto=0, manual=0, hybrid=0, blocked=0, none=0;
+  for (var i=0;i<SECTIONS.length;i++){
+    for (var j=0;j<SECTIONS[i].items.length;j++){
+      var b = SECTIONS[i].items[j].badge;
+      if (b === "auto") auto++;
+      else if (b === "manual") manual++;
+      else if (b === "hybrid") hybrid++;
+      else if (b === "blocked") blocked++;
+      else none++;
+    }
+  }
+  return {auto:auto, manual:manual, hybrid:hybrid, blocked:blocked, none:none};
+}
+
 function updateCounts(){
   var posted=0, skipped=0, edited=0, pending=0;
   var all = getAllItemIds();
@@ -1208,14 +1454,23 @@ function updateCounts(){
     else if (a === "edited") edited++;
     else pending++;
   });
+  var totals = getBadgeTotals();
+  var total = totalItems();
   var counts = document.getElementById("counts");
-  var parts = [];
-  if (posted) parts.push('<strong>'+posted+'</strong> posted');
-  if (edited) parts.push('<strong>'+edited+'</strong> edited');
-  if (skipped) parts.push('<strong>'+skipped+'</strong> skipped');
-  if (pending) parts.push('<strong>'+pending+'</strong> pending');
-  counts["inn" + "erHTML"] = parts.join(" · ");
-  if (!parts.length) counts["inn" + "erHTML"] = "0 of "+totalItems()+" reviewed";
+  // Top line: posted/edited/skipped (only when set)
+  var actionParts = [];
+  if (posted) actionParts.push('<strong>'+posted+'</strong> posted');
+  if (edited) actionParts.push('<strong>'+edited+'</strong> edited');
+  if (skipped) actionParts.push('<strong>'+skipped+'</strong> skipped');
+  var topLine = actionParts.length ? actionParts.join(" · ") : '<strong>'+total+'</strong> items';
+  // Bottom line: badge distribution
+  var badgeParts = [];
+  if (totals.manual) badgeParts.push('<strong>'+totals.manual+'</strong> manual');
+  if (totals.auto) badgeParts.push('<strong>'+totals.auto+'</strong> auto');
+  if (totals.hybrid) badgeParts.push('<strong>'+totals.hybrid+'</strong> hybrid');
+  if (totals.blocked) badgeParts.push('<strong>'+totals.blocked+'</strong> blocked');
+  var bottomLine = badgeParts.join(" · ");
+  counts["inn" + "erHTML"] = topLine + (bottomLine ? '<br><span style="color:var(--ink-faint)">'+bottomLine+'</span>' : "");
 }
 
 function exportDecisions(){
