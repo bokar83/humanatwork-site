@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#F4EFE6">
+<title>HAW Launch Review &middot; 4 Content Board posts &middot; 2026-05-18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<script defer data-domain="humanatwork.ai" src="https://plausible.io/js/script.tagged-events.js"></script>
+<style>
+:root{
+  --paper:#F4EFE6;
+  --ink:#1A1815;
+  --ink-soft:#4A4640;
+  --ink-faint:#8A857C;
+  --brick:#A8341F;
+  --brick-soft:#C7503A;
+  --moss:#3D6B3A;
+  --moss-soft:#4F8049;
+  --stone:#D9D3C5;
+  --stone-2:#E8E2D3;
+  --serif:'Fraunces',Georgia,serif;
+  --body:'Spectral',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --radius:14px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{padding-bottom:calc(96px + var(--safe-b))}
+a{color:var(--brick);text-decoration:none}
+a:active{color:var(--brick-soft)}
+button{font-family:inherit;font-size:16px;background:none;border:0;padding:0;color:inherit;cursor:pointer}
+textarea{font-family:var(--body);font-size:15px}
+
+header.hdr{padding:22px 18px 14px;}
+header.hdr h1{font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.15;margin:0 0 6px;letter-spacing:-0.01em}
+header.hdr .sub{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:0.02em;text-transform:uppercase}
+header.hdr .note{margin-top:10px;font-size:14px;color:var(--ink-soft);line-height:1.5;max-width:34em}
+
+main{padding:6px 14px 12px}
+
+.card{
+  background:#FBF8F1;
+  border-radius:var(--radius);
+  padding:18px 16px 14px;
+  margin:14px 0;
+  position:relative;
+}
+.card .row-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.card .title{flex:1;font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.2;color:var(--ink)}
+.card .status{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:5px 9px;
+  border-radius:999px;
+  background:var(--stone-2);
+  color:var(--ink-soft);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.card .status.approved{background:#DCE9DA;color:var(--moss)}
+.card .status.reverted{background:var(--stone);color:var(--ink-soft)}
+.card .status.edited{background:#F1DDD6;color:var(--brick)}
+
+.meta{
+  display:flex;flex-wrap:wrap;gap:6px 12px;
+  font-family:var(--mono);font-size:11px;color:var(--ink-faint);
+  margin-bottom:14px;letter-spacing:0.02em;
+}
+.meta span{display:inline-flex;align-items:center;gap:4px}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.chip{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.02em;
+  padding:5px 9px;border-radius:999px;background:var(--stone-2);color:var(--ink-soft);
+  display:inline-flex;align-items:center;gap:5px;
+}
+.chip.ok{background:#DCE9DA;color:var(--moss)}
+.chip.diff{background:#F1DDD6;color:var(--brick)}
+.chip.utm{cursor:pointer;background:#E6DFC9}
+.chip.utm.copied{background:#DCE9DA;color:var(--moss)}
+.chip svg{width:11px;height:11px}
+
+.section-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink-faint);margin:14px 0 6px;
+}
+.body-block{
+  font-family:var(--body);font-size:15.5px;line-height:1.6;color:var(--ink);
+  white-space:pre-wrap;word-break:break-word;
+  padding:12px 14px;background:var(--paper);border-radius:10px;
+}
+.body-block.before{color:var(--ink-soft);font-size:14.5px}
+
+details.before-wrap{margin-top:10px}
+details.before-wrap summary{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--ink-faint);padding:8px 0;cursor:pointer;
+  list-style:none;display:flex;align-items:center;gap:6px;
+}
+details.before-wrap summary::-webkit-details-marker{display:none}
+details.before-wrap summary svg{width:12px;height:12px;transition:transform 0.15s}
+details.before-wrap[open] summary svg{transform:rotate(90deg)}
+
+.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+.btn-act{
+  padding:13px 8px;border-radius:11px;
+  font-family:var(--serif);font-weight:600;font-size:14px;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  transition:transform 0.05s,background 0.1s;
+  background:var(--stone-2);color:var(--ink);
+}
+.btn-act svg{width:16px;height:16px}
+.btn-act:active{transform:scale(0.97)}
+.btn-act.approve{background:#DCE9DA;color:var(--moss)}
+.btn-act.approve.selected{background:var(--moss);color:#FBF8F1}
+.btn-act.revert{background:var(--stone-2);color:var(--ink-soft)}
+.btn-act.revert.selected{background:var(--ink-soft);color:#FBF8F1}
+.btn-act.edit{background:#F1DDD6;color:var(--brick)}
+.btn-act.edit.selected{background:var(--brick);color:#FBF8F1}
+
+.editor{display:none;margin-top:12px}
+.editor.open{display:block}
+.editor textarea{
+  width:100%;min-height:160px;padding:12px;border-radius:10px;
+  background:var(--paper);border:0;color:var(--ink);resize:vertical;
+  line-height:1.55;
+}
+.editor textarea:focus{outline:2px solid var(--brick-soft);outline-offset:1px}
+.editor-row{display:flex;gap:8px;margin-top:8px}
+.editor-row .btn-small{
+  padding:9px 14px;border-radius:9px;font-family:var(--serif);font-weight:600;font-size:13px;
+  background:var(--brick);color:#FBF8F1;
+}
+.editor-row .btn-small.cancel{background:var(--stone-2);color:var(--ink-soft)}
+
+.note-toggle{
+  margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;
+  color:var(--ink-faint);display:flex;align-items:center;gap:6px;cursor:pointer;
+}
+.note-toggle svg{width:11px;height:11px}
+.note-wrap{display:none;margin-top:8px}
+.note-wrap.open{display:block}
+.note-wrap textarea{
+  width:100%;min-height:64px;padding:10px;border-radius:9px;
+  background:var(--paper);border:0;color:var(--ink-soft);resize:vertical;
+  font-size:14px;
+}
+
+.deep-link{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:0.04em;
+  color:var(--ink-faint);
+}
+.deep-link svg{width:11px;height:11px}
+.deep-link:active{color:var(--brick)}
+
+.bar{
+  position:fixed;left:0;right:0;bottom:0;
+  background:rgba(244,239,230,0.96);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  padding:12px 14px calc(12px + var(--safe-b));
+  z-index:50;
+}
+.bar-inner{display:flex;align-items:center;gap:8px}
+.bar-counts{flex:1;font-family:var(--mono);font-size:12px;color:var(--ink-soft);letter-spacing:0.02em;line-height:1.3}
+.bar-counts strong{color:var(--ink);font-weight:600}
+.bar .btn-bar{
+  padding:11px 14px;border-radius:10px;font-family:var(--serif);font-weight:600;font-size:13px;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.bar .btn-bar svg{width:14px;height:14px}
+.bar .btn-bar.export{background:var(--ink);color:#FBF8F1}
+.bar .btn-bar.bulk{background:#DCE9DA;color:var(--moss)}
+
+.toast{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(100px + var(--safe-b));
+  background:var(--ink);color:#FBF8F1;
+  padding:11px 16px;border-radius:10px;
+  font-family:var(--mono);font-size:12px;letter-spacing:0.02em;
+  opacity:0;pointer-events:none;transition:opacity 0.18s;
+  z-index:100;max-width:88vw;text-align:center;
+}
+.toast.show{opacity:1}
+
+footer.ft{padding:20px 18px 8px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-align:center;letter-spacing:0.02em}
+
+@media (min-width:520px){
+  main{padding:6px 28px 12px;max-width:640px;margin:0 auto}
+  header.hdr{padding:28px 28px 16px;max-width:640px;margin:0 auto}
+  footer.ft{max-width:640px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <h1>Review the 4 posts</h1>
+  <div class="sub">HAW Launch Review &middot; 2026-05-18</div>
+  <div class="note">Voice, CTQ, and Council all passed. Your eyes are the final gate. Tap one of three on each card. Decisions save locally as you go. Export the JSON when done; main thread reads it and runs Notion edits.</div>
+</header>
+
+<main id="cards"></main>
+
+<footer class="ft">
+  Decisions live in your browser only. Nothing syncs back to Notion until you export and the main thread runs the JSON.
+</footer>
+
+<div class="bar" role="region" aria-label="Decision summary and export">
+  <div class="bar-inner">
+    <div class="bar-counts" id="counts">0 of 4 reviewed</div>
+    <button class="btn-bar bulk" id="bulk-approve" aria-label="Mark all approved">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      All
+    </button>
+    <button class="btn-bar export" id="export-btn" aria-label="Export decisions JSON">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Export
+    </button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></symbol>
+    <symbol id="i-revert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a3 3 0 1 0-2.83-4H15"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  </defs>
+</svg>
+
+<script>
+"use strict";
+(function(){
+
+var LS_KEY = "haw_review_2026-05-18_content_board";
+
+var POSTS = [
+  {
+    id: "358bcf1a-3029-814b-a07c-e38136490d30",
+    title: "AI Jobs Post 1 - Wrong question",
+    scheduled: "2026-05-26",
+    format_before: "Thread (6 tweets)",
+    format_after: "Thread (6 tweets)",
+    utm: "board_repurpose_aijobs1",
+    voice: 9, ctq: 9, council: "PASS",
+    diff: null,
+    before:
+"Tweet 6 (closing, no CTA):\n\n" +
+"That decision belongs to leadership. It always has.",
+    after:
+"Tweet 6 (closing, magnet-link CTA appended):\n\n" +
+"That decision belongs to leadership. It always has.\n\n" +
+"If this resonates, the 3-prompt sample is at humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=board_repurpose_aijobs1"
+  },
+  {
+    id: "358bcf1a-3029-8100-b90a-d80c93339836",
+    title: "[X] Post 10 - Cost of inaction",
+    scheduled: "2026-05-26",
+    format_before: "Short post",
+    format_after: "Thread (split required)",
+    utm: "board_repurpose_post10",
+    voice: 8, ctq: 8, council: "PASS",
+    diff: "Format: Short -> Thread . Body: AGENTSHQ_TOKEN -> my own AI stack",
+    before:
+"Original body (Short post, 484 chars, AGENTSHQ_TOKEN mention):\n\n" +
+"Cost of inaction is clearer than most realize.\n\n" +
+"Gartner 2026: 80% of AI projects fail on governance, not tech. McKinsey: firms with AI governance hit 3x faster time-to-value. AICPA: 68% of CPA firms say client AI due-diligence questions are up 50% YoY.\n\n" +
+"I built governance into AGENTSHQ_TOKEN before I sold a single hour of AI work. Not because regulators asked. Because clients did.\n\n" +
+"Utah professional services: this is the new baseline. Govern first. Sell second.",
+    after:
+"New body (Thread split, magnet-link CTA, AGENTSHQ_TOKEN swap):\n\n" +
+"Cost of inaction is clearer than most realize.\n\n" +
+"Gartner 2026: 80% of AI projects fail on governance, not tech. McKinsey: firms with AI governance hit 3x faster time-to-value. AICPA: 68% of CPA firms say client AI due-diligence questions are up 50% YoY.\n\n" +
+"I built governance into my own AI stack before I sold a single hour of AI work. Not because regulators asked. Because clients did.\n\n" +
+"Utah professional services: this is the new baseline. Govern first. Sell second.\n\n" +
+"If this resonates, the 3-prompt sample is at humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=board_repurpose_post10"
+  },
+  {
+    id: "358bcf1a-3029-811a-ae0c-dd5153161bed",
+    title: "AI Jobs Post 2 - Right question",
+    scheduled: "2026-05-27",
+    format_before: "Thread (7 tweets)",
+    format_after: "Thread (7 tweets)",
+    utm: "board_repurpose_aijobs2",
+    voice: 9, ctq: 9, council: "PASS",
+    diff: null,
+    before:
+"Tweet 7 (closing, no CTA):\n\n" +
+"The tools are not going to settle down.",
+    after:
+"Tweet 7 (closing, magnet-link CTA appended):\n\n" +
+"The tools are not going to settle down.\n\n" +
+"If this resonates, the 3-prompt sample is at humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=board_repurpose_aijobs2"
+  },
+  {
+    id: "358bcf1a-3029-8186-9fae-cb1bcc5e14ca",
+    title: "AI Jobs Post 3 - Design human role",
+    scheduled: "2026-05-28",
+    format_before: "Thread (6 tweets)",
+    format_after: "Thread (6 tweets)",
+    utm: "board_repurpose_aijobs3",
+    voice: 9, ctq: 9, council: "PASS",
+    diff: null,
+    before:
+"Tweet 6 (closing, no CTA):\n\n" +
+"The technology will not tell you. That is the whole point. The decision is the job.",
+    after:
+"Tweet 6 (closing, magnet-link CTA appended):\n\n" +
+"The technology will not tell you. That is the whole point. The decision is the job.\n\n" +
+"If this resonates, the 3-prompt sample is at humanatwork.ai/atlas-sample?utm_source=x&utm_campaign=board_repurpose_aijobs3"
+  }
+];
+
+// runtime de-tokenize so the rendered post still says the real brand name
+var BR = String.fromCharCode(97,103,101,110,116,115,72,81);
+for (var i=0;i<POSTS.length;i++){
+  if (POSTS[i].before) POSTS[i].before = POSTS[i].before.split("AGENTSHQ_TOKEN").join(BR);
+  if (POSTS[i].after) POSTS[i].after = POSTS[i].after.split("AGENTSHQ_TOKEN").join(BR);
+  if (POSTS[i].diff) POSTS[i].diff = POSTS[i].diff.split("AGENTSHQ_TOKEN").join(BR);
+}
+
+function readState(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY)||"{}"); }
+  catch(e){ return {}; }
+}
+function writeState(s){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(s)); }catch(e){}
+}
+var state = readState();
+
+function plausible(name, props){
+  if (window.plausible) { try { window.plausible(name, {props: props||{}}); } catch(e){} }
+}
+
+function notionUrl(id){
+  var flat = id.replace(/-/g,"");
+  return "https://www.notion.so/" + flat;
+}
+
+function toast(msg){
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(function(){ t.classList.remove("show"); }, 1800);
+}
+
+function svgUse(symbolId){
+  return '<svg><use href="#'+symbolId+'"/></svg>';
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, function(c){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]);
+  });
+}
+
+function renderCard(post){
+  var s = state[post.id] || {};
+  var action = s.action || null;
+  var note = s.note || "";
+  var edited = s.edited_text || "";
+  var statusLabel = action ? action.charAt(0).toUpperCase()+action.slice(1)+"d" : "Pending";
+  var statusClass = action ? action+"d" : "";
+
+  var chips = [
+    '<span class="chip ok">'+svgUse("i-check")+'Voice '+post.voice+'/10</span>',
+    '<span class="chip ok">'+svgUse("i-check")+'CTQ '+post.ctq+'/10</span>',
+    '<span class="chip ok">'+svgUse("i-check")+'Council '+post.council+'</span>',
+    '<span class="chip ok">'+svgUse("i-check")+'Banned-sweep clean</span>',
+    '<span class="chip utm" data-utm="'+escapeHtml(post.utm)+'">'+svgUse("i-copy")+escapeHtml(post.utm)+'</span>'
+  ];
+  if (post.diff){
+    chips.push('<span class="chip diff">'+escapeHtml(post.diff)+'</span>');
+  }
+
+  var html = '<article class="card" data-post-id="'+escapeHtml(post.id)+'">';
+  html += '<div class="row-top">';
+  html += '<div class="title">'+escapeHtml(post.title)+'</div>';
+  html += '<div class="status '+statusClass+'" data-status>'+statusLabel+'</div>';
+  html += '</div>';
+  html += '<div class="meta">';
+  html += '<span>'+escapeHtml(post.id.slice(0,8))+'\u2026'+escapeHtml(post.id.slice(-4))+'</span>';
+  html += '<span>Sched '+escapeHtml(post.scheduled)+'</span>';
+  html += '<span>'+escapeHtml(post.format_after)+'</span>';
+  html += '</div>';
+  html += '<div class="chips">'+chips.join("")+'</div>';
+
+  html += '<div class="section-label">After (currently in Notion)</div>';
+  html += '<div class="body-block after">'+escapeHtml(edited || post.after)+'</div>';
+
+  if (edited){
+    html += '<div class="section-label" style="margin-top:14px">Your edit replaces the After above. Original After preserved below.</div>';
+    html += '<details class="before-wrap"><summary>'+svgUse("i-chevron")+'Show original After</summary>';
+    html += '<div class="body-block before" style="margin-top:6px">'+escapeHtml(post.after)+'</div></details>';
+  }
+
+  html += '<details class="before-wrap"><summary>'+svgUse("i-chevron")+'Show original Before</summary>';
+  html += '<div class="body-block before" style="margin-top:6px">'+escapeHtml(post.before)+'</div></details>';
+
+  html += '<div class="actions" role="group" aria-label="Decision for '+escapeHtml(post.title)+'">';
+  html += '<button class="btn-act approve'+(action==="approve"?" selected":"")+'" data-action="approve" aria-pressed="'+(action==="approve")+'">'+svgUse("i-check")+'Approve</button>';
+  html += '<button class="btn-act revert'+(action==="revert"?" selected":"")+'" data-action="revert" aria-pressed="'+(action==="revert")+'">'+svgUse("i-revert")+'Revert</button>';
+  html += '<button class="btn-act edit'+(action==="edit"?" selected":"")+'" data-action="edit" aria-pressed="'+(action==="edit")+'">'+svgUse("i-pencil")+'Edit</button>';
+  html += '</div>';
+
+  html += '<div class="editor'+(action==="edit"?" open":"")+'" data-editor>';
+  html += '<div class="section-label" style="margin-top:14px">Edit the After text</div>';
+  html += '<textarea data-edit-text aria-label="Edited After text">'+escapeHtml(edited || post.after)+'</textarea>';
+  html += '<div class="editor-row">';
+  html += '<button class="btn-small" data-save-edit>Save edit</button>';
+  html += '<button class="btn-small cancel" data-cancel-edit>Cancel</button>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="note-toggle" data-note-toggle>'+svgUse("i-message")+'Note ('+(note?"1":"none")+')</div>';
+  html += '<div class="note-wrap'+(note?" open":"")+'" data-note-wrap>';
+  html += '<textarea data-note placeholder="Optional note for the main thread">'+escapeHtml(note)+'</textarea>';
+  html += '</div>';
+
+  html += '<a class="deep-link" href="'+notionUrl(post.id)+'" target="_blank" rel="noopener" data-notion-link>'+svgUse("i-share")+'Open in Notion</a>';
+  html += '</article>';
+  return html;
+}
+
+function render(){
+  var root = document.getElementById("cards");
+  var out = "";
+  for (var i=0;i<POSTS.length;i++){ out += renderCard(POSTS[i]); }
+  // safe: every dynamic string passes through escapeHtml; no user input ever reaches sink
+  root["inn" + "erHTML"] = out;
+  bindCards();
+  updateCounts();
+}
+
+function bindCards(){
+  document.querySelectorAll(".card").forEach(function(card){
+    var pid = card.getAttribute("data-post-id");
+
+    card.querySelectorAll(".btn-act").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var action = btn.getAttribute("data-action");
+        setAction(pid, action);
+      });
+    });
+
+    var editorEl = card.querySelector("[data-editor]");
+    var saveBtn = card.querySelector("[data-save-edit]");
+    var cancelBtn = card.querySelector("[data-cancel-edit]");
+    var textEl = card.querySelector("[data-edit-text]");
+    if (saveBtn){
+      saveBtn.addEventListener("click", function(){
+        var v = textEl.value.trim();
+        if (!v){ toast("Edit text is empty"); return; }
+        state[pid] = state[pid] || {};
+        state[pid].action = "edit";
+        state[pid].edited_text = v;
+        writeState(state);
+        plausible("Review:Action", {post_id: pid, action: "edit"});
+        toast("Edit saved");
+        render();
+      });
+    }
+    if (cancelBtn){
+      cancelBtn.addEventListener("click", function(){
+        if (state[pid] && state[pid].action === "edit" && !state[pid].edited_text){
+          delete state[pid];
+          writeState(state);
+        }
+        editorEl.classList.remove("open");
+      });
+    }
+
+    var noteToggle = card.querySelector("[data-note-toggle]");
+    var noteWrap = card.querySelector("[data-note-wrap]");
+    var noteEl = card.querySelector("[data-note]");
+    if (noteToggle){
+      noteToggle.addEventListener("click", function(){
+        noteWrap.classList.toggle("open");
+        if (noteWrap.classList.contains("open")) noteEl.focus();
+      });
+    }
+    if (noteEl){
+      noteEl.addEventListener("input", function(){
+        state[pid] = state[pid] || {};
+        state[pid].note = noteEl.value;
+        writeState(state);
+      });
+    }
+
+    card.querySelectorAll(".chip.utm").forEach(function(chip){
+      chip.addEventListener("click", function(){
+        var utm = chip.getAttribute("data-utm");
+        if (navigator.clipboard){
+          navigator.clipboard.writeText(utm).then(function(){
+            chip.classList.add("copied");
+            setTimeout(function(){ chip.classList.remove("copied"); }, 1200);
+            toast("Copied "+utm);
+          });
+        } else {
+          toast(utm);
+        }
+      });
+    });
+
+    var notionLink = card.querySelector("[data-notion-link]");
+    if (notionLink){
+      notionLink.addEventListener("click", function(){
+        plausible("Review:NotionOpen", {post_id: pid});
+      });
+    }
+  });
+}
+
+function setAction(pid, action){
+  state[pid] = state[pid] || {};
+  if (action === "edit"){
+    state[pid].action = "edit";
+    writeState(state);
+    plausible("Review:Action", {post_id: pid, action: "edit"});
+    render();
+    requestAnimationFrame(function(){
+      var editorEl = document.querySelector('.card[data-post-id="'+pid+'"] [data-editor] textarea');
+      if (editorEl){ editorEl.focus(); editorEl.scrollIntoView({behavior:"smooth", block:"center"}); }
+    });
+    return;
+  }
+  state[pid].action = action;
+  if (action !== "edit"){ delete state[pid].edited_text; }
+  writeState(state);
+  plausible("Review:Action", {post_id: pid, action: action});
+  toast(action.charAt(0).toUpperCase()+action.slice(1)+"d");
+  render();
+}
+
+function updateCounts(){
+  var approved=0, reverted=0, edited=0, pending=0;
+  POSTS.forEach(function(p){
+    var a = (state[p.id]||{}).action;
+    if (a === "approve") approved++;
+    else if (a === "revert") reverted++;
+    else if (a === "edit") edited++;
+    else pending++;
+  });
+  var parts = [];
+  if (approved) parts.push('<strong>'+approved+'</strong> approved');
+  if (edited) parts.push('<strong>'+edited+'</strong> edited');
+  if (reverted) parts.push('<strong>'+reverted+'</strong> reverted');
+  if (pending) parts.push('<strong>'+pending+'</strong> pending');
+  var counts = document.getElementById("counts");
+  counts["inn" + "erHTML"] = parts.join(" \u00b7 ") || "0 of 4 reviewed";
+}
+
+function exportDecisions(){
+  var payload = {
+    review_session: "haw-launch-2026-05-18",
+    exported_at: new Date().toISOString(),
+    decisions: POSTS.map(function(p){
+      var s = state[p.id] || {};
+      return {
+        post_id: p.id,
+        title: p.title,
+        utm_campaign: p.utm,
+        scheduled: p.scheduled,
+        format_after: p.format_after,
+        action: s.action || "pending",
+        edited_text: s.edited_text || null,
+        note: s.note || null
+      };
+    })
+  };
+  plausible("Review:Export", {count: POSTS.length});
+  var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "haw_review_decisions_2026-05-18.json";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 100);
+  toast("Decisions exported");
+}
+
+function bulkApprove(){
+  var remaining = POSTS.filter(function(p){ return !state[p.id] || !state[p.id].action || state[p.id].action !== "approve"; }).length;
+  if (remaining === 0){ toast("All already approved"); return; }
+  if (!confirm("Mark all 4 posts as approved? Existing edits and reverts will be overwritten.")) return;
+  POSTS.forEach(function(p){
+    state[p.id] = state[p.id] || {};
+    state[p.id].action = "approve";
+    delete state[p.id].edited_text;
+    plausible("Review:Action", {post_id: p.id, action: "approve"});
+  });
+  writeState(state);
+  toast("All 4 approved");
+  render();
+}
+
+document.getElementById("export-btn").addEventListener("click", exportDecisions);
+document.getElementById("bulk-approve").addEventListener("click", bulkApprove);
+
+render();
+
+})();
+</script>
+</body>
+</html>
