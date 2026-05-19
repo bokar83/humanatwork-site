@@ -1,0 +1,46 @@
+# /internal/ basic auth + proxy to orchestrator
+# Generated 2026-05-18 by feat/scientific-funnel-dashboard
+#
+# Two-layer protection:
+#   1. Apache basic-auth via .htpasswd (Hostinger account setup)
+#   2. Orchestrator route also requires FUNNEL_DASHBOARD_PASSWORD
+#
+# The orchestrator route is the real gate. The .htaccess is belt-and-
+# suspenders so even a misconfigured proxy still keeps casual visitors
+# off the page.
+#
+# Setup on Hostinger:
+#   1. Create /home/<user>/.htpasswd-funnels via:
+#        htpasswd -c .htpasswd-funnels boubacar
+#   2. Update AuthUserFile path below to match the absolute server path
+#   3. Set FUNNEL_DASHBOARD_PASSWORD on VPS .env to same password
+#
+# noindex everything under /internal/ regardless of crawler behaviour.
+
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>
+
+# Basic auth gate. Update AuthUserFile to the absolute server path.
+AuthType Basic
+AuthName "humanatwork internal"
+AuthUserFile "/home/u_REPLACE_ME_/htpasswd-funnels"
+Require valid-user
+
+# Proxy /internal/funnels/* to the orchestrator route. The orchestrator
+# is also gated by FUNNEL_DASHBOARD_PASSWORD so the upstream call must
+# carry an Authorization: Basic header. mod_proxy forwards the
+# Authorization header by default when ProxyPreserveHost is on.
+<IfModule mod_proxy.c>
+  ProxyPreserveHost On
+  ProxyPass        /funnels/ https://agentshq.boubacarbarry.com/api/orc/internal/funnels/
+  ProxyPassReverse /funnels/ https://agentshq.boubacarbarry.com/api/orc/internal/funnels/
+</IfModule>
+
+# Fallback: if mod_proxy is unavailable on the shared host, send the
+# visitor straight to the orchestrator URL.
+<IfModule !mod_proxy.c>
+  RewriteEngine On
+  RewriteRule ^funnels/?$ https://agentshq.boubacarbarry.com/api/orc/internal/funnels/ [R=302,L]
+  RewriteRule ^funnels/data$ https://agentshq.boubacarbarry.com/api/orc/internal/funnels/data [R=302,L]
+</IfModule>
