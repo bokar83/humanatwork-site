@@ -31,6 +31,7 @@ RewriteRule ^x/thu/?$ /store/?utm_source=x&utm_campaign=haw_thu_surprise [R=301,
 RewriteRule ^x/wk1/?$ /atlas-sample/?utm_source=x&utm_campaign=haw_wk1_lessons [R=301,L,QSA]
 RewriteRule ^x/wrap/?$ /store/?utm_source=x&utm_campaign=haw_wk1_wrap [R=301,L,QSA]
 RewriteRule ^r/rida-day2/?$ /store/?utm_source=reddit&utm_campaign=reddit_entrepreneurridealong&utm_content=day2_launch [R=301,L,QSA]
+RewriteRule ^r/v3/?$ /atlas-sample/?utm_source=linkedin&utm_medium=organic&utm_campaign=launch_v3&utm_content=first_comment [R=301,L,QSA]
 
 # --- Per-SKU 301 redirects: <slug> -> /store with attribution ---
 RewriteRule ^absorb-protocol-pack-extended/?$ /store/?utm_source=reel&utm_content=absorb-protocol-pack-extended-reel [R=301,L,QSA]
