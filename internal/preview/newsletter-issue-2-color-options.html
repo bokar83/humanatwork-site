@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsletter color options · Issue 2</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Spectral:ital,wght@0,400;0,500;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4EFE6;
+  --bone:#E6DDC8;
+  --ink:#161513;
+  --muted:#6B655C;
+  --hairline:rgba(20,18,16,0.12);
+  --indigo:#1F2E47;
+  --brick:#A8341F;
+  --gold:#C28E26;
+  --serif:"Fraunces","Iowan Old Style","Georgia",serif;
+  --body:"Spectral","Iowan Old Style","Georgia",serif;
+  --mono:"JetBrains Mono","Menlo",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  padding:0 0 80px 0;
+}
+.page-head{
+  max-width:680px;
+  margin:0 auto;
+  padding:24px 18px 16px 18px;
+}
+.page-eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+.page-title{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:26px;
+  line-height:1.15;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+  margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--body);
+  font-size:15px;
+  color:var(--muted);
+  line-height:1.5;
+  margin-bottom:10px;
+}
+.nav-jump{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:14px 0 4px 0;
+}
+.nav-jump a{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:8px 12px;
+  color:var(--paper);
+  text-decoration:none;
+  border-radius:2px;
+}
+.nav-jump a.a{background:var(--indigo)}
+.nav-jump a.b{background:var(--ink)}
+.nav-jump a.c{background:var(--gold);color:var(--ink)}
+
+.variant{
+  max-width:680px;
+  margin:28px auto 0 auto;
+  padding:0 18px;
+}
+.variant-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+.swatch{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  flex-shrink:0;
+  box-shadow:0 1px 0 var(--hairline);
+}
+.swatch.a{background:#1F2E47}
+.swatch.b{background:#161513}
+.swatch.c{background:#C28E26}
+.variant-id{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.variant-name{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:20px;
+  line-height:1.15;
+  color:var(--ink);
+}
+.variant-meta{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-top:2px;
+}
+.variant-note{
+  font-family:var(--body);
+  font-size:14px;
+  line-height:1.55;
+  color:var(--ink);
+  margin:6px 0 14px 0;
+  max-width:640px;
+}
+.variant-note strong{color:var(--ink)}
+.frame-wrap{
+  width:100%;
+  background:#fff;
+  box-shadow:0 4px 16px rgba(20,18,16,0.08);
+  border-radius:4px;
+  overflow:hidden;
+}
+.frame-wrap iframe{
+  display:block;
+  width:100%;
+  height:1800px;
+  border:0;
+}
+
+@media (max-width:520px){
+  .page-title{font-size:22px}
+  .variant-name{font-size:18px}
+  .frame-wrap iframe{height:1900px}
+}
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <p class="page-eyebrow">Newsletter · Issue 2 · color options</p>
+  <h1 class="page-title">Three variants to compare on phone</h1>
+  <p class="page-sub">Current brick-red replaced with three alternatives. Same template, same Fulani-indigo eyebrow accent. Scroll to view each variant in full. Tap a chip below to jump.</p>
+  <div class="nav-jump">
+    <a class="a" href="#a">Indigo</a>
+    <a class="b" href="#b">Ink</a>
+    <a class="c" href="#c">Gold</a>
+  </div>
+</header>
+
+<section class="variant" id="a">
+  <div class="variant-head">
+    <div class="swatch a"></div>
+    <div>
+      <div class="variant-id">Variant A</div>
+      <div class="variant-name">Indigo primary</div>
+      <div class="variant-meta">#1F2E47 · Fulani heritage doubled</div>
+    </div>
+  </div>
+  <p class="variant-note"><strong>What changes:</strong> brick replaced by the same Fulani-indigo already used for eyebrows and divider. Single-color brand spine, doubles down on Fouta Djallon heritage. Most distinctive vs typical operator/SaaS palettes. <strong>Trade-off:</strong> if you ever want a fire-engine alert color, you lose it as default.</p>
+  <div class="frame-wrap"><iframe src="/internal/preview/newsletter-issue-2-variant-A-indigo.html" title="Indigo variant" loading="lazy"></iframe></div>
+</section>
+
+<section class="variant" id="b">
+  <div class="variant-head">
+    <div class="swatch b"></div>
+    <div>
+      <div class="variant-id">Variant B</div>
+      <div class="variant-name">Ink primary</div>
+      <div class="variant-meta">#161513 · editorial publication aesthetic</div>
+    </div>
+  </div>
+  <p class="variant-note"><strong>What changes:</strong> brick replaced by the same ink used for body text. Restrained, NYT/Substack/Stratechery aesthetic. CTAs read as paper-on-ink buttons. Fulani-indigo eyebrows still carry the cultural accent. <strong>Trade-off:</strong> CTAs less visually loud; relies on layout + typography for hierarchy.</p>
+  <div class="frame-wrap"><iframe src="/internal/preview/newsletter-issue-2-variant-B-ink.html" title="Ink variant" loading="lazy"></iframe></div>
+</section>
+
+<section class="variant" id="c">
+  <div class="variant-head">
+    <div class="swatch c"></div>
+    <div>
+      <div class="variant-id">Variant C</div>
+      <div class="variant-name">Gold primary</div>
+      <div class="variant-meta">#C28E26 · warm, premium, West African evocation</div>
+    </div>
+  </div>
+  <p class="variant-note"><strong>What changes:</strong> brick replaced by a deeper warm gold. Reads premium, warm, hint of brass-and-leather. Pairs with indigo eyebrow for a striking Fulani-anchored complementary palette. <strong>Trade-off:</strong> gold on paper has lower contrast than brick or indigo; needs care on links/CTAs to stay accessible.</p>
+  <div class="frame-wrap"><iframe src="/internal/preview/newsletter-issue-2-variant-C-gold.html" title="Gold variant" loading="lazy"></iframe></div>
+</section>
+
+</body>
+</html>
