@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAW Guerilla Queue — Week 1</title>
+<style>
+  :root{
+    --bg:#0f1419; --surface:#161c24; --surface2:#1c242e; --ink:#eef2f6;
+    --muted:#93a1b0; --hair:rgba(255,255,255,.06);
+    --blue:#3b82f6; --green:#22c55e; --accent:#38bdf8;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:64px}
+  .wrap{max-width:760px;margin:0 auto;padding:20px 16px}
+  header{padding:8px 0 16px}
+  .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h1{font-size:25px;font-weight:800;margin:6px 0 4px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:14px}
+  .stat-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .stat{background:var(--surface);border-radius:12px;padding:10px 14px;flex:1;min-width:110px}
+  .stat b{display:block;font-size:20px;font-weight:800;color:var(--accent)}
+  .stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:30px 0 12px}
+  .card{background:var(--surface);border-radius:16px;padding:18px;margin-bottom:14px}
+  .card-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.03em}
+  .b-day{background:rgba(59,130,246,.16);color:#7eb0ff}
+  .b-x{background:rgba(255,255,255,.1);color:#cfd8e3}
+  .b-li{background:rgba(56,189,248,.16);color:#7dd3fc}
+  .b-v{background:rgba(34,197,94,.16);color:#5ee08a;margin-left:auto}
+  .b-c{background:rgba(34,197,94,.16);color:#5ee08a}
+  .post{background:var(--surface2);border-radius:12px;padding:14px;font-size:15px;white-space:pre-wrap;color:#dce4ec}
+  .why{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+  .why b{color:#b9c4cf}
+  .copybtn{width:100%;margin-top:12px;background:var(--blue);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+  .copybtn:active{background:#2563eb}
+  .copybtn.done{background:var(--green)}
+  .cta{font-size:12px;color:var(--accent);margin-top:8px;font-weight:600}
+  .comm{background:var(--surface);border-radius:14px;padding:16px;margin-bottom:12px}
+  .comm h3{font-size:15px;font-weight:700;margin-bottom:4px}
+  .comm .look{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+  .comm .tmpl{background:var(--surface2);border-radius:10px;padding:12px;font-size:14px;color:#dce4ec;white-space:pre-wrap}
+  .comm .rule{font-size:12px;color:var(--muted);margin-top:8px}
+  .check{background:var(--surface);border-radius:14px;padding:18px}
+  .check li{list-style:none;padding:12px 0;border-bottom:1px solid var(--hair);font-size:15px}
+  .check li:last-child{border-bottom:none}
+  .check b{color:var(--accent)}
+  .check small{color:var(--muted);display:block;font-size:12.5px;margin-top:3px}
+  .blocker{background:rgba(245,158,11,.1);border-radius:12px;padding:14px;margin-bottom:14px;font-size:13.5px;color:#fbd38d}
+  .blocker b{color:#fcd34d}
+  .motion{background:rgba(56,189,248,.08);border-radius:12px;padding:14px;margin-bottom:20px;font-size:13.5px;color:#bfe6f7}
+  .motion b{color:#7dd3fc}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 0}
+  @media(min-width:760px){ body{font-size:17px} h1{font-size:32px} .post{font-size:16px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Human At Work — Guerilla Marketing</div>
+    <h1>Week 1 Active Queue</h1>
+    <div class="sub">Mon-Sat schedule · Sun rest · all links via humanatwork.ai · drafts for your OK</div>
+    <div class="stat-row">
+      <div class="stat"><b>6</b><span>posts</span></div>
+      <div class="stat"><b>≥95</b><span>voice + CTQ</span></div>
+      <div class="stat"><b>6/6</b><span>Hormozi-aligned</span></div>
+    </div>
+  </header>
+
+  <div class="motion"><b>How this runs:</b> these are drafts. You review → give the OK → <b>Blotato posts them on the planned schedule</b> (your personal LinkedIn/X). Community comments below stay manual — authentic engagement, never automated.</div>
+
+  <div class="blocker"><b>⚠ Do before the first post:</b> publish the free "5 Starter Prompts" pack on Gumroad (currently unpublished). Every CTA points to it. 2-min toggle. Scanner (geolisted.co/rank-check) is already live as backup.</div>
+
+  <h2>The 6 posts — tap to copy</h2>
+
+  <div class="card">
+    <div class="card-top"><span class="badge b-day">MON</span><span class="badge b-li">LinkedIn</span><span class="badge b-c">CTQ 96</span><span class="badge b-v">Voice 96</span></div>
+    <div class="post" id="p1">I built 14 tools people want. I just forgot the part where they find out they exist.
+
+Here's the honest version. humanatwork.ai is live. Fourteen products I use in my own operation before anyone else touches them.
+
+Sales so far: zero.
+Visitors last month: about 28.
+
+That number told me exactly what was wrong. I don't have a product problem. I have a distribution problem. I built the thing and skipped the part where you tell people.
+
+I've done this before in other forms. Stayed quiet, did the work, assumed the work would speak. It doesn't. A good product nobody sees loses to a loud average one. I keep relearning that.
+
+So I'm fixing it in public. Every day this week I give away one useful thing and point one operator toward one tool. No scoreboard hidden.
+
+Start where I'd start anyone: the free 5-prompt pack. Five prompts I actually run, takes two minutes, costs you nothing and no card to grab it.
+humanatwork.ai/store</div>
+    <div class="cta">CTA → free 5-prompt pack · ⭐ recommended start (the spine)</div>
+    <button class="copybtn" data-t="p1">Copy post</button>
+    <div class="why"><b>Why:</b> distribution-problem confession with a real earned anchor (the quiet-and-assume-the-work-speaks failure pattern). Magnet value equation visible (free, 2 min, no card).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top"><span class="badge b-day">TUE</span><span class="badge b-x">X</span><span class="badge b-c">CTQ 97</span><span class="badge b-v">Voice 96</span></div>
+    <div class="post" id="p2">The prompt I run to plan a week in 4 minutes:
+
+"Act as my chief of staff. Here's my full plate this week: [dump it raw]. Sort it into Do / Delegate / Drop. Then flag the one task that, done first, makes the rest easier or unnecessary."
+
+That last line is the whole trick. Most weeks have exactly one.
+
+10 more I actually use, free, no card: humanatwork.ai/store</div>
+    <div class="cta">CTA → free pack (humanatwork.ai/store)</div>
+    <button class="copybtn" data-t="p2">Copy post</button>
+    <div class="why"><b>Why:</b> salty-pretzel done right — full prompt given in-post, reveal 10 more. Highest CTQ (97). Value equation fully visible.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top"><span class="badge b-day">WED</span><span class="badge b-li">LinkedIn</span><span class="badge b-c">CTQ 96</span><span class="badge b-v">Voice 95</span></div>
+    <div class="post" id="p3">Most AI advice tells you to start. Almost none of it tells you with what.
+
+I watched this happen to myself. Read a sharp thread, get fired up, open ChatGPT, stare at a blank box. The advice was right. It just stopped one inch short of useful.
+
+The gap isn't motivation. It's the first concrete move. "Use AI in your business" is a slogan. "Paste your last 10 customer emails, ask it for the 3 questions you answer most" is something you can do before lunch.
+
+So I build the with-what, not the why. Tools that hand you the first move instead of another reason to feel behind.
+
+Here's a first move you can make right now. If you don't know how your business looks to an AI when someone asks about your industry, that's worth knowing before you spend a dollar on tools. I built a free scanner that shows you in about a minute. No card.
+geolisted.co/rank-check</div>
+    <div class="cta">CTA → free scanner (geolisted.co/rank-check)</div>
+    <button class="copybtn" data-t="p3">Copy post</button>
+    <div class="why"><b>Why:</b> reveal-problem magnet; dream outcome now in prospect language ("how your business looks to an AI"). CTA reframed as a first move you can make now.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top"><span class="badge b-day">THU</span><span class="badge b-x">X</span><span class="badge b-c">CTQ 95</span><span class="badge b-v">Voice 95</span></div>
+    <div class="post" id="p4">I've been every one of these operators at some point. Pick where you are, I'll tell you the next AI move:
+
+1. Never started. Too many tools, no first step.
+2. Dabbling. Used ChatGPT, no system.
+3. Running 1-2 workflows, want more leverage.
+4. Ready to run agents, not just chat.
+
+Reply your number. Free starter pack for everyone either way: humanatwork.ai/store</div>
+    <div class="cta">CTA → free pack + reply-bait (fuels DMs)</div>
+    <button class="copybtn" data-t="p4">Copy post</button>
+    <div class="why"><b>Why:</b> earned anchor ("I've been every one of these") lifts the router past the generic cap. Segmentation + everyone-gets-the-magnet. Thinnest margin (95/95) — fallback = single-operator confession if you want more cushion.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top"><span class="badge b-day">FRI</span><span class="badge b-li">LinkedIn</span><span class="badge b-c">CTQ 96</span><span class="badge b-v">Voice 96</span></div>
+    <div class="post" id="p5">I spent more time building the tool than telling anyone it existed. Backwards.
+
+I've been fixing that in public this week, and the lesson keeps getting sharper. A good product nobody sees loses to an average product everybody hears about. I hate that this is true. It's still true.
+
+Here's what changed. I stopped treating marketing as the thing I'd get to later and started treating one useful post a day as part of the build. Same craft I put into the product, pointed at a different surface.
+
+The product was always the easy part for me. Saying the useful thing out loud, on purpose, every day, and pointing one person toward one tool. That's the muscle I skipped for years.
+
+If you've built something good that nobody's found yet, build that muscle next to me. Grab the free pack and you'll see exactly how I write the things I give away.
+humanatwork.ai/store</div>
+    <div class="cta">CTA → free pack (humanatwork.ai/store)</div>
+    <button class="copybtn" data-t="p5">Copy post</button>
+    <div class="why"><b>Why:</b> craft lesson, closes the week's loop. Killed the staccato fragment. "Good product nobody sees loses" is the quotable line. Magnet as proof-of-craft.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top"><span class="badge b-day">SAT</span><span class="badge b-x">X</span><span class="badge b-c">CTQ 95</span><span class="badge b-v">Voice 96</span></div>
+    <div class="post" id="p6">Everyone's selling "AI replaces you." I build the opposite bet.
+
+AI is a tool. Not a savior, not a devil. It's clever, it's not wise, and it still needs a human holding the wheel. The operators who win this decade hand it the boring work and spend their hours on the part only a person can do.
+
+I build for that person. Free starter pack, no card: humanatwork.ai/store</div>
+    <div class="cta">CTA → free pack (humanatwork.ai/store)</div>
+    <button class="copybtn" data-t="p6">Copy post</button>
+    <div class="why"><b>Why:</b> your strongest brand-spine asset (AI-as-tool, "clever not wise, human owns the wheel") pushed to front, screenshottable. Affirmative status-hook positioning.</div>
+  </div>
+
+  <h2>Community drops — comment-first, link-last (manual)</h2>
+
+  <div class="comm">
+    <h3>r/Entrepreneur</h3>
+    <div class="look">Look for: "how are you actually using AI" / "AI tools worth it" / "drowning in tasks, where do I start"</div>
+    <div class="tmpl" id="c1">The thing that finally worked for me wasn't a tool, it was one prompt. I dump my whole week into ChatGPT and ask it to sort everything into Do / Delegate / Drop, then flag the one task that makes the rest easier. Takes 4 minutes. Try it Monday and see if it changes how the week feels.</div>
+    <button class="copybtn" data-t="c1">Copy comment</button>
+    <div class="rule">Link only if they reply "got more like this?" → offer the free pack then. Wait for the yes.</div>
+  </div>
+
+  <div class="comm">
+    <h3>r/smallbusiness</h3>
+    <div class="look">Look for: "is it worth paying for AI tools" / "how do I know if my business shows up online" / owner-overwhelm</div>
+    <div class="tmpl" id="c2">Before paying for anything, find out what an AI search actually says about your business right now. Most owners have never checked. If you're invisible to ChatGPT and Google's AI answers, no tool fixes that until you know the baseline. You can check it free in about a minute, no signup, then decide if it's even a problem worth solving.</div>
+    <button class="copybtn" data-t="c2">Copy comment</button>
+    <div class="rule">Scanner link (geolisted.co/rank-check) OK here IF thread is about visibility. Otherwise hold it.</div>
+  </div>
+
+  <div class="comm">
+    <h3>IndieHackers</h3>
+    <div class="look">Look for: "no traffic / no sales" / build-in-public / "distribution as a solo founder" — rewards candor</div>
+    <div class="tmpl" id="c3">Living this right now. 14 products live, ~28 visitors last month, zero sales. Diagnosed it as a distribution problem, not a product problem, and I'm fixing it in public this week: one useful post a day, point one person to one tool, show the scoreboard. The reframe that unlocked it: treat one post a day as part of the build, not a thing you do "later."</div>
+    <button class="copybtn" data-t="c3">Copy comment</button>
+    <div class="rule">Drop humanatwork.ai only if asked "what are you building." Lead with the lesson.</div>
+  </div>
+
+  <div class="comm">
+    <h3>PGA Slack / Skool peers</h3>
+    <div class="look">Look for: peers on distribution, first sales, content cadence, "what's working" check-ins</div>
+    <div class="tmpl" id="c4">Sharing a miss in case it helps someone: I built 14 solid products and skipped distribution entirely. 28 visitors in 30 days. The fix wasn't more product, it was a daily motion: 1 post + 3 genuine community comments + reply to anyone who engages. Started this week. Happy to share the exact 15-min checklist I'm running if anyone wants it.</div>
+    <button class="copybtn" data-t="c4">Copy comment</button>
+    <div class="rule">Relationship-first, zero pitch. Never drop the URL unsolicited. Let curiosity pull.</div>
+  </div>
+
+  <h2>The motion</h2>
+  <ul class="check">
+    <li><b>Weekly (once):</b> review these 6 posts → give the OK<small>Blotato then schedules + posts them on the Mon-Sat schedule. You don't touch posting after the OK.</small></li>
+    <li><b>Daily (~10 min):</b> 3 community value-comments<small>One thread each from 2-3 communities. Comment-first, full answer, link only if it completes the help and never on first interaction. Adapt to the real thread, never paste cold.</small></li>
+    <li><b>Daily (~3 min):</b> reply to every DM + comment<small>Reply publicly first. Move to DM only if they ask for the resource. Anyone asking "where's the pack" gets humanatwork.ai/store.</small></li>
+    <li><b>Sat +2 min:</b> note top-engagement post + which community sent clicks<small>Audience + list signal over sales in week 1. Adjust next week from real data.</small></li>
+  </ul>
+
+  <footer>Drafts for your OK — nothing posted. Voice + CTQ ≥95, Hormozi-aligned, 2026-05-29.</footer>
+</div>
+<script>
+  document.querySelectorAll('.copybtn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var el=document.getElementById(b.dataset.t);
+      var txt=el.innerText;
+      navigator.clipboard.writeText(txt).then(function(){
+        var o=b.textContent;b.textContent='✓ Copied';b.classList.add('done');
+        setTimeout(function(){b.textContent=o;b.classList.remove('done')},1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>
