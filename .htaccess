@@ -6,8 +6,8 @@
 # Shorteners /k/ /x/ /r/ added 2026-05-18 per feedback_short_links_for_long_urls.md
 #
 # DO NOT hand-edit. Re-run the generator instead.
-# Generated: 2026-05-18 20:52:19 Mountain Daylight Time
-# Slug rules: 62  Shortener rules: 16  Catch-all: 1
+# Generated: 2026-06-05 11:30:09 Mountain Daylight Time
+# Slug rules: 63  Shortener rules: 16  Catch-all: 1
 
 RewriteEngine On
 
@@ -31,9 +31,6 @@ RewriteRule ^x/thu/?$ /store/?utm_source=x&utm_campaign=haw_thu_surprise [R=301,
 RewriteRule ^x/wk1/?$ /atlas-sample/?utm_source=x&utm_campaign=haw_wk1_lessons [R=301,L,QSA]
 RewriteRule ^x/wrap/?$ /store/?utm_source=x&utm_campaign=haw_wk1_wrap [R=301,L,QSA]
 RewriteRule ^r/rida-day2/?$ /store/?utm_source=reddit&utm_campaign=reddit_entrepreneurridealong&utm_content=day2_launch [R=301,L,QSA]
-RewriteRule ^r/v3/?$ /atlas-sample/?utm_source=linkedin&utm_medium=organic&utm_campaign=launch_v3&utm_content=first_comment [R=301,L,QSA]
-RewriteRule ^r/news1/?$ /store/?utm_source=beehiiv&utm_medium=email&utm_campaign=launch_issue_1&utm_content=see_full_shelf [R=301,L,QSA]
-RewriteRule ^r/x-mon/?$ /atlas-sample/?utm_source=x&utm_medium=organic&utm_campaign=launch_mon&utm_content=top_reply [R=301,L,QSA]
 
 # --- Per-SKU 301 redirects: <slug> -> /store with attribution ---
 RewriteRule ^absorb-protocol-pack-extended/?$ /store/?utm_source=reel&utm_content=absorb-protocol-pack-extended-reel [R=301,L,QSA]
@@ -48,6 +45,7 @@ RewriteRule ^audit-registry-redacted/?$ /store/?utm_source=reel&utm_content=audi
 RewriteRule ^brand-routing-index/?$ /store/?utm_source=reel&utm_content=brand-routing-index-reel [R=301,L,QSA]
 RewriteRule ^career-os-notion/?$ /store/?utm_source=reel&utm_content=career-os-notion-reel [R=301,L,QSA]
 RewriteRule ^catalyst-operator-bundle/?$ /store/?utm_source=reel&utm_content=catalyst-operator-bundle-reel [R=301,L,QSA]
+RewriteRule ^cleanup-prompt-pack/?$ /store/?utm_source=reel&utm_content=cleanup-prompt-pack-reel [R=301,L,QSA]
 RewriteRule ^cold-email-pack/?$ /store/?utm_source=reel&utm_content=cold-email-pack-reel [R=301,L,QSA]
 RewriteRule ^cold-teardown-council-mandates/?$ /store/?utm_source=reel&utm_content=cold-teardown-council-mandates-reel [R=301,L,QSA]
 RewriteRule ^content-multiplier/?$ /store/?utm_source=reel&utm_content=content-multiplier-reel [R=301,L,QSA]
