@@ -349,7 +349,7 @@
       bookText.appendChild(bookP);
 
       const bookBtn = document.createElement('a');
-      bookBtn.href = 'https://calendly.com/boubacarbarry/ai-readiness-call-human-at-work';
+      bookBtn.href = 'https://agentshq.boubacarbarry.com/api/orc/email/book/ai-readiness';
       bookBtn.target = '_blank';
       bookBtn.rel = 'noopener';
       bookBtn.className = 'btn-book';
