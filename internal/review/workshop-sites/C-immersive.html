@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0B0907">
+<title>AI Without Getting Burned: A Workshop for People Who Run Things</title>
+<meta name="description" content="A hands-on 90-minute workshop in Lehi for Utah owner-operators. What AI is actually worth using, what to skip, and a live look at a real business run on a system I built myself. You leave having built something you keep.">
+
+<!-- ============================================================
+     SITE C - IMMERSIVE WARM-TECH DEPTH. Competing $100K-grade build.
+     DRAFT, staged 2026-06-07. Nothing publishes. No spend.
+     Fill from AP meeting:
+       [VENUE] = Peerspace "Bright & Flexible", Lehi (track)
+       [EXACT_TIME] = e.g. 6:00 to 7:30pm MT
+       [PRICE] = band $47-97, lock after AP input
+       [STRIPE_LINK] = Stripe payment link, paste when created
+     Design: dark keynote room, warm ember light, layered depth.
+     ============================================================ -->
+
+<meta property="og:title" content="AI Without Getting Burned: A Workshop for People Who Run Things">
+<meta property="og:description" content="Hands-on, 90 minutes, Lehi. What AI is worth using, what to skip, and a live look at a real business run on a system I built. You leave having built something you keep.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="ic-workshop-site-C-img/hero.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --void:#0B0907;
+  --coal:#120E0B;
+  --ash:#1A1410;
+  --stone:#241C16;
+  --stone-2:#2C231B;
+  --ember:#E8743B;
+  --ember-deep:#C2511F;
+  --gold:#E3B264;
+  --cream:#F3E9DA;
+  --cream-soft:rgba(243,233,218,.72);
+  --cream-faint:rgba(243,233,218,.48);
+  --cream-ghost:rgba(243,233,218,.20);
+  --hair:rgba(227,178,100,.16);
+  --hair-soft:rgba(227,178,100,.09);
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --serif:'Spectral',Georgia,serif;
+  --grot:'Bricolage Grotesque',-apple-system,system-ui,sans-serif;
+  --body:'Public Sans',-apple-system,system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--cream);background:var(--void);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* one consistent warm key light pinned upper-left, reads as a single room */
+.roomlight{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(80% 60% at 14% 8%, rgba(232,116,59,.16), transparent 62%),
+    radial-gradient(70% 70% at 88% 96%, rgba(227,178,100,.07), transparent 60%),
+    radial-gradient(120% 90% at 50% 0%, rgba(20,15,11,.0), rgba(7,5,4,.55) 100%);}
+/* fine film grain over everything */
+.grain{position:fixed;inset:0;z-index:50;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#spark{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+
+/* cursor */
+.cur,.curR{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cur{width:6px;height:6px;background:var(--ember)}
+.curR{width:30px;height:30px;border:1.5px solid rgba(232,116,59,.45);transition:width .25s var(--ease),height .25s var(--ease),border-color .25s var(--ease)}
+.curR.hot{width:52px;height:52px;border-color:rgba(227,178,100,.7)}
+@media(hover:none),(max-width:900px){.cur,.curR{display:none}}
+
+.kicker{font-family:var(--grot);font-weight:600;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+
+/* masthead */
+.mast{position:relative;z-index:3;border-bottom:1px solid var(--hair-soft)}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 24px}
+.mast .mk{font-family:var(--serif);font-size:1.14rem;letter-spacing:.01em;color:var(--cream)}
+.mast .mk b{font-weight:600}
+.mast .mk i{font-style:italic;color:var(--cream-soft)}
+.mast .mr{font-family:var(--grot);font-weight:600;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-faint)}
+.mast .mr .d{color:var(--ember);padding:0 8px}
+@media(max-width:600px){.mast .mr{display:none}}
+
+/* HERO */
+.hero{position:relative;z-index:3;padding:clamp(40px,5vw,68px) 0 clamp(36px,4vw,52px);min-height:78vh;display:flex;align-items:center}
+.hero .inner{width:100%}
+.hero .tag{display:flex;align-items:center;gap:14px;margin-bottom:26px;color:var(--ember)}
+.hero .tag .ln{height:1px;flex:1;background:linear-gradient(90deg,var(--hair),transparent)}
+.hero .tag span:last-child{color:var(--gold)}
+
+.poster{font-family:var(--serif);font-weight:700;line-height:.9;letter-spacing:-.015em;color:var(--cream);
+  font-size:clamp(3rem,1rem+10.5vw,9rem);text-transform:none}
+.poster .l{display:block;overflow:hidden;padding-bottom:.02em}
+.poster .ch{display:inline-block;will-change:transform}
+.burnword{position:relative;display:inline-block;will-change:transform}
+/* ignite: ember sweep + heat-shimmer underglow */
+.burnword::before{content:"";position:absolute;left:-.04em;right:-.04em;bottom:.04em;top:.08em;z-index:-1;
+  background:radial-gradient(60% 120% at 50% 100%, rgba(232,116,59,.55), rgba(194,81,31,.0) 70%);
+  filter:blur(18px);opacity:0;transition:opacity 1s var(--ease)}
+.burnword.lit::before{opacity:1}
+/* burnword: ALWAYS visible. ember solid is the floor; gradient-clip is enhancement only.
+   if background-clip:text is unsupported or unpainted, the ember color underneath shows through. */
+.js-on .burnword{color:var(--ember)}
+.js-on .burnword.lit{
+  background:linear-gradient(92deg,var(--gold) 0%,var(--ember) 42%,var(--ember-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 0 22px rgba(232,116,59,.35))}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .js-on .burnword.lit{-webkit-text-fill-color:transparent}
+}
+/* heat shimmer keyframe, runs once */
+@keyframes shimmer{0%{filter:drop-shadow(0 0 22px rgba(232,116,59,.35)) blur(0)}30%{filter:drop-shadow(0 1px 26px rgba(232,116,59,.55)) blur(.4px)}100%{filter:drop-shadow(0 0 22px rgba(232,116,59,.35)) blur(0)}}
+.burnword.shimmer{animation:shimmer 1.4s var(--ease) .2s 1}
+
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,4vw,56px);align-items:end;margin-top:clamp(30px,4vw,46px)}
+@media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:30px}}
+.hero-lead{font-family:var(--serif);font-size:clamp(1.16rem,1rem+.65vw,1.46rem);line-height:1.42;color:var(--cream-soft);max-width:42ch}
+.hero-lead b{color:var(--cream);font-weight:500}
+.hero-cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:28px}
+.cta{display:inline-flex;align-items:center;gap:11px;font-family:var(--grot);font-weight:700;font-size:1rem;
+  background:var(--ember);color:#160c06;padding:15px 28px;border:1px solid var(--ember);border-radius:2px;cursor:pointer;
+  box-shadow:0 0 0 rgba(232,116,59,0);transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s var(--ease),color .25s var(--ease)}
+.cta:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-2px);box-shadow:0 14px 40px -12px rgba(232,116,59,.55)}
+.cta svg{width:17px;height:17px}
+.cta.ghost{background:transparent;color:var(--cream);border-color:var(--hair)}
+.cta.ghost:hover{background:rgba(243,233,218,.06);border-color:var(--gold);color:var(--gold);box-shadow:none;transform:translateY(-2px)}
+.price-note{font-family:var(--grot);font-weight:500;font-size:.8rem;letter-spacing:.03em;color:var(--cream-faint)}
+.price-note .ph{color:var(--gold)}
+a:focus-visible,button:focus-visible{outline:2.5px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+/* hero photo with depth tilt */
+.tilt{perspective:1100px}
+.hero-photo{position:relative;border-radius:4px;overflow:hidden;transform-style:preserve-3d;will-change:transform;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.85), 0 0 0 1px var(--hair);transition:transform .15s ease-out}
+.hero-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(11,9,7,.55))}
+.hero-photo .cap{position:absolute;left:14px;bottom:13px;z-index:2;font-family:var(--grot);font-weight:600;font-size:.64rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cream);padding:6px 11px;background:rgba(11,9,7,.55);
+  border:1px solid var(--hair);border-radius:2px;backdrop-filter:blur(4px)}
+.hero-photo .glint{position:absolute;left:-30%;top:0;width:30%;height:100%;z-index:3;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(243,233,218,.16),transparent)}
+
+/* ticker */
+.ticker{margin-top:clamp(40px,5vw,58px);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);overflow:hidden;position:relative;z-index:3;background:rgba(18,14,11,.6)}
+.ticker .track{display:inline-flex;white-space:nowrap;will-change:transform;animation:slide 30s linear infinite}
+.ticker:hover .track{animation-play-state:paused}
+.ticker span{font-family:var(--serif);font-style:italic;color:var(--cream-soft);font-size:1rem;letter-spacing:.04em;padding:12px 0}
+.ticker .dot{color:var(--ember);padding:0 24px;font-style:normal}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* section frame */
+.sec{padding:clamp(64px,7vw,104px) 0;position:relative;z-index:3}
+.sec.alt{background:linear-gradient(180deg,var(--coal),var(--ash))}
+.sec.deep{background:var(--void)}
+.shead{display:flex;align-items:baseline;gap:18px;margin-bottom:18px}
+.shead .no{font-family:var(--grot);font-weight:800;font-size:.8rem;letter-spacing:.08em;color:var(--ember)}
+.shead .lab{font-family:var(--grot);font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-faint)}
+.shead .lab::before{content:"";display:inline-block;width:26px;height:1px;background:var(--hair);vertical-align:middle;margin-right:14px}
+.sec h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,1.3rem+2.5vw,3.3rem);line-height:1.03;letter-spacing:-.015em;color:var(--cream);max-width:20ch;margin-bottom:20px}
+.sec h2 em{font-style:italic;color:var(--gold);font-weight:500}
+.sec .lede{font-size:1.1rem;color:var(--cream-soft);max-width:58ch;line-height:1.62}
+
+/* the question */
+.qgrid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(34px,5vw,64px);align-items:start;margin-top:6px}
+@media(max-width:840px){.qgrid{grid-template-columns:1fr;gap:30px}}
+.bigq{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,1.2rem+2vw,2.9rem);line-height:1.18;color:var(--cream)}
+.bigq .u{color:var(--ember);position:relative;white-space:nowrap}
+.bigq .u::after{content:"";position:absolute;left:0;right:0;bottom:-.02em;height:2px;background:linear-gradient(90deg,var(--ember),var(--gold))}
+.qbody p{font-size:1.06rem;color:var(--cream-soft);margin-bottom:16px;line-height:1.7}
+.qbody p strong{color:var(--cream);font-weight:600}
+
+/* outcomes: editorial numbered list */
+.olist{margin-top:38px;border-top:1px solid var(--hair)}
+.oitem{display:grid;grid-template-columns:84px 1fr;gap:28px;padding:32px 0;border-bottom:1px solid var(--hair-soft);align-items:start;transition:background .4s var(--ease)}
+.oitem:hover{background:rgba(232,116,59,.035)}
+.oitem .on{font-family:var(--serif);font-weight:400;font-style:italic;font-size:2.4rem;line-height:1;color:var(--ember);opacity:.85}
+.oitem .ic{display:inline-flex;margin-bottom:13px;color:var(--gold)}
+.oitem .ic svg{width:24px;height:24px}
+.oitem h3{font-family:var(--grot);font-weight:700;font-size:1.34rem;color:var(--cream);line-height:1.18;margin-bottom:9px}
+.oitem p{font-size:1.02rem;color:var(--cream-soft);max-width:60ch;line-height:1.6}
+@media(max-width:600px){.oitem{grid-template-columns:1fr;gap:8px}.oitem .on{font-size:1.9rem}}
+
+/* depth band: room atmosphere full-bleed */
+.band{position:relative;z-index:3;min-height:62vh;display:flex;align-items:center;overflow:hidden;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.band .bg{position:absolute;inset:0;z-index:0;will-change:transform}
+.band .bg img{width:100%;height:118%;object-fit:cover;object-position:center 40%}
+.band .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,9,7,.92) 0%,rgba(11,9,7,.62) 46%,rgba(11,9,7,.78) 100%)}
+.band .wrap{z-index:2}
+.band .bq{font-family:var(--serif);font-weight:500;font-size:clamp(1.6rem,1.1rem+2.2vw,3rem);line-height:1.2;color:var(--cream);max-width:18ch}
+.band .bq em{font-style:italic;color:var(--gold)}
+.band .bsub{font-family:var(--grot);font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);margin-bottom:18px}
+
+/* who: two columns */
+.fw{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:40px;border:1px solid var(--hair);border-radius:4px;overflow:hidden}
+@media(max-width:760px){.fw{grid-template-columns:1fr}}
+.fwc{padding:32px 34px}
+.fwc.a{background:rgba(243,233,218,.025)}
+.fwc.b{background:rgba(232,116,59,.05);border-left:1px solid var(--hair)}
+@media(max-width:760px){.fwc.b{border-left:none;border-top:1px solid var(--hair)}}
+.fwc h4{font-family:var(--grot);font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px;color:var(--cream)}
+.fwc.b h4{color:var(--ember)}
+.fwc ul{list-style:none}
+.fwc li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;font-size:1rem;color:var(--cream-soft);border-bottom:1px solid var(--hair-soft)}
+.fwc li:last-child{border-bottom:none}
+.fwc li svg{width:18px;height:18px;flex:0 0 18px;margin-top:3px;color:var(--gold)}
+.fwc.b li svg{color:var(--ember)}
+
+/* host */
+.hgrid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(30px,4vw,56px);align-items:center;margin-top:4px}
+@media(max-width:840px){.hgrid{grid-template-columns:1fr;gap:28px}}
+.hphoto{position:relative;border-radius:4px;overflow:hidden;box-shadow:0 30px 70px -28px rgba(0,0,0,.8),0 0 0 1px var(--hair)}
+.hphoto img{width:100%;aspect-ratio:3/2.05;object-fit:cover;display:block}
+.hphoto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(11,9,7,.5))}
+.hphoto .cap{position:absolute;left:13px;bottom:12px;font-family:var(--grot);font-weight:600;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);padding:5px 10px;background:rgba(11,9,7,.5);border:1px solid var(--hair);border-radius:2px}
+.hlede{font-family:var(--serif);font-weight:500;font-size:clamp(1.35rem,1.05rem+1.2vw,2rem);line-height:1.26;color:var(--cream);margin-bottom:20px}
+.hbody p{font-size:1.04rem;color:var(--cream-soft);line-height:1.7;margin-bottom:14px}
+.hbody p strong{color:var(--cream);font-weight:600}
+.sig{font-family:var(--serif);font-style:italic;font-size:1.38rem;color:var(--gold);margin-top:14px}
+.sig span{display:block;font-family:var(--grot);font-style:normal;font-weight:600;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-faint);margin-top:5px}
+
+/* agenda */
+.agl{margin-top:36px;border-top:1px solid var(--hair)}
+.agr{display:grid;grid-template-columns:150px 1fr;gap:30px;padding:24px 0;border-bottom:1px solid var(--hair-soft);align-items:baseline}
+.agr .at{font-family:var(--grot);font-weight:700;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ember)}
+.agr h4{font-family:var(--serif);font-weight:600;font-size:1.4rem;color:var(--cream);margin-bottom:5px}
+.agr p{font-size:1.02rem;color:var(--cream-soft);max-width:62ch}
+@media(max-width:560px){.agr{grid-template-columns:1fr;gap:6px}}
+
+/* final */
+.final{position:relative;z-index:3;text-align:center;padding:clamp(80px,9vw,128px) 0;overflow:hidden;background:radial-gradient(70% 90% at 50% 0%,rgba(232,116,59,.1),transparent 60%),var(--void);border-top:1px solid var(--hair)}
+.final .kicker{color:var(--ember);margin-bottom:22px;display:inline-block}
+.final h2{font-family:var(--serif);font-weight:700;font-size:clamp(2.3rem,1.5rem+4vw,5rem);line-height:.98;color:var(--cream);max-width:15ch;margin:0 auto 20px}
+.final h2 em{font-style:italic;color:var(--gold)}
+.final p{font-size:1.12rem;color:var(--cream-soft);max-width:46ch;margin:0 auto 36px}
+.regmeta{display:flex;justify-content:center;flex-wrap:wrap;margin-top:48px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.rm{padding:22px 34px;border-right:1px solid var(--hair-soft)}
+.rm:last-child{border-right:none}
+.rm .k{font-family:var(--grot);font-weight:600;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:7px}
+.rm .v{font-family:var(--serif);font-size:1.16rem;color:var(--cream)}
+.rm .v .ph{color:var(--gold)}
+@media(max-width:600px){.rm{flex:0 0 50%;border-right:none;border-bottom:1px solid var(--hair-soft);padding:16px}}
+
+/* faq */
+.faql{margin-top:36px;max-width:800px;border-top:1px solid var(--hair)}
+.fi{border-bottom:1px solid var(--hair-soft)}
+.fq{width:100%;text-align:left;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 0;font-family:var(--serif);font-weight:500;font-size:1.28rem;color:var(--cream)}
+.fq svg{width:21px;height:21px;flex:0 0 21px;color:var(--ember);transition:transform .35s var(--ease)}
+.fi.open .fq svg{transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .42s var(--ease)}
+.fa p{padding:0 0 24px;font-size:1.03rem;color:var(--cream-soft);line-height:1.7;max-width:66ch}
+
+/* footer */
+footer{position:relative;z-index:3;background:var(--coal);border-top:1px solid var(--hair);padding:38px 0}
+footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer .fk{font-family:var(--serif);font-size:1.04rem;color:var(--cream)}
+footer .fm{font-family:var(--grot);font-weight:500;font-size:.78rem;letter-spacing:.02em;color:var(--cream-faint)}
+footer a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+
+/* sticky bar */
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(18,14,11,.92);backdrop-filter:blur(10px);border-top:1px solid var(--ember);transform:translateY(110%);transition:transform .45s var(--ease)}
+.stick.show{transform:translateY(0)}
+.stick .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px}
+.stick .st{font-family:var(--serif);font-weight:600;font-size:1.04rem;color:var(--cream)}
+.stick .sm{font-family:var(--grot);font-weight:500;font-size:.72rem;letter-spacing:.03em;color:var(--cream-faint);margin-top:2px}
+.stick .sm .ph{color:var(--gold)}
+.stick .cta{padding:11px 22px}
+@media(max-width:640px){.stick .sm{display:none}.stick .st{font-size:.9rem}}
+
+/* reveal: visible by default; JS hides only below-fold */
+.rv{opacity:1;transform:none}
+.js-on .rv.pre{opacity:0;transform:translateY(26px);will-change:opacity,transform}
+
+@media(prefers-reduced-motion:reduce){
+  .ticker .track{animation:none}
+  .burnword.shimmer{animation:none}
+  html{scroll-behavior:auto}
+  *{transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="roomlight" aria-hidden="true"></div>
+<canvas id="spark" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="curR" id="curR" aria-hidden="true"></div>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="mk"><b>Catalyst Works</b> &nbsp;<i>/ A live workshop</i></div>
+    <div class="mr">Lehi, Utah <span class="d">&bull;</span> June 2026</div>
+  </div>
+</header>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap inner">
+    <div class="tag kicker"><span>A hands-on night for owner-operators</span><span class="ln"></span><span>90 minutes</span></div>
+    <h1 class="poster" id="poster">
+      <span class="l"><span class="w">AI without</span></span>
+      <span class="l"><span class="w">getting <span class="burnword" id="burnword">burned</span></span></span>
+    </h1>
+    <div class="hero-grid">
+      <div>
+        <p class="hero-lead">For people who run things. What AI is actually worth using right now, what to skip, and a live look at a real business run on a system I built myself. <b>You leave having built something you keep.</b></p>
+        <div class="hero-cta-row">
+          <a href="[STRIPE_LINK]" class="cta" data-reg aria-label="Save my seat for the AI Without Getting Burned workshop">Save my seat
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="price-note"><span class="ph">[PRICE]</span> &middot; small room on purpose</span>
+        </div>
+      </div>
+      <div class="tilt"><div class="hero-photo rv" id="heroPhoto">
+        <img src="ic-workshop-site-C-img/hero.jpg" alt="Boubacar presenting to a room of about thirty business owners with open laptops in a warm, low-lit workshop">
+        <span class="glint" id="glint"></span>
+        <span class="cap">A real room, not a webinar</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ticker ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="track" id="track">
+    <span>Wednesday June 24</span><span class="dot">&bull;</span><span class="ph-t">[EXACT_TIME]</span><span class="dot">&bull;</span><span class="ph-t">[VENUE]</span><span class="dot">&bull;</span><span>Lehi, Utah</span><span class="dot">&bull;</span><span>You build it, you keep it</span><span class="dot">&bull;</span>
+    <span>Wednesday June 24</span><span class="dot">&bull;</span><span class="ph-t">[EXACT_TIME]</span><span class="dot">&bull;</span><span class="ph-t">[VENUE]</span><span class="dot">&bull;</span><span>Lehi, Utah</span><span class="dot">&bull;</span><span>You build it, you keep it</span><span class="dot">&bull;</span>
+  </div>
+</div>
+
+<!-- ===== the question ===== -->
+<section class="sec deep">
+  <div class="wrap">
+    <div class="shead"><span class="no">01</span><span class="lab">Why this room</span></div>
+    <h2>Two questions every owner is quietly asking</h2>
+    <div class="qgrid">
+      <div>
+        <p class="bigq">"<span class="u">What is actually worth using.</span> And how do I avoid <span class="u">getting burned</span> trying."</p>
+      </div>
+      <div class="qbody rv">
+        <p>Those are the two real questions. Not "what is a large language model." The owners I talk to are past that. They want to know where AI saves them real hours, where it quietly costs them, and what a person running a small business should do on Monday morning.</p>
+        <p>The honest answer does not come from a vendor with a demo to sell. <strong>It comes from someone who spent ten years training people on new tools and now runs his own business on the AI he is talking about.</strong></p>
+        <p>That is the room this workshop builds. Plain English. No hype. A live system you can watch work, and a thing you build yourself before you leave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== outcomes ===== -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="shead"><span class="no">02</span><span class="lab">What you leave with</span></div>
+    <h2>Not notes. <em>Something that works.</em></h2>
+    <p class="lede">Most AI talks send you home with a slide deck and a vague feeling. This one is built backward from what you can use the same day.</p>
+    <div class="olist">
+      <div class="oitem rv">
+        <div class="on">01</div>
+        <div>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m6.41 6.41 2.83 2.83"/><path d="M2 12h4"/><circle cx="12" cy="14" r="6"/><path d="M12 14v-2"/></svg></span>
+          <h3>One thing you can put to use Monday</h3>
+          <p>You build it in the room, with help, on your own business. A real task off your plate, not a hypothetical. You walk out with it done.</p>
+        </div>
+      </div>
+      <div class="oitem rv">
+        <div class="on">02</div>
+        <div>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/></svg></span>
+          <h3>A clear line between worth-it and waste</h3>
+          <p>Where AI genuinely earns its place for a small operator, and the places it quietly burns time, money, and trust. So you stop guessing and stop paying for tools you will not use.</p>
+        </div>
+      </div>
+      <div class="oitem rv">
+        <div class="on">03</div>
+        <div>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3>A live look at a business that runs on this</h3>
+          <p>Not slides about what is possible. The actual system I built that handles my outreach, preps my client research, and watches my numbers. You see it run, and you see where the wheels are.</p>
+        </div>
+      </div>
+      <div class="oitem rv">
+        <div class="on">04</div>
+        <div>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></span>
+          <h3>A simple way to decide what to adopt next</h3>
+          <p>A filter for cutting through the AI noise so the next tool, the next pitch, the next shiny thing gets a yes or a no in minutes, not weeks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== depth band: the room ===== -->
+<section class="band">
+  <div class="bg" id="bandBg"><img src="ic-workshop-site-C-img/room.jpg" alt="A small dark workshop room of owner-operators at tables with glowing laptops, facing a warmly lit presenter at the front"></div>
+  <div class="wrap rv">
+    <div class="bsub">Lehi, Utah &middot; one evening</div>
+    <p class="bq">Thirty owners. Open laptops. <em>One warm room</em> where the work actually gets built.</p>
+  </div>
+</section>
+
+<!-- ===== who ===== -->
+<section class="sec deep">
+  <div class="wrap">
+    <div class="shead"><span class="no">03</span><span class="lab">Who this is for</span></div>
+    <h2>For people who carry the whole thing</h2>
+    <p class="lede">Owners, founders, operators. Small team or no team. You make the calls and you live with them.</p>
+    <div class="fw">
+      <div class="fwc a rv">
+        <h4>This is for you if</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> You run a business and AI keeps coming up, but no one has shown you what actually matters for it.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> You are short on time and want one thing you can use, not a survey of forty tools.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> You learn by doing, with someone in the room when you get stuck.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> You want a straight answer about where AI helps and where it bites.</li>
+        </ul>
+      </div>
+      <div class="fwc b rv">
+        <h4>This is not for you if</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> You want a deep technical course on building models from scratch.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> You are looking for a passive lecture to sit through with your phone out.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> You already run AI deeply across your operation and want advanced tuning.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== host ===== -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="shead"><span class="no">04</span><span class="lab">Who is running it</span></div>
+    <div class="hgrid">
+      <div class="hphoto rv">
+        <img src="ic-workshop-site-C-img/macro.jpg" loading="lazy" alt="Hands at a laptop keyboard in warm desk light, a leather notebook and brass pen beside it">
+        <span class="cap">The work, up close</span>
+      </div>
+      <div class="rv">
+        <p class="hlede">I spent a decade teaching people how to use new tools. Now I run my business on the ones I teach.</p>
+        <div class="hbody">
+          <p>I am Boubacar. I spent ten years in HR and training at a Fortune 100 company, working with teams around the world. My whole job was helping people actually adopt new tools, not just hear about them.</p>
+          <p>I grew up here in Utah. These days I run my own consulting business in the valley on an AI system I built myself. <strong>It writes my follow-ups, preps my client research, and watches my numbers while I sleep.</strong></p>
+          <p>I am not a vendor with a product to push, and I am not a hobbyist who read about AI last month. I train people for a living, and I use this stuff every day to run a real business. So when I tell you what is worth using and what will burn you, it comes from doing it, not from a brochure.</p>
+          <p class="sig">Boubacar<span>Catalyst Works Consulting &middot; Operator and trainer</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== agenda ===== -->
+<section class="sec deep">
+  <div class="wrap">
+    <div class="shead"><span class="no">05</span><span class="lab">The 90 minutes</span></div>
+    <h2>How the night runs</h2>
+    <p class="lede">About 75 minutes of content with room to breathe. Hands-on from early on, not a lecture with a Q and A bolted to the end.</p>
+    <div class="agl">
+      <div class="agr rv"><div class="at">First 15</div><div><h4>The honest map</h4><p>Where AI actually saves an owner real hours right now, and the spots where it quietly costs you. No hype, no doom.</p></div></div>
+      <div class="agr rv"><div class="at">Next 25</div><div><h4>The live system</h4><p>I open up the AI system running my own business and walk you through it working. You see the wins and the rough edges.</p></div></div>
+      <div class="agr rv"><div class="at">The build</div><div><h4>You make something</h4><p>Hands on keyboards. You build one useful thing for your own business, with me and helpers walking the room.</p></div></div>
+      <div class="agr rv"><div class="at">Close</div><div><h4>Your next move</h4><p>The simple filter for deciding what to adopt next, so you leave with a plan and not just a tool.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== final ===== -->
+<section class="final">
+  <div class="wrap">
+    <span class="kicker">Seats are limited</span>
+    <h2>Save your seat for <em>June 24</em></h2>
+    <p>Small room, on purpose, so everyone gets help building. Once it fills, it fills.</p>
+    <a href="[STRIPE_LINK]" class="cta" data-reg aria-label="Save my seat for June 24">Save my seat
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <div class="regmeta">
+      <div class="rm"><div class="k">Date</div><div class="v">Wed, June 24</div></div>
+      <div class="rm"><div class="k">Time</div><div class="v"><span class="ph">[EXACT_TIME]</span></div></div>
+      <div class="rm"><div class="k">Place</div><div class="v"><span class="ph">[VENUE]</span>, Lehi</div></div>
+      <div class="rm"><div class="k">Seat</div><div class="v"><span class="ph">[PRICE]</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== faq ===== -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="shead"><span class="no">06</span><span class="lab">Before you ask</span></div>
+    <h2>Straight answers</h2>
+    <div class="faql">
+      <div class="fi">
+        <button class="fq" aria-expanded="false" aria-controls="fa1">Do I need to be technical?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa" id="fa1" role="region"><p>No. This is built for owners and operators, not engineers. If you can use email and a browser, you can do everything in the room. The whole point is plain English.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false" aria-controls="fa2">What do I need to bring?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa" id="fa2" role="region"><p>A laptop and one real task from your business you would love to hand off. I bring all the content and materials. You bring the work you want lighter.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false" aria-controls="fa3">Is this a pitch in disguise?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa" id="fa3" role="region"><p>No. You leave with a working thing and a clear map whether or not we ever talk again. If you want help going deeper afterward, I am happy to talk. The workshop stands on its own.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false" aria-controls="fa4">Who is actually teaching this?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa" id="fa4" role="region"><p>Me, Boubacar. Ten years in HR and training at a Fortune 100, working with teams around the world, and I grew up in Utah. I run my own business on the AI I will show you. You learn it from someone who does it daily, not from a vendor demo.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false" aria-controls="fa5">How many people will be there?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa" id="fa5" role="region"><p>The room is kept small on purpose so everyone gets help while they build. That is also why seats run out. Reserve yours early.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fk">Catalyst Works Consulting</div>
+    <div class="fm">AI Without Getting Burned &middot; Lehi, Utah &middot; Questions? <a href="mailto:boubacar@catalystworks.consulting">boubacar@catalystworks.consulting</a></div>
+  </div>
+</footer>
+
+<div class="stick" id="stick">
+  <div class="wrap">
+    <div class="sl">
+      <div class="st">AI Without Getting Burned</div>
+      <div class="sm">Wed June 24 &middot; <span class="ph">[EXACT_TIME]</span> &middot; <span class="ph">[VENUE]</span>, Lehi &middot; <span class="ph">[PRICE]</span></div>
+    </div>
+    <a href="[STRIPE_LINK]" class="cta" data-reg aria-label="Save my seat">Save my seat</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js-on');
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var hover=window.matchMedia('(hover:hover)').matches && window.innerWidth>900;
+
+  /* ---------- canvas ember spark-field (capped, rAF, proximity lines) ---------- */
+  (function(){
+    if(reduce) return;
+    var cv=document.getElementById('spark'),ctx=cv.getContext('2d');
+    var W,H,DPR=Math.min(window.devicePixelRatio||1,2),parts=[],mouse={x:-999,y:-999};
+    function size(){
+      W=cv.width=Math.floor(innerWidth*DPR);H=cv.height=Math.floor(innerHeight*DPR);
+      cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';
+      var n=Math.min(90,Math.floor((innerWidth*innerHeight)/16000));
+      parts=[];
+      for(var i=0;i<n;i++){
+        parts.push({
+          x:Math.random()*W,y:Math.random()*H,
+          vx:(Math.random()-0.5)*0.12*DPR,vy:(-0.05-Math.random()*0.18)*DPR,
+          r:(Math.random()*1.6+0.5)*DPR,a:Math.random()*0.5+0.2,
+          tw:Math.random()*Math.PI*2
+        });
+      }
+    }
+    size();addEventListener('resize',size,{passive:true});
+    if(hover){addEventListener('mousemove',function(e){mouse.x=e.clientX*DPR;mouse.y=e.clientY*DPR;});}
+    var LINK=130*DPR;
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<parts.length;i++){
+        var p=parts[i];
+        p.x+=p.vx;p.y+=p.vy;p.tw+=0.02;
+        if(p.y<-10)p.y=H+10;if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;
+        if(mouse.x>-900){var dx=mouse.x-p.x,dy=mouse.y-p.y,d=dx*dx+dy*dy;if(d<28000*DPR){p.x+=dx*0.0009;p.y+=dy*0.0009;}}
+        var fl=0.6+Math.sin(p.tw)*0.4;
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);
+        ctx.fillStyle='rgba(232,140,80,'+(p.a*fl)+')';ctx.fill();
+        for(var j=i+1;j<parts.length;j++){
+          var q=parts[j],lx=p.x-q.x,ly=p.y-q.y,dist=lx*lx+ly*ly;
+          if(dist<LINK*LINK){
+            var o=(1-Math.sqrt(dist)/LINK)*0.12;
+            ctx.strokeStyle='rgba(227,178,100,'+o+')';ctx.lineWidth=DPR*0.6;
+            ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+
+  /* ---------- cursor ---------- */
+  var cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  if(hover){
+    var rx=0,ry=0,mx=0,my=0;
+    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+    (function l(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(l);})();
+    document.querySelectorAll('a,button').forEach(function(el){
+      el.addEventListener('mouseenter',function(){curR.classList.add('hot');});
+      el.addEventListener('mouseleave',function(){curR.classList.remove('hot');});
+    });
+  }
+
+  /* ---------- pointer-reactive depth: roomlight + hero photo tilt (lerp) ---------- */
+  if(hover){
+    var rl=document.querySelector('.roomlight'),hp=document.getElementById('heroPhoto');
+    var tx=0,ty=0,cx=0,cy=0;
+    addEventListener('mousemove',function(e){
+      tx=(e.clientX/innerWidth-0.5);ty=(e.clientY/innerHeight-0.5);
+    });
+    (function p(){
+      cx+=(tx-cx)*0.06;cy+=(ty-cy)*0.06;
+      if(rl)rl.style.transform='translate('+(cx*-18)+'px,'+(cy*-14)+'px)';
+      if(hp)hp.style.transform='rotateY('+(cx*5)+'deg) rotateX('+(cy*-4)+'deg) translateZ(0)';
+      requestAnimationFrame(p);
+    })();
+  }
+
+  /* ---------- hero char split + ignite ---------- */
+  var words=document.querySelectorAll('.poster .w');
+  function splitWord(w){
+    var chars=[];
+    Array.prototype.slice.call(w.childNodes).forEach(function(node){
+      if(node.nodeType===3){
+        var frag=document.createDocumentFragment();
+        node.textContent.split('').forEach(function(ch){
+          if(ch===' '){frag.appendChild(document.createTextNode(' '));}
+          else{var s=document.createElement('span');s.className='ch';s.style.transform='translateY(108%)';s.style.transition='transform .72s var(--ease)';s.textContent=ch;frag.appendChild(s);chars.push(s);}
+        });
+        node.parentNode.replaceChild(frag,node);
+      }else if(node.nodeType===1){
+        /* do NOT split the burnword into chars: background-clip:text needs the
+           text on a single element. Rise the whole burnword as one unit instead. */
+        node.style.transform='translateY(108%)';node.style.transition='transform .72s var(--ease)';
+        chars.push(node);
+      }
+    });
+    return chars;
+  }
+  var bw=document.getElementById('burnword');
+  if(!reduce){
+    var all=[];
+    words.forEach(function(w){all=all.concat(splitWord(w));});
+    requestAnimationFrame(function(){
+      all.forEach(function(s,i){setTimeout(function(){s.style.transform='translateY(0)';},110+i*24);});
+      setTimeout(function(){
+        if(bw){bw.classList.add('lit');bw.classList.add('shimmer');
+          var g=document.getElementById('glint');
+          if(g){g.animate([{transform:'translateX(0)'},{transform:'translateX(520%)'}],{duration:1100,easing:'cubic-bezier(.22,1,.36,1)'});}
+        }
+      },110+all.length*24+260);
+    });
+  }else{ if(bw)bw.classList.add('lit'); }
+
+  /* ---------- band parallax ---------- */
+  if(!reduce){
+    var band=document.querySelector('.band'),bbg=document.getElementById('bandBg');
+    addEventListener('scroll',function(){
+      if(!band)return;var r=band.getBoundingClientRect();
+      if(r.bottom>0&&r.top<innerHeight){var prog=(innerHeight-r.top)/(innerHeight+r.height);bbg.style.transform='translateY('+((prog-0.5)*-60)+'px)';}
+    },{passive:true});
+  }
+
+  /* ---------- scroll reveal (visible by default; hide only below-fold) ---------- */
+  if('IntersectionObserver' in window && !reduce){
+    document.querySelectorAll('.rv').forEach(function(el){
+      if(el.getBoundingClientRect().top>innerHeight*0.92){el.classList.add('pre');}
+    });
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){var t=e.target;t.style.transition='opacity .8s var(--ease),transform .8s var(--ease)';t.classList.remove('pre');io.unobserve(t);}});
+    },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+    document.querySelectorAll('.rv.pre').forEach(function(el){io.observe(el);});
+    setTimeout(function(){document.querySelectorAll('.rv.pre').forEach(function(el){el.classList.remove('pre');});},2400);
+  }
+
+  /* ---------- sticky bar ---------- */
+  var hero=document.querySelector('.hero'),stick=document.getElementById('stick'),final=document.querySelector('.final');
+  function chk(){
+    var hb=hero.getBoundingClientRect().bottom,ft=final.getBoundingClientRect().top;
+    if(hb<-40 && ft>innerHeight*0.7){stick.classList.add('show');}else{stick.classList.remove('show');}
+  }
+  addEventListener('scroll',chk,{passive:true});chk();
+
+  /* ---------- faq ---------- */
+  document.querySelectorAll('.fi').forEach(function(item){
+    var q=item.querySelector('.fq'),a=item.querySelector('.fa');
+    q.addEventListener('click',function(){
+      var open=item.classList.contains('open');
+      document.querySelectorAll('.fi').forEach(function(i){i.classList.remove('open');i.querySelector('.fa').style.maxHeight=null;i.querySelector('.fq').setAttribute('aria-expanded','false');});
+      if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';q.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+</script>
+</body>
+</html>

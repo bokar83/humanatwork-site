@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0B0A09">
+<title>AI Without Getting Burned: A Workshop for People Who Run Things</title>
+<meta name="description" content="A hands-on 90-minute workshop in Lehi for Utah owner-operators. What AI is actually worth using, what to skip, and a live look at a real business run on a system I built myself. You leave having built something you keep.">
+
+<!-- ============================================================
+     DRAFT, cinematic build (Site A). Nothing publishes. No spend.
+     Placeholders kept verbatim, fill from AP meeting:
+       [VENUE] [EXACT_TIME] [PRICE] [STRIPE_LINK]
+     Direction: cinematic / scroll-driven film. Ember-on-black "Ember Room".
+     ============================================================ -->
+
+<meta property="og:title" content="AI Without Getting Burned: A Workshop for People Who Run Things">
+<meta property="og:description" content="Hands-on, 90 minutes, Lehi. What AI is worth using, what to skip, and a live look at a real business run on a system I built. You leave having built something you keep.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="ic-workshop-site-A-cinematic-assets/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --void:#0B0A09;
+  --char:#13110E;
+  --char-2:#1B1813;
+  --smoke:#26221B;
+  --ash:#A89E8D;
+  --ash-soft:#79705F;
+  --bone:#EDE6D6;
+  --ember:#FF6A2C;
+  --ember-deep:#D34A18;
+  --gold:#E0A53C;
+  --line:rgba(237,230,214,0.10);
+  --line-2:rgba(237,230,214,0.16);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --serif:'Spectral',Georgia,serif;
+  --disp:'Bricolage Grotesque',-apple-system,system-ui,sans-serif;
+  --body:'Public Sans',-apple-system,system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--body);color:var(--ash);background:var(--void);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ember);color:var(--void)}
+
+/* film grain over everything */
+body::after{content:"";position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
+/* cinematic vignette */
+.vig{position:fixed;inset:0;z-index:150;pointer-events:none;box-shadow:inset 0 0 240px 40px rgba(0,0,0,.7)}
+
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 30px;position:relative;z-index:2}
+@media(max-width:640px){.wrap{padding:0 22px}}
+
+/* ---- cursor ---- */
+.cur,.curR{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cur{width:6px;height:6px;background:var(--ember)}
+.curR{width:34px;height:34px;border:1.5px solid rgba(255,106,44,.55);transition:width .25s var(--ease),height .25s var(--ease),background .25s var(--ease)}
+.curR.hot{width:56px;height:56px;background:rgba(255,106,44,.08)}
+@media(hover:none),(max-width:900px){.cur,.curR{display:none}}
+
+.kicker{font-family:var(--disp);font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* ---- masthead ---- */
+.mast{position:absolute;top:0;left:0;right:0;z-index:50}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:26px;padding-bottom:26px}
+.mast .mk{font-family:var(--serif);font-size:1.16rem;color:var(--bone);letter-spacing:.01em}
+.mast .mk b{font-weight:600}
+.mast .mr{font-family:var(--disp);font-weight:600;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)}
+@media(max-width:640px){.mast .mr{display:none}.mast .wrap{padding-top:20px}}
+
+/* ---- HERO: full-bleed cinematic ---- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:-8% 0 0;z-index:0;will-change:transform}
+.hero-bg img{width:100%;height:116%;object-fit:cover;object-position:center 32%;filter:saturate(1.05) contrast(1.04) brightness(.92)}
+.hero-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(11,10,9,.55) 0%,rgba(11,10,9,.2) 30%,rgba(11,10,9,.6) 62%,rgba(11,10,9,.97) 100%)}
+.hero-glow{position:absolute;left:-10%;bottom:-30%;width:80%;height:80%;z-index:1;will-change:transform;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,106,44,.34),rgba(224,165,60,.10) 45%,transparent 72%);filter:blur(8px)}
+.hero-inner{position:relative;z-index:3;width:100%;padding-bottom:clamp(40px,6vh,72px)}
+.hero .tag{display:flex;align-items:center;gap:14px;margin-bottom:26px;color:var(--ember)}
+.hero .tag .ln{height:1px;width:64px;background:var(--ember);opacity:.5}
+.hero .tag .r{color:var(--ash);letter-spacing:.2em}
+.poster{font-family:var(--disp);font-weight:800;line-height:.86;letter-spacing:-.025em;color:var(--bone);
+  font-size:clamp(3.3rem,1rem+12vw,11rem);text-transform:uppercase}
+.poster .l{display:block;overflow:hidden}
+.poster .l>.w{display:inline-block}
+.burnword{position:relative;display:inline-block;color:var(--bone)}
+.burnword.lit{color:var(--ember);transition:color .6s var(--ease)}
+.burnword .em-underglow{position:absolute;left:-4%;right:-4%;bottom:.02em;height:.5em;z-index:-1;
+  background:radial-gradient(closest-side,rgba(255,106,44,.6),transparent 75%);
+  transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease)}
+.burnword.lit .em-underglow{transform:scaleX(1)}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-top:38px}
+@media(max-width:840px){.hero-grid{grid-template-columns:1fr;gap:28px}}
+.hero-lead{font-family:var(--serif);font-size:clamp(1.15rem,1rem+.7vw,1.5rem);line-height:1.45;color:var(--bone);max-width:42ch;opacity:.94}
+.hero-cta-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:26px}
+.cta{display:inline-flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:700;font-size:1rem;
+  background:var(--ember);color:var(--void);padding:16px 30px;border:1.5px solid var(--ember);cursor:pointer;border-radius:2px;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);
+  box-shadow:0 0 0 rgba(255,106,44,0)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 14px 40px -10px rgba(255,106,44,.6)}
+.cta svg{width:18px;height:18px}
+.cta.ghost{background:transparent;color:var(--bone);border-color:var(--line-2);box-shadow:none}
+.cta.ghost:hover{border-color:var(--ember);color:var(--ember);box-shadow:none}
+a:focus-visible,button:focus-visible{outline:2.5px solid var(--ember);outline-offset:3px;border-radius:2px}
+.price-note{font-family:var(--disp);font-weight:600;font-size:.8rem;letter-spacing:.04em;color:var(--ash)}
+.price-note .ph{color:var(--ember)}
+.scrollcue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ash-soft);font-family:var(--disp);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase}
+.scrollcue .bar{width:1px;height:42px;background:linear-gradient(var(--ember),transparent);animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}40%{transform:scaleY(1);transform-origin:top}60%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(prefers-reduced-motion:reduce){.scrollcue .bar{animation:none}}
+@media(max-width:640px){.scrollcue{display:none}}
+
+/* ---- ticker ---- */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--char);position:relative;z-index:3}
+.ticker .track{display:inline-flex;white-space:nowrap;will-change:transform;animation:slide 30s linear infinite}
+.ticker:hover .track{animation-play-state:paused}
+.ticker span{font-family:var(--serif);text-transform:uppercase;color:var(--bone);font-size:1rem;letter-spacing:.06em;padding:15px 0}
+.ticker .dot{color:var(--ember);padding:0 26px}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker .track{animation:none}}
+
+/* ---- scenes ---- */
+.sec{padding:clamp(64px,7vw,108px) 0;position:relative;z-index:2}
+.sec.char{background:var(--char)}
+.sec.char2{background:var(--char-2)}
+.scene-glow{position:absolute;z-index:0;pointer-events:none;width:60%;height:70%;
+  background:radial-gradient(closest-side,rgba(224,165,60,.10),transparent 70%);filter:blur(20px);will-change:transform}
+.shead{display:flex;align-items:baseline;gap:18px;margin-bottom:20px}
+.shead .no{font-family:var(--disp);font-weight:800;font-size:.82rem;letter-spacing:.1em;color:var(--ember)}
+.shead .lab{font-family:var(--disp);font-weight:600;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ash-soft)}
+.sec h2{font-family:var(--disp);font-weight:700;font-size:clamp(2rem,1.4rem+2.8vw,3.7rem);line-height:1.02;letter-spacing:-.02em;color:var(--bone);max-width:18ch;margin-bottom:22px;text-wrap:balance}
+.sec .lede{font-size:1.14rem;color:var(--ash);max-width:60ch;line-height:1.7}
+.sec .lede strong{color:var(--bone);font-weight:600}
+
+/* per-line head reveal */
+.rl{display:block;overflow:hidden}
+.rl>span{display:block;transform:translateY(102%)}
+.js-on .rl-go>span{transition:transform .9s var(--ease);transform:translateY(0)}
+
+/* generic reveal: visible by default, JS hides only off-screen */
+.rv{opacity:1;transform:none}
+.js-on .rv.pre{opacity:0;transform:translateY(30px)}
+.js-on .rv.go{opacity:1;transform:none;transition:opacity .85s var(--ease),transform .85s var(--ease)}
+
+/* ---- two questions ---- */
+.qgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;margin-top:8px}
+@media(max-width:860px){.qgrid{grid-template-columns:1fr;gap:32px}}
+.bigq{font-family:var(--serif);font-size:clamp(1.7rem,1.2rem+2.2vw,3rem);line-height:1.18;color:var(--bone);position:relative}
+.bigq .u{color:var(--ember);white-space:nowrap}
+@media(max-width:480px){.bigq .u{white-space:normal}}
+.qbody p{font-size:1.07rem;color:var(--ash);margin-bottom:18px;line-height:1.74}
+.qbody p strong{color:var(--bone);font-weight:600}
+
+/* ---- outcomes: cinematic kinetic list (NOT cards) ---- */
+.olist{margin-top:44px;border-top:1px solid var(--line-2)}
+.oitem{display:grid;grid-template-columns:92px 1fr auto;gap:30px;padding:38px 0;border-bottom:1px solid var(--line);align-items:start;position:relative}
+.oitem::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(255,106,44,.10),transparent);transition:width .7s var(--ease);pointer-events:none}
+.js-on .oitem.go::before{width:100%}
+.oitem .on{font-family:var(--serif);font-size:2.7rem;line-height:.9;color:var(--ember)}
+.oitem .ob h3{font-family:var(--disp);font-weight:700;font-size:1.4rem;color:var(--bone);line-height:1.2;margin-bottom:10px}
+.oitem .ob p{font-size:1.04rem;color:var(--ash);max-width:58ch;line-height:1.62}
+.oitem .oic{color:var(--ember);opacity:.9}
+.oitem .oic svg{width:26px;height:26px}
+@media(max-width:680px){.oitem{grid-template-columns:54px 1fr;gap:18px}.oitem .oic{display:none}.oitem .on{font-size:2rem}}
+
+/* ---- for / not-for split scene ---- */
+.fw{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:42px;border:1px solid var(--line-2);border-radius:3px;overflow:hidden}
+@media(max-width:760px){.fw{grid-template-columns:1fr}}
+.fwc{padding:36px 38px}
+.fwc.b{background:linear-gradient(180deg,rgba(255,106,44,.06),rgba(255,106,44,.01));border-left:1px solid var(--line-2)}
+@media(max-width:760px){.fwc.b{border-left:none;border-top:1px solid var(--line-2)}}
+.fwc h4{font-family:var(--disp);font-weight:700;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:22px;color:var(--ash)}
+.fwc.b h4{color:var(--ember)}
+.fwc ul{list-style:none}
+.fwc li{display:flex;gap:13px;align-items:flex-start;padding:14px 0;font-size:1.03rem;color:var(--bone);border-bottom:1px solid var(--line)}
+.fwc li:last-child{border-bottom:none}
+.fwc li svg{width:19px;height:19px;flex:0 0 19px;margin-top:3px;color:var(--gold)}
+.fwc.b li svg{color:var(--ember)}
+
+/* ---- pinned host scene ---- */
+.host{position:relative;background:var(--void);overflow:hidden}
+.host .scene-glow{top:10%;right:-10%}
+.hgrid{display:grid;grid-template-columns:.82fr 1.18fr;gap:56px;align-items:center;margin-top:6px}
+@media(max-width:860px){.hgrid{grid-template-columns:1fr;gap:32px}}
+.hphoto{position:relative;border-radius:3px;overflow:hidden;border:1px solid var(--line-2)}
+.hphoto img{width:100%;object-fit:cover;display:block;filter:brightness(.7) saturate(1.05);transition:filter 1.2s var(--ease);will-change:filter}
+.js-on .hphoto.lit img{filter:brightness(1) saturate(1.08)}
+.hphoto .cap{position:absolute;left:0;bottom:0;background:var(--void);color:var(--bone);font-family:var(--disp);font-weight:600;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border-top:1px solid var(--ember)}
+.hlede{font-family:var(--serif);font-size:clamp(1.4rem,1.1rem+1.4vw,2.2rem);line-height:1.26;color:var(--bone);margin-bottom:22px;text-wrap:balance}
+.hbody p{font-size:1.05rem;color:var(--ash);line-height:1.74;margin-bottom:15px}
+.hbody p strong{color:var(--bone);font-weight:600}
+.sig{font-family:var(--serif);font-size:1.4rem;color:var(--bone);margin-top:16px}
+.sig span{display:block;font-family:var(--disp);font-weight:600;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ash-soft);margin-top:6px}
+
+/* ---- burn meter (scrub) ---- */
+.meter{margin-top:30px;display:flex;align-items:center;gap:16px}
+.meter .track{flex:1;height:2px;background:var(--smoke);position:relative;overflow:hidden}
+.meter .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--ember-deep),var(--ember),var(--gold))}
+.meter .lab{font-family:var(--disp);font-weight:600;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ash-soft);white-space:nowrap}
+
+/* ---- agenda timeline rail ---- */
+.agl{margin-top:40px;border-top:1px solid var(--line-2);position:relative}
+.agr{display:grid;grid-template-columns:170px 1fr;gap:34px;padding:28px 0;border-bottom:1px solid var(--line);align-items:baseline;position:relative}
+.agr .at{font-family:var(--disp);font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ember)}
+.agr h4{font-family:var(--serif);font-size:1.5rem;color:var(--bone);margin-bottom:6px}
+.agr p{font-size:1.03rem;color:var(--ash);max-width:62ch;line-height:1.6}
+@media(max-width:560px){.agr{grid-template-columns:1fr;gap:6px}}
+
+/* ---- final ember close ---- */
+.final{position:relative;background:var(--void);text-align:center;padding:clamp(90px,12vw,150px) 0;overflow:hidden}
+.final .ember-rise{position:absolute;left:50%;bottom:-20%;transform:translateX(-50%);width:120%;height:90%;z-index:0;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,106,44,.3),rgba(224,165,60,.07) 45%,transparent 72%);filter:blur(12px);will-change:transform}
+.final .wrap{position:relative;z-index:2}
+.final .kicker{color:var(--ember);margin-bottom:24px;display:inline-block}
+.final h2{font-family:var(--disp);font-weight:800;font-size:clamp(2.4rem,1.4rem+5vw,6rem);line-height:.94;text-transform:uppercase;color:var(--bone);max-width:15ch;margin:0 auto 22px;letter-spacing:-.025em;text-wrap:balance}
+.final h2 em{font-style:normal;color:var(--ember)}
+.final p{font-size:1.16rem;color:var(--ash);max-width:46ch;margin:0 auto 38px;line-height:1.6}
+.regmeta{display:flex;justify-content:center;flex-wrap:wrap;margin-top:50px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rm{padding:24px 38px;border-right:1px solid var(--line)}
+.rm:last-child{border-right:none}
+.rm .k{font-family:var(--disp);font-weight:600;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:8px}
+.rm .v{font-family:var(--serif);font-size:1.18rem;color:var(--bone)}
+.rm .v .ph{color:var(--ember)}
+@media(max-width:600px){.rm{flex:0 0 50%;border-right:none;border-bottom:1px solid var(--line);padding:18px}}
+
+/* ---- faq ---- */
+.faql{margin-top:40px;max-width:800px;border-top:1px solid var(--line-2)}
+.fi{border-bottom:1px solid var(--line)}
+.fq{width:100%;text-align:left;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 0;font-family:var(--serif);font-size:1.3rem;color:var(--bone)}
+.fq svg{width:22px;height:22px;flex:0 0 22px;color:var(--ember);transition:transform .35s var(--ease)}
+.fi.open .fq svg{transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+@media(prefers-reduced-motion:reduce){.fa{transition:none}}
+.fa p{padding:0 0 26px;font-size:1.04rem;color:var(--ash);line-height:1.72;max-width:64ch}
+
+/* ---- footer ---- */
+footer{background:var(--char);border-top:1px solid var(--line);padding:42px 0}
+footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer .fk{font-family:var(--serif);font-size:1.05rem;color:var(--bone)}
+footer .fm{font-family:var(--disp);font-weight:500;font-size:.78rem;letter-spacing:.03em;color:var(--ash-soft)}
+footer a{color:var(--ember);text-decoration:underline;text-underline-offset:3px}
+
+/* ---- sticky reserve bar ---- */
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:120;background:rgba(11,10,9,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--ember);transform:translateY(110%);transition:transform .45s var(--ease)}
+.stick.show{transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.stick{transition:none}}
+.stick .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:13px;padding-bottom:13px}
+.stick .st{font-family:var(--serif);font-size:1.04rem;text-transform:uppercase;color:var(--bone)}
+.stick .sm{font-family:var(--disp);font-weight:500;font-size:.72rem;letter-spacing:.04em;color:var(--ash-soft);margin-top:2px}
+.stick .sm .ph{color:var(--ember)}
+.stick .cta{padding:12px 24px}
+@media(max-width:640px){.stick .sm{display:none}.stick .st{font-size:.9rem}}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="curR" id="curR" aria-hidden="true"></div>
+<div class="vig" aria-hidden="true"></div>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="mk"><b>Catalyst Works</b> &nbsp;/&nbsp; <span style="color:var(--ash)">A live workshop</span></div>
+    <div class="mr">Lehi, Utah &middot; June 2026</div>
+  </div>
+</header>
+
+<main>
+<!-- ===== SCENE 1: HERO (full-bleed cinematic) ===== -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg" aria-hidden="true">
+    <img src="ic-workshop-site-A-cinematic-assets/hero.jpg" width="1600" height="900" alt="Boubacar presenting to a full room of around thirty business owners seated with open laptops in a warm, dimly lit workshop, ember light across the room">
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <div class="tag kicker"><span>A hands-on night for owner-operators</span><span class="ln"></span><span class="r tnum">90 minutes</span></div>
+      <h1 class="poster" id="poster">
+        <span class="l"><span class="w">AI without</span></span>
+        <span class="l"><span class="w">getting <span class="burnword" id="burnword">burned<span class="em-underglow" aria-hidden="true"></span></span></span></span>
+      </h1>
+      <div class="hero-grid">
+        <div>
+          <p class="hero-lead">For people who run things. What AI is actually worth using right now, what to skip, and a live look at a real business run on a system I built myself. You leave having built something you keep.</p>
+          <div class="hero-cta-row">
+            <a href="[STRIPE_LINK]" class="cta" data-reg data-mag>Save my seat
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <span class="price-note"><span class="ph">[PRICE]</span> &middot; small room on purpose</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue" aria-hidden="true"><span>Scroll</span><span class="bar"></span></div>
+</section>
+
+<!-- ===== ticker ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="track" id="track">
+    <span>Wednesday June 24</span><span class="dot">&bull;</span><span>[EXACT_TIME]</span><span class="dot">&bull;</span><span>[VENUE]</span><span class="dot">&bull;</span><span>Lehi, Utah</span><span class="dot">&bull;</span><span>You build it, you keep it</span><span class="dot">&bull;</span>
+    <span>Wednesday June 24</span><span class="dot">&bull;</span><span>[EXACT_TIME]</span><span class="dot">&bull;</span><span>[VENUE]</span><span class="dot">&bull;</span><span>Lehi, Utah</span><span class="dot">&bull;</span><span>You build it, you keep it</span><span class="dot">&bull;</span>
+  </div>
+</div>
+
+<!-- ===== SCENE 2: the two questions ===== -->
+<section class="sec char">
+  <div class="scene-glow" style="top:0;left:-8%"></div>
+  <div class="wrap">
+    <div class="shead"><span class="no">01</span><span class="lab">Why this room</span></div>
+    <h2 class="rl-head"><span class="rl"><span>Two questions every</span></span><span class="rl"><span>owner is quietly asking</span></span></h2>
+    <div class="qgrid">
+      <div class="rv">
+        <p class="bigq">&ldquo;<span class="u">What is actually worth using.</span> And how do I avoid <span class="u">getting burned</span> trying.&rdquo;</p>
+      </div>
+      <div class="qbody rv">
+        <p>Those are the two real questions. Not &ldquo;what is a large language model.&rdquo; The owners I talk to are past that. They want to know where AI saves them real hours, where it quietly costs them, and what a person running a small business should do on Monday morning.</p>
+        <p>The honest answer does not come from a vendor with a demo to sell. <strong>It comes from someone who spent ten years training people on new tools and now runs his own business on the AI he is talking about.</strong></p>
+        <p>That is the room this workshop builds. Plain English. No hype. A live system you can watch work, and a thing you build yourself before you leave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENE 3: outcomes (kinetic list) ===== -->
+<section class="sec char2">
+  <div class="wrap">
+    <div class="shead"><span class="no">02</span><span class="lab">What you leave with</span></div>
+    <h2 class="rl-head"><span class="rl"><span>Not notes.</span></span><span class="rl"><span>Something that works.</span></span></h2>
+    <p class="lede rv">Most AI talks send you home with a slide deck and a vague feeling. This one is built backward from what you can use the same day.</p>
+    <div class="olist">
+      <div class="oitem rv">
+        <div class="on">01</div>
+        <div class="ob">
+          <h3>One thing you can put to use Monday</h3>
+          <p>You build it in the room, with help, on your own business. A real task off your plate, not a hypothetical. You walk out with it done.</p>
+        </div>
+        <div class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="m6.41 6.41 2.83 2.83"/><path d="M2 12h4"/><circle cx="12" cy="14" r="6"/><path d="M12 14v-2"/></svg></div>
+      </div>
+      <div class="oitem rv">
+        <div class="on">02</div>
+        <div class="ob">
+          <h3>A clear line between worth-it and waste</h3>
+          <p>Where AI genuinely earns its place for a small operator, and the places it quietly burns time, money, and trust. So you stop guessing and stop paying for tools you will not use.</p>
+        </div>
+        <div class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/></svg></div>
+      </div>
+      <div class="oitem rv">
+        <div class="on">03</div>
+        <div class="ob">
+          <h3>A live look at a business that runs on this</h3>
+          <p>Not slides about what is possible. The actual system I built that handles my outreach, preps my client research, and watches my numbers. You see it run, and you see where the wheels are.</p>
+        </div>
+        <div class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      </div>
+      <div class="oitem rv">
+        <div class="on">04</div>
+        <div class="ob">
+          <h3>A simple way to decide what to adopt next</h3>
+          <p>A filter for cutting through the AI noise so the next tool, the next pitch, the next shiny thing gets a yes or a no in minutes, not weeks.</p>
+        </div>
+        <div class="oic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENE 4: who this is for ===== -->
+<section class="sec char">
+  <div class="scene-glow" style="bottom:0;right:-8%"></div>
+  <div class="wrap">
+    <div class="shead"><span class="no">03</span><span class="lab">Who this is for</span></div>
+    <h2 class="rl-head"><span class="rl"><span>For people who carry</span></span><span class="rl"><span>the whole thing</span></span></h2>
+    <p class="lede rv">Owners, founders, operators. Small team or no team. You make the calls and you live with them.</p>
+    <div class="fw">
+      <div class="fwc a rv">
+        <h4>This is for you if</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> You run a business and AI keeps coming up, but no one has shown you what actually matters for it.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> You are short on time and want one thing you can use, not a survey of forty tools.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> You learn by doing, with someone in the room when you get stuck.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> You want a straight answer about where AI helps and where it bites.</li>
+        </ul>
+      </div>
+      <div class="fwc b rv">
+        <h4>This is not for you if</h4>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> You want a deep technical course on building models from scratch.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> You are looking for a passive lecture to sit through with your phone out.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> You already run AI deeply across your operation and want advanced tuning.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENE 5: host (pinned, brightness scrub) ===== -->
+<section class="sec host" id="hostScene">
+  <div class="scene-glow"></div>
+  <div class="wrap">
+    <div class="shead"><span class="no">04</span><span class="lab">Who is running it</span></div>
+    <div class="hgrid">
+      <div class="hphoto rv" id="hostPhoto">
+        <img src="ic-workshop-site-A-cinematic-assets/host.jpg" loading="lazy" width="900" height="1100" alt="Boubacar, a medium-dark-skinned man, lit by warm ember rim light against a dark background">
+        <span class="cap">The operator, up close</span>
+      </div>
+      <div class="rv">
+        <p class="hlede">I spent a decade teaching people how to use new tools. Now I run my business on the ones I teach.</p>
+        <div class="hbody">
+          <p>I am Boubacar. I spent ten years in HR and training at a Fortune 100 company, working with teams around the world. My whole job was helping people actually adopt new tools, not just hear about them.</p>
+          <p>I grew up here in Utah. These days I run my own consulting business in the valley on an AI system I built myself. <strong>It writes my follow-ups, preps my client research, and watches my numbers while I sleep.</strong></p>
+          <p>I am not a vendor with a product to push, and I am not a hobbyist who read about AI last month. I train people for a living, and I use this stuff every day to run a real business. So when I tell you what is worth using and what will burn you, it comes from doing it, not from a brochure.</p>
+          <p class="sig">Boubacar<span>Catalyst Works Consulting &middot; Operator and trainer</span></p>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <span class="lab">Worth it</span>
+          <div class="track"><div class="fill" id="meterFill"></div></div>
+          <span class="lab">Burns you</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENE 6: agenda ===== -->
+<section class="sec char2">
+  <div class="wrap">
+    <div class="shead"><span class="no">05</span><span class="lab">The 90 minutes</span></div>
+    <h2 class="rl-head"><span class="rl"><span>How the night runs</span></span></h2>
+    <p class="lede rv">About 75 minutes of content with room to breathe. Hands-on from early on, not a lecture with a Q and A bolted to the end.</p>
+    <div class="agl">
+      <div class="agr rv">
+        <div class="at">First 15</div>
+        <div><h4>The honest map</h4><p>Where AI actually pays off for a small operator and where it quietly burns you. The whole landscape on one page, in plain English.</p></div>
+      </div>
+      <div class="agr rv">
+        <div class="at">Next 30</div>
+        <div><h4>Build the one thing</h4><p>You pick a real task off your own plate and build it in the room, with help. Not a demo. Your business, your task, done before you leave.</p></div>
+      </div>
+      <div class="agr rv">
+        <div class="at">Then 20</div>
+        <div><h4>The live system</h4><p>I open up the actual system I run my business on and we walk through where it works, where it breaks, and what it took to trust it.</p></div>
+      </div>
+      <div class="agr rv">
+        <div class="at">Last 10</div>
+        <div><h4>Your filter</h4><p>You leave with a simple way to say yes or no to the next AI tool fast, so you stop chasing every shiny thing.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCENE 7: final ember close ===== -->
+<section class="final">
+  <div class="ember-rise" id="emberRise" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="kicker">Wednesday, June 24 &middot; Lehi, Utah</span>
+    <h2>Build something <em>you keep</em></h2>
+    <p>The room is small on purpose so everyone gets help while they build. That is also why seats run out.</p>
+    <a href="[STRIPE_LINK]" class="cta" data-reg data-mag>Save my seat
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <div class="regmeta">
+      <div class="rm"><div class="k">When</div><div class="v">Wed June 24 &middot; <span class="ph">[EXACT_TIME]</span></div></div>
+      <div class="rm"><div class="k">Where</div><div class="v"><span class="ph">[VENUE]</span>, Lehi</div></div>
+      <div class="rm"><div class="k">Seat</div><div class="v"><span class="ph">[PRICE]</span></div></div>
+      <div class="rm"><div class="k">Length</div><div class="v tnum">90 minutes</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== faq ===== -->
+<section class="sec char">
+  <div class="wrap">
+    <div class="shead"><span class="no">06</span><span class="lab">Before you reserve</span></div>
+    <h2 class="rl-head"><span class="rl"><span>Straight answers</span></span></h2>
+    <div class="faql" id="faq">
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>Do I need to be technical or bring anything?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa"><p>No. If you can run a business, you can do this. Bring a laptop and one real task that is eating your time. We handle the rest in the room together.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>Is this just someone selling me AI tools?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa"><p>No. I am not a vendor with a product to push. I run my own business on this and I will tell you plainly where it helps and where it bites. You leave with judgment, not a shopping list.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>What do I actually walk out with?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa"><p>One thing you built on your own business, working, that you keep. Plus a clear line between what is worth using and what will waste your time, and a simple filter for deciding what to adopt next.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>Why keep the room so small?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="fa"><p>So everyone gets help while they build. A packed webinar cannot do that. The small room is the whole point, and it is why seats run out. Reserve yours early.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fk">Catalyst Works Consulting</div>
+    <div class="fm">AI Without Getting Burned &middot; Lehi, Utah &middot; Questions? <a href="mailto:boubacar@catalystworks.consulting">boubacar@catalystworks.consulting</a></div>
+  </div>
+</footer>
+
+<div class="stick" id="stick">
+  <div class="wrap">
+    <div class="sl">
+      <div class="st">AI Without Getting Burned</div>
+      <div class="sm">Wed June 24 &middot; <span class="ph">[EXACT_TIME]</span> &middot; <span class="ph">[VENUE]</span>, Lehi &middot; <span class="ph">[PRICE]</span></div>
+    </div>
+    <a href="[STRIPE_LINK]" class="cta" data-reg data-mag>Save my seat</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js-on');
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---- cursor ---- */
+  var cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  if(window.matchMedia('(hover:hover)').matches&&window.innerWidth>900){
+    var rx=0,ry=0,mx=0,my=0;
+    window.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+    (function l(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(l);})();
+    document.querySelectorAll('a,button').forEach(function(el){
+      el.addEventListener('mouseenter',function(){curR.classList.add('hot');});
+      el.addEventListener('mouseleave',function(){curR.classList.remove('hot');});
+    });
+  }
+
+  /* ---- hero kinetic char-rise (DOM walker, no SplitText) ---- */
+  function splitChars(el){
+    var chars=[];
+    function walk(node){
+      if(node.nodeType===3){
+        var frag=document.createDocumentFragment();
+        node.textContent.split('').forEach(function(ch){
+          if(ch===' '){frag.appendChild(document.createTextNode(' '));}
+          else{var o=document.createElement('span');o.style.cssText='display:inline-block;overflow:hidden;vertical-align:top';
+            var i=document.createElement('span');i.style.cssText='display:inline-block;transform:translateY(108%)';i.textContent=ch;
+            o.appendChild(i);frag.appendChild(o);chars.push(i);}
+        });
+        node.parentNode.replaceChild(frag,node);
+      }else if(node.nodeType===1&&!node.classList.contains('em-underglow')){
+        Array.prototype.slice.call(node.childNodes).forEach(walk);
+      }
+    }
+    Array.prototype.slice.call(el.childNodes).forEach(walk);
+    return chars;
+  }
+  var burnword=document.getElementById('burnword');
+  if(!reduce){
+    var heroChars=[];
+    document.querySelectorAll('.poster .w').forEach(function(w){heroChars=heroChars.concat(splitChars(w));});
+    requestAnimationFrame(function(){
+      heroChars.forEach(function(s,i){
+        s.style.transition='transform .8s cubic-bezier(.2,.8,.2,1) '+(i*0.022)+'s';
+        requestAnimationFrame(function(){s.style.transform='translateY(0)';});
+      });
+      setTimeout(function(){if(burnword)burnword.classList.add('lit');},120+heroChars.length*22+360);
+    });
+  }else{ if(burnword)burnword.classList.add('lit'); }
+
+  /* ---- per-line section head reveal ---- */
+  var heads=document.querySelectorAll('.rl-head');
+  /* ---- generic reveal: hide only off-screen, then reveal ---- */
+  var rvs=document.querySelectorAll('.rv');
+  if(!reduce){
+    rvs.forEach(function(el){ if(el.getBoundingClientRect().top>window.innerHeight*0.9) el.classList.add('pre'); });
+  }
+  if('IntersectionObserver' in window){
+    var ioHead=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.querySelectorAll('.rl').forEach(function(rl,k){ setTimeout(function(){rl.classList.add('rl-go');},k*110); }); ioHead.unobserve(e.target);} });
+    },{threshold:.3});
+    heads.forEach(function(h){ if(reduce){h.querySelectorAll('.rl').forEach(function(rl){rl.classList.add('rl-go');});} else {ioHead.observe(h);} });
+
+    var ioRv=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.remove('pre'); e.target.classList.add('go'); ioRv.unobserve(e.target);} });
+    },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+    document.querySelectorAll('.rv.pre').forEach(function(el){ioRv.observe(el);});
+    /* mark on-screen rv as go too (for the ember sweep on outcomes) */
+    rvs.forEach(function(el){ if(!el.classList.contains('pre')) el.classList.add('go'); });
+    setTimeout(function(){document.querySelectorAll('.rv.pre').forEach(function(el){el.classList.remove('pre');el.classList.add('go');});},2600);
+  }else{
+    heads.forEach(function(h){h.querySelectorAll('.rl').forEach(function(rl){rl.classList.add('rl-go');});});
+    rvs.forEach(function(el){el.classList.remove('pre');el.classList.add('go');});
+  }
+
+  /* ---- parallax + scrub (rAF, transform/opacity only) ---- */
+  var heroBg=document.getElementById('heroBg'),heroGlow=document.getElementById('heroGlow'),
+      emberRise=document.getElementById('emberRise'),meterFill=document.getElementById('meterFill'),
+      hostScene=document.getElementById('hostScene'),hostPhoto=document.getElementById('hostPhoto'),
+      hostLit=false,ticking=false;
+  function frame(){
+    var y=window.pageYOffset, vh=window.innerHeight;
+    if(heroBg) heroBg.style.transform='translate3d(0,'+(y*0.18)+'px,0)';
+    if(heroGlow) heroGlow.style.transform='translate3d('+(y*-0.06)+'px,'+(y*0.12)+'px,0)';
+    if(emberRise){ var er=emberRise.getBoundingClientRect(); var p=1-Math.min(1,Math.max(0,er.top/vh)); emberRise.style.transform='translateX(-50%) translateY('+((1-p)*40)+'px) scale('+(0.85+p*0.2)+')'; }
+    if(hostScene&&meterFill){
+      var r=hostScene.getBoundingClientRect();
+      var prog=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));
+      meterFill.style.width=(prog*100).toFixed(1)+'%';
+      if(!hostLit&&prog>0.28){hostLit=true;if(hostPhoto)hostPhoto.classList.add('lit');}
+    }
+    ticking=false;
+  }
+  if(!reduce){
+    window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(frame);ticking=true;}},{passive:true});
+    frame();
+  }else{ if(meterFill)meterFill.style.width='100%'; if(hostPhoto)hostPhoto.classList.add('lit'); }
+
+  /* ---- magnetic CTA ---- */
+  if(!reduce&&window.matchMedia('(hover:hover)').matches){
+    document.querySelectorAll('[data-mag]').forEach(function(btn){
+      btn.addEventListener('mousemove',function(e){var r=btn.getBoundingClientRect();var x=(e.clientX-r.left-r.width/2)*0.25,yy=(e.clientY-r.top-r.height/2)*0.3;btn.style.transform='translate('+x+'px,'+(yy-2)+'px)';});
+      btn.addEventListener('mouseleave',function(){btn.style.transform='';});
+    });
+  }
+
+  /* ---- sticky reserve bar ---- */
+  var hero=document.querySelector('.hero'),stick=document.getElementById('stick'),final=document.querySelector('.final');
+  function chkStick(){
+    var hb=hero.getBoundingClientRect().bottom, ft=final.getBoundingClientRect().top;
+    if(hb<-40 && ft>window.innerHeight*0.8){stick.classList.add('show');}else{stick.classList.remove('show');}
+  }
+  window.addEventListener('scroll',chkStick,{passive:true});chkStick();
+
+  /* ---- faq disclosure ---- */
+  document.querySelectorAll('#faq .fi').forEach(function(item){
+    var q=item.querySelector('.fq'),a=item.querySelector('.fa');
+    q.addEventListener('click',function(){
+      var open=item.classList.contains('open');
+      document.querySelectorAll('#faq .fi').forEach(function(i){i.classList.remove('open');i.querySelector('.fa').style.maxHeight=null;i.querySelector('.fq').setAttribute('aria-expanded','false');});
+      if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';q.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+</script>
+</body>
+</html>
