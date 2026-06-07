@@ -152,6 +152,34 @@
 .item[data-locked="1"] .controls{display:none}
 .locked-banner{margin-top:14px;padding:12px 14px;border-radius:10px;background:#21351f;color:#cde9c8;font-size:.9rem;font-weight:600}
 .locked-banner.edit{background:#3a2f17;color:#f0ddb0}
+
+/* Collapse toggle (UX upgrade 6/07) */
+.card-head{display:flex;align-items:flex-start;gap:10px}
+.card-head .head-main{flex:1;min-width:0}
+.chev{
+  appearance:none;border:1.5px solid var(--card-edge);background:#fff;color:var(--ember-deep);
+  width:44px;height:44px;min-width:44px;border-radius:12px;cursor:pointer;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;transition:transform .12s, background .12s;margin-top:2px;
+}
+.chev:active{transform:scale(.94)}
+.chev svg{width:20px;height:20px;transition:transform .28s ease}
+.item.collapsed .chev svg{transform:rotate(-90deg)}
+.collapsible{
+  overflow:hidden;transition:max-height .32s ease, opacity .22s ease;
+  max-height:12000px;opacity:1;
+}
+.item.collapsed .collapsible{max-height:0;opacity:0}
+.collapse-summary{
+  display:none;font-size:.86rem;color:var(--muted);margin:8px 0 2px;line-height:1.5;
+}
+.item.collapsed .collapse-summary{display:block}
+.stale-note{
+  background:#3a2f17;color:#f0ddb0;border-radius:10px;padding:11px 13px;margin:4px 0 12px;
+  font-size:.84rem;line-height:1.5;
+}
+.stale-note .sn-head{font-weight:700;color:var(--gold);margin-bottom:5px;display:flex;align-items:center;gap:7px}
+.stale-note .sn-head svg{width:15px;height:15px}
+.stale-note .sn-old{font-style:italic;color:#cdbf9a;white-space:pre-wrap}
 </style>
 </head>
 <body>
@@ -170,10 +198,17 @@
   </header>
 
   <!-- ITEM 1: EEC FINTECH -->
-  <article class="item" data-id="eec-fintech" data-fyi="0" data-locked="1">
+  <article class="item" data-id="eec-fintech" data-fyi="0" data-locked="1" data-version="v1">
     <div class="pad">
-      <p class="num">01 / the big one</p>
-      <h2>EEC Fintech Authority Playbook v5.3</h2>
+      <div class="card-head">
+        <div class="head-main">
+          <p class="num">01 / the big one</p>
+          <h2>EEC Fintech Authority Playbook v5.3</h2>
+        </div>
+        <button class="chev" aria-label="Expand or collapse card" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div>
+      <p class="collapse-summary">DECIDED 6/07: APPROVED &middot; Awaiting read &middot; Internal review panels visible</p>
+      <div class="collapsible">
       <p class="kicker">Weekend read &middot; 5-day email sequence for fintech founders. <b>Your Monday read = last human pass</b> before it goes to Notion/GDoc + the mug deadline (Wed 6/10).</p>
       <div class="badges">
         <span class="bdg await"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Awaiting read</span>
@@ -194,19 +229,34 @@
         </div>
         <textarea class="notes" placeholder="Notes / what to change (optional)"></textarea>
       </div>
+      </div><!-- /.collapsible -->
     </div>
   </article>
 
   <!-- ITEM 2: CAN-LICENSE POSTS -->
-  <article class="item" data-id="can-license-posts" data-fyi="0">
+  <article class="item" data-id="can-license-posts" data-fyi="0" data-version="v2">
     <div class="pad">
-      <p class="num">02 / awaiting "post it"</p>
-      <h2>Can / License launch posts</h2>
+      <div class="card-head">
+        <div class="head-main">
+          <p class="num">02 / awaiting "post it"</p>
+          <h2>Can / License launch posts <span class="v2tag">v2</span></h2>
+        </div>
+        <button class="chev" aria-label="Expand or collapse card" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div>
+      <p class="collapse-summary">PROCEED-NOW (council) &middot; Awaiting post-it &middot; LinkedIn + 2 X singles &middot; Voice PASS, CTQ 9/10</p>
+      <div class="collapsible">
       <p class="kicker">Personal account. <b>"Just because I can doesn't mean I can."</b> Reworked per your 6/07 edit: thread killed (single posts only), "corporate HR" line removed, dumped paragraph cut. Pick LinkedIn + one or both X singles. Per-batch "post it" required before anything goes out.</p>
       <div class="badges">
         <span class="bdg await"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>Awaiting post-it</span>
         <span class="bdg approved">Reworked 6/07</span>
         <span class="bdg fyi">Thread retired</span>
+      </div>
+
+      <div class="verdict-banner">
+        <p class="vlabel">Strategic council verdict</p>
+        <p class="vmain">PROCEED-NOW &middot; post this batch (per-batch "post it")</p>
+        <p class="vwhy">All five voices converged: there is no real case for parking. The revenue triad (IC workshop build, PGA mug Wed submission, SW 1:1 reconnects) never touches the personal feed this week, so parking buys silence, not focus. A live governance post is a closer for the cold prospects who will check your profile before the 6/24 workshop. A stale feed is a silent objection.</p>
+        <p class="vtrigger">Sequence: can/license NOW, HAW arc still 6/16 (~10 days apart, no same-week archetype collision). Stagger the batch: LinkedIn + X single A now, hold X single B for mid-week as a second touch.</p>
       </div>
 
       <div class="post-label">LinkedIn &middot; ~1,134 chars <button class="copysmall" data-copy="lk">Copy</button></div>
@@ -251,14 +301,22 @@ Capability said yes. License was mine. The agent does not decide that. I do.</di
         </div>
         <textarea class="notes" placeholder="Which variants? LinkedIn + single A, single B, or both? Any tweaks?"></textarea>
       </div>
+      </div><!-- /.collapsible -->
     </div>
   </article>
 
   <!-- ITEM 3: HAW 4-POST ARC (FOUND: docs/playbooks/librarian-lead-magnet-content.md) -->
-  <article class="item" data-id="haw-4post-arc" data-fyi="0">
+  <article class="item" data-id="haw-4post-arc" data-fyi="0" data-version="v2" data-locked="1">
     <div class="pad">
-      <p class="num">03 / awaiting "post it"</p>
-      <h2>HAW 4-post arc (cleanup funnel) <span class="v2tag">v2</span></h2>
+      <div class="card-head">
+        <div class="head-main">
+          <p class="num">03 / decided 6/07</p>
+          <h2>HAW 4-post arc (cleanup funnel) <span class="v2tag">v2</span></h2>
+        </div>
+        <button class="chev" aria-label="Expand or collapse card" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div>
+      <p class="collapse-summary">PROCEED-LATER accepted &middot; ships week of Mon 6/16 &middot; Council + Hormozi + CTQ + voice 6/07</p>
+      <div class="collapsible">
       <div class="badges">
         <span class="bdg ok-soft" style="background:#2c4a2e;color:#cfe8cf">Council + Hormozi + CTQ + voice 6/07</span>
       </div>
@@ -385,6 +443,7 @@ Full method, free: humanatwork.ai/cleanup
 What do you re-organize forever?</div>
       <button class="copy-btn" data-copy="haw4x">Copy X</button>
 
+      <div class="locked-banner">DECIDED 6/07: PROCEED-LATER accepted - arc ships week of Mon 6/16 (one post/day, LinkedIn + X singles, per-batch "post it" still required at posting time). Locked.</div>
       <div class="controls">
         <div class="verdict-row">
           <button class="vbtn" data-v="approve" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Post it (sched 6/09+)</button>
@@ -392,14 +451,22 @@ What do you re-organize forever?</div>
         </div>
         <textarea class="notes" placeholder="Which posts? Cadence (one per day from Tue 6/09)? LinkedIn + X both? Tweaks?"></textarea>
       </div>
+      </div><!-- /.collapsible -->
     </div>
   </article>
 
   <!-- ITEM 4: IC WORKSHOP (APPROVED FYI) -->
-  <article class="item" data-id="ic-workshop-redesign" data-fyi="1">
+  <article class="item" data-id="ic-workshop-redesign" data-fyi="1" data-version="v1">
     <div class="pad">
-      <p class="num">04 / already approved &middot; FYI</p>
-      <h2>IC workshop page &mdash; organic redesign</h2>
+      <div class="card-head">
+        <div class="head-main">
+          <p class="num">04 / already approved &middot; FYI</p>
+          <h2>IC workshop page &mdash; organic redesign</h2>
+        </div>
+        <button class="chev" aria-label="Expand or collapse card" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div>
+      <p class="collapse-summary">Approved 6/07 &middot; No action needed &middot; "AI without getting burned"</p>
+      <div class="collapsible">
       <div class="badges">
         <span class="bdg approved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Approved 6/07</span>
         <span class="bdg fyi">No action needed</span>
@@ -411,10 +478,11 @@ What do you re-organize forever?</div>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width:16px;height:16px"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
         Open the live FINAL page
       </a>
+      </div><!-- /.collapsible -->
     </div>
   </article>
 
-  <footer>3 awaiting your call &middot; 1 approved (FYI). Decisions stay on your phone (localStorage) until you Copy them. Nothing is sent from this page.</footer>
+  <footer>1 awaiting your call (can/license) &middot; 3 decided/locked. Tap a card's chevron to expand. Decisions stay on your phone (localStorage) until you Copy them. Nothing is sent from this page.</footer>
 </div>
 
 <div class="bar">
@@ -442,6 +510,44 @@ What do you re-organize forever?</div>
   try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
   function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
   function meta(it){ return { id: it.getAttribute("data-id"), title: it.querySelector("h2").textContent.trim() }; }
+  function ver(it){ return it.getAttribute("data-version") || "v1"; }
+  function isLocked(it){ return it.getAttribute("data-locked") === "1"; }
+  function isFyi(it){ return it.getAttribute("data-fyi") === "1"; }
+
+  // ---- Stale-note / versioning ----
+  // If a card's content version changed since the saved verdict was made, do NOT rehydrate
+  // the old verdict/notes. Surface a small "card updated" line with the old note read-only.
+  function reconcileVersion(it){
+    var id = it.getAttribute("data-id");
+    var s = state[id];
+    if(!s) return;
+    var curV = ver(it);
+    if(s._v && s._v !== curV){
+      // content changed: archive old verdict+note, clear live state
+      var oldNote = (s.notes || "").trim();
+      var oldVerdict = s.verdict || "";
+      var pad = it.querySelector(".pad");
+      var anchor = it.querySelector(".collapse-summary") || it.querySelector(".card-head");
+      if(pad && anchor && !it.querySelector(".stale-note")){
+        var box = document.createElement("div");
+        box.className = "stale-note";
+        var detail = "";
+        if(oldVerdict) detail += "Prior verdict: " + (oldVerdict === "approve" ? "APPROVE/POST" : oldVerdict === "edit" ? "EDIT" : oldVerdict).toUpperCase() + ". ";
+        if(oldNote) detail += "Prior note archived below.";
+        if(!oldVerdict && !oldNote) detail = "Your prior review was cleared.";
+        box.innerHTML =
+          '<div class="sn-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>Card updated since your last review</div>' +
+          '<div>' + detail + '</div>' +
+          (oldNote ? '<div class="sn-old">&ldquo;' + oldNote.replace(/</g,"&lt;").replace(/>/g,"&gt;") + '&rdquo;</div>' : '');
+        anchor.parentNode.insertBefore(box, anchor.nextSibling);
+      }
+      // wipe live verdict + notes so old ones do not rehydrate
+      state[id] = { _v: curV, collapsed: s.collapsed };
+      save();
+    } else if(!s._v){
+      s._v = curV; save();
+    }
+  }
 
   function render(it){
     var id = it.getAttribute("data-id");
@@ -460,13 +566,43 @@ What do you re-organize forever?</div>
     decidedEl.textContent = n;
   }
 
+  // ---- Collapse toggle ----
+  function applyCollapse(it){
+    var id = it.getAttribute("data-id");
+    var s = state[id] || {};
+    var collapsed;
+    if(typeof s.collapsed === "boolean"){
+      collapsed = s.collapsed;                 // honor user choice
+    } else {
+      collapsed = isLocked(it) || isFyi(it);   // default: locked/decided cards collapsed
+    }
+    it.classList.toggle("collapsed", collapsed);
+    var chev = it.querySelector(".chev");
+    if(chev) chev.setAttribute("aria-expanded", String(!collapsed));
+  }
+  function bindCollapse(it){
+    var chev = it.querySelector(".chev");
+    if(!chev) return;
+    chev.addEventListener("click", function(){
+      var id = it.getAttribute("data-id");
+      state[id] = state[id] || { _v: ver(it) };
+      var nowCollapsed = !it.classList.contains("collapsed");
+      state[id].collapsed = nowCollapsed;
+      save();
+      it.classList.toggle("collapsed", nowCollapsed);
+      chev.setAttribute("aria-expanded", String(!nowCollapsed));
+    });
+  }
+
   items.forEach(function(it){
     var id = it.getAttribute("data-id");
+    reconcileVersion(it);
     it.querySelectorAll(".vbtn[data-v]").forEach(function(b){
       if(b.disabled) return;
       b.addEventListener("click", function(){
         var v = b.getAttribute("data-v");
         state[id] = state[id] || {};
+        state[id]._v = ver(it);
         state[id].verdict = (state[id].verdict === v) ? null : v;
         save(); render(it); updateCount();
       });
@@ -475,10 +611,13 @@ What do you re-organize forever?</div>
     if(ta){
       ta.addEventListener("input", function(){
         state[id] = state[id] || {};
+        state[id]._v = ver(it);
         state[id].notes = ta.value;
         save();
       });
     }
+    bindCollapse(it);
+    applyCollapse(it);
     render(it);
   });
   updateCount();
