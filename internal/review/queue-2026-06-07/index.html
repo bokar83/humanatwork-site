@@ -147,6 +147,11 @@
     iframe.embed{height:640px}
     h1{letter-spacing:-.02em}
   }
+
+.item[data-locked="1"]{opacity:.92}
+.item[data-locked="1"] .controls{display:none}
+.locked-banner{margin-top:14px;padding:12px 14px;border-radius:10px;background:#21351f;color:#cde9c8;font-size:.9rem;font-weight:600}
+.locked-banner.edit{background:#3a2f17;color:#f0ddb0}
 </style>
 </head>
 <body>
@@ -165,7 +170,7 @@
   </header>
 
   <!-- ITEM 1: EEC FINTECH -->
-  <article class="item" data-id="eec-fintech" data-fyi="0">
+  <article class="item" data-id="eec-fintech" data-fyi="0" data-locked="1">
     <div class="pad">
       <p class="num">01 / the big one</p>
       <h2>EEC Fintech Authority Playbook v5.3</h2>
@@ -181,6 +186,7 @@
       <div class="embed-wrap">
         <iframe class="embed" src="assets/eec-fintech-authority-playbook.html" title="EEC Fintech Authority Playbook v5.3" loading="lazy"></iframe>
       </div>
+      <div class="locked-banner">DECIDED 6/07: APPROVED. "Really good work." Lessons saved; Monday = packaging + submit. Locked.</div>
       <div class="controls">
         <div class="verdict-row">
           <button class="vbtn" data-v="approve" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Approve</button>
@@ -427,7 +433,7 @@ What do you re-organize forever?</div>
 (function(){
   var KEY = "review-queue-2026-06-07";
   var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
-  var actionable = items.filter(function(it){ return it.getAttribute("data-fyi") !== "1"; });
+  var actionable = items.filter(function(it){ return it.getAttribute("data-fyi") !== "1" && it.getAttribute("data-locked") !== "1"; });
   var totalEl = document.getElementById("total");
   var decidedEl = document.getElementById("decided");
   totalEl.textContent = actionable.length;
