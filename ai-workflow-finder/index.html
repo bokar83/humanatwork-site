@@ -283,6 +283,18 @@ main { max-width: 720px; margin: 32px auto; padding: 0 24px; }
 }
 .fallback-note a { color: var(--brick); }
 
+.after-step {
+  max-width: 620px;
+  margin: 40px auto 0;
+  padding: 26px 28px;
+  background: var(--bone);
+  clip-path: polygon(0% 3%, 8% 0%, 26% 2%, 48% 0%, 70% 2%, 90% 0%, 100% 3%, 99% 28%, 100% 55%, 98% 78%, 100% 97%, 80% 100%, 56% 98%, 32% 100%, 12% 99%, 0% 100%, 1% 72%, 0% 46%, 2% 22%);
+}
+.after-step .after-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brick); margin-bottom: 10px; }
+.after-step p { font-size: 16px; line-height: 1.6; margin-bottom: 14px; }
+.after-step a.after-link { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--brick); text-decoration: underline; text-decoration-color: var(--hairline-strong); }
+.after-step a.after-link:hover { text-decoration-color: var(--brick); }
+
 footer.site-footer {
   max-width: 880px;
   margin: 80px auto 0;
@@ -394,7 +406,7 @@ footer.site-footer a:hover { color: var(--brick); }
     <section class="lead-capture" aria-labelledby="lead-capture-heading" data-plausible-source="ai_workflow_finder_landing">
       <p class="lead-eyebrow">Email below &middot; PDF lands in inbox</p>
       <h2 class="lead-headline" id="lead-capture-heading">Get the field guide worksheet.</h2>
-      <p class="lead-sub">No spam. Unsubscribe in one click. You also get the Human at Work newsletter.</p>
+      <p class="lead-sub">Drop your email and the worksheet lands in your inbox. You also join the Human at Work newsletter, where I share the next ones. No spam, unsubscribe in one click.</p>
       <form class="haw-lead-form" id="haw-subscribe-ai-workflow-finder" method="post" action="https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe" novalidate>
         <label class="sr-only" for="haw-email-ai-workflow-finder">Email address</label>
         <input class="lead-email" id="haw-email-ai-workflow-finder" type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
@@ -420,6 +432,12 @@ footer.site-footer a:hover { color: var(--brick); }
     </section>
 
     <p class="fallback-note">Already on the list? <a href="/magnets/ai-workflow-finder.pdf" id="direct-download-link">Grab the field guide PDF directly</a>. The form is for first-time subscribers; the download link works either way.</p>
+
+    <aside class="after-step" aria-label="After the worksheet">
+      <p class="after-eyebrow">After you pick your one</p>
+      <p>The worksheet gets you to the pick. Building it so it runs without you is the next hour, and that one is harder alone. If you would rather build your first workflow with someone who has already done it, that is the done-with-you work.</p>
+      <a class="after-link" href="/dfy/">See how the build-with-me work goes &rarr;</a>
+    </aside>
   </main>
 
   <footer class="site-footer">
