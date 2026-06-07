@@ -95,6 +95,24 @@
 
   .fyi-note{font-size:.86rem;color:var(--muted);margin-top:6px}
 
+  /* HAW v2 council banner + internal score panels */
+  .verdict-banner{background:#241D13;color:var(--bg);border-radius:13px;padding:14px 15px;margin:4px 0 14px}
+  .verdict-banner .vlabel{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+  .verdict-banner .vmain{font-family:var(--serif);font-size:1.16rem;line-height:1.2;margin:4px 0 6px;color:#fff}
+  .verdict-banner .vwhy{font-size:.88rem;color:#d8cbb0;line-height:1.5}
+  .verdict-banner .vtrigger{font-size:.82rem;color:var(--gold);margin-top:8px;font-weight:600}
+  .scorepanel{background:#f3ead4;border:1px dashed #cdbd97;border-radius:11px;padding:11px 12px;margin:8px 0 12px;font-size:.82rem;color:#5a4d33}
+  .scorepanel .sphead{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ember-deep);margin-bottom:6px}
+  .scorepanel .srow{display:flex;justify-content:space-between;gap:10px;padding:2px 0;border-bottom:1px solid #e3d7bb}
+  .scorepanel .srow:last-child{border-bottom:0}
+  .scorepanel .sk{color:#6f6450}
+  .scorepanel .sv{font-weight:700;color:#3a3019;font-variant-numeric:tabular-nums}
+  .scorepanel .sup{color:var(--green);font-weight:700}
+  .v2tag{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.05em;background:var(--green);color:#fff;border-radius:5px;padding:1px 6px;vertical-align:middle;margin-left:6px}
+  .copy-btn{appearance:none;border:1.5px solid var(--ember);color:var(--ember-deep);background:transparent;font-size:.78rem;font-weight:700;border-radius:9px;padding:7px 13px;cursor:pointer;min-height:38px;margin:2px 0 4px}
+  .copy-btn:active{transform:scale(.97)}
+  .copy-btn.done{background:var(--green);border-color:var(--green);color:#fff}
+
   .bar{
     position:fixed;left:0;right:0;bottom:0;z-index:30;
     background:var(--espresso);color:var(--bg);
@@ -234,115 +252,131 @@ Capability said yes. License was mine. The agent does not decide that. I do.</di
   <article class="item" data-id="haw-4post-arc" data-fyi="0">
     <div class="pad">
       <p class="num">03 / awaiting "post it"</p>
-      <h2>HAW 4-post arc (cleanup funnel)</h2>
+      <h2>HAW 4-post arc (cleanup funnel) <span class="v2tag">v2</span></h2>
       <div class="badges">
-        <span class="bdg ok-soft" style="background:#2c4a2e;color:#cfe8cf">Battery passed 6/05</span>
-        <span class="bdg" style="background:#4a3a1e;color:#f0ddb0">Proposed start Tue 6/09</span>
+        <span class="bdg ok-soft" style="background:#2c4a2e;color:#cfe8cf">Council + Hormozi + CTQ + voice 6/07</span>
       </div>
-      <p class="kicker">Found in <b>docs/playbooks/librarian-lead-magnet-content.md</b> (drafted + voice-&gt;ctq-&gt;council + DeepSeek cross-check 6/05). Posts 3-4 link <b>humanatwork.ai/cleanup</b> - the /cleanup capture page is LIVE; the short redirect needs a 1-line htaccess check before those two fire. Personal account: each batch posts only on your explicit "post it".</p>
-      
+
+      <div class="verdict-banner">
+        <p class="vlabel">Strategic council verdict</p>
+        <p class="vmain">PROCEED-LATER &middot; ship the week of Mon 6/16</p>
+        <p class="vwhy">Posts are strong. But this week your one personal account belongs to the dated revenue triad (IC workshop 6/24, PGA mug Wed, SW reconnects). The cleanup arc has no date on it, so it yields. It is evergreen and ages with zero decay, so it loses nothing by waiting one week.</p>
+        <p class="vtrigger">Trigger: ship after the IC workshop page ships + the can/license launch runs + the /cleanup redirect is verified. One post/day, LinkedIn + X single. Does not wait past 6/30 without a re-Council.</p>
+      </div>
+
+      <div class="scorepanel">
+        <p class="sphead">Internal scores &middot; v1 &rarr; v2 (not shown to readers)</p>
+        <div class="srow"><span class="sk">Hormozi Value Equation (lead magnet)</span><span class="sv">7.75 / 10 &middot; ship</span></div>
+        <div class="srow"><span class="sk">P1 show-the-lens &middot; viral / bookmark</span><span class="sv">8.0&rarr;<span class="sup">9.0</span> &middot; 8&rarr;<span class="sup">10</span>/12</span></div>
+        <div class="srow"><span class="sk">P2 method-not-tooling &middot; viral / bookmark</span><span class="sv">7.5&rarr;<span class="sup">9.0</span> &middot; 8&rarr;<span class="sup">10</span>/12</span></div>
+        <div class="srow"><span class="sk">P3 the offer &middot; viral / bookmark</span><span class="sv">7.5&rarr;<span class="sup">9.0</span> &middot; 9&rarr;<span class="sup">11</span>/12</span></div>
+        <div class="srow"><span class="sk">P4 daemon/proof &middot; viral / bookmark</span><span class="sv">8.0&rarr;<span class="sup">9.5</span> &middot; 10&rarr;<span class="sup">11</span>/12</span></div>
+        <div class="srow"><span class="sk">Biggest fix</span><span class="sv">P4: proof leads, single CTA</span></div>
+        <div class="srow"><span class="sk">Defects fixed</span><span class="sv">v1 X P1/P2 were 282/286 (over 280); all v2 singles &lt;280</span></div>
+      </div>
+
+      <p class="kicker">Source <b>docs/playbooks/librarian-lead-magnet-content.md</b> (v2 appended below v1). Posts 3-4 link <b>humanatwork.ai/cleanup</b> - capture page LIVE; short redirect needs a 1-line htaccess check before those two fire. X = single tweets (no threads, 6/07 rule). Personal account: each batch posts only on your explicit "post it".</p>
+
       <h3 style="margin:18px 0 6px;font-size:1.02rem">Post 1 - Show the lens (no CTA)</h3>
       <p style="margin:0 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">LinkedIn</p>
-      <div class="post" id="haw1lk">I almost deleted a folder of family photos a few days ago.
+      <div class="post" id="haw1lk">I almost deleted a folder of family photos.
 
 It was named like a duplicates pile. My instinct said delete. It held files that exist nowhere else.
 
-One rule saved them: name folders for what the tired human should do, not for what the system knows. A folder called &quot;duplicates&quot; invites deletion. A folder called &quot;HAS UNIQUE FILES - DO NOT DELETE&quot; stops a tired hand at 11pm.
+One rule saved them. Name folders for what the tired human should do, not for what the system knows. A folder called &quot;duplicates&quot; invites deletion. A folder called &quot;HAS UNIQUE FILES - DO NOT DELETE&quot; stops a tired hand at 11pm.
 
-Ten years of operations taught me checklists exist because smart people make tired mistakes. I never applied that to my own files.
+Ten years in operations taught me checklists exist because smart people make tired mistakes. I had never once applied that to my own files.
 
-Naming is a safety control. Not decoration. A barrier between you and the mistake you can&#x27;t undo.
+A label is not decoration. It is a safety control. The last barrier between you and the mistake you cannot undo.
 
 What has a misleading label almost cost you?</div>
       <button class="copy-btn" data-copy="haw1lk">Copy LinkedIn</button>
-      <p style="margin:10px 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">X</p>
-      <div class="post" id="haw1x">I almost deleted a folder of family photos because it was named like a duplicates pile.
+      <p style="margin:10px 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">X &middot; single, 266 chars</p>
+      <div class="post" id="haw1x">I almost deleted a folder of family photos.
 
-It held files that exist nowhere else.
+It was named like a duplicates pile. It held files that exist nowhere else.
 
-New rule: name folders for the tired human acting on them at 11pm, not for the system.
+New rule: name folders for the tired human acting at 11pm, not for the system.
 
-Naming is a safety control. What has a bad label almost cost you?</div>
+A label is a safety control. What has a bad one almost cost you?</div>
       <button class="copy-btn" data-copy="haw1x">Copy X</button>
 
       <h3 style="margin:18px 0 6px;font-size:1.02rem">Post 2 - Method not tooling (no CTA)</h3>
       <p style="margin:0 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">LinkedIn</p>
-      <div class="post" id="haw2lk">For ten years my Drive stayed almost organized. Always one weekend away from done.
+      <div class="post" id="haw2lk">For ten years my Drive sat one weekend away from done.
 
-New apps, new folder schemes, new resolutions. Nothing held. Because it was never a tooling problem. It was a method problem. I didn&#x27;t avoid the cleanup because I was lazy. I avoided it because somewhere in those folders were family records I could not afford to lose, and I had no safe way to move anything. Any move was a gamble. So I made none. For a decade.
+New apps, new folder schemes, new year&#x27;s resolutions. Nothing held. Not because I was lazy. Because somewhere in those folders sat family records I could not afford to lose, and I had no safe way to move anything. Every move was a gamble. So for a decade I made none.
 
-Here&#x27;s the part that still makes me laugh. Buried in that chaos sat years of my research on Theory of Constraints, the discipline of finding the real bottleneck in a system. The bottleneck was never the files. It was the missing method.
+Here is the part I did not see at the time. Buried in that same chaos were years of my own research on Theory of Constraints, the discipline of finding the one real bottleneck in a system. I had the whole framework. I just never pointed it at my own desk.
 
-Two rules changed everything. Move, never delete: everything goes to a labeled holding area first, and deletion becomes a separate, calmer decision. Dry-run first: see the full plan on paper before anything touches a file.
+The bottleneck was never the files. It was the missing method.
 
-Once moves became reversible, fear had nothing to hold onto.
+Two rules changed everything. Move, never delete: everything goes to a labeled holding area first, so deletion becomes a separate, calmer decision later. Dry-run first: see the entire plan before a single file moves.
+
+Once every move was reversible, the fear had nothing left to hold onto.
 
 What have you been trying to out-tool instead of out-think?</div>
       <button class="copy-btn" data-copy="haw2lk">Copy LinkedIn</button>
-      <p style="margin:10px 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">X</p>
-      <div class="post" id="haw2x">Ten years my Drive stayed almost organized. New apps, new schemes. Nothing held.
+      <p style="margin:10px 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">X &middot; single, 278 chars</p>
+      <div class="post" id="haw2x">For ten years my Drive sat one weekend from done. Nothing held.
 
-It was a method problem, not a tooling problem. Every move felt like a gamble, so I made none.
+Not a tooling problem. A method problem. Every move risked family records I could not lose, so I made none.
 
-Two rules broke it: move never delete, and dry-run first.
+Two rules broke it: move never delete, dry-run first.
 
 What are you out-tooling instead of out-thinking?</div>
       <button class="copy-btn" data-copy="haw2x">Copy X</button>
 
       <h3 style="margin:18px 0 6px;font-size:1.02rem">Post 3 - THE OFFER (CTA)</h3>
       <p style="margin:0 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">LinkedIn</p>
-      <div class="post" id="haw3lk">Ten years of digital chaos, cleaned up without losing a single file. Including family records in two languages I had no margin for error on.
+      <div class="post" id="haw3lk">Ten years of digital chaos, cleaned up without losing a single file. Family records in two languages included, the ones I had zero margin for error on.
 
-I wrote the method down.
+So I wrote the whole method down.
 
-The Operator&#x27;s Drive &amp; Inbox Cleanup Playbook covers:
+The Operator&#x27;s Drive &amp; Inbox Cleanup Playbook:
 
 The seven rules, from move-never-delete to automate-the-upkeep.
-The five mistakes that almost cost me, and the fix for each.
-A one-page safety checklist for anything you can&#x27;t afford to lose.
+The five mistakes that almost cost me, and the exact fix for each.
+A one-page safety checklist for anything you cannot afford to lose.
 
-Free. The method I wish I&#x27;d had ten years ago.
+Free. The method I wish someone had handed me ten years ago.
 
 humanatwork.ai/cleanup
 
-What&#x27;s the folder you&#x27;ve been afraid to touch?</div>
+Somewhere on your drive is a folder you have been afraid to touch. This is for that folder.</div>
       <button class="copy-btn" data-copy="haw3lk">Copy LinkedIn</button>
-      <p style="margin:10px 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">X</p>
-      <div class="post" id="haw3x">Ten years of digital chaos, cleaned up with seven rules and zero lost files.
+      <p style="margin:10px 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">X &middot; single, 278 chars</p>
+      <div class="post" id="haw3x">Ten years of digital chaos. Cleaned up with seven rules. Zero files lost, including family records in two languages.
 
-I wrote the method down, including the five mistakes that almost cost me.
+I wrote the whole method down. The five mistakes that almost cost me are in there too.
 
-The Operator&#x27;s Drive &amp; Inbox Cleanup Playbook. Free.
-
-humanatwork.ai/cleanup
+Free: humanatwork.ai/cleanup
 
 What folder have you been afraid to touch?</div>
       <button class="copy-btn" data-copy="haw3x">Copy X</button>
 
       <h3 style="margin:18px 0 6px;font-size:1.02rem">Post 4 - Daemon / proof (CTA)</h3>
       <p style="margin:0 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">LinkedIn</p>
-      <div class="post" id="haw4lk">Cleaning up was the easy part. Staying clean is where every system I&#x27;ve ever organized went to die.
+      <div class="post" id="haw4lk">Before I let software touch a single one of my files, I put the plan in front of five AI critics with one job: break it. They forced six safety fixes I would have skipped on my own.
 
-So I gave the upkeep to software that never gets tired.
+That is the part most people get backward. Getting organized is easy. Staying organized is where every system I have ever built went to die.
 
-Every night a small agent sweeps my Drive inbox. Confident matches get filed. Anything ambiguous goes to a review pile for me. It never guesses. Every move is logged and reversible with one command.
-
-Before it touched a single file, I put the plan in front of five AI critics with one job: break it. They forced six safety fixes I would have skipped on my own.
+So I gave the upkeep to an agent that never gets tired. Every night it sweeps my Drive inbox. What it is sure of gets filed. Anything ambiguous waits in a review pile for me. It never guesses. Every move is logged and reversible with one command.
 
 A month from now my Drive will be exactly as organized as it is today. Not because I got disciplined. Because the method runs without me.
 
-The method is in the free playbook: humanatwork.ai/cleanup
+The whole thing, free: humanatwork.ai/cleanup
 
-What do you keep re-organizing because nothing maintains it?</div>
+What do you keep re-organizing because nothing ever maintains it?</div>
       <button class="copy-btn" data-copy="haw4lk">Copy LinkedIn</button>
-      <p style="margin:10px 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">X</p>
+      <p style="margin:10px 0 6px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">X &middot; single, 257 chars</p>
       <div class="post" id="haw4x">Getting organized is easy. Staying organized is where it always died.
 
-A small agent now sweeps my Drive nightly. Confident files get filed. Ambiguous ones wait for me. Every move logged and reversible.
+So I handed upkeep to an agent that never tires. Files what it knows, flags what it doesn&#x27;t, logs every move.
 
-Full method: humanatwork.ai/cleanup
+Full method, free: humanatwork.ai/cleanup
 
-What do you keep re-organizing?</div>
+What do you re-organize forever?</div>
       <button class="copy-btn" data-copy="haw4x">Copy X</button>
 
       <div class="controls">
@@ -443,7 +477,7 @@ What do you keep re-organizing?</div>
   });
   updateCount();
 
-  document.querySelectorAll(".copysmall[data-copy]").forEach(function(b){
+  document.querySelectorAll(".copysmall[data-copy], .copy-btn[data-copy]").forEach(function(b){
     b.addEventListener("click", function(){
       var el = document.getElementById(b.getAttribute("data-copy"));
       var txt = el ? el.innerText.trim() : "";
