@@ -37,7 +37,8 @@
   --amber-deep:#C24A18;
   --amber-hot:#FF7A30;
   --molten:#FFB347;
-  --citron:#C8E64B;
+  --accent2:#FFB347;   /* secondary pop on dark ink - warm molten, replaces old fluorescent citron */
+  --char:#2A1A10;      /* charred-ink burn-cut for the BURNED scorch line */
   --teal:#103A3A;
   --ink-soft:#5A4F42;
   --ink-faint:#857A6A;
@@ -64,7 +65,7 @@ a{color:inherit;text-decoration:none}
 .cur,.curR{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
 .cur{width:7px;height:7px;background:var(--amber)}
 .curR{width:30px;height:30px;border:1.5px solid rgba(232,99,42,.55);transition:width .25s var(--ease),height .25s var(--ease),border-color .25s var(--ease)}
-.curR.hot{width:54px;height:54px;border-color:var(--citron)}
+.curR.hot{width:54px;height:54px;border-color:var(--molten)}
 @media(hover:none),(max-width:900px){.cur,.curR{display:none}}
 
 .kicker{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
@@ -94,9 +95,11 @@ a{color:inherit;text-decoration:none}
 .poster .l2 .inner{color:var(--ink)}
 
 /* ---- the BURNED ignition (Site A heat ported to light palette) ---- */
-.poster .burn{position:relative;display:inline-block;color:var(--ink);isolation:isolate}
+.poster .burn{position:relative;display:inline-block;color:var(--ink);isolation:isolate;cursor:pointer}
 /* per-char molten reveal: each letter sits ink, then ignites amber->hot in a left-to-right sweep */
 .poster .burn .ch{display:inline-block;position:relative;color:var(--ink);transition:color .42s var(--ease),text-shadow .42s var(--ease);will-change:color}
+/* smolder: char warms toward ember before it catches - the beat of anticipation */
+.js-on .poster .burn .ch.smolder{color:var(--ink-2);text-shadow:0 0 .35em rgba(255,122,48,.0);transition:color .9s var(--ease),text-shadow .9s var(--ease)}
 .js-on .poster .burn .ch.lit{color:var(--amber);text-shadow:0 0 .015em rgba(255,122,48,.0)}
 /* the lead char of the sweep flashes molten then settles to amber */
 .js-on .poster .burn .ch.flash{color:var(--amber-hot);text-shadow:0 .02em .26em rgba(255,122,48,.55),0 0 .55em rgba(255,179,71,.4)}
@@ -104,7 +107,7 @@ a{color:inherit;text-decoration:none}
 .poster .burn .glow{position:absolute;left:-5%;right:-5%;bottom:.04em;top:.12em;z-index:-1;pointer-events:none;
   background:radial-gradient(60% 78% at 50% 70%,rgba(255,122,48,.55),rgba(255,179,71,.22) 48%,transparent 74%);
   filter:blur(10px);opacity:0;transform:scale(.7);transform-origin:50% 80%}
-.js-on .poster .burn.alight .glow{opacity:1;transform:scale(1);transition:opacity 1.05s var(--ease) .1s,transform 1.05s var(--ease) .1s}
+.js-on .poster .burn.alight .glow{opacity:1;transform:scale(1);transition:opacity 1.35s var(--ease) .25s,transform 1.35s var(--ease) .25s}
 /* heat shimmer that rolls across the word once as it catches */
 .poster .burn .heat{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:0;
   background:linear-gradient(100deg,transparent 38%,rgba(255,179,71,.85) 50%,transparent 62%);
@@ -112,12 +115,20 @@ a{color:inherit;text-decoration:none}
 .js-on .poster .burn.alight .heat{opacity:.9;animation:sweepheat 1.05s var(--ease) .12s 1 forwards}
 @keyframes sweepheat{from{background-position:120% 0;opacity:.9}to{background-position:-30% 0;opacity:0}}
 /* the signature B scorch underline - now sits over the new heat as the "burn line" */
-.poster .burn .scorch{position:absolute;left:0;right:0;bottom:.07em;height:.085em;background:var(--citron);transform:scaleX(0);transform-origin:left;z-index:3}
-.js-on .poster .burn.alight .scorch{transform:scaleX(1);transition:transform 1s var(--ease) .25s}
+/* charred-ink burn-cut: the fire-meets-paper line. molten glow bleeds from the ends, char in the body - reads as a scorch, not a highlighter */
+.poster .burn .scorch{position:absolute;left:0;right:0;bottom:.07em;height:.085em;z-index:3;transform:scaleX(0);transform-origin:left;
+  background:linear-gradient(90deg,rgba(255,179,71,.95) 0%,var(--char) 14%,var(--char) 86%,rgba(255,122,48,.95) 100%);
+  box-shadow:0 0 .08em rgba(255,122,48,.55)}
+.js-on .poster .burn.alight .scorch{transform:scaleX(1);transition:transform 1.3s var(--ease) .55s}
+/* settled rest-state: char burn-cut + word amber stay PUT so a static screenshot reads as ignited (distinguishes FINAL from B) */
+.js-on .poster .burn.settled .scorch{transform:scaleX(1)}
+.js-on .poster .burn.settled .ch{color:var(--amber)}
+.js-on .poster .burn.settled .glow{opacity:.78;transform:scale(1)}
+.js-on .poster .burn.settled .ember{transform:scaleX(1)}
 /* a thin ember rule that draws under the scorch, warming the cut */
 .poster .burn .ember{position:absolute;left:0;right:0;bottom:.045em;height:.045em;z-index:2;
   background:linear-gradient(90deg,var(--amber-hot),var(--molten));transform:scaleX(0);transform-origin:left;opacity:.9}
-.js-on .poster .burn.alight .ember{transform:scaleX(1);transition:transform 1.1s var(--ease) .15s}
+.js-on .poster .burn.alight .ember{transform:scaleX(1);transition:transform 1.4s var(--ease) .4s}
 /* asymmetric offset for broken-grid feel */
 .poster .l2{padding-left:7vw}
 @media(max-width:760px){.poster .l2{padding-left:0}}
@@ -133,12 +144,12 @@ a{color:inherit;text-decoration:none}
 
 .hero-photo{position:relative;overflow:hidden;min-height:420px;background:var(--ink)}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-/* DUOTONE treatment: ink shadows, bone/citron highlights, designed not stock */
+/* DUOTONE treatment: ink shadows, bone/molten highlights, designed not stock */
 .duo{position:relative;background:var(--ink)}
 .duo img{filter:grayscale(1) contrast(1.12) brightness(1.12)}
 /* duotone: warm ink-amber shadows, bone highlights - photo stays legible, reads designed */
 .duo::after{content:"";position:absolute;inset:0;mix-blend-mode:multiply;background:linear-gradient(150deg,var(--amber-deep) 0%,var(--ink-2) 100%);opacity:.78}
-.duo::before{content:"";position:absolute;inset:0;z-index:2;mix-blend-mode:screen;background:linear-gradient(150deg,var(--amber) 0%,var(--paper-2) 60%,var(--citron) 100%);opacity:.34}
+.duo::before{content:"";position:absolute;inset:0;z-index:2;mix-blend-mode:screen;background:linear-gradient(150deg,var(--amber) 0%,var(--paper-2) 60%,var(--molten) 100%);opacity:.34}
 .hero-photo .cap{position:absolute;left:0;bottom:0;z-index:4;background:var(--ink);color:var(--paper);font-family:var(--mono);font-weight:500;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px}
 .hero-photo .frameno{position:absolute;top:0;right:0;z-index:4;background:var(--amber);color:var(--ink);font-family:var(--display);font-size:.9rem;letter-spacing:.06em;padding:5px 12px;text-transform:uppercase}
 
@@ -153,18 +164,18 @@ a{color:inherit;text-decoration:none}
 .cta:hover{background:var(--ink);color:var(--paper)}
 .cta svg{width:18px;height:18px}
 .cta.ghost{background:transparent;color:var(--ink)}
-.cta.ghost:hover{background:var(--citron);color:var(--ink)}
-.cta.lite{background:var(--citron);color:var(--ink)}
+.cta.ghost:hover{background:var(--molten);color:var(--ink)}
+.cta.lite{background:var(--molten);color:var(--ink)}
 .cta.lite:hover{background:var(--paper);color:var(--ink)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--citron);outline-offset:3px}
-.sec.ink a:focus-visible,.final a:focus-visible,.stick a:focus-visible{outline-color:var(--citron)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--amber-deep);outline-offset:3px}
+.sec.ink a:focus-visible,.final a:focus-visible,.stick a:focus-visible{outline-color:var(--molten)}
 
 /* ---- ticker ---- */
 .ticker{margin-top:0;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);overflow:hidden;background:var(--ink);position:relative;z-index:4}
 .ticker .track{display:inline-flex;white-space:nowrap;will-change:transform;animation:slide 30s linear infinite}
 .ticker:hover .track{animation-play-state:paused}
 .ticker span{font-family:var(--display);text-transform:uppercase;color:var(--paper);font-size:1.15rem;letter-spacing:.04em;padding:12px 0}
-.ticker .dot{color:var(--citron);padding:0 24px;font-size:1.1rem}
+.ticker .dot{color:var(--molten);padding:0 24px;font-size:1.1rem}
 .ticker .am{color:var(--amber)}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.ticker .track{animation:none}}
@@ -176,14 +187,14 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--citron);outline-off
 .sec.deep{background:var(--paper-3)}
 .shead{display:flex;align-items:baseline;gap:18px;margin-bottom:20px;flex-wrap:wrap}
 .shead .no{font-family:var(--display);font-size:1.4rem;color:var(--amber-deep);letter-spacing:.04em}
-.sec.ink .shead .no{color:var(--citron)}
+.sec.ink .shead .no{color:var(--molten)}
 .shead .lab{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint)}
 .sec.ink .shead .lab{color:rgba(239,231,214,.6)}
 .shead .lab::before{content:"// "}
 .sec h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(2.4rem,1.6rem+3.6vw,5rem);line-height:.92;letter-spacing:.01em;color:var(--ink);max-width:20ch;margin-bottom:18px}
 .sec.ink h2{color:var(--paper)}
 .sec h2 em{font-style:normal;color:var(--amber)}
-.sec.ink h2 em{color:var(--citron)}
+.sec.ink h2 em{color:var(--molten)}
 .sec .lede{font-family:var(--serif);font-size:clamp(1.1rem,1rem+.45vw,1.4rem);color:var(--ink-2);max-width:54ch;line-height:1.42}
 .sec.ink .lede{color:rgba(239,231,214,.86)}
 
@@ -192,7 +203,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--citron);outline-off
 @media(max-width:860px){.qgrid{grid-template-columns:1fr;gap:30px}}
 .bigq{font-family:var(--serif);font-size:clamp(1.7rem,1.2rem+2.2vw,3.1rem);line-height:1.14;color:var(--ink)}
 .bigq .u{color:var(--amber-deep);position:relative;white-space:nowrap}
-.bigq .u::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.10em;background:var(--citron);z-index:-1}
+.bigq .u::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.10em;background:var(--amber-deep);z-index:-1}
 .qbody p{font-size:1.06rem;color:var(--ink-soft);margin-bottom:16px;line-height:1.64}
 .qbody p strong{color:var(--ink);font-weight:600}
 
@@ -213,12 +224,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--citron);outline-off
 .fwc{padding:34px 36px}
 .fwc.b{background:rgba(232,99,42,.12);border-left:3px solid var(--paper)}
 @media(max-width:780px){.fwc.b{border-left:none;border-top:3px solid var(--paper)}}
-.fwc h4{font-family:var(--mono);font-weight:600;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px;color:var(--citron)}
+.fwc h4{font-family:var(--mono);font-weight:600;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px;color:var(--molten)}
 .fwc.b h4{color:var(--amber)}
 .fwc ul{list-style:none}
 .fwc li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;font-size:1.05rem;color:rgba(239,231,214,.94);border-bottom:1px solid rgba(239,231,214,.13);line-height:1.5}
 .fwc li:last-child{border-bottom:none}
-.fwc li svg{width:20px;height:20px;flex:0 0 20px;margin-top:3px;color:var(--citron)}
+.fwc li svg{width:20px;height:20px;flex:0 0 20px;margin-top:3px;color:var(--molten)}
 .fwc.b li svg{color:var(--amber)}
 
 /* ---- host ---- */
@@ -247,14 +258,14 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--citron);outline-off
 .final .ember-rise{position:absolute;left:50%;bottom:-26%;transform:translateX(-50%);width:120%;height:90%;z-index:0;pointer-events:none;
   background:radial-gradient(closest-side,rgba(255,122,48,.34),rgba(255,179,71,.09) 46%,transparent 72%);filter:blur(14px);will-change:transform}
 .final .ftop{text-align:center;position:relative;z-index:2}
-.final .kicker{color:var(--citron);margin-bottom:22px;display:inline-block}
+.final .kicker{color:var(--molten);margin-bottom:22px;display:inline-block}
 .final h2{font-family:var(--display);font-size:clamp(2.8rem,1.8rem+6vw,8rem);line-height:.86;text-transform:uppercase;color:var(--paper);max-width:16ch;margin:0 auto 20px;letter-spacing:.01em}
 .final h2 em{font-style:normal;color:var(--amber)}
 .final p{font-family:var(--serif);font-size:1.2rem;color:rgba(239,231,214,.84);max-width:44ch;margin:0 auto 36px;line-height:1.4}
 .regmeta{display:grid;grid-template-columns:repeat(4,1fr);margin-top:64px;border-top:3px solid var(--amber);position:relative;z-index:2}
 .rm{padding:26px 28px;border-right:1px solid rgba(239,231,214,.16);text-align:left}
 .rm:last-child{border-right:none}
-.rm .k{font-family:var(--mono);font-weight:500;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--citron);margin-bottom:10px}
+.rm .k{font-family:var(--mono);font-weight:500;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--molten);margin-bottom:10px}
 .rm .v{font-family:var(--display);text-transform:uppercase;font-size:1.35rem;color:var(--paper);line-height:1;letter-spacing:.02em}
 .rm .v .ph{color:var(--amber)}
 @media(max-width:680px){.regmeta{grid-template-columns:repeat(2,1fr)}.rm{border-bottom:1px solid rgba(239,231,214,.14)}.rm:nth-child(odd){border-right:1px solid rgba(239,231,214,.16)}.rm:nth-child(even){border-right:none}}
@@ -283,7 +294,7 @@ footer a{color:var(--amber-deep);text-decoration:underline;text-underline-offset
 .stick .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
 .stick .st{font-family:var(--display);text-transform:uppercase;font-size:1.15rem;color:var(--paper);letter-spacing:.02em;line-height:1}
 .stick .sm{font-family:var(--mono);font-weight:500;font-size:.7rem;letter-spacing:.04em;color:rgba(239,231,214,.64);margin-top:4px}
-.stick .sm .ph{color:var(--citron)}
+.stick .sm .ph{color:var(--molten)}
 .stick .cta{padding:12px 22px;font-size:.95rem}
 @media(max-width:640px){.stick .sm{display:none}}
 
@@ -294,7 +305,7 @@ footer a{color:var(--amber-deep);text-decoration:underline;text-underline-offset
   .js-on .rv.pre{opacity:1;transform:none}
   .js-on .clipwipe.pre{clip-path:inset(0 0 0 0)}
   .poster .burn .scorch,.poster .burn .ember{transform:scaleX(1)}
-  .poster .burn .glow{opacity:1;transform:scale(1)}
+  .poster .burn .glow{opacity:.78;transform:scale(1)}
   .js-on .poster .burn .ch{color:var(--amber)}
 }
 </style>
@@ -587,22 +598,36 @@ footer a{color:var(--amber-deep);text-decoration:underline;text-underline-offset
     }
   }
 
-  /* fire the ignition once (used by both load timeline and the IO fallback) */
-  var ignited=false;
-  function ignite(){
-    if(ignited||!burn)return; ignited=true;
-    burn.classList.add('alight');
-    charSpans.forEach(function(s,i){
-      var delay=i*70;                 /* left-to-right catch */
-      setTimeout(function(){
-        s.classList.add('flash');     /* molten flash on the leading edge */
-        setTimeout(function(){s.classList.remove('flash');s.classList.add('lit');},150);
-      },delay);
-    });
+  /* ---- the signature BURNED ignition: smolder beat -> left-to-right catch -> settle.
+     Re-runnable so it can replay on viewport re-entry and on tap. ~2.7s, let it breathe. ---- */
+  var igniting=false, timers=[];
+  function clearTimers(){timers.forEach(clearTimeout);timers=[];}
+  function resetBurn(){
+    clearTimers(); igniting=false;
+    if(!burn)return;
+    burn.classList.remove('alight','settled');
+    charSpans.forEach(function(s){s.classList.remove('smolder','flash','lit');});
+    void burn.offsetWidth;
   }
-  function igniteInstant(){ /* reduced-motion: just settle to amber, no animation */
-    if(ignited||!burn)return; ignited=true;
+  function ignite(){
+    if(igniting||!burn)return;
+    resetBurn(); igniting=true;
     burn.classList.add('alight');
+    charSpans.forEach(function(s){s.classList.add('smolder');});
+    var SMOLDER=720, STEP=118, FLASH=180;
+    charSpans.forEach(function(s,i){
+      timers.push(setTimeout(function(){
+        s.classList.remove('smolder');
+        s.classList.add('flash');
+        timers.push(setTimeout(function(){s.classList.remove('flash');s.classList.add('lit');},FLASH));
+      },SMOLDER+i*STEP));
+    });
+    var total=SMOLDER+charSpans.length*STEP+FLASH+260;
+    timers.push(setTimeout(function(){burn.classList.add('settled');igniting=false;},total));
+  }
+  function igniteInstant(){ /* reduced-motion: settle to ember rest-state, no animation */
+    if(!burn)return;
+    burn.classList.add('alight','settled');
     charSpans.forEach(function(s){s.classList.add('lit');});
   }
 
@@ -622,10 +647,25 @@ footer a{color:var(--amber-deep);text-decoration:underline;text-underline-offset
      word still has not caught (rare timing miss), fire on intersection. Pure
      scroll trigger, no hover needed. */
   if(!reduce && 'IntersectionObserver' in window && burn){
+    var firstSeen=false;
     var bio=new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting){ ignite(); bio.unobserve(e.target);} });
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          if(!firstSeen){ firstSeen=true; return; }          /* load timeline owns the first ignition (synced to the line-wipe) */
+          ignite();                                          /* re-entry: replay so it's always witnessed */
+        } else if(firstSeen && burn.classList.contains('settled')){
+          resetBurn();                                       /* left view: arm to replay on the next return */
+        }
+      });
     },{threshold:.6});
     bio.observe(burn);
+  }
+
+  /* tap / click the word to replay the burn - a small piece of mobile delight */
+  if(burn){
+    burn.setAttribute('role','img');
+    burn.setAttribute('aria-label','Burned');
+    burn.addEventListener('click',function(){ if(reduce){igniteInstant();return;} ignite(); });
   }
 
   /* scroll reveal + clip wipe: hide only off-screen */
