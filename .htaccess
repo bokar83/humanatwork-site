@@ -6,8 +6,8 @@
 # Shorteners /k/ /x/ /r/ added 2026-05-18 per feedback_short_links_for_long_urls.md
 #
 # DO NOT hand-edit. Re-run the generator instead.
-# Generated: 2026-06-11 18:58:04 Mountain Daylight Time
-# Slug rules: 63  Shortener rules: 23  Catch-all: 1
+# Generated: 2026-06-12 12:02:15 Mountain Daylight Time
+# Slug rules: 63  Shortener rules: 24  Catch-all: 1
 
 RewriteEngine On
 
@@ -38,6 +38,7 @@ RewriteRule ^x/policy3/?$ /ai-policy-checklist/?utm_campaign=ic-funnel&utm_sourc
 RewriteRule ^a/policy/?$ /ai-policy-checklist/?utm_campaign=ic-funnel&utm_source=alignable&utm_medium=message [R=301,L,QSA]
 RewriteRule ^k/audit/?$ https://calendly.com/boubacarbarry/free-ai-audit-owner-operators [R=301,L,QSA]
 RewriteRule ^r/rida-day2/?$ /store/?utm_source=reddit&utm_campaign=reddit_entrepreneurridealong&utm_content=day2_launch [R=301,L,QSA]
+RewriteRule ^scan/?$ /ai-exposure-scan/?utm_source=layoff_signal&utm_medium=shortform&utm_campaign=ai_exposure_scan [R=301,L,QSA]
 
 # --- Per-SKU 301 redirects: <slug> -> /store with attribution ---
 RewriteRule ^absorb-protocol-pack-extended/?$ /store/?utm_source=reel&utm_content=absorb-protocol-pack-extended-reel [R=301,L,QSA]
