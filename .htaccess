@@ -6,8 +6,8 @@
 # Shorteners /k/ /x/ /r/ added 2026-05-18 per feedback_short_links_for_long_urls.md
 #
 # DO NOT hand-edit. Re-run the generator instead.
-# Generated: 2026-06-05 11:30:09 Mountain Daylight Time
-# Slug rules: 63  Shortener rules: 16  Catch-all: 1
+# Generated: 2026-06-11 18:49:44 Mountain Daylight Time
+# Slug rules: 63  Shortener rules: 22  Catch-all: 1
 
 RewriteEngine On
 
@@ -30,6 +30,12 @@ RewriteRule ^x/saved-ctx/?$ /atlas-sample/?utm_source=x&utm_campaign=haw_saved_c
 RewriteRule ^x/thu/?$ /store/?utm_source=x&utm_campaign=haw_thu_surprise [R=301,L,QSA]
 RewriteRule ^x/wk1/?$ /atlas-sample/?utm_source=x&utm_campaign=haw_wk1_lessons [R=301,L,QSA]
 RewriteRule ^x/wrap/?$ /store/?utm_source=x&utm_campaign=haw_wk1_wrap [R=301,L,QSA]
+RewriteRule ^k/policy/?$ /ai-policy-checklist/?utm_campaign=ic-funnel&utm_source=newsletter&utm_medium=email [R=301,L,QSA]
+RewriteRule ^li/policy/?$ /ai-policy-checklist/?utm_campaign=ic-funnel&utm_source=linkedin&utm_medium=post [R=301,L,QSA]
+RewriteRule ^x/policy1/?$ /ai-policy-checklist/?utm_campaign=ic-funnel&utm_source=x&utm_medium=post1 [R=301,L,QSA]
+RewriteRule ^x/policy2/?$ /ai-policy-checklist/?utm_campaign=ic-funnel&utm_source=x&utm_medium=post2 [R=301,L,QSA]
+RewriteRule ^x/policy3/?$ /ai-policy-checklist/?utm_campaign=ic-funnel&utm_source=x&utm_medium=post3 [R=301,L,QSA]
+RewriteRule ^a/policy/?$ /ai-policy-checklist/?utm_campaign=ic-funnel&utm_source=alignable&utm_medium=message [R=301,L,QSA]
 RewriteRule ^r/rida-day2/?$ /store/?utm_source=reddit&utm_campaign=reddit_entrepreneurridealong&utm_content=day2_launch [R=301,L,QSA]
 
 # --- Per-SKU 301 redirects: <slug> -> /store with attribution ---
