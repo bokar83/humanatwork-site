@@ -3,28 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Pre-paint segment detection. Reads UTM query and sets a data-segment
-     attribute on <html> BEFORE first paint, so CSS rules below can swap
-     card order + ICP tagline visibility without FOUC. Cold-pilot UTM =
-     premium cards stay first (current default) + ICP tagline shows.
-     Community / X / reel UTM = starter cards first (entry kit for warm
-     readers scrolling from a free post). No UTM = default order. -->
-<script>
-(function(){
-  try {
-    var p = new URLSearchParams(location.search || '');
-    var camp = (p.get('utm_campaign') || '').toLowerCase();
-    var src  = (p.get('utm_source')   || '').toLowerCase();
-    var seg = 'default';
-    if (/^haw_t[1-5]_cold/.test(camp) || src === 'cold_email' || src === 'apollo') {
-      seg = 'cold_pilot';
-    } else if (src === 'x' || src === 'community' || src === 'reel' || src === 'twitter') {
-      seg = 'community';
-    }
-    document.documentElement.dataset.segment = seg;
-  } catch (e) { document.documentElement.dataset.segment = 'default'; }
-})();
-</script>
 <title>Store · Human at Work · kits by Boubacar</title>
 <meta name="description" content="The Human at Work store. Operator kits, prompt packs, and Notion templates from Boubacar. New kits drop daily this week.">
 <link rel="icon" href="/favicon.svg">
@@ -49,18 +27,19 @@
 <meta name="twitter:image" content="https://humanatwork.ai/og-store.png">
 <meta name="twitter:image:alt" content="Human at Work store: operator kits I actually paste, run, and ship.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Spectral:ital,wght@0,400;0,500;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Plausible analytics. Track LeadCapture custom event so store-page signups
-     appear in the Plausible dashboard alongside Gumroad outbound clicks. -->
-<!-- Privacy-friendly analytics by Plausible -->
+<!-- Privacy-friendly analytics by Plausible (CE custom snippet, token-based).
+     Replaces the prior generic plausible.io/js/script.*.js variants. The
+     account-specific pa-<token>.js bundles outbound-links + tagged-events
+     + LeadCapture event support. Feature toggles live in the dashboard. -->
 <script async src="https://plausible.io/js/pa-IT5MDYbswlLXVYOhAkE_-.js"></script>
 <script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script>
-<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Spectral:ital,wght@0,400;0,500;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #161513;
@@ -96,7 +75,7 @@ a:hover { text-decoration-color: var(--brick); }
 .site-nav a:hover { color: var(--brick); }
 .site-nav .brand { font-family: var(--serif); font-size: 14px; letter-spacing: 0.04em; text-transform: none; font-weight: 600; }
 .site-nav ul { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
-.site-nav .nav-external::after { content: " \2197"; opacity: 0.7; }
+.site-nav .nav-external::after { content: " 97"; opacity: 0.7; }
 
 /* Compact sticky filter bar (single row, ~58px tall on desktop).
    Seamless hardrule (feedback_seamless_no_frame_lines.md, 2026-05-18): NO
@@ -158,33 +137,6 @@ a:hover { text-decoration-color: var(--brick); }
 
 main { max-width: 880px; margin: 20px auto; padding: 0 24px; display: flex; flex-direction: column; gap: 24px; }
 
-/* Segment-aware ordering. <html data-segment="..."> is set pre-paint
-   by an inline script in <head>. Default (no UTM): keep DOM order (premium
-   tier first, sorted by price desc). Cold-pilot UTM: same as default,
-   plus ICP tagline reveals. Community / X / reel UTM: reverse, starter
-   first (entry kit for warm readers). Uses CSS `order` on flex children
-   so no DOM mutation, no FOUC, no double-reorder on reload. Permalink
-   anchors (#slug) still work because DOM order is unchanged. */
-:root[data-segment="community"] main .sku-card[data-tier="starter"] { order: 1; }
-:root[data-segment="community"] main .sku-card[data-tier="mid"]     { order: 2; }
-:root[data-segment="community"] main .sku-card[data-tier="premium"] { order: 3; }
-:root[data-segment="community"] main .intro-aside  { order: 1; }
-:root[data-segment="community"] main .lead-capture { order: 2; }
-:root[data-segment="community"] main .no-results   { order: 4; }
-
-/* ICP tagline: hidden by default. Visible only when a cold-pilot
-   visitor arrives, so the line "Designed for solo consultants $150 to
-   $400 an hour who hit a referral ceiling" reads as targeted on a cold
-   send and stays invisible to community / X / reel readers who would
-   find it irrelevant. */
-.icp-tagline {
-  display: none;
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--brick);
-  margin-top: 4px;
-}
-:root[data-segment="cold_pilot"] .icp-tagline { display: block; }
-
 /* Intro aside, sits between card 1 and card 2 below the fold.
    Seamless hardrule (feedback_seamless_no_frame_lines.md): no border-left
    accent stripe; italic serif treatment plus the brick paragraph mark
@@ -196,7 +148,7 @@ main { max-width: 880px; margin: 20px auto; padding: 0 24px; display: flex; flex
   margin: 0;
 }
 .intro-aside::before {
-  content: "\00B6  ";
+  content: " B6  ";
   color: var(--brick);
   font-style: normal;
   font-weight: 600;
@@ -259,9 +211,6 @@ main { max-width: 880px; margin: 20px auto; padding: 0 24px; display: flex; flex
 .tier-badge.tier-starter { background: var(--sage); }
 .tier-badge.tier-mid { background: var(--ink); }
 .tier-badge.tier-premium { background: var(--brick-deep); }
-.tier-badge.tier-soon { background: var(--muted); }
-.cta.cta-notify { background: var(--ink); }
-.cta.cta-notify:hover { background: var(--ink-soft); }
 .permalink { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; letter-spacing: 0.04em; }
 .permalink:hover { color: var(--brick); }
 .card-title { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.15; letter-spacing: -0.015em; margin-bottom: 12px; color: var(--ink); }
@@ -290,14 +239,12 @@ main { max-width: 880px; margin: 20px auto; padding: 0 24px; display: flex; flex
 .lead-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brick); }
 .lead-headline { font-family: var(--serif); font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); }
 .lead-sub { font-family: var(--body); font-size: 14px; color: var(--muted); margin-bottom: 6px; }
-.lead-form-wrap { width: 100%; }
 .haw-lead-form { width: 100%; display: flex; flex-direction: column; gap: 10px; }
 .haw-lead-form .lead-email {
   width: 100%; padding: 12px 14px;
   background: var(--paper); color: var(--ink);
   font-family: var(--body); font-size: 15px;
   border: 1px solid var(--hairline-strong);
-  box-shadow: inset 0 1px 0 rgba(20, 18, 16, 0.03);
   outline: none;
 }
 .haw-lead-form .lead-email:focus { border-color: var(--brick); }
@@ -370,15 +317,14 @@ footer.site-footer a:hover { color: var(--brick); }
       </p>
       <div class="filter-title-row">
         <h1>The store</h1>
-        <span class="live-tagline"><span class="live-count">15 LIVE</span> &middot; more drop daily this week</span>
+        <span class="live-tagline"><span class="live-count">37 LIVE</span> &middot; more drop daily this week</span>
       </div>
-      <p class="icp-tagline" aria-label="audience callout">Designed for solo consultants $150 to $400 an hour who hit a referral ceiling.</p>
       <div class="filter-controls">
         <div class="tier-pills" role="tablist" aria-label="filter by tier">
-          <button data-tier="all" class="active" role="tab" aria-selected="true">all<span class="count">15</span></button>
-          <button data-tier="starter" role="tab" aria-selected="false">starter<span class="count">4</span></button>
-          <button data-tier="mid" role="tab" aria-selected="false">mid<span class="count">7</span></button>
-          <button data-tier="premium" role="tab" aria-selected="false">premium<span class="count">4</span></button>
+          <button data-tier="all" class="active" role="tab" aria-selected="true">all<span class="count">37</span></button>
+          <button data-tier="starter" role="tab" aria-selected="false">starter<span class="count">37</span></button>
+          <button data-tier="mid" role="tab" aria-selected="false">mid<span class="count">0</span></button>
+          <button data-tier="premium" role="tab" aria-selected="false">premium<span class="count">0</span></button>
         </div>
         <button class="search-toggle" id="search-toggle" type="button" aria-label="toggle search" aria-expanded="false" title="search (press / to focus)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="kbd">/</span></button>
       </div>
@@ -400,51 +346,45 @@ footer.site-footer a:hover { color: var(--brick); }
     <p class="proof-body not-italic">Want a taste of the operator stack first? Mini-Atlas: 3 prompts I paste in my own work. Plain text. No email gate.</p>
     <a class="proof-link proof-atlas-link" href="/atlas-sample/?utm_source=store&amp;utm_campaign=cold_reader_proof&amp;utm_content=hero_magnet_link" data-proof-target="atlas_sample">Read Mini-Atlas<span class="arrow">&rarr;</span></a>
   </article>
-  <article class="proof-tile proof-atlas-sample">
-    <p class="proof-eyebrow">Free field guide</p>
-    <p class="proof-body not-italic">Stuck on where to start with AI? Find the one workflow your business is missing. A 60-minute guided worksheet, one sitting, a pen, one pick.</p>
-    <a class="proof-link proof-atlas-link" href="/ai-workflow-finder/?utm_source=store&amp;utm_campaign=cold_reader_proof&amp;utm_content=workflow_finder_magnet" data-proof-target="ai_workflow_finder">Get the field guide<span class="arrow">&rarr;</span></a>
-  </article>
 </section>
-
-<article class="sku-card" data-tier="premium" data-slug="catalyst-operator-bundle" data-tags="consulting bundle operator bundle consulting practice agentshq ai consulting solo consultant operator" data-name="catalyst ai operator bundle" id="catalyst-operator-bundle">
+<article class="sku-card" data-tier="starter" data-slug="content-multiplier" data-tags="content marketing ai content linkedin social media content workflow creator ai workflows" data-name="1 idea into 7 posts (multiplier)" id="content-multiplier">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-premium">PREMIUM · $297</span>
-      <a class="permalink" href="#catalyst-operator-bundle" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#content-multiplier" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">Catalyst AI Operator Bundle</h2>
-    <p class="tagline">The four-asset sequence that earns the first audit. For the $150 to $400 an hour solo consultant who hit a referral ceiling.</p>
+    <h2 class="card-title">1 Idea Into 7 Posts (Multiplier)</h2>
+    <p class="tagline">One idea into seven posts. Voice-loading workflow that stops AI from sounding like AI. The fix is not better prompts.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">consulting bundle · operator bundle · consulting practice · ai consulting · solo consultant · operator</div>
-    <a class="cta plausible-event-name=Contact+Click plausible-event-sku=catalyst-operator-bundle" href="https://buy.stripe.com/00weVf71B4JAbjy8UZgEg08">Talk to Boubacar first &middot; $297</a>
-    <p class="no-testimonial-note">I want this &middot; $297</p>
+    <div class="tags">content marketing · ai content · linkedin · social media · content workflow · creator · ai workflows</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=content-multiplier" href="https://bokar83.gumroad.com/l/content-multiplier" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
 <aside class="intro-aside">Kits I actually paste, run, and ship. Built from live operator data, not theory.</aside>
 
-<article class="sku-card" data-tier="premium" data-slug="how-we-built-agentshq" data-tags="multi-agent ai agents operator playbook agentshq governance ai infrastructure claude code" data-name="the multi-agent operator&#x27;s playbook" id="how-we-built-agentshq">
+<article class="sku-card" data-tier="starter" data-slug="ai-starter-5-prompts" data-tags="ai prompts starter pwyw free chatgpt claude productivity" data-name="5 starter prompts for day one" id="ai-starter-5-prompts">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-premium">PREMIUM · $297</span>
-      <a class="permalink" href="#how-we-built-agentshq" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#ai-starter-5-prompts" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">The Multi-Agent Operator&#x27;s Playbook</h2>
-    <p class="tagline">Three AI agents started stepping on each other. Most multi-agent content is a launch announcement. This is the maintenance manual.</p>
+    <h2 class="card-title">5 Starter Prompts for Day One</h2>
+    <p class="tagline">You opened ChatGPT three times this month and closed it without finishing. This is the 5-prompt entry point.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">multi-agent · ai agents · operator playbook · governance · ai infrastructure · claude code</div>
-    <a class="cta plausible-event-name=Contact+Click plausible-event-sku=how-we-built-agentshq" href="https://buy.stripe.com/aFa8wR2Lldg687m5INgEg09">Talk to Boubacar first &middot; $297</a>
-    <p class="no-testimonial-note">I want this &middot; $297</p>
+    <div class="tags">ai prompts · starter · pwyw · free · chatgpt · claude · productivity</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=ai-starter-5-prompts" href="https://bokar83.gumroad.com/l/ai-starter-5-prompts" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="premium" data-slug="ai-department-of-one" data-tags="solo founder ai operator ai workflows operator playbook sop founder agentshq" data-name="ai department of one" id="ai-department-of-one">
+<article class="sku-card" data-tier="starter" data-slug="ai-department-of-one" data-tags="solo founder ai operator ai workflows operator playbook sop founder agentshq" data-name="ai department of one" id="ai-department-of-one">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-premium">PREMIUM · $197</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#ai-department-of-one" title="anchor link" aria-label="anchor link">link</a>
     </div>
     <h2 class="card-title">AI Department of One</h2>
@@ -452,70 +392,39 @@ footer.site-footer a:hover { color: var(--brick); }
   </header>
   <footer class="card-footer">
     <div class="tags">solo founder · ai operator · ai workflows · operator playbook · sop · founder</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=ai-department-of-one" href="https://bokar83.gumroad.com/l/ai-department-of-one" target="_blank" rel="noopener">I want this · $197</a>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=ai-department-of-one" href="https://bokar83.gumroad.com/l/ai-department-of-one" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="premium" data-slug="dfy-operator-build" data-tags="done for you dfy ai operator custom build operator stack consulting service premium" data-name="dfy operator build" id="dfy-operator-build">
+<article class="sku-card" data-tier="starter" data-slug="interview-prep" data-tags="interview prep job interview career behavioral interview ai job hunt interview questions recruiter" data-name="ai interview prep" id="interview-prep">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-premium">DONE FOR YOU · SERVICE · $1,500</span>
-      <a class="permalink" href="#dfy-operator-build" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#interview-prep" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">DFY Operator Build</h2>
-    <p class="tagline">Custom AI operator stack built for one workflow. 21-day delivery. Walkthrough video and 7-day support.</p>
+    <h2 class="card-title">AI Interview Prep</h2>
+    <p class="tagline">You spent a weekend rehearsing STAR stories and got blindsided in minute four. The candidate who prepares the right 10 questions beats the candidate who prepares the wrong 50.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">done for you · dfy · ai operator · custom build · operator stack · service</div>
-    <a class="cta" href="/dfy/" rel="noopener">Learn more &rarr;</a>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="premium" data-slug="cleanup-dwy" data-tags="drive cleanup done with you google drive organization declutter files service safe screen-share" data-name="drive cleanup, done with you" id="cleanup-dwy">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-premium">DONE WITH YOU &middot; SERVICE &middot; $497</span>
-      <a class="permalink" href="#cleanup-dwy" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">Drive Cleanup, Done With You</h2>
-    <p class="tagline">Two 90-minute screen-share sessions. Ten years of chaos organized with the method that lost zero files. Nothing gets deleted, ever. You own every removal decision.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">drive cleanup &middot; done with you &middot; service &middot; organization &middot; safe &middot; screen-share</div>
-    <a class="cta" href="/cleanup-dwy/" rel="noopener">Learn more &rarr;</a>
-  </footer>
-</article>
-
-
-<article class="sku-card" data-tier="mid" data-slug="hr-career-memoir" data-tags="career pivot ai careers hr to tech mid-career layoff recovery career change narrative" data-name="hr to ai: the 30-day pivot" id="hr-career-memoir">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-mid">MID · $147</span>
-      <a class="permalink" href="#hr-career-memoir" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">HR to AI: The 30-Day Pivot</h2>
-    <p class="tagline">Mid-career, AI moving fast, the corporate HR ladder feels narrower every year. The 30 day pivot out of HR into operator work.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">career pivot · ai careers · hr to tech · mid-career · layoff recovery · career change · narrative</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=hr-career-memoir" href="https://bokar83.gumroad.com/l/hr-career-memoir" target="_blank" rel="noopener">I want this · $147</a>
+    <div class="tags">interview prep · job interview · career · behavioral interview · ai job hunt · interview questions · recruiter</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=interview-prep" href="https://bokar83.gumroad.com/l/interview-prep" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="mid" data-slug="cold-email-pack" data-tags="cold email cold outreach b2b sales email templates sales templates consulting operator" data-name="reply-first cold email pack" id="cold-email-pack">
+<article class="sku-card" data-tier="starter" data-slug="resume-surgeon" data-tags="resume ats ai resume career job search career pivot rewrite" data-name="ai resume surgeon" id="resume-surgeon">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-mid">MID · $147</span>
-      <a class="permalink" href="#cold-email-pack" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#resume-surgeon" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">Reply-First Cold Email Pack</h2>
-    <p class="tagline">Written from a CSV, not theory. 1,200 sends, 47 replies, 11 calls, 4 clients. Reply-first templates plus the rubric that picks the right shape.</p>
+    <h2 class="card-title">AI Resume Surgeon</h2>
+    <p class="tagline">47 applications, two callbacks. Two filters kill resumes before a human reads them: the ATS parser and the 6-second scan. This kit fixes both in one pass.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">cold email · cold outreach · b2b sales · email templates · sales templates · consulting · operator</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=cold-email-pack" href="https://bokar83.gumroad.com/l/cold-email-pack" target="_blank" rel="noopener">I want this · $147</a>
+    <div class="tags">resume · ats · ai resume · career · job search · career pivot · rewrite</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=resume-surgeon" href="https://bokar83.gumroad.com/l/resume-surgeon" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
@@ -538,26 +447,42 @@ footer.site-footer a:hover { color: var(--brick); }
   </div>
 </section>
 
-<article class="sku-card" data-tier="mid" data-slug="content-multiplier" data-tags="content marketing ai content linkedin social media content workflow creator ai workflows" data-name="1 idea into 7 posts (multiplier)" id="content-multiplier">
+<article class="sku-card" data-tier="starter" data-slug="hermes-boundary-diagram" data-tags="agent governance autonomous agents security free boundary operator" data-name="agent write boundary diagram (free)" id="hermes-boundary-diagram">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-mid">MID · $97</span>
-      <a class="permalink" href="#content-multiplier" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#hermes-boundary-diagram" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">1 Idea Into 7 Posts (Multiplier)</h2>
-    <p class="tagline">One idea into seven posts. Voice-loading workflow that stops AI from sounding like AI. The fix is not better prompts.</p>
+    <h2 class="card-title">Agent Write Boundary Diagram (Free)</h2>
+    <p class="tagline">An AI agent with write access escalates privilege on its first hallucination unless something constitutionally refuses the bad writes.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">content marketing · ai content · linkedin · social media · content workflow · creator · ai workflows</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=content-multiplier" href="https://bokar83.gumroad.com/l/content-multiplier" target="_blank" rel="noopener">I want this · $97</a>
+    <div class="tags">agent governance · autonomous agents · security · free · boundary · operator</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=hermes-boundary-diagram" href="https://bokar83.gumroad.com/l/hermes-boundary-diagram" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="mid" data-slug="audit-pattern-catalog" data-tags="cold email b2b sales outreach sales rubric consulting reply rate operator" data-name="audit pattern catalog" id="audit-pattern-catalog">
+<article class="sku-card" data-tier="starter" data-slug="website-teardown-audit" data-tags="website audit teardown consulting freelance prospect outreach cold email ai search" data-name="audit any prospect website in 30 minutes" id="website-teardown-audit">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-mid">MID · $97</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#website-teardown-audit" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Audit Any Prospect Website in 30 Minutes</h2>
+    <p class="tagline">Audit-to-close rate is low. Three exact leaks beats forty generic ones. Always. This is the 30-minute teardown that earns the reply.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">website audit · teardown · consulting · freelance · prospect outreach · cold email · ai search</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=website-teardown-audit" href="https://bokar83.gumroad.com/l/website-teardown-audit" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="audit-pattern-catalog" data-tags="cold email b2b sales outreach sales rubric consulting reply rate operator" data-name="audit pattern catalog" id="audit-pattern-catalog">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#audit-pattern-catalog" title="anchor link" aria-label="anchor link">link</a>
     </div>
     <h2 class="card-title">Audit Pattern Catalog</h2>
@@ -565,15 +490,15 @@ footer.site-footer a:hover { color: var(--brick); }
   </header>
   <footer class="card-footer">
     <div class="tags">cold email · b2b sales · outreach · sales rubric · consulting · reply rate · operator</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=audit-pattern-catalog" href="https://bokar83.gumroad.com/l/audit-pattern-catalog" target="_blank" rel="noopener">I want this · $97</a>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=audit-pattern-catalog" href="https://bokar83.gumroad.com/l/audit-pattern-catalog" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="mid" data-slug="career-os-notion" data-tags="notion template job hunt career job search ats interview tracker ai prompts" data-name="career os notion template" id="career-os-notion">
+<article class="sku-card" data-tier="starter" data-slug="career-os-notion" data-tags="notion template job hunt career job search ats interview tracker ai prompts" data-name="career os notion template" id="career-os-notion">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-mid">MID · $79</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#career-os-notion" title="anchor link" aria-label="anchor link">link</a>
     </div>
     <h2 class="card-title">Career OS Notion Template</h2>
@@ -581,112 +506,223 @@ footer.site-footer a:hover { color: var(--brick); }
   </header>
   <footer class="card-footer">
     <div class="tags">notion template · job hunt · career · job search · ats · interview tracker · ai prompts</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=career-os-notion" href="https://bokar83.gumroad.com/l/career-os-notion" target="_blank" rel="noopener">I want this · $79</a>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=career-os-notion" href="https://bokar83.gumroad.com/l/career-os-notion" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="mid" data-slug="paste-pack" data-tags="ai prompts ai workflows operator paste pack productivity claude chatgpt" data-name="the prompt atlas" id="paste-pack">
+<article class="sku-card" data-tier="starter" data-slug="convert-or-kill-rubric" data-tags="offer design pre-launch audit solo founder conversion operator rubric offer audit" data-name="convert-or-kill rubric" id="convert-or-kill-rubric">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-mid">MID · $79</span>
-      <a class="permalink" href="#paste-pack" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">The Prompt Atlas</h2>
-    <p class="tagline">You keep rewriting the same prompt from scratch. A survivor list, not a wishlist. 25 prompts pasted more than twice.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">ai prompts · ai workflows · operator · paste pack · productivity · claude · chatgpt</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=paste-pack" href="https://bokar83.gumroad.com/l/paste-pack" target="_blank" rel="noopener">I want this · $79</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-
-<article class="sku-card" data-tier="starter" data-slug="cleanup-prompt-pack" data-tags="drive cleanup google drive declutter prompts organization files dedup safe cleanup" data-name="the cleanup prompt pack" id="cleanup-prompt-pack">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; $17</span>
-      <a class="permalink" href="#cleanup-prompt-pack" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">The Cleanup Prompt Pack</h2>
-    <p class="tagline">The seven paste-ready prompts that cleaned up ten years of my Drive with zero files lost. Map, classify, dedup, verify. Nothing deletes; every removal decision stays yours.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">drive cleanup &middot; google drive &middot; prompts &middot; organization &middot; dedup &middot; safe</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=cleanup-prompt-pack" href="https://bokar83.gumroad.com/l/cleanup-prompt-pack" target="_blank" rel="noopener">I want this &middot; $17</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="starter" data-slug="aiReadyNotionStack" data-tags="ai hr planning tracker" data-name="the ai-ready notion stack" id="aiReadyNotionStack">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-starter">STARTER · $49</span>
-      <a class="permalink" href="#aiReadyNotionStack" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">The AI-Ready Notion Stack</h2>
-    <p class="tagline">A Notion workspace for the operator using AI daily. Planner, tracker, prompt library, and the small set of templates that compound.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">ai · hr · planning · tracker</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=aiReadyNotionStack" href="https://bokar83.gumroad.com/l/aiReadyNotionStack" target="_blank" rel="noopener">I want this · $49</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="mid" data-slug="prospect-voice-brief" data-tags="cold outreach personalization voice brief opener prompts operator signal works" data-name="prospect voice brief (personalized opener pack)" id="prospect-voice-brief">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-mid">MID · $79</span>
-      <a class="permalink" href="#prospect-voice-brief" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">Prospect Voice Brief</h2>
-    <p class="tagline">Turn three references into one personalized opener. Paste-ready prompt plus batch CSV, 5 worked examples, CRM-drop template, and the 3-variant register spec (formal, casual, peer).</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">cold outreach · personalization · voice brief · opener · prompts · operator</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=prospect-voice-brief" href="https://bokar83.gumroad.com/l/prospect-voice-brief" target="_blank" rel="noopener">I want this · $79</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="starter" data-slug="convert-or-kill-rubric" data-tags="landing page conversion offer audit copy rubric solo founder operator" data-name="convert-or-kill rubric" id="convert-or-kill-rubric">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-starter">STARTER · $29</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#convert-or-kill-rubric" title="anchor link" aria-label="anchor link">link</a>
     </div>
     <h2 class="card-title">Convert-or-Kill Rubric</h2>
-    <p class="tagline">For the landing page you are not sure about. Score the page on the rubric, find the lowest axis, fix the one thing that matters before you push more traffic.</p>
+    <p class="tagline">Launch math is still vibes. This is the seven-axis rubric with a threshold table that says ship, fix, or kill.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">landing page · conversion · offer audit · copy · rubric · solo founder · operator</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=convert-or-kill-rubric" href="https://bokar83.gumroad.com/l/convert-or-kill-rubric" target="_blank" rel="noopener">I want this · $29</a>
+    <div class="tags">offer design · pre-launch audit · solo founder · conversion · operator · rubric · offer audit</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=convert-or-kill-rubric" href="https://bokar83.gumroad.com/l/convert-or-kill-rubric" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="soon" data-slug="founder-companion-deck" data-tags="discovery call founder companion solo consultant prompts pre-call script checklist operator" data-name="founder companion deck" id="founder-companion-deck">
+<article class="sku-card" data-tier="starter" data-slug="council-escalation-rubric-card" data-tags="decision making council review operator pwyw rubric" data-name="council escalation rubric card (pwyw)" id="council-escalation-rubric-card">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-soon">COMING SOON · SAT 2026-05-23</span>
-      <a class="permalink" href="#founder-companion-deck" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#council-escalation-rubric-card" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">Founder Companion Deck</h2>
-    <p class="tagline">For the solo consultant walking into a discovery call. 8 prompts, 1 checklist, 1 short pre-call script. Drops Saturday 2026-05-23. Get a heads-up when it lands.</p>
+    <h2 class="card-title">Council Escalation Rubric Card (PWYW)</h2>
+    <p class="tagline">You either run review loops on decisions that should ship solo, or you ship decisions solo that should have had five voices on them. Both fail the same way.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">discovery call · founder companion · solo consultant · prompts · pre-call script · checklist · operator</div>
-    <a class="cta cta-notify" href="#lead-capture-heading" data-plausible-event-name="NotifyMe" data-plausible-event-sku="founder-companion-deck">Notify me when it drops</a>
-    <p class="no-testimonial-note">Kit not yet released. No buy link until Saturday 2026-05-23.</p>
+    <div class="tags">decision making · council · review · operator · pwyw · rubric</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=council-escalation-rubric-card" href="https://bokar83.gumroad.com/l/council-escalation-rubric-card" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="engagement-ops-4-artifact-cheat-card" data-tags="engagement content ops publishing free operator weekly review" data-name="engagement-ops 4-artifact cheat card (free)" id="engagement-ops-4-artifact-cheat-card">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#engagement-ops-4-artifact-cheat-card" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Engagement-Ops 4-Artifact Cheat Card (Free)</h2>
+    <p class="tagline">You hit publish. Replies arrive. You miss most of them. The next post is shaped by whichever reply was loudest, not the one that mattered.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">engagement · content ops · publishing · free · operator · weekly review</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=engagement-ops-4-artifact-cheat-card" href="https://bokar83.gumroad.com/l/engagement-ops-4-artifact-cheat-card" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="first-gen-playbook" data-tags="first generation career playbook corporate career 1stgen diaspora career rules promotion" data-name="first-gen professional playbook" id="first-gen-playbook">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#first-gen-playbook" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">First-Gen Professional Playbook</h2>
+    <p class="tagline">Peers who grew up here got the rules at the dinner table. You didn&#x27;t. This is the manual, not the motivation.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">first generation · career playbook · corporate career · diaspora · career rules · promotion</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=first-gen-playbook" href="https://bokar83.gumroad.com/l/first-gen-playbook" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="hr-career-memoir" data-tags="career pivot ai careers hr to tech mid-career layoff recovery career change narrative" data-name="hr to ai: the 30-day pivot" id="hr-career-memoir">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#hr-career-memoir" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">HR to AI: The 30-Day Pivot</h2>
+    <p class="tagline">Mid-career, AI moving fast, the corporate HR ladder feels narrower every year. The 30 day pivot out of HR into operator work.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">career pivot · ai careers · hr to tech · mid-career · layoff recovery · career change · narrative</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=hr-career-memoir" href="https://bokar83.gumroad.com/l/hr-career-memoir" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="layoff-survival" data-tags="layoff severance career transition job search cobra career pivot 1stgen" data-name="layoff survival playbook" id="layoff-survival">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#layoff-survival" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Layoff Survival Playbook</h2>
+    <p class="tagline">You got the meeting invite, the severance packet, and the access-revoked email in the same week. Layoff drag is rarely a money problem in week 1; it&#x27;s a decision-order problem.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">layoff · severance · career transition · job search · cobra · career pivot</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=layoff-survival" href="https://bokar83.gumroad.com/l/layoff-survival" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="newsletter-voice-rules-cheat-card" data-tags="voice newsletter ai writing style guide pwyw operator" data-name="newsletter voice rules cheat card (pwyw)" id="newsletter-voice-rules-cheat-card">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#newsletter-voice-rules-cheat-card" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Newsletter Voice Rules Cheat Card (PWYW)</h2>
+    <p class="tagline">Your AI drafts read like every other AI draft. Same em-dashes. Same credential-recital openers. Same fabricated kitchen-table stories.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">voice · newsletter · ai writing · style guide · pwyw · operator</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=newsletter-voice-rules-cheat-card" href="https://bokar83.gumroad.com/l/newsletter-voice-rules-cheat-card" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="one-page-ai-audit-checklist" data-tags="ai audit checklist operator pwyw free consulting smb" data-name="one-page ai audit checklist" id="one-page-ai-audit-checklist">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#one-page-ai-audit-checklist" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">One-Page AI Audit Checklist</h2>
+    <p class="tagline">You want a fast read on whether AI fits in a workflow before you spend a dollar. Most AI audits ask 50 questions and answer none. This is one page.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">ai audit · checklist · operator · pwyw · free · consulting · smb</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=one-page-ai-audit-checklist" href="https://bokar83.gumroad.com/l/one-page-ai-audit-checklist" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="ctq-quality-gate" data-tags="linkedin social media content quality creator pre-publish ai content ctq" data-name="pre-publish quality gate (ctq check)" id="ctq-quality-gate">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#ctq-quality-gate" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Pre-Publish Quality Gate (CTQ Check)</h2>
+    <p class="tagline">The algorithm doesn&#x27;t punish AI content. The audience does. This is the 90-second gate before you post.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">linkedin · social media · content quality · creator · pre-publish · ai content · ctq</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=ctq-quality-gate" href="https://bokar83.gumroad.com/l/ctq-quality-gate" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="prospect-voice-brief" data-tags="cold outreach personalization voice brief opener prompts operator signal works" data-name="prospect voice brief (personalized opener pack)" id="prospect-voice-brief">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#prospect-voice-brief" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Prospect Voice Brief (Personalized Opener Pack)</h2>
+    <p class="tagline">Cold or warm outreach and your opener keeps falling flat. Generic openers underperform reference-specific openers in real reply data.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">cold outreach · personalization · voice brief · opener · prompts · operator · signal works</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=prospect-voice-brief" href="https://bokar83.gumroad.com/l/prospect-voice-brief" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="cold-email-pack" data-tags="cold email cold outreach b2b sales email templates sales templates consulting operator" data-name="reply-first cold email pack" id="cold-email-pack">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#cold-email-pack" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Reply-First Cold Email Pack</h2>
+    <p class="tagline">Written from a CSV, not theory. 1,200 sends, 47 replies, 11 calls, 4 clients. Reply-first templates plus the rubric that picks the right shape.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">cold email · cold outreach · b2b sales · email templates · sales templates · consulting · operator</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=cold-email-pack" href="https://bokar83.gumroad.com/l/cold-email-pack" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="stop-suppression-compliance-pack" data-tags="compliance cold outreach suppression can-spam casl operator" data-name="stop suppression compliance pack" id="stop-suppression-compliance-pack">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#stop-suppression-compliance-pack" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">STOP Suppression Compliance Pack</h2>
+    <p class="tagline">A prospect replies STOP. You miss it. The next send goes through. The complaint lands at your ESP. Your account gets suspended. The cost is recoverable; the relationship is not.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">compliance · cold outreach · suppression · can-spam · casl · operator</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=stop-suppression-compliance-pack" href="https://bokar83.gumroad.com/l/stop-suppression-compliance-pack" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="solo-operator-bundle" data-tags="bundle job hunt layoff toolkit career ai workflows resume cold email" data-name="solo operator starter bundle" id="solo-operator-bundle">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#solo-operator-bundle" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Solo Operator Starter Bundle</h2>
+    <p class="tagline">Got laid off in the last 8 weeks. Standalone tools are easy. Sequencing them is the hard part. This is the four-day plan.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">bundle · job hunt · layoff toolkit · career · ai workflows · resume · cold email</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=solo-operator-bundle" href="https://bokar83.gumroad.com/l/solo-operator-bundle" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
 <article class="sku-card" data-tier="starter" data-slug="start-ai-24h" data-tags="ai ai workflows productivity operator starter kit mid-career prompts" data-name="start ai: 5 workflows in 24 hours" id="start-ai-24h">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER · $27</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#start-ai-24h" title="anchor link" aria-label="anchor link">link</a>
     </div>
     <h2 class="card-title">Start AI: 5 Workflows in 24 Hours</h2>
@@ -694,247 +730,231 @@ footer.site-footer a:hover { color: var(--brick); }
   </header>
   <footer class="card-footer">
     <div class="tags">ai · ai workflows · productivity · operator · starter kit · mid-career · prompts</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=start-ai-24h" href="https://bokar83.gumroad.com/l/start-ai-24h" target="_blank" rel="noopener">I want this · $27</a>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=start-ai-24h" href="https://bokar83.gumroad.com/l/start-ai-24h" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="resume-surgeon" data-tags="resume ats ai resume career job search career pivot" data-name="ai resume surgeon" id="resume-surgeon">
+<article class="sku-card" data-tier="starter" data-slug="aiReadyNotionStack" data-tags="ai hr planning tracker" data-name="the ai-ready notion stack" id="aiReadyNotionStack">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; $47</span>
-      <a class="permalink" href="#resume-surgeon" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#aiReadyNotionStack" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">AI Resume Surgeon</h2>
-    <p class="tagline">47 applications, two callbacks. Two filters kill resumes before a human reads them. This kit fixes both in one paste.</p>
+    <h2 class="card-title">The AI-Ready Notion Stack</h2>
+    <p class="tagline">A Notion workspace for the operator using AI daily. Planner, tracker, prompt library, and the small set of templates that compound.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">resume · ats · ai resume · career · job search · career pivot</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=resume-surgeon" href="https://bokar83.gumroad.com/l/resume-surgeon" target="_blank" rel="noopener">I want this &middot; $47</a>
+    <div class="tags">ai · hr · planning · tracker</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=aiReadyNotionStack" href="https://bokar83.gumroad.com/l/aiReadyNotionStack" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="interview-prep" data-tags="interview prep job interview career behavioral ai job hunt questions" data-name="ai interview prep" id="interview-prep">
+<article class="sku-card" data-tier="starter" data-slug="brand-routing-index" data-tags="brand voice styleguide multi-brand operator ai agents" data-name="the brand routing index" id="brand-routing-index">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; $47</span>
-      <a class="permalink" href="#interview-prep" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#brand-routing-index" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">AI Interview Prep</h2>
-    <p class="tagline">The interview is a known set of questions. Walk in with the answers drafted, not improvised. Paste-and-go prep.</p>
+    <h2 class="card-title">The Brand Routing Index</h2>
+    <p class="tagline">You run more than one brand. After a month, the voices start blending. Brand A&#x27;s palette shows up in Brand B&#x27;s deck. Brand C&#x27;s voice creeps into Brand D&#x27;s newsletter.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">interview prep · job interview · career · behavioral · ai job hunt · questions</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=interview-prep" href="https://bokar83.gumroad.com/l/interview-prep" target="_blank" rel="noopener">I want this &middot; $47</a>
+    <div class="tags">brand · voice · styleguide · multi-brand · operator · ai agents</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=brand-routing-index" href="https://bokar83.gumroad.com/l/brand-routing-index" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="mid" data-slug="layoff-survival" data-tags="layoff severance career transition job search cobra career pivot" data-name="layoff survival playbook" id="layoff-survival">
+<article class="sku-card" data-tier="starter" data-slug="cw-pipeline" data-tags="ai consulting consulting pipeline go to market solo consultant outreach discovery call consulting pricing" data-name="the catalyst works pipeline (zero to first audit)" id="cw-pipeline">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-mid">MID &middot; $79</span>
-      <a class="permalink" href="#layoff-survival" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">Layoff Survival Playbook</h2>
-    <p class="tagline">The first 72 hours after a layoff decide the next six months. Severance, COBRA, the search, in one playbook.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">layoff · severance · career transition · job search · cobra · career pivot</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=layoff-survival" href="https://bokar83.gumroad.com/l/layoff-survival" target="_blank" rel="noopener">I want this &middot; $79</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="mid" data-slug="first-gen-playbook" data-tags="first generation career playbook corporate career diaspora career rules" data-name="first-gen professional playbook" id="first-gen-playbook">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-mid">MID &middot; $79</span>
-      <a class="permalink" href="#first-gen-playbook" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">First-Gen Professional Playbook</h2>
-    <p class="tagline">The corporate rules nobody wrote down for the first one in the family to do this. Earned, not theory.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">first generation · career playbook · corporate career · diaspora · career rules</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=first-gen-playbook" href="https://bokar83.gumroad.com/l/first-gen-playbook" target="_blank" rel="noopener">I want this &middot; $79</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="mid" data-slug="ctq-quality-gate" data-tags="linkedin social media content quality creator pre-publish ai content" data-name="pre-publish quality gate" id="ctq-quality-gate">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-mid">MID &middot; $97</span>
-      <a class="permalink" href="#ctq-quality-gate" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">Pre-Publish Quality Gate</h2>
-    <p class="tagline">The check that runs before any post ships. Hook, voice, claim, CTA. Stop publishing drafts that read as AI.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">linkedin · social media · content quality · creator · pre-publish · ai content</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=ctq-quality-gate" href="https://bokar83.gumroad.com/l/ctq-quality-gate" target="_blank" rel="noopener">I want this &middot; $97</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="mid" data-slug="cw-pipeline" data-tags="ai consulting pipeline go to market solo consultant outreach discovery" data-name="the cw pipeline (zero to first audit)" id="cw-pipeline">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-mid">MID &middot; $147</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#cw-pipeline" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">The CW Pipeline (Zero to First Audit)</h2>
-    <p class="tagline">The exact path from zero to first paid audit. Outreach, discovery, scope, close. The pipeline I run.</p>
+    <h2 class="card-title">The Catalyst Works Pipeline (Zero to First Audit)</h2>
+    <p class="tagline">You posted for three weeks, got eight likes, and started questioning the path. Most consulting content optimizes the visible parts and skips the load-bearing ones. This is the boring middle.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">ai consulting · pipeline · go to market · solo consultant · outreach · discovery</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=cw-pipeline" href="https://bokar83.gumroad.com/l/cw-pipeline" target="_blank" rel="noopener">I want this &middot; $147</a>
+    <div class="tags">ai consulting · consulting pipeline · go to market · solo consultant · outreach · discovery call · consulting pricing</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=cw-pipeline" href="https://bokar83.gumroad.com/l/cw-pipeline" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="failed-business-postmortem" data-tags="founder postmortem startup anti-survivorship diagnostic investor" data-name="the failed-business postmortem library" id="failed-business-postmortem">
+<article class="sku-card" data-tier="starter" data-slug="cleanup-prompt-pack" data-tags="drive cleanup google drive prompts organization declutter dedup operator" data-name="the cleanup prompt pack" id="cleanup-prompt-pack">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; $47</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#cleanup-prompt-pack" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">The Cleanup Prompt Pack</h2>
+    <p class="tagline">I almost deleted a folder of family photos because it was named like a duplicates pile. It held files that exist nowhere else. That near-miss is why every prompt in this pack carries one hard guardrail: the AI is never allowed to suggest...</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">drive cleanup · google drive · prompts · organization · declutter · dedup · operator</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=cleanup-prompt-pack" href="https://bokar83.gumroad.com/l/cleanup-prompt-pack" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="failed-business-postmortem" data-tags="founder business postmortem startup anti survivorship diagnostic investor case studies" data-name="the failed-business postmortem library" id="failed-business-postmortem">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#failed-business-postmortem" title="anchor link" aria-label="anchor link">link</a>
     </div>
     <h2 class="card-title">The Failed-Business Postmortem Library</h2>
-    <p class="tagline">Survivorship bias is the most expensive lie in business. A library of what actually killed companies.</p>
+    <p class="tagline">Forty businesses. All dead. The patterns that killed them are the patterns the survivors warn you about, but only after they&#x27;ve survived.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">founder · postmortem · startup · anti-survivorship · diagnostic · investor</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=failed-business-postmortem" href="https://bokar83.gumroad.com/l/failed-business-postmortem" target="_blank" rel="noopener">I want this &middot; $47</a>
+    <div class="tags">founder · business postmortem · startup · anti survivorship · diagnostic · investor · case studies</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=failed-business-postmortem" href="https://bokar83.gumroad.com/l/failed-business-postmortem" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="one-page-ai-audit-checklist" data-tags="ai audit checklist operator consulting pre-quote" data-name="one-page ai audit checklist" id="one-page-ai-audit-checklist">
+<article class="sku-card" data-tier="starter" data-slug="identity-index-pattern" data-tags="ai agents system prompt identity operator claude code pattern" data-name="the identity index pattern" id="identity-index-pattern">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; Free</span>
-      <a class="permalink" href="#one-page-ai-audit-checklist" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#identity-index-pattern" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">One-Page AI Audit Checklist</h2>
-    <p class="tagline">Know where AI fits in a workflow in 30 minutes, not 5 days. 12 questions, 4 buckets, one page.</p>
+    <h2 class="card-title">The Identity Index Pattern</h2>
+    <p class="tagline">Your AI agent reverts to its training default after three conversations. Helpful, cautious, mid-Atlantic, indistinguishable from every other assistant.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">ai audit · checklist · operator · consulting · pre-quote</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=one-page-ai-audit-checklist" href="https://bokar83.gumroad.com/l/one-page-ai-audit-checklist" target="_blank" rel="noopener">Get it free</a>
+    <div class="tags">ai agents · system prompt · identity · operator · claude code · pattern</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=identity-index-pattern" href="https://bokar83.gumroad.com/l/identity-index-pattern" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="ai-starter-5-prompts" data-tags="ai prompts starter chatgpt claude day one free" data-name="5 starter prompts for day one" id="ai-starter-5-prompts">
+<article class="sku-card" data-tier="starter" data-slug="inbound-signal-metric-spec" data-tags="metric content operator publishing weekly review kpi" data-name="the inbound signal metric spec" id="inbound-signal-metric-spec">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; Free</span>
-      <a class="permalink" href="#ai-starter-5-prompts" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#inbound-signal-metric-spec" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">5 Starter Prompts for Day One</h2>
-    <p class="tagline">Five prompts I paste in my own work. Plain text, no setup. The fastest way to start using AI today.</p>
+    <h2 class="card-title">The Inbound Signal Metric Spec</h2>
+    <p class="tagline">You publish weekly. Your follower count grows. Your impressions look fine. Revenue doesn&#x27;t move. The leading indicator you&#x27;re tracking is the wrong one.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">ai prompts · starter · chatgpt · claude · day one · free</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=ai-starter-5-prompts" href="https://bokar83.gumroad.com/l/ai-starter-5-prompts" target="_blank" rel="noopener">Get it free</a>
+    <div class="tags">metric · content · operator · publishing · weekly review · kpi</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=inbound-signal-metric-spec" href="https://bokar83.gumroad.com/l/inbound-signal-metric-spec" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="newsletter-voice-rules-cheat-card" data-tags="voice newsletter ai writing style guide operator" data-name="newsletter voice rules cheat card" id="newsletter-voice-rules-cheat-card">
+<article class="sku-card" data-tier="starter" data-slug="intentional-md-pattern" data-tags="audit code review operator markdown pattern pwyw" data-name="the intentional.md pattern (pwyw)" id="intentional-md-pattern">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; Free</span>
-      <a class="permalink" href="#newsletter-voice-rules-cheat-card" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">Newsletter Voice Rules Cheat Card</h2>
-    <p class="tagline">Ten rules that strip the AI tells from your drafts. Paste the block once into your AI, forget it.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">voice · newsletter · ai writing · style guide · operator</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=newsletter-voice-rules-cheat-card" href="https://bokar83.gumroad.com/l/newsletter-voice-rules-cheat-card" target="_blank" rel="noopener">Get it free</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="starter" data-slug="council-escalation-rubric-card" data-tags="decision making council review operator rubric" data-name="council escalation rubric card" id="council-escalation-rubric-card">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; Free</span>
-      <a class="permalink" href="#council-escalation-rubric-card" title="anchor link" aria-label="anchor link">link</a>
-    </div>
-    <h2 class="card-title">Council Escalation Rubric Card</h2>
-    <p class="tagline">When to pull five voices on a decision and when to just ship. The escalation rubric on one card.</p>
-  </header>
-  <footer class="card-footer">
-    <div class="tags">decision making · council · review · operator · rubric</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=council-escalation-rubric-card" href="https://bokar83.gumroad.com/l/council-escalation-rubric-card" target="_blank" rel="noopener">Get it free</a>
-    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
-  </footer>
-</article>
-
-<article class="sku-card" data-tier="starter" data-slug="intentional-md-pattern" data-tags="audit code review operator markdown pattern" data-name="the intentional.md pattern" id="intentional-md-pattern">
-  <header class="card-header">
-    <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; Free</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#intentional-md-pattern" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">The Intentional.md Pattern</h2>
-    <p class="tagline">Stop re-flagging the same false-positive in every audit. The pattern that records deliberate design.</p>
+    <h2 class="card-title">The Intentional.md Pattern (PWYW)</h2>
+    <p class="tagline">Auditors keep re-flagging the same code as a bug. Most repos have no record of which patterns the team already decided are deliberate.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">audit · code review · operator · markdown · pattern</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=intentional-md-pattern" href="https://bokar83.gumroad.com/l/intentional-md-pattern" target="_blank" rel="noopener">Get it free</a>
+    <div class="tags">audit · code review · operator · markdown · pattern · pwyw</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=intentional-md-pattern" href="https://bokar83.gumroad.com/l/intentional-md-pattern" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="lighthouse-12-week-one-lane-sprint" data-tags="12-week year operator sprint productivity lane focus" data-name="lighthouse 12-week one-lane sprint" id="lighthouse-12-week-one-lane-sprint">
+<article class="sku-card" data-tier="starter" data-slug="karpathy-4-audit" data-tags="code review audit pre-commit karpathy operator engineering" data-name="the karpathy 4-principle audit kit" id="karpathy-4-audit">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; Free</span>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#karpathy-4-audit" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">The Karpathy 4-Principle Audit Kit</h2>
+    <p class="tagline">Code reviews check style. The four principles check whether the code earns the merge. Most ship-blocking bugs slip past style checks.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">code review · audit · pre-commit · karpathy · operator · engineering</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=karpathy-4-audit" href="https://bokar83.gumroad.com/l/karpathy-4-audit" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="lighthouse-12-week-one-lane-sprint" data-tags="12-week year operator sprint productivity pwyw lane focus" data-name="the one-lane 12-week sprint (pwyw)" id="lighthouse-12-week-one-lane-sprint">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
       <a class="permalink" href="#lighthouse-12-week-one-lane-sprint" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">Lighthouse 12-Week One-Lane Sprint</h2>
-    <p class="tagline">Twelve weeks, one lane, one outcome. The sprint structure that kills the everything-at-once trap.</p>
+    <h2 class="card-title">The One-Lane 12-Week Sprint (PWYW)</h2>
+    <p class="tagline">Most 12-week years drift in week five. Three vital goals collapse into one anyway and the other two lanes were just calendar noise.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">12-week year · operator · sprint · productivity · lane focus</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=lighthouse-12-week-one-lane-sprint" href="https://bokar83.gumroad.com/l/lighthouse-12-week-one-lane-sprint" target="_blank" rel="noopener">Get it free</a>
+    <div class="tags">12-week year · operator · sprint · productivity · pwyw · lane focus</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=lighthouse-12-week-one-lane-sprint" href="https://bokar83.gumroad.com/l/lighthouse-12-week-one-lane-sprint" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="engagement-ops-4-artifact-cheat-card" data-tags="engagement content ops publishing operator weekly review" data-name="engagement-ops 4-artifact cheat card" id="engagement-ops-4-artifact-cheat-card">
+<article class="sku-card" data-tier="starter" data-slug="paste-pack" data-tags="ai prompts ai workflows operator paste pack productivity claude chatgpt" data-name="the prompt atlas" id="paste-pack">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; Free</span>
-      <a class="permalink" href="#engagement-ops-4-artifact-cheat-card" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#paste-pack" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">Engagement-Ops 4-Artifact Cheat Card</h2>
-    <p class="tagline">The four artifacts that turn scattered posting into a system. One cheat card, paste and run.</p>
+    <h2 class="card-title">The Prompt Atlas</h2>
+    <p class="tagline">You keep rewriting the same prompt from scratch. A survivor list, not a wishlist. 25 prompts pasted more than twice.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">engagement · content ops · publishing · operator · weekly review</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=engagement-ops-4-artifact-cheat-card" href="https://bokar83.gumroad.com/l/engagement-ops-4-artifact-cheat-card" target="_blank" rel="noopener">Get it free</a>
+    <div class="tags">ai prompts · ai workflows · operator · paste pack · productivity · claude · chatgpt</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=paste-pack" href="https://bokar83.gumroad.com/l/paste-pack" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
 
-<article class="sku-card" data-tier="starter" data-slug="hermes-boundary-diagram" data-tags="agent governance autonomous agents security boundary operator" data-name="hermes agent write boundary diagram" id="hermes-boundary-diagram">
+<article class="sku-card" data-tier="starter" data-slug="trades-ai-owner-op" data-tags="trades hvac roofing owner operator ai workflows playbook small business" data-name="trades ai owner-operator playbook" id="trades-ai-owner-op">
   <header class="card-header">
     <div class="badges">
-      <span class="tier-badge tier-starter">STARTER &middot; Free</span>
-      <a class="permalink" href="#hermes-boundary-diagram" title="anchor link" aria-label="anchor link">link</a>
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#trades-ai-owner-op" title="anchor link" aria-label="anchor link">link</a>
     </div>
-    <h2 class="card-title">Hermes Agent Write Boundary Diagram</h2>
-    <p class="tagline">The allowed-vs-forbidden write map that lets an autonomous agent ship without breaking your repo.</p>
+    <h2 class="card-title">Trades AI Owner-Operator Playbook</h2>
+    <p class="tagline">Founder is the bottleneck and the only one who can fix it. $79 covers the workflows. $147 covers what the owner does that the employee cannot.</p>
   </header>
   <footer class="card-footer">
-    <div class="tags">agent governance · autonomous agents · security · boundary · operator</div>
-    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=hermes-boundary-diagram" href="https://bokar83.gumroad.com/l/hermes-boundary-diagram" target="_blank" rel="noopener">Get it free</a>
+    <div class="tags">trades · hvac · roofing · owner operator · ai workflows · playbook · small business</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=trades-ai-owner-op" href="https://bokar83.gumroad.com/l/trades-ai-owner-op" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="weekly-ai-review-template" data-tags="weekly review ai workflows operator pwyw free template productivity" data-name="weekly ai review template" id="weekly-ai-review-template">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#weekly-ai-review-template" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Weekly AI Review Template</h2>
+    <p class="tagline">You set up an AI workflow, used it for a week, then forgot to notice when it stopped working. AI stacks decay silently. This is the 20-minute Sunday check.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">weekly review · ai workflows · operator · pwyw · free · template · productivity</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=weekly-ai-review-template" href="https://bokar83.gumroad.com/l/weekly-ai-review-template" target="_blank" rel="noopener">I want this · $0</a>
+    <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
+  </footer>
+</article>
+
+<article class="sku-card" data-tier="starter" data-slug="worktree-atomic-commit-handbook" data-tags="git worktree multi-agent operator infrastructure ai agents" data-name="worktree + atomic-commit operator handbook" id="worktree-atomic-commit-handbook">
+  <header class="card-header">
+    <div class="badges">
+      <span class="tier-badge tier-starter">STARTER · $0</span>
+      <a class="permalink" href="#worktree-atomic-commit-handbook" title="anchor link" aria-label="anchor link">link</a>
+    </div>
+    <h2 class="card-title">Worktree + Atomic-Commit Operator Handbook</h2>
+    <p class="tagline">Two sessions on one tree both commit. Branch HEAD flips. Work disappears. The post-mortem says it was your fault but you don&#x27;t see how.</p>
+  </header>
+  <footer class="card-footer">
+    <div class="tags">git · worktree · multi-agent · operator · infrastructure · ai agents</div>
+    <a class="cta plausible-event-name=Gumroad+Click plausible-event-sku=worktree-atomic-commit-handbook" href="https://bokar83.gumroad.com/l/worktree-atomic-commit-handbook" target="_blank" rel="noopener">I want this · $0</a>
     <p class="no-testimonial-note">No buyer testimonials yet. Listing-level disclosure.</p>
   </footer>
 </article>
@@ -945,72 +965,7 @@ footer.site-footer a:hover { color: var(--brick); }
     <p>Working with founders 1:1? <a href="https://catalystworks.consulting/proof/companion-v1" target="_blank" rel="noopener">See the companion playbook &rarr;</a></p>
   </aside>
 
-  <div style="
-  background: #f8f9fa;
-  border-left: 3px solid #2563eb;
-  padding: 20px 24px;
-  margin: 24px 0;
-  border-radius: 0 6px 6px 0;
-  font-family: inherit;
-">
-  <p style="
-    margin: 0 0 6px 0;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #6b7280;
-  ">Free resource</p>
-
-  <p style="
-    margin: 0 0 10px 0;
-    font-size: 17px;
-    font-weight: 700;
-    color: #111827;
-    line-height: 1.3;
-  ">AI-Use Policy Checklist</p>
-
-  <p style="
-    margin: 0 0 16px 0;
-    font-size: 14px;
-    color: #374151;
-    line-height: 1.6;
-  ">
-    One page. Five rules. Walk your team through it in an hour and sign off on the policy they will actually follow.
-  </p>
-
-  <a href="https://humanatwork.ai/ai-policy-checklist/?utm_campaign=ic-funnel&utm_source=haw-store&utm_medium=cross-link"
-     style="
-       display: inline-block;
-       background: #2563eb;
-       color: #fff;
-       font-size: 14px;
-       font-weight: 600;
-       padding: 10px 20px;
-       border-radius: 5px;
-       text-decoration: none;
-     "
-  >Get the checklist (free)</a>
-</div>
-
-<!--
-  CTQ SELF-SCORE: 90/100
-
-  Copy gates:
-  - No hype language: PASS ("One page. Five rules." = specific, not superlative)
-  - No em-dashes: PASS
-  - Sentence case in body: PASS
-  - No fabricated social proof: PASS (no testimonials, no download counts)
-  - No manufactured urgency: PASS
-  - No "revolutionary" / "groundbreaking": PASS
-  - CTA is functional ("Get the checklist") not clickbait: PASS
-  - Brand color #2563eb = HAW blue (consistent with humanatwork.ai palette)
-
-  Note: -10 because connection bridge is absent (correct -- HTML snippet is a utility asset,
-  not a thought-leadership piece; bridge lives in the landing page itself)
--->
-
-<footer class="site-footer">
+  <footer class="site-footer">
     <span>Human at Work · Boubacar</span>
     <span><a href="/">Back to newsletter</a></span>
   </footer>
@@ -1173,23 +1128,6 @@ footer.site-footer a:hover { color: var(--brick); }
       resultEl.classList.add(kind);
       resultEl.textContent = msg;
     }
-  })();
-
-  // Plausible segment event. Fires once per page-load so segment-by-UTM
-  // ordering is queryable in the Plausible dashboard alongside Gumroad
-  // outbound clicks + LeadCapture events. Source = data-segment attribute
-  // already set pre-paint by the head script.
-  (function fireSegmentEvent() {
-    try {
-      var seg = (document.documentElement.dataset.segment || 'default');
-      var params = new URLSearchParams(window.location.search || '');
-      var camp = params.get('utm_campaign') || '';
-      if (typeof window.plausible === 'function') {
-        window.plausible('Segment:CodeRedirected', {
-          props: { segment: seg, utm_campaign: camp.slice(0, 64) }
-        });
-      }
-    } catch (e) { /* ignore */ }
   })();
 
   // T5 cold-reader proof tracking. Two events:
