@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Employee Relations Investigation Pack | 30 compliance framed prompts for HR investigations</title>
+<meta name="description" content="Thirty compliance framed prompts, seven templates and three checklists for documenting employee relations cases with an AI assistant. $19 founding price.">
+<meta property="og:title" content="The Employee Relations Investigation Pack">
+<meta property="og:description" content="Thirty compliance framed prompts, seven templates and three checklists for documenting employee relations cases with an AI assistant.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://humanatwork.ai/investigation-pack/">
+<link rel="canonical" href="https://humanatwork.ai/investigation-pack/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Indigo field notebook, sales surface ─────────────────────────────
+   Same lineage as the product itself, inverted proportions: indigo is
+   the ground here, paper is the accent. Strip-weave modules run
+   vertically down the left seam. Technical drawing marks stay in the
+   annotation layer only.
+   build.seed = "2707d107aa7a62a75fde892cb13326bfb2dbe67d45f68814ec90ea7bdf41fd9d"
+   ------------------------------------------------------------------ */
+:root{
+  --paper:#EEF1F6; --card:#FFFFFF; --card-2:#F7F9FC;
+  --ink:#0E1626; --ink-2:#3A465C; --ink-3:#6C7891;
+  --indigo:#1F2A60; --indigo-deep:#14213D; --weave:#33418A;
+  --ochre:#B4741A; --ochre-br:#E39A2A; --ochre-lt:#F6EAD5;
+  --rust:#A03A1C; --moss:#3E6350;
+  --rule:#C6CEDC; --rule-2:#DDE3EC;
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s6:48px; --s8:64px; --s10:80px; --s12:104px;
+  --sans:"Public Sans",system-ui,-apple-system,sans-serif;
+  --serif:"Spectral",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.62;overflow-x:hidden}
+img,svg{max-width:100%;height:auto}
+a{color:var(--indigo)}
+.skip{position:absolute;left:-9999px;background:var(--indigo);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:8px;top:8px}
+.w{max-width:1080px;margin:0 auto;padding:0 22px}
+.narrow{max-width:720px}
+.lab{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ── nav ── */
+.nav{position:sticky;top:0;z-index:90;background:rgba(238,241,246,.95);backdrop-filter:blur(9px);box-shadow:0 1px 0 var(--rule-2)}
+.nav-in{max-width:1080px;margin:0 auto;padding:11px 22px;display:flex;align-items:center;gap:var(--s3)}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);flex:0 0 auto}
+.brand span{font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:-.01em}
+.nav-l{display:flex;gap:var(--s3);margin-left:auto;align-items:center}
+.nav-l a{font-size:14px;color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.nav-l a:hover{color:var(--indigo)}
+.nav-cta{
+  background:var(--ochre);color:#fff!important;border-radius:3px;padding:9px 16px;
+  font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap
+}
+.nav-cta:hover{background:#9C6314}
+.burger{
+  display:none;margin-left:auto;align-items:center;gap:9px;background:var(--card);color:var(--ink);
+  border:0;box-shadow:inset 0 0 0 1.5px var(--indigo);border-radius:3px;padding:9px 13px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer
+}
+.burger:focus-visible,.nav-cta:focus-visible{outline:3px solid var(--ochre-br);outline-offset:2px}
+
+/* ── drawer ── */
+.scrim{position:fixed;inset:0;background:rgba(14,22,38,.55);z-index:98;opacity:0;pointer-events:none;transition:opacity .22s}
+.scrim.on{opacity:1;pointer-events:auto}
+.draw{position:fixed;top:0;right:0;bottom:0;width:min(320px,86vw);z-index:99;background:var(--card);transform:translateX(102%);transition:transform .26s ease;display:flex;flex-direction:column}
+.draw.on{transform:none}
+.draw-h{display:flex;align-items:center;padding:15px 18px;border-bottom:1px solid var(--rule-2)}
+.draw-h .lab{flex:1 1 auto}
+.xb{background:none;border:0;cursor:pointer;color:var(--ink);padding:6px}
+.xb:focus-visible{outline:3px solid var(--ochre-br)}
+.draw nav{padding:14px 18px;display:flex;flex-direction:column;gap:2px}
+.draw nav a{padding:13px 4px;text-decoration:none;color:var(--ink);font-size:17px;border-bottom:1px solid var(--rule-2)}
+.draw nav a.cta{margin-top:var(--s3);background:var(--ochre);color:#fff;border:0;border-radius:3px;text-align:center;font-weight:600;padding:14px}
+
+/* ── hero ── */
+.hero{position:relative;background:var(--indigo-deep);color:#fff;overflow:hidden}
+.hero-w{position:absolute;top:0;left:0;bottom:0;width:112px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='168'%3E%3Crect width='112' height='168' fill='%2314213D'/%3E%3Crect x='6' y='0' width='28' height='62' fill='%231F2A60'/%3E%3Crect x='6' y='70' width='28' height='46' fill='%2333418A'/%3E%3Crect x='6' y='124' width='28' height='44' fill='%231F2A60'/%3E%3Crect x='42' y='0' width='10' height='34' fill='%23B4741A'/%3E%3Crect x='42' y='42' width='10' height='84' fill='%231F2A60'/%3E%3Crect x='42' y='134' width='10' height='34' fill='%23B4741A'/%3E%3Crect x='60' y='0' width='26' height='96' fill='%2333418A'/%3E%3Crect x='60' y='104' width='26' height='64' fill='%231F2A60'/%3E%3Crect x='94' y='0' width='7' height='24' fill='%238E9EC9'/%3E%3Crect x='94' y='32' width='7' height='72' fill='%2314213D'/%3E%3Crect x='94' y='112' width='7' height='56' fill='%238E9EC9'/%3E%3C/svg%3E") repeat-y left top;background-size:112px 168px}
+.hero-seam{display:none}
+.hero-in{position:relative;padding:var(--s10) 0 var(--s8)}
+.hero .w{padding-left:150px;padding-right:22px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) 320px;gap:var(--s8);align-items:start}
+.hero-card{background:rgba(255,255,255,.055);border-radius:5px;padding:var(--s3);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.hero-card .lab{display:block;color:#8E9EC9;margin-bottom:var(--s2)}
+.hc{display:flex;gap:14px;align-items:baseline;padding:13px 0;border-top:1px solid rgba(255,255,255,.12)}
+.hc:first-of-type{border-top:0;padding-top:4px}
+.hc b{font-family:var(--serif);font-size:29px;font-weight:700;line-height:1;color:var(--ochre-br);flex:0 0 40px}
+.hc span{font-size:14.5px;line-height:1.45;color:#D2DAEE}
+.hc span i{display:block;font-style:normal;font-weight:700;color:#fff;font-size:15px;margin-bottom:2px}
+.hero .lab{color:#9FB0D8}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(33px,5.4vw,60px);line-height:1.05;letter-spacing:-.025em;margin:var(--s2) 0 0;max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--ochre-br)}
+.hero .sub{font-size:19px;line-height:1.58;color:#D2DAEE;max-width:54ch;margin:var(--s3) 0 0}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3);margin-top:var(--s6)}
+.btn{
+  display:inline-block;background:var(--ochre);color:#fff;text-decoration:none;font-weight:700;
+  font-size:17px;padding:16px 30px;border-radius:3px;border:0;cursor:pointer;font-family:inherit
+}
+.btn:hover{background:#9C6314}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.hero-price{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:#C6D1EC}
+.hero-price b{color:#fff;font-size:15px}
+.credit{margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid rgba(255,255,255,.16);font-size:15px;color:#B7C4E4;max-width:56ch}
+
+/* ── sections ── */
+.s{padding:var(--s10) 0}
+.s.tight{padding:var(--s8) 0}
+.s.alt{background:var(--card)}
+.s h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-.022em;line-height:1.14;margin:var(--s2) 0 var(--s3);max-width:20ch}
+.s h3{font-family:var(--sans);font-size:19px;font-weight:700;letter-spacing:-.01em;margin:0 0 var(--s1)}
+.s p{margin:0 0 var(--s3);max-width:62ch}
+.s p:last-child{margin-bottom:0}
+.big{font-size:20px;line-height:1.6;font-family:var(--serif)}
+.mute{color:var(--ink-2)}
+.seam{display:block;width:100%;height:9px}
+
+/* ── module cards, strip-weave offsets ── */
+.mods{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s6)}
+.mod{background:var(--card-2);border-radius:4px;padding:var(--s3);box-shadow:inset 0 0 0 1px var(--rule-2)}
+.s.alt .mod{background:var(--paper)}
+.mod:nth-child(2){transform:translateY(18px)}
+.mod:nth-child(4){transform:translateY(18px)}
+.mod b{display:block;font-family:var(--serif);font-size:38px;font-weight:700;line-height:1;color:var(--indigo)}
+.mod strong{display:block;font-size:16px;font-weight:700;margin:10px 0 6px}
+.mod span{display:block;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+
+/* ── sourced block ── */
+.sourced{background:var(--indigo-deep);color:#D2DAEE;border-radius:4px;padding:var(--s4);font-size:15px;line-height:1.62;margin-top:var(--s4)}
+.sourced .lab{color:#8E9EC9;display:block;margin-bottom:var(--s2)}
+.sourced ul{margin:0;padding-left:19px}
+.sourced li{margin-bottom:11px;max-width:72ch}
+.sourced li:last-child{margin-bottom:0}
+.sourced a{color:#F0C67C}
+
+/* ── sample prompt box ── */
+.box{background:var(--card);border-radius:4px;box-shadow:0 1px 0 var(--rule),0 2px 10px rgba(14,22,38,.06);margin-top:var(--s4);overflow:hidden}
+.box-h{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--indigo);color:#fff}
+.box-h .lab{color:#B7C4E4;flex:1 1 auto}
+.cp{background:var(--ochre);color:#fff;border:0;border-radius:3px;padding:7px 13px;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.cp:hover{background:#9C6314}
+.cp:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.cp.ok{background:var(--moss)}
+.box pre{margin:0;padding:var(--s3) 18px var(--s4);font-family:var(--mono);font-size:13px;line-height:1.72;white-space:pre-wrap;overflow-wrap:break-word;overflow-x:auto}
+
+/* ── list with inked ticks ── */
+.ticks{list-style:none;margin:var(--s3) 0 0;padding:0;max-width:64ch}
+.ticks li{position:relative;padding:0 0 var(--s2) 34px;font-size:16.5px;color:var(--ink-2)}
+.ticks li b{color:var(--ink)}
+.ticks li::before{
+  content:"";position:absolute;left:2px;top:7px;width:17px;height:12px;
+  background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 12'%3E%3Cpath d='M1 6.4C2.6 6 3.9 7.6 5.6 10.4 8.2 6.2 11.5 2.8 16 1' fill='none' stroke='%23B4741A' stroke-width='2.1' stroke-linecap='round'/%3E%3C/svg%3E")
+}
+.nos{list-style:none;margin:var(--s3) 0 0;padding:0;max-width:64ch}
+.nos li{position:relative;padding:0 0 var(--s3) 34px;font-size:16.5px;color:var(--ink-2)}
+.nos li b{display:block;color:var(--ink);font-size:17px;margin-bottom:3px}
+.nos li::before{
+  content:"";position:absolute;left:3px;top:6px;width:15px;height:15px;
+  background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 15'%3E%3Cpath d='M2 2.4C5.4 5.8 9.2 9.6 13 13M13.2 2C9.6 5.6 5.6 9.4 2 13' fill='none' stroke='%23A03A1C' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")
+}
+
+/* ── buy ── */
+.buy{background:var(--indigo-deep);color:#fff;position:relative;overflow:hidden}
+.buy .w{position:relative}
+.buy h2{color:#fff;max-width:18ch}
+.buy p{color:#D2DAEE}
+.card{background:var(--card);color:var(--ink);border-radius:5px;padding:var(--s4);max-width:520px;margin-top:var(--s4)}
+.price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.price{font-family:var(--serif);font-size:52px;font-weight:700;line-height:1;letter-spacing:-.03em}
+.price-n{font-family:var(--mono);font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.f-lab{display:block;font-size:15px;font-weight:600;margin:var(--s3) 0 7px}
+.f-in{
+  width:100%;font-family:inherit;font-size:17px;padding:14px 15px;border-radius:3px;
+  border:0;box-shadow:inset 0 0 0 1.5px var(--rule);background:var(--card-2);color:var(--ink)
+}
+.f-in:focus{outline:0;box-shadow:inset 0 0 0 2px var(--indigo)}
+.err .f-in{box-shadow:inset 0 0 0 2px var(--rust)}
+.f-msg{display:none;font-size:14px;color:var(--rust);margin-top:7px}
+.err .f-msg{display:block}
+.f-note{font-size:13.5px;color:var(--ink-3);margin:11px 0 0;line-height:1.5}
+.card .btn{width:100%;margin-top:var(--s3);text-align:center}
+.done-msg{display:none;background:var(--ochre-lt);border-radius:3px;padding:var(--s3);margin-top:var(--s3);font-size:15.5px;line-height:1.55}
+.card.done .done-msg{display:block}
+.card.done .f-lab,.card.done .f-in,.card.done .f-note{display:none}
+.hold{display:none;background:#FBEDE7;color:#5A2110;border-radius:3px;padding:14px 16px;margin-top:var(--s3);font-size:14.5px;line-height:1.5}
+.hold.on{display:block}
+
+/* ── faq ── */
+.close{text-align:left}
+.close h2{max-width:22ch}
+.close-cta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3);margin-top:var(--s4)}
+.close-n{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--ink-3)}
+.faq{max-width:760px;margin-top:var(--s4)}
+.fi{background:var(--card);border-radius:4px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 0 var(--rule-2)}
+.s.alt .fi{background:var(--paper)}
+.fq{width:100%;display:flex;align-items:center;gap:var(--s2);text-align:left;background:none;border:0;cursor:pointer;padding:19px var(--s3);font-family:inherit;font-size:17px;font-weight:600;color:var(--ink)}
+.fq:focus-visible{outline:3px solid var(--ochre-br);outline-offset:-3px}
+.fq span{flex:1 1 auto}
+.fq svg{flex:0 0 auto;transition:transform .24s;color:var(--ink-3)}
+.fi.open .fq svg{transform:rotate(180deg)}
+.fa{display:none;padding:0 var(--s3) var(--s3);color:var(--ink-2);font-size:16px;line-height:1.6}
+.fi.open .fa{display:block}
+.fa p{margin:0 0 12px;max-width:62ch}
+.fa p:last-child{margin-bottom:0}
+
+/* ── footer ── */
+.foot{background:var(--indigo-deep);color:#9FB0D8;padding:var(--s8) 0 var(--s6);font-size:14.5px}
+.foot b{color:#fff;display:block;font-family:var(--serif);font-size:17px;margin-bottom:7px}
+.foot p{margin:0 0 12px;max-width:62ch;line-height:1.6}
+.foot a{color:#F0C67C}
+
+/* ── back to top ── */
+.top{
+  position:fixed;right:18px;bottom:18px;z-index:95;display:flex;align-items:center;gap:8px;
+  background:var(--indigo);color:#fff;border:0;border-radius:4px;padding:11px 15px;cursor:pointer;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 6px 20px rgba(14,22,38,.3);opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:opacity .22s,transform .22s
+}
+.top.show{opacity:1;pointer-events:auto;transform:none}
+.top:focus-visible{outline:3px solid var(--ochre-br);outline-offset:2px}
+
+@media (max-width:900px){
+  .nav-l{display:none}
+  .burger{display:flex}
+  .mods{grid-template-columns:1fr 1fr}
+  .mod:nth-child(2),.mod:nth-child(4){transform:none}
+  .mod:nth-child(3),.mod:nth-child(4){transform:translateY(0)}
+  .hero .w{padding-left:22px}
+  .hero-w{display:none}
+  .hero-seam{display:block;width:100%;height:9px}
+  .hero-in{padding:var(--s8) 0}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:var(--s6)}
+}
+@media (max-width:600px){
+  body{font-size:16.5px}
+  .w{padding:0 17px}
+  .nav-in{padding:10px 17px}
+  .s{padding:var(--s8) 0}
+  .mods{grid-template-columns:1fr}
+  .hero h1{letter-spacing:-.02em}
+  .hero .sub{font-size:17.5px}
+  .lab{font-size:10.5px;letter-spacing:.11em}
+  .hero .w{padding:0 17px}
+  .card{padding:var(--s3)}
+  .price{font-size:44px}
+  .box pre{font-size:12.5px;padding:18px 14px 22px}
+  .top{right:12px;bottom:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#inside">Skip to contents</a>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><defs>
+  <pattern id="wv" width="112" height="196" patternUnits="userSpaceOnUse">
+    <rect width="112" height="196" fill="#14213D"/>
+    <rect x="6" y="0" width="30" height="196" fill="#1F2A60"/>
+    <rect x="44" y="0" width="11" height="196" fill="#B4741A"/>
+    <rect x="63" y="0" width="24" height="196" fill="#33418A"/>
+    <rect x="95" y="0" width="6" height="196" fill="#8E9EC9"/>
+  </pattern>
+  <pattern id="wvH" width="196" height="112" patternUnits="userSpaceOnUse">
+    <rect width="196" height="112" fill="#14213D"/>
+    <rect x="0" y="6" width="196" height="30" fill="#1F2A60"/>
+    <rect x="0" y="44" width="196" height="11" fill="#B4741A"/>
+    <rect x="0" y="63" width="196" height="24" fill="#33418A"/>
+    <rect x="0" y="95" width="196" height="6" fill="#8E9EC9"/>
+  </pattern>
+  <pattern id="wvS" width="132" height="9" patternUnits="userSpaceOnUse">
+    <rect width="132" height="9" fill="#C6CEDC"/>
+    <rect x="0" width="34" height="9" fill="#1F2A60"/>
+    <rect x="41" width="12" height="9" fill="#B4741A"/>
+    <rect x="59" width="27" height="9" fill="#33418A"/>
+    <rect x="93" width="7" height="9" fill="#0E1626"/>
+    <rect x="107" width="19" height="9" fill="#1F2A60"/>
+  </pattern>
+</defs></svg>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">
+      <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="#1F2A60" stroke-width="1.6"/>
+        <path d="M5 8h16M5 13h11M5 18h16" stroke="#1F2A60" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="20" cy="18" r="2.6" fill="#B4741A"/>
+      </svg>
+      <span>Investigation Pack</span>
+    </a>
+    <nav class="nav-l">
+      <a href="#inside">What is inside</a>
+      <a href="#sample">Free prompt</a>
+      <a href="#who">Who wrote it</a>
+      <a href="#faq">Questions</a>
+      <a class="nav-cta" href="#buy">Get it, $19</a>
+    </nav>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="draw">
+      <svg width="15" height="12" viewBox="0 0 15 12" aria-hidden="true"><path d="M1 1h13M1 6h13M1 11h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Menu
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<aside class="draw" id="draw" aria-label="Menu" aria-hidden="true">
+  <div class="draw-h">
+    <span class="lab">Menu</span>
+    <button class="xb" id="xb" aria-label="Close menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav>
+    <a href="#inside">What is inside</a>
+    <a href="#deadline">The deadline</a>
+    <a href="#sample">Free prompt</a>
+    <a href="#who">Who wrote it</a>
+    <a href="#faq">Questions</a>
+    <a class="cta" href="#buy">Get the pack, $19</a>
+  </nav>
+</aside>
+
+<main id="top">
+
+<section class="hero">
+  <div class="hero-w" aria-hidden="true"></div>
+  <svg class="hero-seam" viewBox="0 0 1320 9" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="9" fill="url(#wvS)"/></svg>
+  <div class="hero-in">
+    <div class="w">
+    <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="lab">For HR and employee relations practitioners</span>
+      <h1>The investigation file has <em>your name</em> on it. Not the AI's.</h1>
+      <p class="sub">Thirty compliance framed prompts, seven templates and three checklists for running employee relations cases with an AI assistant, built so the documentation holds up for whoever reads it after you.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#buy">Get the pack</a>
+        <span class="hero-price"><b>$19</b> for the first 50. Then $29.</span>
+      </div>
+      <p class="credit">Written by someone who spent about fifteen years working in HR inside large companies, several of them Fortune 100, and who now builds AI systems for a living.</p>
+    </div>
+    <aside class="hero-card">
+      <span class="lab">What is in it</span>
+      <div class="hc"><b>30</b><span><i>Prompts</i>Sequenced by stage, intake through closure</span></div>
+      <div class="hc"><b>7</b><span><i>Templates</i>Intake, plan, interview record, timeline, report, letters, improvement plan</span></div>
+      <div class="hc"><b>3</b><span><i>Checklists</i>Before you start, before you write, before you file</span></div>
+      <div class="hc"><b>1</b><span><i>Oversight protocol</i>The log that records what you checked</span></div>
+    </aside>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="w narrow">
+    <span class="lab">The problem</span>
+    <h2>Generic prompts give you generic language</h2>
+    <p class="big">In an employee relations file, generic language is the whole problem.</p>
+    <p>"The respondent was unprofessional" is an opinion wearing a finding's clothes. It will not survive being read back to you by someone with a reason to take it apart. And you are the one who signed it.</p>
+    <p>That is the part nobody selling AI productivity mentions. The tool does not sit in the appeal hearing. You do. When someone asks how a paragraph got written and what you did to check it, the answer has to be better than the truth most people currently have, which is that they asked a chatbot and it sounded right.</p>
+  </div>
+</section>
+
+<svg class="seam" viewBox="0 0 1320 9" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="9" fill="url(#wvS)"/></svg>
+
+<section class="s alt" id="deadline">
+  <div class="w narrow">
+    <span class="lab">The forcing function</span>
+    <h2>The deadline already passed</h2>
+    <p>On 2 August 2026 the EU AI Act became applicable. It treats AI used to make decisions about promotion, termination and the monitoring of performance as high risk, and it puts named duties on the employer deploying it. Human oversight by someone with the competence and authority to exercise it. Logs kept. Workers told.</p>
+    <p>If your organisation has people in the EU, that is live now. If it does not, the discipline still holds, because the question an appeal body asks has never been jurisdictional. What did you do to check it.</p>
+    <p class="mute">Here are the sources. Read them yourself rather than taking my word for it.</p>
+    <div class="sourced">
+      <span class="lab">Primary sources</span>
+      <ul>
+        <li>Annex III, point 4(b) classifies as high risk "AI systems intended to be used to make decisions affecting terms of work-related relationships, the promotion or termination of work-related contractual relationships, to allocate tasks based on individual behaviour or personal traits or characteristics or to monitor and evaluate the performance and behaviour of persons in such relationships." <a href="https://artificialintelligenceact.eu/annex/3/" rel="noopener">Annex III</a></li>
+        <li>Article 113: "It shall apply from 2 August 2026." <a href="https://artificialintelligenceact.eu/article/113/" rel="noopener">Article 113</a></li>
+        <li>Article 26(2): "Deployers shall assign human oversight to natural persons who have the necessary competence, training and authority, as well as the necessary support." Article 26(6) requires logs kept for at least six months. Article 26(7) requires workers and their representatives to be informed before use. <a href="https://artificialintelligenceact.eu/article/26/" rel="noopener">Article 26</a></li>
+        <li>Article 99(4) sets fines for breaching those deployer duties at "up to 15 000 000 EUR or, if the offender is an undertaking, up to 3 % of its total worldwide annual turnover for the preceding financial year, whichever is higher." <a href="https://artificialintelligenceact.eu/article/99/" rel="noopener">Article 99</a></li>
+      </ul>
+    </div>
+    <p style="margin-top:var(--s3)" class="mute">This pack is not legal advice and it is not a compliance certification. Whether a specific tool in your organisation falls inside that classification is a question for your counsel.</p>
+  </div>
+</section>
+
+<section class="s" id="inside">
+  <div class="w">
+    <div class="narrow">
+      <span class="lab">What you get</span>
+      <h2>A working system, not a cheat sheet</h2>
+      <p>Every prompt carries two annotations. One tells you why the wording is what it is and why the obvious alternative is worse. The other tells you what breaks if you run it raw.</p>
+    </div>
+    <div class="mods">
+      <div class="mod">
+        <b>30</b><strong>Prompts</strong>
+        <span>Sequenced by stage, from intake through interviews to closure and the retaliation check after it.</span>
+      </div>
+      <div class="mod">
+        <b>7</b><strong>Templates</strong>
+        <span>Intake form, investigation plan, interview record with attestation, timeline, findings report, both outcome letters, improvement plan.</span>
+      </div>
+      <div class="mod">
+        <b>3</b><strong>Checklists</strong>
+        <span>Before you start, before you write, and the one that asks whether the file survives a stranger reading it in two years.</span>
+      </div>
+      <div class="mod">
+        <b>1</b><strong>Oversight protocol</strong>
+        <span>The log entry recording what the AI drafted, what you changed, what you rejected and what you could not verify.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="seam" viewBox="0 0 1320 9" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="9" fill="url(#wvS)"/></svg>
+
+<section class="s alt" id="sample">
+  <div class="w narrow">
+    <span class="lab">Take one and use it today</span>
+    <h2>Prompt 18 of 30, free</h2>
+    <p>This is the one that pulls a draft finding apart into fact, inference and opinion. Run it on something you have already written and filed. You will find something.</p>
+    <div class="box">
+      <div class="box-h"><span class="lab">Prompt 18, fact and opinion separation</span><button class="cp" id="cp">Copy</button></div>
+      <pre id="sample-text">You are assisting a qualified HR investigator. Separate fact from inference from opinion in draft findings. You do not decide whether anything is proved.
+
+INPUT
+Draft findings text: [PASTE]
+Evidence references available: [LIST]
+
+TASK
+Take every statement in the input and classify it into exactly one of four categories.
+
+1. FACT SUPPORTED BY EVIDENCE. A statement about what happened that can be traced to a named evidence reference. Rewrite it in the form: [WHAT HAPPENED], on [DATE], evidenced by [REFERENCE].
+2. FACT ASSERTED WITHOUT EVIDENCE. Reads as fact, traces to nothing in the list. Rewrite it as an open question and name the evidence that would settle it.
+3. INFERENCE. A conclusion drawn from facts. Rewrite it to show its structure: because [FACT, REFERENCE] and [FACT, REFERENCE], it is more likely than not that [INFERENCE]. Then state what alternative explanation was considered and why it is less likely.
+4. OPINION OR CHARACTERISATION. A judgment about a person, their motives, their attitude or their character. Either delete it, or rewrite it as the observable conduct underneath it plus its evidence reference.
+
+FLAG SEPARATELY
+- Every adjective doing evidentiary work: aggressive, hostile, unprofessional, inappropriate, dismissive, erratic. Replace each with the conduct described.
+- Every statement about what a person knew, intended, meant or felt, unless they said so and it is referenced.
+- Every use of "clearly", "obviously", "evidently", "of course". These signal an unstated inference.
+- Every passive construction that hides who did what.
+- Every generalisation across incidents that is not itself supported.
+
+OUTPUT
+The four classified lists with rewrites, the flag list, and a clean redraft containing only category 1 and category 3, with every category 3 item showing its reasoning.</pre>
+    </div>
+    <p style="margin-top:var(--s3)" class="mute">Use role labels, not names. The pack explains why on page one.</p>
+  </div>
+</section>
+
+<section class="s" id="who">
+  <div class="w narrow">
+    <span class="lab">Who wrote this</span>
+    <h2>Someone who has had to defend a file</h2>
+    <p>I am Boubacar. I spent about fifteen years working in HR inside large companies, several of them Fortune 100. Investigations, performance cases, terminations, and every piece of documentation that comes attached to those.</p>
+    <p>Now I build AI systems, from Salt Lake City.</p>
+    <p>That pairing is the reason this exists. Most people writing AI prompt packs have never had to sit across from someone and explain a finding. Most people who have done that are not building with these tools daily. This pack lives where those two things overlap, and there are not many of us standing there.</p>
+  </div>
+</section>
+
+<svg class="seam" viewBox="0 0 1320 9" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="9" fill="url(#wvS)"/></svg>
+
+<section class="s alt">
+  <div class="w narrow">
+    <span class="lab">Be honest with yourself first</span>
+    <h2>Do not buy this if</h2>
+    <ul class="nos">
+      <li><b>You want faster memos.</b> A nine dollar general prompt pack will do that, and it will do it well. This one is slower on purpose. It makes you write down what you checked.</li>
+      <li><b>You want a compliance certificate.</b> There is no such thing here. This is a documentation discipline, and the pack says so on every page.</li>
+      <li><b>You want something that decides for you.</b> Several of these prompts are written to refuse. The credibility framework will not tell you who to believe. That is deliberate, and if it frustrates you, this is not your pack.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="s buy" id="buy">
+  <div class="w narrow">
+    <span class="lab" style="color:#9FB0D8">Founding price</span>
+    <h2>$19 for the first fifty</h2>
+    <p>Then it goes to $29. No subscription, no seat count, no login. You get the pack and it is yours.</p>
+    <ul class="ticks" style="color:#D2DAEE">
+      <li style="color:#D2DAEE"><b style="color:#fff">Everything is written to be edited.</b> Your policy language, your jurisdiction, whatever your counsel prefers.</li>
+      <li style="color:#D2DAEE"><b style="color:#fff">Works with the assistant your employer already approved.</b> Plain text, paste it in.</li>
+      <li style="color:#D2DAEE"><b style="color:#fff">Consultants may use it inside their own client engagements.</b> Not for resale or redistribution.</li>
+    </ul>
+
+    <div class="card" id="card">
+      <div class="price-row">
+        <span class="price">$19</span>
+        <span class="price-n">Founding &middot; then $29</span>
+      </div>
+      <form id="buyform" novalidate>
+        <label class="f-lab" for="email">Your email, so I can send you the pack</label>
+        <input class="f-in" type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+        <span class="f-msg" id="fmsg">Enter a valid email address.</span>
+        <p class="f-note">Email only. Your name goes on the next screen, at checkout.</p>
+        <button class="btn" type="submit" id="submit">Continue to checkout</button>
+      </form>
+      <div class="done-msg">
+        <strong>Got it.</strong> Sending you to checkout now. If nothing happens, use the button again.
+      </div>
+      <div class="hold" id="hold">
+        <strong>Checkout is not connected yet.</strong> Your email is saved. The payment link is being set up and you will hear from me directly.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="faq">
+  <div class="w narrow">
+    <span class="lab">Before you buy</span>
+    <h2>Questions people actually ask</h2>
+    <div class="faq">
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>Does this replace legal advice?</span><svg width="15" height="9" viewBox="0 0 15 9" aria-hidden="true"><path d="M1 1l6.5 6.5L14 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+        <div class="fa"><p>No, and the pack says so on every page. Run anything consequential past your employment counsel. What this changes is that when you do, there is something coherent in front of them instead of a folder and a story.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>Will it work with the AI tool my employer approved?</span><svg width="15" height="9" viewBox="0 0 15 9" aria-hidden="true"><path d="M1 1l6.5 6.5L14 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+        <div class="fa"><p>Yes. Every prompt is plain text with bracketed inputs you fill in. Paste it into whatever your organisation has approved. The pack also sets out how to use role labels so you are not putting names into a tool that should not hold them.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>I am in the US. Does the EU section matter to me?</span><svg width="15" height="9" viewBox="0 0 15 9" aria-hidden="true"><path d="M1 1l6.5 6.5L14 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+        <div class="fa"><p>Only if your organisation has people or operations in the EU, and more of them do than realise it. The documentation discipline is the same either way. Nothing in the pack is written for one jurisdiction, and the parts that touch law are flagged for your counsel rather than answered for you.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>What format is it?</span><svg width="15" height="9" viewBox="0 0 15 9" aria-hidden="true"><path d="M1 1l6.5 6.5L14 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+        <div class="fa"><p>One page you open in a browser. Contents down the side, everything collapsible, a copy button on every prompt and every template. It works on a phone, which matters more than it should, because a lot of this gets read on the way to a meeting.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>Why is it this cheap?</span><svg width="15" height="9" viewBox="0 0 15 9" aria-hidden="true"><path d="M1 1l6.5 6.5L14 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+        <div class="fa"><p>Because I want the first fifty people using it and telling me where it is wrong. The price goes to $29 after that, and it will not come back down. If you want the honest version: early buyers are worth more to me as readers than as revenue.</p></div>
+      </div>
+      <div class="fi">
+        <button class="fq" aria-expanded="false"><span>What if my case is stranger than anything in here?</span><svg width="15" height="9" viewBox="0 0 15 9" aria-hidden="true"><path d="M1 1l6.5 6.5L14 1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button>
+        <div class="fa"><p>The pack ends with a list of the cases that go outside what any template can carry, and a link to book a working session with me. Bring the case, including the parts that are not tidy. Anonymised facts only.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="seam" viewBox="0 0 1320 9" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="9" fill="url(#wvS)"/></svg>
+
+<section class="s tight close">
+  <div class="w narrow">
+    <h2>One file, done properly, pays for this fifty times over</h2>
+    <p>The next case is already coming. You can run it the way you ran the last one, or you can run it with the questions already written down.</p>
+    <p class="close-cta"><a class="btn" href="#buy">Get the pack, $19</a> <span class="close-n">First fifty buyers. Then $29.</span></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="w">
+    <b>The Employee Relations Investigation Pack</b>
+    <p>By Boubacar Barry, Catalyst Works Consulting, Salt Lake City, Utah.</p>
+    <p>This pack is a documentation discipline. It is not legal advice, and it is not a compliance certification. Whether any specific tool or process in your organisation falls inside a given regulation is a question for your counsel.</p>
+    <p>&copy; 2026 Boubacar Barry / Catalyst Works Consulting.<span style="display:none" data-b="&#8203;&#8204;&#8203;&#8205;&#8204;&#8203;">BB-FOUTA</span></p>
+  </div>
+</footer>
+
+<button class="top" id="totop" aria-label="Back to top">
+  <svg width="11" height="8" viewBox="0 0 11 8" aria-hidden="true"><path d="M1 7l4.5-5L10 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  Top
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ═══════════════════════════════════════════════════════════════
+     Live Stripe payment link, $19 founding price, one time.
+       payment link  plink_1U3KW3QWqcWWuBB02QRTNkCX
+       price         price_1U3KVvQWqcWWuBB0h6G1seTA   1900 usd
+       product       prod_V3ROKeKOGB2j2j
+     After payment Stripe redirects to
+       https://humanatwork.ai/investigation-pack/thank-you/
+     which is where the pack link is handed over.
+     If this is ever blanked out the form still captures and persists
+     the email first, then shows an honest hold notice rather than
+     redirecting nowhere. That fallback is deliberate, leave it in.
+     ═══════════════════════════════════════════════════════════════ */
+  var CHECKOUT_URL = "https://buy.stripe.com/4gM4gBclVcc24Vab37gEg0p";
+
+  var LEAD_ENDPOINT = "https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe";
+
+  /* ── drawer ── */
+  var draw=document.getElementById("draw"), scrim=document.getElementById("scrim"),
+      burger=document.getElementById("burger"), xb=document.getElementById("xb");
+  function openD(){draw.classList.add("on");scrim.classList.add("on");draw.setAttribute("aria-hidden","false");burger.setAttribute("aria-expanded","true");document.body.style.overflow="hidden";xb.focus();}
+  function closeD(){if(!draw.classList.contains("on"))return;draw.classList.remove("on");scrim.classList.remove("on");draw.setAttribute("aria-hidden","true");burger.setAttribute("aria-expanded","false");document.body.style.overflow="";}
+  burger.addEventListener("click",function(){draw.classList.contains("on")?closeD():openD();});
+  xb.addEventListener("click",closeD);
+  scrim.addEventListener("click",closeD);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeD();});
+  draw.querySelectorAll("a").forEach(function(a){a.addEventListener("click",closeD);});
+
+  /* ── faq ── */
+  document.querySelectorAll(".fi").forEach(function(item){
+    var q=item.querySelector(".fq");
+    q.addEventListener("click",function(){
+      var open=item.classList.toggle("open");
+      q.setAttribute("aria-expanded",open?"true":"false");
+    });
+  });
+
+  /* ── copy the sample prompt ── */
+  var cp=document.getElementById("cp");
+  cp.addEventListener("click",function(){
+    var txt=document.getElementById("sample-text").innerText;
+    function ok(){cp.textContent="Copied";cp.classList.add("ok");setTimeout(function(){cp.textContent="Copy";cp.classList.remove("ok");},1600);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,fb);}else{fb();}
+    function fb(){
+      var ta=document.createElement("textarea");ta.value=txt;ta.setAttribute("readonly","");
+      ta.style.position="fixed";ta.style.left="-9999px";document.body.appendChild(ta);ta.select();
+      try{document.execCommand("copy");ok();}catch(e){cp.textContent="Select and copy";}
+      document.body.removeChild(ta);
+    }
+  });
+
+  /* ── back to top ── */
+  var top=document.getElementById("totop");
+  top.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+  var ticking=false;
+  window.addEventListener("scroll",function(){
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(function(){top.classList.toggle("show",(window.scrollY||window.pageYOffset)>620);ticking=false;});
+  },{passive:true});
+
+  /* ── email capture BEFORE any redirect to checkout ──
+     The email is persisted first. A person who bails on the payment
+     screen is still reachable. Email only, no name field: the name is
+     collected at checkout and a second field in front of it costs
+     conversion for nothing. ── */
+  var form=document.getElementById("buyform"),
+      card=document.getElementById("card"),
+      input=document.getElementById("email"),
+      submit=document.getElementById("submit"),
+      hold=document.getElementById("hold"),
+      msg=document.getElementById("fmsg");
+  var RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  input.addEventListener("input",function(){if(RE.test(input.value.trim()))card.classList.remove("err");});
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var email=input.value.trim();
+    if(!RE.test(email)){
+      card.classList.add("err");
+      msg.textContent="Enter a valid email address.";
+      input.focus();
+      return;
+    }
+    submit.disabled=true; submit.setAttribute("aria-busy","true"); submit.textContent="One moment";
+
+    var qs=new URLSearchParams(window.location.search||"");
+    var payload={
+      email:email,
+      utm_source:(qs.get("utm_source")||"er_pack_direct").slice(0,64),
+      utm_content:("page:er_pack_sales"+(qs.get("utm_content")?"|"+qs.get("utm_content"):"")).slice(0,120),
+      form_location:"er_investigation_pack_sales",
+      magnet:"er_investigation_pack"
+    };
+
+    function proceed(){
+      card.classList.add("done");
+      if(CHECKOUT_URL && /^https:\/\//.test(CHECKOUT_URL)){
+        /* Hand the address they already typed to Stripe so they do not
+           type it twice. prefilled_email is a documented payment-link
+           parameter and it is additive: if Stripe ever ignores it the
+           checkout still loads, they just retype. */
+        window.location.href=CHECKOUT_URL
+          +(CHECKOUT_URL.indexOf("?")>-1?"&":"?")
+          +"prefilled_email="+encodeURIComponent(email);
+      }else{
+        hold.classList.add("on");
+        submit.disabled=false; submit.removeAttribute("aria-busy");
+        submit.textContent="Continue to checkout";
+      }
+    }
+    function failed(){
+      card.classList.add("err");
+      msg.textContent="That did not save. Check your connection and try again.";
+      submit.disabled=false; submit.removeAttribute("aria-busy");
+      submit.textContent="Continue to checkout";
+    }
+
+    fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+      .then(function(r){if(!r.ok)throw new Error("status "+r.status);proceed();})
+      .catch(failed);
+  });
+})();
+</script>
+</body>
+</html>

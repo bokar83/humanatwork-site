@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Employee Relations Investigation Pack</title>
+<meta name="description" content="Thirty compliance framed prompts, seven templates and three checklists for running employee relations investigations with an AI assistant.">
+<meta name="robots" content="noindex,nofollow">
+<!-- Deliberately NOT disallowed in robots.txt. A Disallow would stop a crawler
+     reading this very tag, which is what actually keeps the page out of an
+     index. Crawlable and noindex beats blocked and indexable-by-reference. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Indigo field notebook ────────────────────────────────────────────
+   Layout system: strip-weave modules (measured, repeating, offset seams).
+   Mark-making: technical drawing (line weight hierarchy, callouts,
+   dimension marks). Palette: indigo resist-dye + pigment ochre.
+   build.seed = "e41f7c6714636b29a45138fbb3643d152f54b038613cb4f398cc8d1d56cfe739"
+   ------------------------------------------------------------------ */
+:root{
+  --paper:#EEF1F6; --card:#FFFFFF; --card-2:#F7F9FC;
+  --ink:#0E1626; --ink-2:#3A465C; --ink-3:#6C7891;
+  --indigo:#1F2A60; --indigo-deep:#14213D; --weave:#33418A;
+  --ochre:#B4741A; --ochre-lt:#F3E4CB;
+  --rust:#A03A1C; --rust-lt:#F5E0D8;
+  --moss:#3E6350; --moss-lt:#DCE9E1;
+  --rule:#C6CEDC; --rule-2:#DDE3EC;
+  --mod:104px;
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s6:48px; --s8:64px; --s10:80px;
+  --sans:"Public Sans",system-ui,-apple-system,sans-serif;
+  --serif:"Spectral",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.6;
+  overflow-x:hidden;
+  background-image:
+    linear-gradient(90deg,rgba(31,42,96,.028) 1px,transparent 1px),
+    linear-gradient(rgba(31,42,96,.018) 1px,transparent 1px);
+  background-size:var(--mod) var(--mod), var(--mod) var(--mod);
+}
+img,svg{max-width:100%;height:auto}
+a{color:var(--indigo);text-underline-offset:3px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--indigo);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:8px;top:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* ── technical annotation label ── */
+.lab{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ── top bar ── */
+.bar{position:sticky;top:0;z-index:90;background:rgba(238,241,246,.94);backdrop-filter:blur(9px)}
+.bar-in{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
+.bar-seam{display:block;width:100%;height:7px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);min-width:0}
+.mark-g{flex:0 0 auto}
+.d-lg{display:inline}
+.mark-t{font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-sp{flex:1 1 auto}
+.bar-meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.burger{
+  display:none;align-items:center;gap:9px;background:var(--card);color:var(--ink);
+  border:0;box-shadow:inset 0 0 0 1.5px var(--indigo);border-radius:3px;
+  padding:9px 13px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer
+}
+.burger:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.burger svg{display:block}
+
+/* ── page grid: sticky contents rail + content ── */
+.grid{display:grid;grid-template-columns:246px minmax(0,1fr);gap:var(--s8);align-items:start;padding:var(--s8) 0 var(--s10)}
+.rail{position:sticky;top:96px;max-height:calc(100vh - 120px);overflow-y:auto;padding-right:6px}
+.rail::-webkit-scrollbar{width:5px}
+.rail::-webkit-scrollbar-thumb{background:var(--rule);border-radius:9px}
+.rail h2{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 var(--s2)}
+.rail ol{list-style:none;margin:0;padding:0}
+.rail li{margin:0}
+.rail a{
+  display:flex;gap:9px;align-items:baseline;padding:6px 0 6px 12px;
+  text-decoration:none;color:var(--ink-2);font-size:13.5px;line-height:1.35;
+  border-left:2px solid var(--rule-2)
+}
+.rail a:hover{color:var(--indigo);border-left-color:var(--weave)}
+.rail a.on{color:var(--indigo);font-weight:600;border-left-color:var(--ochre)}
+.rail a i{font-family:var(--mono);font-style:normal;font-size:10.5px;color:var(--ink-3);flex:0 0 auto}
+.rail .grp{margin-top:var(--s3)}
+
+/* ── cover ── */
+.cover{position:relative;background:var(--indigo-deep);color:#fff;border-radius:4px;overflow:hidden;margin-bottom:var(--s8)}
+.cover-w{position:absolute;inset:0;opacity:.5}
+.cover-in{position:relative;padding:var(--s8) var(--s6) var(--s6)}
+.cover .lab{color:#9FB0D8}
+.ink{display:block;width:190px;height:6px;margin:14px 0 0}
+.cover h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.6vw,50px);line-height:1.08;letter-spacing:-.022em;margin:14px 0 0;max-width:19ch}
+.cover p{font-size:17px;line-height:1.6;color:#D2DAEE;max-width:56ch;margin:var(--s3) 0 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s6);padding-top:var(--s3);border-top:1px solid rgba(255,255,255,.16)}
+.stat b{display:block;font-family:var(--serif);font-size:30px;font-weight:700;line-height:1}
+.stat span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#9FB0D8;margin-top:5px}
+
+/* ── section ── */
+.sec{margin:0 0 var(--s8);scroll-margin-top:96px}
+.sec-h{display:flex;gap:var(--s3);align-items:flex-start;margin-bottom:var(--s3)}
+.dim{flex:0 0 auto;padding-top:5px}
+.sec-h h2{font-family:var(--serif);font-size:clamp(23px,2.7vw,32px);font-weight:600;letter-spacing:-.015em;line-height:1.16;margin:2px 0 0}
+.sec-h p{margin:var(--s1) 0 0;color:var(--ink-2);max-width:62ch;font-size:15.5px}
+.stripe{display:block;width:100%;height:11px;margin:var(--s8) 0 var(--s6)}
+
+/* ── accordion (collapsible stage) ── */
+.acc{background:var(--card);border-radius:4px;box-shadow:0 1px 0 var(--rule),0 1px 3px rgba(14,22,38,.05);overflow:hidden;margin-bottom:var(--s3)}
+.acc-b{
+  width:100%;display:flex;align-items:center;gap:var(--s2);text-align:left;
+  background:none;border:0;cursor:pointer;padding:var(--s3);font-family:inherit;color:var(--ink)
+}
+.acc-b:focus-visible{outline:3px solid var(--ochre);outline-offset:-3px}
+.acc-n{
+  flex:0 0 auto;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--mono);font-size:12px;font-weight:500;color:var(--indigo);
+  box-shadow:inset 0 0 0 1.5px var(--weave)
+}
+.acc-t{flex:1 1 auto;min-width:0}
+.acc-t strong{display:block;font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
+.acc-t span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-top:4px}
+.acc-c{flex:0 0 auto;transition:transform .25s ease;color:var(--ink-3)}
+.acc.open .acc-c{transform:rotate(180deg)}
+.acc-p{display:none;padding:0 var(--s3) var(--s3)}
+.acc.open .acc-p{display:block}
+
+/* ── prompt card ── */
+.p{padding:var(--s3) 0;border-top:1px solid var(--rule-2)}
+.p:first-child{border-top:0;padding-top:var(--s1)}
+.p-h{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.p-n{font-family:var(--mono);font-size:12px;color:#fff;background:var(--indigo);border-radius:3px;padding:3px 8px;flex:0 0 auto}
+.p-h h3{font-family:var(--sans);font-size:17.5px;font-weight:700;letter-spacing:-.01em;margin:0;line-height:1.3;min-width:0}
+.p-use{margin:10px 0 0;color:var(--ink-2);font-size:15px;max-width:66ch}
+.box{position:relative;margin-top:var(--s2);background:var(--card-2);border-radius:4px;box-shadow:inset 0 0 0 1px var(--rule-2)}
+.box-h{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--rule-2)}
+.box-h .lab{flex:1 1 auto;font-size:10px}
+.cp{
+  background:var(--indigo);color:#fff;border:0;border-radius:3px;padding:6px 11px;cursor:pointer;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;flex:0 0 auto
+}
+.cp:hover{background:var(--weave)}
+.cp:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.cp.ok{background:var(--moss)}
+.box pre{
+  margin:0;padding:var(--s2) 14px var(--s3);font-family:var(--mono);font-size:13px;line-height:1.72;
+  color:var(--ink);white-space:pre-wrap;overflow-wrap:break-word;overflow-x:auto
+}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s2)}
+.note{border-radius:4px;padding:13px 15px;font-size:14px;line-height:1.55}
+.note b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px}
+.note.why{background:var(--ochre-lt);color:#4A3006}
+.note.why b{color:var(--ochre)}
+.note.risk{background:var(--rust-lt);color:#4E1A0B}
+.note.risk b{color:var(--rust)}
+
+/* ── callout ── */
+.call{background:var(--card);border-radius:4px;padding:var(--s3);box-shadow:0 1px 0 var(--rule),0 1px 3px rgba(14,22,38,.05);margin-bottom:var(--s3)}
+.call h3{font-family:var(--sans);font-size:17px;font-weight:700;margin:0 0 var(--s1);letter-spacing:-.01em}
+.call p{margin:0 0 10px;color:var(--ink-2);font-size:15.5px;max-width:70ch}
+.call p:last-child{margin-bottom:0}
+.call ol,.call ul{margin:0;padding-left:20px;color:var(--ink-2);font-size:15.5px}
+.call li{margin-bottom:9px;max-width:68ch}
+.call li:last-child{margin-bottom:0}
+.call strong{color:var(--ink)}
+.src{background:var(--indigo-deep);color:#D2DAEE;border-radius:4px;padding:var(--s3);font-size:14.5px;line-height:1.62}
+.src h3{color:#fff;font-family:var(--sans);font-size:16px;margin:0 0 10px;letter-spacing:-.01em}
+.src a{color:#F0C67C}
+.src ul{margin:0;padding-left:19px}
+.src li{margin-bottom:8px;max-width:74ch}
+.src li:last-child{margin-bottom:0}
+
+/* ── footer ── */
+.foot{background:var(--indigo-deep);color:#AAB8DA;padding:var(--s8) 0 var(--s6);font-size:14px}
+.foot-in{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:space-between}
+.foot b{color:#fff;display:block;font-family:var(--serif);font-size:17px;margin-bottom:6px}
+.foot p{margin:0;max-width:52ch;line-height:1.6}
+.foot a{color:#F0C67C}
+
+/* ── back to top ── */
+.top{
+  position:fixed;right:18px;bottom:18px;z-index:95;display:flex;align-items:center;gap:8px;
+  background:var(--indigo);color:#fff;border:0;border-radius:4px;padding:11px 15px;cursor:pointer;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 6px 20px rgba(14,22,38,.28);
+  opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .22s,transform .22s
+}
+.top.show{opacity:1;pointer-events:auto;transform:none}
+.top:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+
+/* ── mobile drawer ── */
+.scrim{position:fixed;inset:0;background:rgba(14,22,38,.55);z-index:98;opacity:0;pointer-events:none;transition:opacity .22s}
+.scrim.on{opacity:1;pointer-events:auto}
+.draw{
+  position:fixed;top:0;right:0;bottom:0;width:min(340px,88vw);z-index:99;background:var(--card);
+  transform:translateX(102%);transition:transform .26s ease;display:flex;flex-direction:column
+}
+.draw.on{transform:none}
+.draw-h{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--rule-2)}
+.draw-h .lab{flex:1 1 auto}
+.xb{background:none;border:0;cursor:pointer;color:var(--ink);padding:6px;border-radius:3px}
+.xb:focus-visible{outline:3px solid var(--ochre)}
+.draw .rail{position:static;max-height:none;overflow-y:auto;padding:18px}
+
+@media (max-width:1000px){
+  .grid{grid-template-columns:minmax(0,1fr);gap:0;padding-top:var(--s6)}
+  .rail.desk{display:none}
+  .burger{display:flex}
+  .bar-meta{display:none}
+  .notes{grid-template-columns:1fr}
+  .cover-w{height:64px;background-size:120px 64px}
+  .cover-in{padding:calc(64px + var(--s4)) var(--s3) var(--s4)}
+}
+@media (max-width:560px){
+  body{--mod:76px}
+  .wrap{padding:0 15px}
+  .bar-in{padding:10px 15px}
+  .acc-b{padding:var(--s2)}
+  .acc-p{padding:0 var(--s2) var(--s2)}
+  .acc-t strong{font-size:17px}
+  .acc-n{width:32px;height:32px;font-size:11px}
+  .box pre{font-size:12.5px;padding:13px 12px 18px}
+  .foot-in{padding:0 15px}
+  .stats{grid-template-columns:1fr 1fr;gap:var(--s3) var(--s2)}
+  .mark-t{font-size:14px}
+  .d-lg{display:none}
+  .stat b{font-size:26px}
+  .top{right:12px;bottom:12px;padding:10px 13px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{.bar,.rail,.top,.burger,.cp{display:none!important}.acc-p{display:block!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to contents</a>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <!-- strip-weave: measured modules, deliberate offset at the seam -->
+    <pattern id="weave" width="132" height="11" patternUnits="userSpaceOnUse">
+      <rect width="132" height="11" fill="#14213D"/>
+      <rect x="0" y="0" width="34" height="11" fill="#33418A"/>
+      <rect x="41" y="0" width="12" height="11" fill="#B4741A"/>
+      <rect x="59" y="0" width="27" height="11" fill="#1F2A60"/>
+      <rect x="93" y="0" width="7" height="11" fill="#8E9EC9"/>
+      <rect x="107" y="0" width="19" height="11" fill="#33418A"/>
+    </pattern>
+    <pattern id="weaveL" width="132" height="7" patternUnits="userSpaceOnUse">
+      <rect width="132" height="7" fill="#C6CEDC"/>
+      <rect x="0" y="0" width="34" height="7" fill="#1F2A60"/>
+      <rect x="41" y="0" width="12" height="7" fill="#B4741A"/>
+      <rect x="59" y="0" width="27" height="7" fill="#33418A"/>
+      <rect x="93" y="0" width="7" height="7" fill="#0E1626"/>
+      <rect x="107" y="0" width="19" height="7" fill="#1F2A60"/>
+    </pattern>
+    <pattern id="weaveBig" width="180" height="360" patternUnits="userSpaceOnUse">
+      <rect width="180" height="360" fill="none"/>
+      <rect x="0" y="0" width="46" height="360" fill="#1F2A60" opacity=".55"/>
+      <rect x="62" y="0" width="15" height="360" fill="#B4741A" opacity=".28"/>
+      <rect x="92" y="0" width="34" height="360" fill="#33418A" opacity=".4"/>
+      <rect x="140" y="0" width="9" height="360" fill="#8E9EC9" opacity=".3"/>
+    </pattern>
+  </defs>
+</svg>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="#top">
+      <svg class="mark-g" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" rx="2" fill="none" stroke="#1F2A60" stroke-width="1.5"/>
+        <path d="M5 8h16M5 13h11M5 18h16" stroke="#1F2A60" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="20" cy="18" r="2.6" fill="#B4741A"/>
+      </svg>
+      <span class="mark-t"><span class="d-lg">Employee Relations </span>Investigation Pack</span>
+    </a>
+    <span class="bar-sp"></span>
+    <span class="bar-meta">v1.0 &middot; 2026</span>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="draw">
+      <svg width="15" height="12" viewBox="0 0 15 12" aria-hidden="true"><path d="M1 1h13M1 6h13M1 11h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Contents
+    </button>
+  </div>
+  <svg class="bar-seam" viewBox="0 0 1320 7" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="7" fill="url(#weaveL)"/></svg>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<aside class="draw" id="draw" aria-label="Contents" aria-hidden="true">
+  <div class="draw-h">
+    <span class="lab">Contents</span>
+    <button class="xb" id="xb" aria-label="Close contents">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="rail" id="railM"></nav>
+</aside>
+
+<main class="wrap" id="top">
+<div class="grid">
+  <nav class="rail desk" id="railD" aria-label="Contents"></nav>
+  <div id="main">
+
+    <section class="cover">
+      <div class="cover-w" aria-hidden="true"></div>
+      <div class="cover-in">
+        <span class="lab">A working system for employee relations casework</span>
+        <svg class="ink" viewBox="0 0 300 6" preserveAspectRatio="none" aria-hidden="true"><path d="M1 3.6C42 2.1 76 4.6 118 3.1 160 1.6 196 4.4 238 3 262 2.2 280 3.8 299 2.6" fill="none" stroke="#B4741A" stroke-width="2" stroke-linecap="round"/></svg>
+        <h1>The Employee Relations Investigation Pack</h1>
+        <p>Thirty prompts, seven templates and three checklists for running an investigation with an AI assistant, built so the file holds up for the person who reads it after you.</p>
+        <div class="stats">
+          <div class="stat"><b>30</b><span>Prompts</span></div>
+          <div class="stat"><b>7</b><span>Templates</span></div>
+          <div class="stat"><b>3</b><span>Checklists</span></div>
+          <div class="stat"><b>1</b><span>Oversight protocol</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="s-start">
+      <div class="sec-h">
+        <svg class="dim" width="58" height="22" viewBox="0 0 58 22" aria-hidden="true">
+          <path d="M2 4v14M56 4v14M2 11h54" stroke="#B4741A" stroke-width="1.4" stroke-linecap="round"/>
+          <text x="29" y="9" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6C7891">00</text>
+        </svg>
+        <div>
+          <h2>Start here</h2>
+          <p>Read this page once before you run a single prompt. It is the part that makes the rest defensible.</p>
+        </div>
+      </div>
+
+      <div class="call">
+        <h3>How to use these prompts safely</h3>
+        <p>Every prompt in this pack produces a draft. A draft is not a finding. You are the investigator, you own the output, and the file carries your name. The protocol below is what turns "I used AI" into a documented, reviewable process.</p>
+        <ol>
+          <li><strong>Never paste raw identifying data into a tool your employer has not approved.</strong> Use initials or role labels. Complainant becomes CP, respondent becomes RP, witnesses become W1 and W2. Map the labels once in your own notes and keep that map out of the AI tool entirely.</li>
+          <li><strong>Run the prompt, then edit the output before it touches the file.</strong> The AI does not know your policy language, your jurisdiction, your collective agreement or what actually happened in the room. You do.</li>
+          <li><strong>Log the review.</strong> Prompt 30 gives you the entry format. One line per AI-assisted document: what you asked, what you changed, what you rejected, and the date. That log is the artifact that answers the question "what did you do to check it."</li>
+          <li><strong>Verify every fact the model states back to you.</strong> If a draft asserts a date, a policy number, a job title or a quote, trace it to a source document before it survives your edit. Models fill gaps confidently.</li>
+          <li><strong>Keep opinion out of fact.</strong> Several prompts here exist only to enforce that split. Do not let a fluent paragraph blur it back together.</li>
+          <li><strong>Escalate anything consequential.</strong> Protected activity, a criminal allegation, an executive respondent, a threat of violence, or a regulator in the picture. Those go to counsel before you write, not after.</li>
+        </ol>
+      </div>
+
+      <div class="call">
+        <h3>Why the phrasing matters more than the speed</h3>
+        <p>A generic prompt gives you generic language, and generic language in an investigation file is what gets picked apart. "The respondent was unprofessional" is an opinion dressed as a finding. "On 4 March the respondent raised his voice in a team meeting, witnessed by W1 and W2, both of whom described it independently" is a finding.</p>
+        <p>Every prompt below carries two annotations. <strong>Why this phrasing</strong> tells you what the wording is doing and why the obvious alternative is worse. <strong>What could go wrong</strong> tells you the failure mode to watch for when you run it.</p>
+      </div>
+
+      <div class="src">
+        <h3>The regulatory backdrop, stated plainly and sourced</h3>
+        <ul>
+          <li>The EU AI Act (Regulation (EU) 2024/1689) classifies as high risk, in Annex III point 4(b), "AI systems intended to be used to make decisions affecting terms of work-related relationships, the promotion or termination of work-related contractual relationships, to allocate tasks based on individual behaviour or personal traits or characteristics or to monitor and evaluate the performance and behaviour of persons in such relationships." <a href="https://artificialintelligenceact.eu/annex/3/" rel="noopener">Annex III</a></li>
+          <li>Article 113 sets the general application date: "It shall apply from 2 August 2026." <a href="https://artificialintelligenceact.eu/article/113/" rel="noopener">Article 113</a></li>
+          <li>Article 26(2) puts the oversight duty on the deployer: "Deployers shall assign human oversight to natural persons who have the necessary competence, training and authority, as well as the necessary support." Article 26(6) requires deployers to keep the system's automatically generated logs "for a period appropriate to the intended purpose of the high-risk AI system, of at least six months." Article 26(7) requires employers to inform workers' representatives and affected workers before putting such a system into use. <a href="https://artificialintelligenceact.eu/article/26/" rel="noopener">Article 26</a></li>
+          <li>Article 99(4) sets administrative fines for non-compliance with the deployer obligations in Article 26 at "up to 15 000 000 EUR or, if the offender is an undertaking, up to 3 % of its total worldwide annual turnover for the preceding financial year, whichever is higher." <a href="https://artificialintelligenceact.eu/article/99/" rel="noopener">Article 99</a></li>
+          <li>This pack is not legal advice and it is not a compliance certification. It is a documentation discipline. Whether a given tool in your organisation falls inside Annex III is a question for your counsel, and the answer changes what you have to do. What does not change: a reviewed, logged, human-owned file is better than an unreviewed one in every jurisdiction, including the ones with no AI statute at all.</li>
+        </ul>
+      </div>
+    </section>
+
+    <svg class="stripe" viewBox="0 0 1320 11" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="11" fill="url(#weave)"/></svg>
+    <section class="sec" id="s-prompts">
+      <div class="sec-h">
+        <svg class="dim" width="58" height="22" viewBox="0 0 58 22" aria-hidden="true">
+          <path d="M2 4v14M56 4v14M2 11h54" stroke="#B4741A" stroke-width="1.4" stroke-linecap="round"/>
+          <text x="29" y="9" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6C7891">01</text>
+        </svg>
+        <div>
+          <h2>The thirty prompts</h2>
+          <p>Sequenced by stage, in the order a case actually moves. Open a stage, copy the prompt, replace the bracketed inputs. Read both annotations before you run it.</p>
+        </div>
+      </div>
+
+      <!-- ══ STAGE 1 ══ -->
+      <div class="acc open" id="st-1">
+        <button class="acc-b" aria-expanded="true">
+          <span class="acc-n">01</span>
+          <span class="acc-t"><strong>Intake and triage</strong><span>Prompts 1 to 6</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p">
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">01</span><h3>Complaint intake script</h3></div>
+            <p class="p-use">Run before the first intake conversation. Produces the questions that capture a complaint completely without leading the complainant or promising an outcome.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 01</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator preparing an intake conversation. You do not make findings and you do not assess credibility. You produce a draft script the investigator will edit before use.
+
+CONTEXT
+- Complaint received via: [CHANNEL, e.g. hotline, manager escalation, direct email]
+- Summary as received, in the reporter's own words: [PASTE VERBATIM, USE ROLE LABELS NOT NAMES]
+- Policies that may be engaged: [POLICY NAMES]
+- Jurisdiction: [COUNTRY / STATE]
+
+TASK
+Draft an intake script that captures: what happened, when, where, who was present, whether anything was documented at the time, what the complainant has already told anyone, what outcome they are seeking, and whether they have any safety concern.
+
+CONSTRAINTS
+- Open questions only in the first pass. No question may suggest an answer.
+- Do not ask why the complainant did not report sooner. Ask what has changed that led them to report now.
+- Do not include any question that promises confidentiality, a specific outcome, or a timeline.
+- Include one explicit prompt to ask whether the complainant is aware of anyone else affected.
+- Include a closing script covering: no retaliation, what happens next in process terms only, and who to contact.
+- Flag any question that touches protected characteristics, medical information, or union activity, and mark it "confirm with counsel before asking".
+
+OUTPUT
+1. Opening statement to read aloud, under 120 words.
+2. Numbered open questions, grouped by topic.
+3. Follow-up probes indented under each, to use only if the answer is incomplete.
+4. Closing statement to read aloud.
+5. A short list of anything you could not draft because the context above did not supply it.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>"What has changed that led you to report now" replaces "why did you wait". The first is a fact question. The second implies the delay undermines the complaint, and it reads that way in a transcript years later.</div>
+              <div class="note risk"><b>What could go wrong</b>Models love to draft reassuring language. If a promise of confidentiality survives into your script, you have committed to something no investigation can honour. Strip it.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">02</span><h3>Allegation framing</h3></div>
+            <p class="p-use">Turns a narrative complaint into discrete, testable allegations. Everything downstream is scoped by this step, which is why a sloppy pass here costs you weeks later.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 02</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator. Convert a narrative complaint into discrete allegations. You do not assess whether any allegation is true.
+
+INPUT
+Narrative as received, role labels only: [PASTE]
+Applicable policies and their relevant clauses: [PASTE OR SUMMARISE]
+
+TASK
+Separate the narrative into individually testable allegations. Each allegation must be capable of being proved or disproved on its own.
+
+RULES FOR EACH ALLEGATION
+- State it as: on or about [DATE], [ROLE LABEL] is alleged to have [SPECIFIC OBSERVABLE CONDUCT], in [LOCATION OR CHANNEL].
+- Conduct must be observable. Replace conclusions ("harassed", "bullied", "was hostile") with the described behaviour.
+- One incident per allegation. Split anything containing "and also" or "repeatedly" into separate numbered items or a defined pattern allegation with its own listed instances.
+- Map each allegation to the specific policy clause it would engage if proved. If no policy clause is engaged, say so explicitly rather than forcing a fit.
+- Mark each as: SPECIFIC (date, place, conduct all present), PARTIAL (something missing, name what), or VAGUE (not yet testable, name the question that would fix it).
+
+ALSO PRODUCE
+- Allegations that appear in the narrative but were not framed as complaints, listed separately.
+- Any allegation that, if proved, would engage a legal category rather than only a policy category. Do not analyse the law. Name the category and mark it "counsel review".
+- A list of the specific follow-up questions needed to move every PARTIAL and VAGUE item to SPECIFIC.
+
+OUTPUT
+A numbered table of allegations with the fields above, then the three lists.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Forcing observable conduct is what stops an investigation from testing a label. You cannot investigate whether someone "was hostile". You can investigate whether they said a specific thing on a specific day.</div>
+              <div class="note risk"><b>What could go wrong</b>The model will invent dates to satisfy the format. Anything not in your source narrative is a hallucination. Mark it PARTIAL and go ask, never let a plausible date stand.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">03</span><h3>Investigator suitability and conflict check</h3></div>
+            <p class="p-use">Run on yourself before you accept the case. A conflict found on day one is an administrative matter. The same conflict found at the appeal is a finding overturned.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 03</span><button class="cp">Copy</button></div><pre>You are assisting an HR function deciding who should investigate a complaint. You produce questions and a risk read, not a decision.
+
+CONTEXT
+- Nature of the allegations: [SUMMARY, ROLE LABELS ONLY]
+- Proposed investigator's role and reporting line: [DESCRIBE]
+- Respondent's role and reporting line: [DESCRIBE]
+- Complainant's role and reporting line: [DESCRIBE]
+- Prior involvement of the proposed investigator with any party: [DESCRIBE OR "NONE KNOWN"]
+- Seniority of respondent relative to the investigator: [DESCRIBE]
+
+TASK
+Produce a conflict and suitability assessment.
+
+COVER EACH OF THESE
+1. Reporting-line conflict, direct or indirect, including dotted lines and shared skip-level.
+2. Prior involvement: previous complaints, prior coaching, prior performance decisions, prior friendship or dispute.
+3. Perceived conflict, judged from the complainant's point of view and separately from the respondent's point of view. Perception counts even where actual bias is absent.
+4. Competence fit: does this case need a specialist, for example allegations involving safety, criminal conduct, financial misconduct, or a protected characteristic.
+5. Authority fit: can this investigator realistically compel attendance and access documents given the respondent's seniority.
+6. Capacity: does this investigator have the time this case will take.
+
+OUTPUT
+- A question list the proposed investigator must answer in writing before accepting.
+- For each of the six areas: NO ISSUE IDENTIFIED, REVIEW NEEDED, or LIKELY DISQUALIFYING, with the one-line reason.
+- A recommended alternative arrangement for every REVIEW NEEDED or LIKELY DISQUALIFYING item.
+- The exact wording for a file note recording this check, whatever the outcome.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Splitting perceived conflict into the complainant's view and the respondent's view separately catches the case that looks clean from one side and indefensible from the other.</div>
+              <div class="note risk"><b>What could go wrong</b>Treating the output as a clearance. It is a question list. The file note recording that you asked the questions is the artifact that matters, not the model's verdict.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">04</span><h3>Scope definition</h3></div>
+            <p class="p-use">Writes the scope statement that goes at the front of the plan and the front of the report. Scope creep is the most common reason an investigation runs long and lands soft.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 04</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator. Draft a written scope of investigation.
+
+INPUT
+- Framed allegations: [PASTE THE NUMBERED LIST FROM PROMPT 02]
+- Who commissioned the investigation and their role: [DESCRIBE]
+- Applicable policy or procedure governing investigations: [NAME]
+- Known constraints: [TIME, ACCESS, JURISDICTION, PARALLEL PROCESSES]
+
+TASK
+Draft a scope statement containing:
+1. The allegations in scope, by number, quoted exactly as framed.
+2. What is expressly OUT of scope, stated positively. Include anything raised that will be handled through a different route, and name that route.
+3. The standard of proof to be applied, and who set it.
+4. The decision the investigation will and will not make. State explicitly whether the investigator determines findings of fact only, or also recommends an outcome.
+5. Who receives the report.
+6. What happens if new allegations surface mid-investigation: the named process for varying scope in writing rather than absorbing them silently.
+7. Confidentiality expectations, framed accurately: what will be shared, with whom, and the limits of any assurance.
+
+CONSTRAINTS
+- Do not write a confidentiality assurance the process cannot keep.
+- Do not commit to a completion date the constraints above do not support. If a date is required, express it as a target with the named review point.
+- Flag any allegation that a reasonable reader would expect to be in scope and that this scope excludes, and require an explicit reason.
+
+OUTPUT
+The scope statement, ready to be edited and signed, plus a short list of decisions the commissioning manager must confirm before it is final.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Stating what is out of scope positively, with the route it goes to instead, is what stops the finished report from looking like the investigator ignored something.</div>
+              <div class="note risk"><b>What could go wrong</b>A model will happily insert a two week target because reports usually have one. An unmet date in a signed scope statement becomes evidence of an unfair process. Use a target plus a review point.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">05</span><h3>Evidence preservation notice</h3></div>
+            <p class="p-use">The message that goes out early to stop relevant material from being deleted in the ordinary course. Short, specific, and not an accusation.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 05</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator. Draft a preservation notice.
+
+CONTEXT
+- Recipients and their roles: [LIST BY ROLE]
+- Categories of material likely to be relevant: [E.G. EMAIL, CHAT, SHIFT ROTAS, CCTV, DOOR ACCESS LOGS, CASE NOTES, CALENDAR, RECORDINGS]
+- Relevant date range: [FROM] to [TO]
+- Systems with automatic deletion or short retention: [LIST, WITH RETENTION PERIOD IF KNOWN]
+- Jurisdiction: [COUNTRY / STATE]
+
+TASK
+Draft two versions of a preservation notice: one for systems and IT custodians, one for individual employees who hold relevant material.
+
+BOTH MUST
+- Name the categories and the date range specifically. Never say "anything relevant".
+- Instruct recipients to suspend routine deletion for the named categories, and to take no other action.
+- State that receiving the notice is not an accusation and implies nothing about any person.
+- Give a named contact and a response deadline for confirming preservation is in place.
+- Ask the recipient to reply confirming what they have preserved and to flag anything already deleted, with the date.
+
+MUST NOT
+- Describe the allegations.
+- Name the complainant or the respondent.
+- Instruct anyone to review, collect, forward or interpret the material.
+
+ALSO OUTPUT
+- The priority order in which to send these, based on which systems delete soonest.
+- A one-line file note recording when each notice went out and to whom.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>"Suspend deletion and take no other action" prevents a well-meaning custodian from collecting, summarising, or worse, tidying the material before you see it.</div>
+              <div class="note risk"><b>What could go wrong</b>Sending it late. CCTV and door logs often roll off in days. Order the sends by retention period, not by seniority.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">06</span><h3>Interim measures decision</h3></div>
+            <p class="p-use">The decision you have to make in the first hours and defend for months. Interim measures must protect without pre-judging, and the distinction has to be visible on the page.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 06</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator considering interim measures during an open investigation. You do not decide. You produce options with the trade-offs made explicit.
+
+CONTEXT
+- Allegations, by number and category: [PASTE]
+- Working relationship between the parties: [SAME TEAM, REPORTING LINE, SHARED SHIFT, NO CONTACT, ETC.]
+- Any stated safety concern: [DESCRIBE OR "NONE STATED"]
+- Business constraints: [COVERAGE, CUSTOMER IMPACT, ROTA, LOCATION]
+- Applicable policy on suspension or reassignment: [SUMMARISE]
+
+TASK
+Produce a range of interim measures from least to most restrictive. For each option give: what it does, who it restricts, how it would be perceived by each party, the business cost, and the risk if it is not taken.
+
+REQUIRED IN EVERY OPTION SET
+- At least two options less restrictive than suspension.
+- For any option restricting the respondent, the exact neutral wording to use with the wider team, which must not disclose the allegations or imply a conclusion.
+- The review interval at which the measure must be reconsidered, and who reviews it.
+- What the measure does NOT mean, written to be said out loud to the affected person.
+
+CONSTRAINTS
+- Do not recommend a single option. Present the set.
+- Flag any option that alters pay, status, hours or duties, and mark it "confirm contractual position with counsel".
+- Flag any option that would isolate the complainant rather than the respondent as carrying a retaliation risk, and say so plainly.
+
+OUTPUT
+The option set, then a template file note recording the decision taken, the reason, the alternatives considered and rejected, and the review date.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Requiring two options less restrictive than suspension forces the record to show that suspension was a considered choice, not a reflex. That record is what a tribunal asks for.</div>
+              <div class="note risk"><b>What could go wrong</b>Measures that quietly move the complainant. It feels operationally easier and it looks like retaliation on paper. The prompt flags it because the flag is easy to miss under time pressure.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ STAGE 2 ══ -->
+      <div class="acc" id="st-2">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">02</span>
+          <span class="acc-t"><strong>Planning</strong><span>Prompts 7 to 10</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p">
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">07</span><h3>Investigation plan generator</h3></div>
+            <p class="p-use">Builds the plan that fills Template 2. A written plan made before the first interview is the difference between an investigation and a series of conversations.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 07</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator. Draft an investigation plan.
+
+INPUT
+- Scope statement: [PASTE FROM PROMPT 04]
+- Framed allegations: [PASTE FROM PROMPT 02]
+- Known documents and systems: [LIST]
+- Known potential witnesses, by role label: [LIST]
+- Constraints: [TIME, ACCESS, LEAVE, SHIFT PATTERNS, PARALLEL PROCESSES]
+
+TASK
+For each numbered allegation, produce a plan row containing:
+1. What must be established for this allegation to be proved on the applicable standard.
+2. Evidence that would tend to prove it.
+3. Evidence that would tend to DISPROVE it. This row is mandatory and may not be left empty.
+4. Where each item of evidence sits, and who holds it.
+5. Which witness can speak to it, and what specifically only that person can address.
+6. The order of steps, with the reason for the order.
+
+ALSO PRODUCE
+- A single consolidated sequence across all allegations, deduplicated, so no witness is interviewed twice for want of planning.
+- The points at which the plan should be revisited.
+- Anything you cannot plan because the input is missing, listed as an open question rather than assumed.
+
+CONSTRAINTS
+- Never assume a document exists. Mark each as CONFIRMED EXISTS or TO BE CONFIRMED.
+- Do not schedule the respondent interview before the evidence that will be put to them has been gathered, and say why in one line.
+- Keep the plan to what the scope covers. Flag anything you would want to pursue that falls outside scope, and route it to the scope variation process rather than into the plan.
+
+OUTPUT
+A plan table, the consolidated sequence, the review points, and the open questions.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Making the disproving-evidence row mandatory is the whole point. An investigation that only collects confirming evidence reaches the same conclusion it started with, and it reads that way.</div>
+              <div class="note risk"><b>What could go wrong</b>The model will list documents it assumes any employer has. Confirm each one exists before the plan hardens, or the report will reference a record nobody ever held.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">08</span><h3>Witness list builder</h3></div>
+            <p class="p-use">Decides who to interview and, just as importantly, records why you did not interview someone. The second half is what gets challenged.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 08</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator building a witness list.
+
+INPUT
+- Framed allegations: [PASTE]
+- People named or implied in the narrative, by role label, with how they came up: [LIST]
+- People suggested by the complainant: [LIST]
+- People suggested by the respondent: [LIST OR "NOT YET ASKED"]
+- Organisational context: team structure, shift patterns, who was physically or virtually present: [DESCRIBE]
+
+TASK
+Produce a witness table with one row per person:
+- Role label.
+- Which numbered allegations they can speak to.
+- What specifically they are expected to have direct knowledge of. Distinguish DIRECT (saw or heard it), CONTEXT (background, patterns, working relationships) and HEARSAY (told about it afterwards).
+- Priority: essential, useful, or not required.
+- Risk factors: reporting line to either party, prior complaint history, likely reluctance, welfare considerations.
+
+ALSO PRODUCE
+- A NOT INTERVIEWED list: everyone named or suggested who you are recommending not to interview, with the reason stated in a way that would read fairly to the person who suggested them.
+- Anyone who should be interviewed who was suggested by neither party, and why.
+- Where the account rests on a single uncorroborated witness, flag it and name what additional evidence could corroborate or undercut it.
+
+CONSTRAINTS
+- Do not treat a suggestion from either party as automatically in or out.
+- Do not recommend interviewing someone solely to characterise a party's general reputation. Flag any such suggestion and say why reputation evidence is a risk.
+
+OUTPUT
+The witness table, the not-interviewed list with reasons, and the corroboration flags.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Splitting direct from context from hearsay early stops a report from resting weight on someone who only heard about it in the kitchen.</div>
+              <div class="note risk"><b>What could go wrong</b>Quietly dropping a witness the complainant named. If they are not interviewed, the reason has to survive being read back to the person who named them.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">09</span><h3>Interview order logic</h3></div>
+            <p class="p-use">Sequencing is evidence handling. The order you interview in determines what you can put to whom, and whether accounts had a chance to align.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 09</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator sequencing interviews.
+
+INPUT
+- Witness table: [PASTE FROM PROMPT 08]
+- Framed allegations: [PASTE]
+- Documentary evidence already obtained: [LIST]
+- Documentary evidence still outstanding: [LIST]
+- Availability and constraints: [LEAVE, SHIFTS, NOTICE PERIODS, REPRESENTATION]
+
+TASK
+Produce a recommended interview order. For each position in the order, state:
+- Who.
+- Why they sit here rather than earlier or later.
+- What must be in hand before this interview happens.
+- What this interview is expected to open up for later interviews.
+
+APPLY THESE PRINCIPLES AND SAY WHERE EACH ONE BINDS
+- The complainant is interviewed first, before their account can be shaped by others.
+- The respondent is interviewed after the evidence to be put to them exists, so it can be put fairly and in full.
+- Witnesses who work closely together are scheduled to reduce the opportunity for accounts to be compared, and note where that is not achievable.
+- Anyone who may become a respondent is not interviewed as a witness. Flag the risk and the point at which status must be reviewed.
+
+ALSO PRODUCE
+- The re-interview triggers: what an interview would have to reveal for an earlier interviewee to be revisited.
+- A contingency order if a key person is unavailable, so the case does not stall.
+- The exact neutral wording for the interview invitation, with the notice period and the representation entitlement left as bracketed inputs for the investigator to complete from policy.
+
+CONSTRAINTS
+- Do not draft anything that instructs witnesses not to speak to each other beyond what the policy in force permits. Flag it for confirmation instead.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Asking the model to say where each principle binds turns a generic ordering rule into a reasoned sequence you can defend line by line.</div>
+              <div class="note risk"><b>What could go wrong</b>Confidentiality instructions to witnesses. What you may lawfully ask varies by jurisdiction and by whether the discussion is protected activity. That is why the prompt refuses to draft it.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">10</span><h3>Evidence map</h3></div>
+            <p class="p-use">Ties every allegation to the evidence that touches it, and exposes the allegations resting on nothing. Feeds Template 4 and the findings report.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 10</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator building an evidence map.
+
+INPUT
+- Framed allegations, numbered: [PASTE]
+- Evidence items gathered so far, each with: item reference, type, date, source, how obtained: [LIST]
+- Interview accounts obtained so far, by role label: [SUMMARISE, ROLE LABELS ONLY]
+
+TASK
+Build a map linking evidence to allegations.
+
+FOR EACH ALLEGATION
+- List every evidence item that touches it, by reference number.
+- For each item state whether it TENDS TO SUPPORT, TENDS TO UNDERMINE, or is NEUTRAL AND CONTEXTUAL. Do not weigh them against each other yet.
+- Identify direct evidence separately from circumstantial evidence.
+- State plainly whether the allegation currently rests on: documentary evidence, corroborated account, single uncorroborated account, or nothing yet.
+
+THEN PRODUCE
+- Gaps: for each allegation, the specific evidence that does not yet exist and could be obtained, and how.
+- Conflicts: every point where two items or two accounts cannot both be accurate, stated as a pair without resolving it.
+- Chain of custody flags: any item whose origin, date or completeness cannot be established from the input.
+- Items that appear relevant to no allegation in scope, listed separately rather than discarded.
+
+CONSTRAINTS
+- Do not resolve conflicts. Do not assess credibility. Do not conclude.
+- Do not infer the existence of evidence. If an account refers to a document not in the list, record it as a gap.
+
+OUTPUT
+The map per allegation, then the gaps, conflicts, custody flags and out-of-scope items.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Refusing to weigh evidence at map stage keeps the analysis honest. Weighing happens once, in the findings, where the reasoning is visible and reviewable.</div>
+              <div class="note risk"><b>What could go wrong</b>The map reads tidier than reality. An allegation marked "nothing yet" is a real result and must survive into the report, not get quietly padded with context evidence.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- ══ STAGE 3 ══ -->
+      <div class="acc" id="st-3">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">03</span>
+          <span class="acc-t"><strong>Interviews</strong><span>Prompts 11 to 16</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p">
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">11</span><h3>Complainant interview question bank</h3></div>
+            <p class="p-use">The first substantive interview. Aim is a complete account in the complainant's own words, captured before anyone else's version exists.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 11</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator preparing to interview a complainant. Produce a question bank, not a script to be read verbatim.
+
+INPUT
+- Framed allegations: [PASTE]
+- What the complainant has already stated at intake: [SUMMARISE]
+- Evidence already held that relates to their account: [LIST BY REFERENCE]
+- Applicable policy definitions that may be engaged: [PASTE RELEVANT CLAUSES]
+
+TASK
+Produce questions grouped by allegation, and within each group ordered from open to specific.
+
+REQUIRED COVERAGE PER ALLEGATION
+- A free narrative invitation before any specific question.
+- Time, place, who was present, what was said or done, in whose words.
+- What happened immediately before and immediately after.
+- Whether anything was written down, sent, recorded or photographed at the time, and where it is now.
+- Who they told, when, and what they said.
+- Effect on them, asked without suggesting a particular effect.
+- Whether this was a single event or part of a pattern, and if a pattern, the specific other instances.
+
+ALSO INCLUDE
+- Questions that test the account rather than only collect it, phrased neutrally. Testing is not hostility.
+- Questions covering anything in the evidence that appears inconsistent with their account, phrased as an invitation to comment rather than a challenge.
+- Questions about what outcome they are seeking, and what they would consider resolution.
+- A closing block: anything else they want on the record, anything they have not been asked about, the no-retaliation statement, what happens next in process terms only.
+
+CONSTRAINTS
+- No question may contain the answer.
+- No compound questions. One fact per question.
+- No question about why they did not report earlier. Ask what has changed, and what if anything prevented an earlier report.
+- Do not include any question about a protected characteristic unless it is squarely engaged by a framed allegation. Where it is, flag it "confirm with counsel".
+
+OUTPUT
+The question bank grouped by allegation, then the closing block, then a short list of the evidence items you would have in the room and why.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>"Testing is not hostility" is written into the prompt because models otherwise soften every probing question into an agreeing one, and an untested account is not evidence, it is a statement.</div>
+              <div class="note risk"><b>What could go wrong</b>Effect questions that suggest the effect. "How distressing was that" plants the answer. Watch for it and rewrite to "what effect, if any, did that have on you".</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">12</span><h3>Respondent interview question bank</h3></div>
+            <p class="p-use">The fairness pivot of the whole process. Everything that could count against the respondent has to be put to them, in enough detail to answer.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 12</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator preparing to interview a respondent. Produce a question bank.
+
+INPUT
+- Framed allegations: [PASTE]
+- Every evidence item and account that will be put to the respondent, by reference: [LIST]
+- What has already been disclosed to the respondent, and when: [DESCRIBE]
+- Applicable policy and procedure, including representation entitlement: [SUMMARISE]
+
+TASK
+Produce a question bank that puts every allegation and every piece of adverse evidence to the respondent fairly.
+
+MANDATORY STRUCTURE
+1. Confirm the respondent understands each allegation as framed, in plain words, before any question about it.
+2. Free narrative invitation per allegation, before specifics.
+3. Every adverse item put explicitly: what it is, what it appears to show, and an open invitation to respond.
+4. Questions inviting evidence in their favour: who else was present, what records exist, what would show a different picture.
+5. Questions about context the respondent may raise: instruction from above, custom and practice, prior tolerance of the same conduct, disparity of treatment.
+6. Closing block: anything not asked, anything to add, anyone else who should be spoken to, and what they want considered.
+
+CONSTRAINTS
+- No allegation may be omitted, softened, or merged with another. Each is put on its own.
+- No question may assume the allegation is proved. Compare: "why did you shout at them" versus "the account is that you raised your voice on 4 March. What is your response to that".
+- Do not ask the respondent to explain someone else's state of mind.
+- Do not include a question that invites the respondent to comment on the complainant's character or credibility generally. Flag any such request and say why it is a risk.
+- Flag anywhere the input suggests the respondent has not had enough notice or detail to answer, and stop rather than working around it.
+
+OUTPUT
+The question bank, then a completeness check: a list of every allegation and adverse item mapped to the question that puts it, with any gaps named.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>The completeness check at the end is the deliverable. An allegation that never got put to the respondent is the single most common reason a finding is overturned on appeal.</div>
+              <div class="note risk"><b>What could go wrong</b>Questions written from the complainant's account as if it were established. Reread every question asking whether it presumes the answer, because the model's default register is narrative, not neutral.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">13</span><h3>Witness interview question bank</h3></div>
+            <p class="p-use">Witnesses are the easiest interviews to do badly. The failure mode is inviting opinion instead of observation.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 13</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator preparing to interview a witness.
+
+INPUT
+- Witness role label and what they are expected to speak to: [DESCRIBE]
+- Their classification from the witness table: DIRECT / CONTEXT / HEARSAY
+- The specific allegations they touch, by number: [LIST]
+- Their reporting relationship to either party: [DESCRIBE]
+
+TASK
+Produce a question bank appropriate to their classification.
+
+FOR ALL WITNESSES
+- Opening: their role, working relationship to the parties, and how they came to be identified.
+- Free narrative of what they observed, before any specific question.
+- Sensory grounding: what they personally saw, personally heard, where they were standing or sitting, what else was happening, how clearly they could see or hear.
+- Distinguish, in every answer, what they observed from what they were told and from what they concluded. Include an explicit question separating the three.
+- Contemporaneous records: notes, messages, calendar entries, anything sent at the time.
+- Whether they have discussed the matter with either party or with other witnesses, when, and what was said.
+
+ADDITIONAL FOR CONTEXT WITNESSES
+- Pattern questions tied to specific, dated instances only. Never general impressions of a person.
+
+ADDITIONAL FOR HEARSAY WITNESSES
+- Who told them, when, in what words, and whether anything was recorded at the time. Mark the entire account as second-hand at the top of the record.
+
+CONSTRAINTS
+- No question invites an opinion on whether an allegation is true.
+- No question invites a general character assessment of either party.
+- No question reveals more of the allegations than the witness needs to answer.
+- Include the standard opening and closing scripts: purpose, confidentiality as the policy actually permits, no retaliation, and the right to add anything later.
+
+OUTPUT
+The question bank, the opening and closing scripts, and a note of what this witness should NOT be told.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Sensory grounding questions are the reason a witness account survives challenge. "Where were you standing" and "what else was happening" produce a testable account instead of a remembered impression.</div>
+              <div class="note risk"><b>What could go wrong</b>Over-disclosure. Telling a witness the allegation to get a better answer contaminates it. The "should NOT be told" list exists to be read before you walk in.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">14</span><h3>Open to closed sequencing</h3></div>
+            <p class="p-use">A rewriting pass over any question set you already have. Fixes the leading, compound and closed-too-early questions that survive a first draft.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 14</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator. Audit and re-sequence a set of interview questions. Do not add new subject matter.
+
+INPUT
+Question set to audit: [PASTE]
+Interview type: complainant / respondent / witness
+Purpose of this interview in one line: [STATE]
+
+TASK
+For every question, do three things:
+1. Classify it: OPEN, PROBING, CLOSED, LEADING, COMPOUND, or ASSUMPTIVE.
+2. Where it is LEADING, COMPOUND or ASSUMPTIVE, rewrite it. Show the original and the rewrite side by side so the investigator can see what changed.
+3. Place it in the correct position in a funnel: free narrative first, then open questions, then probing questions, then closed questions to pin specifics, then confirmation.
+
+THEN
+- Flag any topic that jumps to a closed question with no open question before it, and supply the missing open question.
+- Flag any question that could be answered yes or no where a yes or no answer would be useless, and rewrite it.
+- Flag any place where the sequence would signal to the interviewee what answer is expected next.
+- Produce the final sequenced set, numbered, with the funnel stage marked against each question.
+
+CONSTRAINTS
+- Preserve the substance. Every topic in the input must survive to the output.
+- Do not merge questions to shorten the set. Splitting is allowed, merging is not.
+- Keep the total answerable in the time available: [MINUTES]. If it will not fit, do not cut topics, mark the lowest priority questions as reserve.
+
+OUTPUT
+The classification table with rewrites, the flags, and the final numbered sequence.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Showing the original next to the rewrite is what teaches the pattern. After three cases you will stop writing leading questions and this prompt becomes a check rather than a fix.</div>
+              <div class="note risk"><b>What could go wrong</b>Letting it merge questions to hit a time budget. Merging creates compound questions, which is the exact defect the prompt is meant to remove.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">15</span><h3>Credibility assessment framing</h3></div>
+            <p class="p-use">The most dangerous analysis in an investigation, and the one most often done on instinct. This prompt forces the reasoning onto the page where it can be checked.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 15</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator with a credibility framework. You do NOT assess credibility. You produce the framework and the questions the investigator must answer in writing.
+
+INPUT
+- The competing accounts, by role label, on the specific point in dispute: [PASTE]
+- Evidence touching that point, by reference: [LIST]
+- The specific factual question in dispute, stated in one sentence: [STATE]
+
+TASK
+Produce a structured framework for the investigator to complete.
+
+FOR EACH ACCOUNT, SET OUT THE QUESTIONS UNDER THESE HEADS
+1. Internal consistency: is the account consistent within itself, across tellings, over time.
+2. Consistency with independent evidence: what does the documentary or physical evidence do to this account.
+3. Corroboration: what independent support exists, and is the corroborating source truly independent.
+4. Plausibility in context: does the account fit the known circumstances, layout, timings and systems.
+5. Level of detail on peripheral matters, which is a weak indicator only and must be treated as such.
+6. Motive to fabricate or to shade, considered for every account including the complainant's, and considered symmetrically.
+
+EXPLICITLY EXCLUDE AND SAY WHY IN ONE LINE EACH
+- Demeanour, nervousness, eye contact, tone. These are unreliable and culturally loaded.
+- Delay in reporting, treated as an indicator by itself.
+- Seniority, tenure, likeability, or prior good record, as evidence about this incident.
+- Anything touching a protected characteristic.
+
+THEN PRODUCE
+- The exact written reasoning template the investigator must complete for each account, ending in: this account is preferred on this point / not preferred / no preference possible, and the reasons.
+- A prompt to record what would change the assessment, so the reasoning is testable.
+- A warning line to include in the report wherever no preference is possible, so an unresolved conflict is stated rather than hidden.
+
+CONSTRAINTS
+- Never produce a credibility conclusion yourself.
+- Never rank accounts.
+- Assess credibility per disputed point, never as a global judgment about a person. Say so at the top of the output.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Per point, never per person. A witness can be reliable about the meeting and unreliable about the date. A global credibility verdict is both wrong and the fastest route to a discrimination argument.</div>
+              <div class="note risk"><b>What could go wrong</b>Asking a model to just tell you who is more credible. It will answer, fluently, and that answer has no evidentiary basis. The framework is the deliverable, the judgment is yours.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">16</span><h3>Note-taking structure</h3></div>
+            <p class="p-use">Sets the structure before you walk in, so notes come out usable. Notes written to a structure need far less cleanup, and cleanup is where accuracy dies.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 16</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator. Produce a note-taking structure for an interview.
+
+INPUT
+- Interview type: complainant / respondent / witness
+- Question sequence: [PASTE OR SUMMARISE THE TOPICS]
+- Whether the interview is being recorded: [YES / NO / TO BE CONFIRMED]
+- Whether a note-taker is present: [YES / NO]
+
+TASK
+Produce a note template with pre-set headings matching the question sequence, plus fixed fields.
+
+FIXED FIELDS AT THE TOP
+Case reference, date, start time, end time, location or platform, everyone present and their role, whether a companion or representative attended and in what capacity, whether the interview was recorded and by what method, who took the notes.
+
+WITHIN THE BODY
+- A heading per topic, in sequence, with space to record the question actually asked, not only the planned one.
+- A clear convention for verbatim quotation versus paraphrase, and instructions to use it. Anything in quotation marks must be the speaker's actual words.
+- A separate margin column for the investigator's own observations, marked as observation and never mixed into the account.
+- A place to record every document shown, by reference number, at the point in the interview it was shown.
+- A place to record breaks, interruptions, and anything said off the record with the reason.
+
+AT THE FOOT
+- Time finished, any commitments made to the interviewee, next steps stated to them, and the process for reviewing and confirming the note.
+
+ALSO PRODUCE
+- The exact wording to read at the start explaining how notes will be taken, whether the interviewee will see them, and how corrections are handled.
+- A three line reminder on writing notes contemporaneously and what to do if a note has to be completed afterwards.
+
+CONSTRAINTS
+- The template must be usable on paper, offline, with no tool present.
+- Do not include any field inviting a conclusion about the allegation.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>A separate observation column is the mechanism that keeps "she seemed evasive" out of the account. Once the two are mixed in one paragraph nobody can separate them again, including you.</div>
+              <div class="note risk"><b>What could go wrong</b>Quotation marks around a paraphrase. If a quoted line turns out not to be what was said, every other quote in the file becomes arguable.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ STAGE 4 ══ -->
+      <div class="acc" id="st-4">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">04</span>
+          <span class="acc-t"><strong>Documentation</strong><span>Prompts 17 to 20</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p">
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">17</span><h3>Contemporaneous notes formatter</h3></div>
+            <p class="p-use">Turns rough interview notes into a clean record without changing what was said. The rule is formatting only, and the prompt enforces it.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 17</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator. Format rough interview notes into a clean record. You are a formatter, not an editor.
+
+INPUT
+Rough notes, role labels only: [PASTE]
+Interview metadata: [CASE REF, DATE, TIMES, PRESENT, RECORDED YES/NO]
+
+ABSOLUTE RULES
+- Do not add any fact, name, date, time, place or detail that is not in the input.
+- Do not smooth, complete or interpret an incomplete answer. Reproduce it as incomplete.
+- Do not convert paraphrase into quotation. Only text already marked as verbatim may appear in quotation marks.
+- Do not reorder the substance of what was said. You may group under headings, but the sequence within each topic stays as recorded.
+- Do not remove anything, including material that seems irrelevant or unhelpful.
+- Do not resolve a contradiction inside the notes. Reproduce both parts and flag the pair.
+
+TASK
+1. Apply the metadata header.
+2. Organise the content under the topic headings present in the notes.
+3. Mark clearly, using distinct labels: ACCOUNT (what the interviewee said), QUESTION (what was asked), OBSERVATION (the note-taker's own words), DOCUMENT SHOWN (with reference), and ADMIN (breaks, interruptions).
+4. Where the notes are illegible, ambiguous, truncated or abbreviated beyond certainty, insert [UNCLEAR IN ORIGINAL] rather than guessing.
+5. Produce a GAPS list: every point where the record is incomplete and would need the interviewee to confirm.
+6. Produce a CHANGES list: every formatting change you made, so the investigator can compare against the original.
+
+OUTPUT
+The formatted record, the gaps list, the changes list, and a one-line statement of what you did not do.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>The changes list is the audit trail. Without it, a formatted note is indistinguishable from an altered note, and the original stops being able to defend the copy.</div>
+              <div class="note risk"><b>What could go wrong</b>Silent completion. A model asked to tidy notes will finish a half-written sentence because that reads better. Keep the original file, always, and compare.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">18</span><h3>Finding of fact, separating fact from opinion</h3></div>
+            <p class="p-use">The prompt that does the most work in the pack. Everything that reads as a finding but is actually an inference gets pulled apart here.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 18</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator. Separate fact from inference from opinion in draft findings. You do not decide whether anything is proved.
+
+INPUT
+Draft findings text: [PASTE]
+Evidence references available: [LIST]
+
+TASK
+Take every statement in the input and classify it into exactly one of four categories.
+
+1. FACT SUPPORTED BY EVIDENCE. A statement about what happened that can be traced to a named evidence reference. Rewrite it in the form: [WHAT HAPPENED], on [DATE], evidenced by [REFERENCE].
+2. FACT ASSERTED WITHOUT EVIDENCE. Reads as fact, traces to nothing in the list. Rewrite it as an open question and name the evidence that would settle it.
+3. INFERENCE. A conclusion drawn from facts. Rewrite it to show its structure: because [FACT, REFERENCE] and [FACT, REFERENCE], it is more likely than not that [INFERENCE]. Then state what alternative explanation was considered and why it is less likely.
+4. OPINION OR CHARACTERISATION. A judgment about a person, their motives, their attitude or their character. Either delete it, or rewrite it as the observable conduct underneath it plus its evidence reference.
+
+FLAG SEPARATELY
+- Every adjective doing evidentiary work: aggressive, hostile, unprofessional, inappropriate, dismissive, erratic. Replace each with the conduct described.
+- Every statement about what a person knew, intended, meant or felt, unless they said so and it is referenced.
+- Every use of "clearly", "obviously", "evidently", "of course". These signal an unstated inference.
+- Every passive construction that hides who did what.
+- Every generalisation across incidents that is not itself supported.
+
+OUTPUT
+The four classified lists with rewrites, the flag list, and a clean redraft containing only category 1 and category 3, with every category 3 item showing its reasoning.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Requiring every inference to show its structure, and to name the alternative explanation it rejected, is what makes a finding reviewable. A conclusion nobody can trace backwards is not a finding, it is an assertion.</div>
+              <div class="note risk"><b>What could go wrong</b>Adjectives sneaking back in during the final polish. Run this prompt again on the finished report, not only on the draft.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">19</span><h3>Standard of proof application</h3></div>
+            <p class="p-use">Applies the balance of probabilities to each allegation explicitly, and forces the "not proved" answer to be as well reasoned as the "proved" one.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 19</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator applying a standard of proof. You produce the reasoning structure. The investigator makes the determination.
+
+INPUT
+- Standard of proof that applies, and its source: [E.G. BALANCE OF PROBABILITIES, PER POLICY X]
+- Allegation, stated exactly as framed: [PASTE ONE ALLEGATION]
+- Evidence tending to support, by reference: [LIST]
+- Evidence tending to undermine, by reference: [LIST]
+- Points of conflict and how each was resolved, or that it was not resolved: [PASTE]
+
+TASK
+Produce the written reasoning for this single allegation.
+
+STRUCTURE
+1. Restate the allegation and the specific factual question that must be answered.
+2. State the standard being applied in plain words, and say what it does not mean. Balance of probabilities means more likely than not. It does not mean beyond reasonable doubt, and it does not mean the account is beyond challenge.
+3. Set out the supporting evidence with its weight and its limits.
+4. Set out the undermining evidence with its weight and its limits. This section may not be shorter than section 3 without an explicit reason.
+5. Address every unresolved conflict. An unresolved conflict is stated, not omitted.
+6. State the conclusion in one of exactly three forms: PROVED on the standard applied / NOT PROVED on the standard applied / INSUFFICIENT EVIDENCE TO DETERMINE, and give the reasons in full sentences.
+7. Where NOT PROVED, state explicitly that this means the allegation was not established on the evidence available, and that it is not a finding that the complainant was untruthful. This sentence is mandatory.
+
+CONSTRAINTS
+- Never state a conclusion the input does not support.
+- Never treat the absence of corroboration as evidence that the allegation is false. Address it as a limit on weight.
+- Never import a criminal standard. Flag any language that implies one.
+- Repeat this prompt once per allegation. Do not batch allegations into a single reasoning block.
+
+OUTPUT
+The reasoning for this allegation only, ready for the report.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>The mandatory "not proved does not mean untruthful" sentence protects the complainant from the most damaging misreading of an investigation report, and it protects the employer from the retaliation claim that follows the misreading.</div>
+              <div class="note risk"><b>What could go wrong</b>Batching allegations. Reasoning written once across five allegations lets a strong one carry a weak one, and that is visible to anyone reading carefully.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">20</span><h3>Protected characteristic and disparity language check</h3></div>
+            <p class="p-use">A review pass over anything before it leaves your hands. Catches the language that turns a clean investigation into a discrimination exhibit.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 20</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator reviewing draft investigation text for language risk. You do not give legal advice. You flag for human and legal review.
+
+INPUT
+Text to review: [PASTE]
+Jurisdiction: [COUNTRY / STATE]
+Document type: notes / findings / report / letter
+
+TASK
+Flag every instance in these categories. Quote the exact line, say why it is a risk, and offer a neutral rewrite.
+
+1. Direct reference to a protected characteristic where it is not squarely engaged by an allegation.
+2. Proxy language that stands in for a protected characteristic: cultural fit, professionalism applied to appearance or speech, articulate, aggressive, emotional, difficult, abrasive, not a team player, communication style, attitude.
+3. Stereotype-adjacent framing, including assumptions about caring responsibilities, stamina, ambition, language ability, or religious observance.
+4. Age proxies: energy, digital native, overqualified, set in their ways, nearing retirement.
+5. Disability and health proxies: reliability where absence is the underlying issue, unpredictable, high maintenance, and any reference to a health condition not disclosed for this process.
+6. Disparity of treatment: any place where the text applies a standard to one person that the evidence shows was not applied to a comparator. Name the comparator and the inconsistency.
+7. Retaliation exposure: any language that treats raising a complaint, seeking representation, taking leave, or contacting a regulator as a negative.
+8. Conclusions about a person's character rather than their conduct.
+
+THEN PRODUCE
+- A prioritised list: MUST CHANGE, SHOULD CHANGE, CONSIDER.
+- Everything requiring employment counsel review before the document leaves the investigator, listed separately with the reason.
+- A short statement of what you did NOT review, so the reader does not mistake this for a legal sign-off.
+
+CONSTRAINTS
+- Do not remove substance. Flag and propose, never silently rewrite the meaning.
+- Where a protected characteristic IS squarely engaged, say so and do not flag it as a problem. Absence of the topic is not neutrality.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Proxy language is the real exposure. Nobody writes the protected characteristic. They write "abrasive" and "not a culture fit", and those words sit in the file next to a pattern.</div>
+              <div class="note risk"><b>What could go wrong</b>Reading the output as legal clearance. It is a flag list with a stated scope limit. The counsel review line at the end exists so the file records what was and was not checked.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- ══ STAGE 5 ══ -->
+      <div class="acc" id="st-5">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">05</span>
+          <span class="acc-t"><strong>Findings and closure</strong><span>Prompts 21 to 25</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p">
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">21</span><h3>Findings and report drafting</h3></div>
+            <p class="p-use">The centrepiece. Drafts the report that fills Template 5, structured so a reader who was not there can follow the reasoning from allegation to conclusion.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 21</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator drafting an investigation report. You draft. The investigator determines every finding and owns every word that ships.
+
+INPUT
+- Scope statement: [PASTE]
+- Framed allegations, numbered: [PASTE]
+- Evidence schedule, each item with reference, type, date, source, how obtained: [PASTE]
+- Interview records, by role label: [PASTE OR SUMMARISE]
+- Per-allegation reasoning from Prompt 19: [PASTE]
+- Standard of proof and its source: [STATE]
+- Who the report is for and what decision they will make with it: [STATE]
+
+TASK
+Draft the report in this structure, and no other.
+
+1. Cover: case reference, investigator, date commissioned, date of report, standard of proof applied, distribution list.
+2. Executive summary: allegations and outcomes only, one line each, no reasoning, no recommendations.
+3. Scope: in scope, out of scope with the route taken instead, and any variation to scope with the date and who approved it.
+4. Process: what was done, in date order. Who was interviewed and when, what documents were obtained and from where, what was requested and not obtained and why, what steps were taken to be fair to the respondent.
+5. Evidence schedule: every item, referenced, with how it was obtained and any limit on its reliability.
+6. Findings, one section per allegation, each containing: the allegation as framed, the evidence for, the evidence against, the conflicts and how they were resolved or that they were not, the reasoning, and the conclusion in the exact three-form language from Prompt 19.
+7. Matters arising outside the allegations: anything material found that was not in scope, stated without conclusion and routed onwards.
+8. Appendices list, referenced from the body.
+
+ABSOLUTE CONSTRAINTS
+- Every factual statement in the findings carries an evidence reference. No exceptions.
+- No adjective characterising a person survives into the report. Conduct only.
+- No recommendation on sanction appears anywhere unless the scope statement expressly asked for one. If it did not, say so in one line at the end of the findings.
+- The executive summary contains nothing that does not appear in full in the body.
+- Where the evidence does not support a conclusion, say so in that form. Do not soften it into a suggestion.
+- Add nothing not present in the input. Where the input is missing something the structure requires, insert [INVESTIGATOR TO COMPLETE: WHAT IS NEEDED].
+
+OUTPUT
+The full draft, then a completeness check listing: allegations with no conclusion, statements with no evidence reference, and every [INVESTIGATOR TO COMPLETE] marker.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Separating the executive summary from the reasoning, and banning reasoning from the summary, stops the one section most people read from becoming the version of record.</div>
+              <div class="note risk"><b>What could go wrong</b>Recommendations appearing uninvited. A report that recommends dismissal when the scope asked only for findings has made the decision-maker's decision for them, and a dismissal made that way is challengeable on process alone.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">22</span><h3>Outcome determination framing</h3></div>
+            <p class="p-use">For when the scope does put the outcome decision in your hands. Structures consistency and mitigation so the decision is defensible against the next comparable case.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 22</span><button class="cp">Copy</button></div><pre>You are assisting a decision-maker considering an outcome after findings. You produce the framework and the questions. You do not recommend an outcome.
+
+INPUT
+- Findings, by allegation, with conclusions: [PASTE]
+- Applicable policy, including the range of sanctions available and any defined categories: [PASTE]
+- Comparable prior cases in this organisation, anonymised, with what happened and the outcome: [LIST OR "NONE IDENTIFIED"]
+- Respondent's record: length of service, prior live warnings, prior findings: [STATE]
+- Mitigation advanced by the respondent: [PASTE]
+- Any regulatory, licensing or safety dimension: [STATE OR "NONE"]
+
+TASK
+Produce the decision framework.
+
+1. Which specific findings, by number, are capable of supporting an outcome, and which are not. A NOT PROVED finding may not support any outcome and must be stated as excluded.
+2. The policy category each proved finding falls into, quoted from the policy, with the question that determines the category where it is arguable.
+3. The consistency check: for each comparable case listed, what is materially the same and what is materially different. Where a different outcome would result, the difference must be identifiable from the findings, not from the people involved.
+4. Aggravating factors, each tied to a specific finding.
+5. Mitigating factors, including everything the respondent advanced, each addressed rather than listed. An unaddressed mitigation is a gap.
+6. The range of outcomes available on this policy, from lightest to heaviest, with what each would require the decision-maker to have concluded.
+7. Proportionality questions the decision-maker must answer in writing.
+8. Anything requiring counsel or a regulator before the outcome is issued.
+
+CONSTRAINTS
+- Do not select an outcome.
+- Do not import an outcome from the comparable cases. Comparators inform consistency, they do not decide.
+- Flag any factor that is a proxy for a protected characteristic or for the exercise of a right, and exclude it explicitly.
+- Where the record contains no comparables, say that consistency cannot be evidenced and name what should be recorded now so the next case has one.
+
+OUTPUT
+The framework, then the written record template the decision-maker completes, ending with the outcome, the reasons, and the appeal route.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Requiring each mitigation to be addressed rather than listed is the difference between a decision that considered the person and one that filed their submission. The second is where appeals are won.</div>
+              <div class="note risk"><b>What could go wrong</b>Letting an unproved allegation influence the weight of a proved one. The framework excludes them explicitly because in practice they leak in.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">23</span><h3>Remediation and recommendation</h3></div>
+            <p class="p-use">The part almost everyone skips. Most investigations surface a systemic problem, and the file that names it is worth far more than the one that only names a person.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 23</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator producing remediation recommendations. These are organisational, not disciplinary.
+
+INPUT
+- Findings, including NOT PROVED ones: [PASTE]
+- Matters arising outside the allegations: [PASTE]
+- What the process revealed about how this was allowed to happen or to continue: [DESCRIBE]
+- Existing controls that should have caught it: [POLICY, TRAINING, ESCALATION ROUTE, MANAGER CHECK-INS]
+
+TASK
+Produce recommendations under four heads.
+
+1. IMMEDIATE, in days. Restoring working relationships, ongoing safety, no-contact arrangements, communication to the affected team.
+2. STRUCTURAL, in weeks. Policy gaps, unclear escalation routes, missing records, a manager population that did not know what to do.
+3. CULTURAL, ongoing. Patterns the evidence showed, including anything that came up repeatedly and was outside scope.
+4. PROCESS, for the next case. What made this investigation harder than it needed to be, and what to record differently from now on.
+
+FOR EACH RECOMMENDATION
+- State the specific finding or observation it responds to, by reference.
+- Name the owner by role, not by person.
+- Give a target date or interval.
+- Say how anyone would know later whether it was done.
+
+CONSTRAINTS
+- Do not recommend a sanction. That is a different decision under Prompt 22.
+- Do not recommend training as a default. Where training is the answer, state what specifically would change as a result. Where it is not, say so.
+- Include recommendations that follow from NOT PROVED findings. A complaint that was not established can still have surfaced a real problem, and ignoring that is how the second complaint arrives.
+- Flag any recommendation that would in practice disadvantage the complainant, including moving them, changing their duties or altering their reporting line.
+
+OUTPUT
+The four grouped lists, then a one-page summary suitable for the person who will be asked to fund or approve them.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Recommendations that follow from a not-proved finding are the ones that prevent the repeat. Closing a case as unfounded and changing nothing is how the same facts arrive again with a lawyer attached.</div>
+              <div class="note risk"><b>What could go wrong</b>Default training recommendations. "Refresher training for all managers" costs real money, changes nothing measurable, and signals to a reader that the recommendations were not thought through.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">24</span><h3>Case closure summary</h3></div>
+            <p class="p-use">The record that lets a stranger reconstruct the case in five minutes, years later, without reading the whole file. Also the row that makes your cases countable.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 24</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator closing a case. Produce a closure record.
+
+INPUT
+- Case reference and dates: opened, first interview, report issued, outcome issued, closed: [LIST]
+- Allegations and conclusions: [PASTE]
+- Outcome issued, if any, and by whom: [STATE]
+- Communications sent and to whom, with dates: [LIST]
+- Recommendations made, with owners: [PASTE]
+- Where each artifact is stored: [LIST]
+- Retention period that applies and its source: [STATE]
+
+TASK
+Produce a closure summary with three parts.
+
+PART A, THE ONE PAGE RECORD
+Case reference, category, dates, number of allegations, conclusions by allegation, outcome, appeal status, recommendations open and closed, total elapsed days, and total days at each stage.
+
+PART B, THE FILE INDEX
+Every document in the case file, by reference, with what it is, its date, and where it is held. Flag any item referenced in the report but missing from the index, and any item in the index not referenced anywhere.
+
+PART C, THE HANDOVER NOTE
+What a person picking this file up cold needs to know: what was decided and on what basis, what remains open, what dates are still live including appeal windows and recommendation targets, and who to contact.
+
+ALSO PRODUCE
+- Retention and destruction: what is kept, for how long, on what authority, and what must be destroyed and when.
+- Data subject access exposure: which documents would be disclosable if requested, flagged for review rather than decided.
+- A structured data row suitable for a case log, so cases can be counted and compared over time: category, source, elapsed days, conclusion, outcome, recommendations raised.
+
+CONSTRAINTS
+- Do not summarise the reasoning. The report holds the reasoning. This record points to it.
+- Do not include any personal data not already in the file.
+- Flag anything still open. A closure record that shows nothing open when recommendations have targets in the future is inaccurate.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>The structured data row is the sleeper. Twenty of them and you can answer how long cases take, which categories recur, and where the organisation actually leaks. Nobody can answer that from a folder of documents.</div>
+              <div class="note risk"><b>What could go wrong</b>Treating closure as filing. Live appeal windows and open recommendations both outlive the report, and a case marked closed stops being watched.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">25</span><h3>Post-closure retaliation check</h3></div>
+            <p class="p-use">Scheduled after closure, at set intervals. Retaliation claims frequently outlive and outgrow the original complaint, and they are the most preventable exposure in the whole process.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 25</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR practitioner running a post-closure retaliation check.
+
+INPUT
+- Case reference, closure date, and today's date: [STATE]
+- Who raised the complaint and who participated as a witness, by role label: [LIST]
+- Outcome issued: [STATE]
+- Working arrangements since closure: reporting lines, team, shift, location: [DESCRIBE]
+- Anything that has happened since closure involving any participant: [LIST OR "NOTHING REPORTED"]
+
+TASK
+Produce a structured check to run at 30, 60 and 90 days after closure.
+
+1. The objective signals to review before speaking to anyone: changes to duties, rota, shift allocation, overtime access, reporting line, location, performance ratings, absence, new performance concerns raised, exclusion from meetings or distribution lists, training or promotion decisions, and any resignation.
+2. For each signal, the question that separates a legitimate business reason from a retaliation risk, and what evidence would establish the legitimate reason.
+3. A short, non-leading check-in script for the complainant and separately for each witness. It must not reopen the findings, must not invite a new complaint by implication, and must make clear that raising something is welcome.
+4. A parallel check on the respondent for signals of unfair informal consequence, because a process that produces informal punishment beyond the outcome is its own exposure.
+5. Escalation triggers: what turns a signal into an immediate action, and who acts.
+
+ALSO PRODUCE
+- A file note template recording the check was run, what was reviewed, what was found and what was done, so a completed check with no findings is still evidenced.
+- The wording to record a decision NOT to run a check at a given interval, with the reason.
+
+CONSTRAINTS
+- Never treat the absence of a report as evidence that nothing happened. Review the objective signals regardless.
+- Do not draft anything that discourages a participant from raising a further concern.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Reviewing objective signals before speaking to anyone is what catches the quiet retaliation nobody reports. Rota changes and dropped overtime do not generate complaints until they generate a claim.</div>
+              <div class="note risk"><b>What could go wrong</b>A check that reopens the case. The script has to acknowledge and route, not relitigate, or the complainant reasonably believes the finding is back in play.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ STAGE 6 ══ -->
+      <div class="acc" id="st-6">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">06</span>
+          <span class="acc-t"><strong>Communications</strong><span>Prompts 26 to 29</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p">
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">26</span><h3>Complainant outcome letter</h3></div>
+            <p class="p-use">Says enough to be fair to the complainant without disclosing what cannot be disclosed about another employee. The line between those two is where these letters go wrong.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 26</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR practitioner drafting an outcome letter to a complainant.
+
+INPUT
+- Allegations as framed, numbered: [PASTE]
+- Conclusion per allegation: [PASTE]
+- What may be disclosed about any action taken regarding another employee, per policy and jurisdiction: [STATE THE LIMIT]
+- Appeal or review route available to the complainant, with the deadline: [STATE]
+- Support available: [EAP, OCCUPATIONAL HEALTH, UNION, NAMED CONTACT]
+- Tone context: how long this has taken and anything the complainant has experienced during the process: [DESCRIBE]
+
+TASK
+Draft the letter.
+
+MUST INCLUDE
+- Acknowledgement that they raised the complaint and that it was taken seriously, without gratitude framing that reads as management language.
+- Each allegation, restated in their terms, with the conclusion reached and a plain explanation of what that conclusion means.
+- For any NOT PROVED conclusion, the explicit statement that it means the allegation was not established on the available evidence and is not a finding that they were untruthful.
+- A plain-word explanation of the standard of proof applied.
+- What has been done, expressed only within the disclosure limit stated above, and an honest statement of what cannot be shared and why.
+- The no-retaliation commitment and exactly what to do if they experience anything they believe is retaliation, with a named contact.
+- The appeal or review route and the deadline.
+- The support available.
+
+MUST NOT
+- Disclose any sanction applied to another employee beyond the stated limit.
+- Apologise in terms that concede liability. Acknowledge impact without admitting a legal conclusion.
+- Use language that implies the complaint was a burden or that the matter is now behind everyone.
+- Promise anything about the respondent's future behaviour.
+- Exceed one and a half pages.
+
+OUTPUT
+The letter, then a checklist confirming each MUST INCLUDE item is present, then a list of anything requiring counsel review before sending.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Banning gratitude framing sounds small and is not. "Thank you for bringing this to our attention" reads, to someone who has been through a months-long process, exactly like being managed.</div>
+              <div class="note risk"><b>What could go wrong</b>Over-disclosure about the respondent. It feels like fairness to the complainant and it is a data protection problem and a defamation risk in the same sentence.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">27</span><h3>Respondent outcome letter</h3></div>
+            <p class="p-use">Has to be precise enough to be appealable. A respondent who cannot tell from the letter what was found and why cannot exercise a right of appeal, and that alone can undo the outcome.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 27</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR practitioner drafting an outcome letter to a respondent.
+
+INPUT
+- Allegations as framed, numbered: [PASTE]
+- Conclusion per allegation, with the essential reasoning: [PASTE]
+- Outcome decided, and by whom, with their role: [STATE]
+- Policy provisions relied on: [QUOTE]
+- Appeal route, to whom, by when, and on what grounds: [STATE]
+- Mitigation advanced and how it was taken into account: [PASTE]
+- Any conditions, review period, or expectations going forward: [STATE]
+- Support available: [EAP, OCCUPATIONAL HEALTH, UNION, NAMED CONTACT]
+
+TASK
+Draft the letter.
+
+MUST INCLUDE
+- Each allegation and its conclusion, separately. Proved and not proved both stated.
+- For each proved allegation, the essential reasons in enough detail that the respondent can identify what they are appealing.
+- The policy provision relied on, quoted.
+- The outcome, stated plainly, with the date it takes effect and how long it remains live if it is a warning.
+- How the mitigation they advanced was taken into account, addressed rather than acknowledged.
+- Any expectations or conditions going forward, stated so that compliance is observable.
+- The appeal route, the deadline, who to send it to, and the grounds available.
+- The support available, offered without condition.
+- The no-retaliation statement covering anyone who participated.
+
+MUST NOT
+- Restate an allegation that was not proved as though it were a concern.
+- Include commentary on character, attitude or general performance.
+- Reference any prior matter that is no longer live under the policy.
+- Disclose witness identities beyond what fairness required during the process.
+- Be so brief that the respondent cannot identify what was found and why.
+
+OUTPUT
+The letter, an appealability check confirming a reader could identify what to appeal and on what basis, and a list of anything requiring counsel review before sending.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>The appealability check is the whole safeguard. A letter that says "the allegations were upheld and you are issued a final written warning" and stops there is not appealable, and an appeal body will say so.</div>
+              <div class="note risk"><b>What could go wrong</b>Unproved allegations reappearing as "concerns". It is the most common defect in these letters and it converts a clean outcome into evidence of a predetermined process.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">28</span><h3>Manager and team communication</h3></div>
+            <p class="p-use">What the people around the case get told. Say too little and the vacuum fills with rumour, say too much and you have disclosed a personnel matter to a room.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 28</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR practitioner preparing communications around a closed investigation.
+
+INPUT
+- What is factually visible to the team already: [E.G. AN ABSENCE, A ROTA CHANGE, A ROLE CHANGE, NOTHING]
+- What may be disclosed, per policy and jurisdiction: [STATE THE LIMIT]
+- Who needs to know something to do their job, and what specifically: [LIST BY ROLE]
+- Practical arrangements that change: [DESCRIBE]
+- Whether either party has asked for something specific to be said: [DESCRIBE]
+
+TASK
+Produce three separate communications.
+
+1. TO THE LINE MANAGER OF EACH PARTY. Only what they need to manage: practical arrangements, what they must not ask about, what to do if either party raises the matter, what to do if they observe anything that could be retaliation, and who to call. Include an explicit line that they must not investigate further or discuss the matter with the team.
+2. TO THE IMMEDIATE TEAM, only if a communication is genuinely needed. Acknowledge only what is already visible, state that a process has concluded without characterising it, state that no further detail will be shared and why, and restate expectations going forward. If no communication is needed, say so and explain why silence is the better option here.
+3. HOLDING LINES for predictable questions, with a short answer to each: what happened, is anyone in trouble, is it safe, why can you not tell us, is this why so-and-so is not here, should we be worried.
+
+CONSTRAINTS
+- Never confirm or deny an outcome about an individual to a group.
+- Never characterise either party.
+- Never imply that raising a complaint caused disruption.
+- Every line must be sayable out loud by a manager under pressure without improvising. Short sentences.
+- Flag anything in the input that has already been over-disclosed, and give the recovery line for it.
+
+OUTPUT
+The three communications, then a one-line risk note on each covering the most likely way it gets misread.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Holding lines have to be sayable under pressure. A manager who has to improvise will say something true, unhelpful and quotable, and it will be attributed to the organisation.</div>
+              <div class="note risk"><b>What could go wrong</b>Sending a team message when none was needed. The message itself becomes the disclosure, and it tells a room that something happened that they had not all noticed.</div>
+            </div>
+          </div>
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">29</span><h3>No-retaliation reminder</h3></div>
+            <p class="p-use">A short standalone communication that goes to everyone who touched the case. Cheap to send, and it is the document that shows the commitment was made in specific terms, not just written in a policy.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 29</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR practitioner drafting a no-retaliation reminder.
+
+INPUT
+- Recipients and their role in the case: complainant, respondent, witnesses, managers of any participant: [LIST BY ROLE]
+- Stage: at the start of the investigation / during / at closure: [STATE]
+- Applicable policy and any statutory protection that applies in this jurisdiction: [NAME]
+- Named contact for concerns, and an alternative route if that contact is part of the problem: [STATE]
+
+TASK
+Draft a version for each recipient group. Each must be short enough to be read in full.
+
+EVERY VERSION MUST
+- State plainly that retaliation against anyone who raised a concern or participated is not permitted.
+- Give concrete examples of what retaliation can look like, so it is recognisable rather than abstract: changes to shifts, duties or reporting line, exclusion from meetings or opportunities, a sudden change in how performance is described, informal freezing out, comments to others.
+- State that it applies to participants regardless of the outcome of the investigation, including where allegations were not proved.
+- State that it covers indirect action taken through others.
+- Give the named contact, the alternative route, and how to raise something confidentially.
+- Confirm that raising a retaliation concern is itself protected.
+
+VERSION SPECIFIC
+- To managers, add that they must consult before making any change to a participant's duties, rota, reporting line or performance record while the matter is live or recently closed, and name what "recently" means here.
+- To the respondent, add the same protection for them and the same expectation of them, stated without implying guilt.
+- To witnesses, add that their participation will not be recorded anywhere that affects their standing.
+
+CONSTRAINTS
+- Under 250 words per version.
+- No legal citations in the body. Reference the policy by name only.
+- No language implying anyone is suspected of intending to retaliate.
+
+OUTPUT
+Each version, plus a one-line file note recording the reminder was issued, to whom and when.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Concrete examples do the work. "Retaliation is prohibited" stops nobody, because the manager quietly reallocating overtime does not think that is what they are doing.</div>
+              <div class="note risk"><b>What could go wrong</b>Sending it once at the start and never again. Retaliation risk is highest right after the outcome lands, which is exactly when most processes stop communicating.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ STAGE 7 ══ -->
+      <div class="acc" id="st-7">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">07</span>
+          <span class="acc-t"><strong>Human oversight record</strong><span>Prompt 30</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p">
+
+          <div class="p">
+            <div class="p-h"><span class="p-n">30</span><h3>AI-assistance oversight log entry</h3></div>
+            <p class="p-use">Run this once per AI-assisted document. It is the artifact that answers "what did you do to check it", and it is the reason the other twenty nine prompts are safe to use at all.</p>
+            <div class="box"><div class="box-h"><span class="lab">Prompt 30</span><button class="cp">Copy</button></div><pre>You are assisting a qualified HR investigator producing an oversight record for an AI-assisted document. This record goes in the case file.
+
+INPUT
+- Case reference and document produced: [STATE]
+- Which prompt was used and for what purpose: [STATE]
+- Tool and model used, and whether it is approved by the organisation for this data class: [STATE]
+- What data was entered, and confirmation of what was NOT entered: [STATE]
+- The output received, in summary: [SUMMARISE]
+- What the investigator changed, added, rejected or verified: [DESCRIBE]
+- Who reviewed it, their role, and their competence to review it: [STATE]
+
+TASK
+Produce a single, dated oversight log entry.
+
+REQUIRED FIELDS
+1. Date, time, case reference, document reference.
+2. Purpose: what the assistance was used for, in one sentence.
+3. Tool and model, and the approval status for this data class.
+4. Data handling: what was entered, what was withheld, whether identifying data was used, and the pseudonymisation convention applied.
+5. Human review: who reviewed, their role, and the basis of their competence to review this output.
+6. Substantive changes made by the human reviewer, itemised. "Reviewed and accepted with no change" is a valid entry only where the reviewer states what they verified against.
+7. Anything in the output rejected, and why. An entry with nothing rejected on a long output is worth a second look.
+8. Facts verified independently, and against what source.
+9. Residual limitation: what the reviewer could not verify, stated rather than left implicit.
+10. Sign-off: the named human who takes responsibility for this document.
+
+ALSO PRODUCE
+- A short standing paragraph, reusable across cases, describing the organisation's human oversight protocol for AI-assisted investigation work, suitable for the process section of a report.
+- A one-line index row so all entries in a case can be listed together.
+
+CONSTRAINTS
+- Do not write the review for the human. Produce the structure and mark every judgment field [TO BE COMPLETED BY REVIEWER].
+- Do not record any conclusion about the investigation itself.
+- Never state that a document was reviewed if the input does not say so.</pre></div>
+            <div class="notes">
+              <div class="note why"><b>Why this phrasing</b>Refusing to fill the judgment fields is the point. A log the model completes is not an oversight record, it is the same automation wearing a compliance hat.</div>
+              <div class="note risk"><b>What could go wrong</b>Filling it in at the end, in a batch, from memory. The entry is contemporaneous or it is worth very little. Write it in the same sitting as the document it covers.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <svg class="stripe" viewBox="0 0 1320 11" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="11" fill="url(#weave)"/></svg>
+    <section class="sec" id="s-templates">
+      <div class="sec-h">
+        <svg class="dim" width="58" height="22" viewBox="0 0 58 22" aria-hidden="true">
+          <path d="M2 4v14M56 4v14M2 11h54" stroke="#B4741A" stroke-width="1.4" stroke-linecap="round"/>
+          <text x="29" y="9" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6C7891">02</text>
+        </svg>
+        <div>
+          <h2>The seven templates</h2>
+          <p>Copy each one into your document editor. Every field is there because its absence is what gets asked about later. Delete nothing without replacing it with a reason.</p>
+        </div>
+      </div>
+
+      <div class="acc open" id="t-1">
+        <button class="acc-b" aria-expanded="true">
+          <span class="acc-n">T1</span>
+          <span class="acc-t"><strong>Investigation intake form</strong><span>Template 1</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <p class="p-use">Completed at first contact. Standardised so every case in your log carries the same fields and can be compared later.</p>
+          <div class="box"><div class="box-h"><span class="lab">Template 1</span><button class="cp">Copy</button></div><pre>INVESTIGATION INTAKE RECORD
+Case reference: ..................  Date opened: ..................
+Completed by: ..................  Role: ..................
+
+1. HOW THE CONCERN REACHED US
+Channel (hotline / manager escalation / direct report / exit interview / other): ......
+Date the concern was first raised, and to whom: ......
+Date it reached HR: ......
+Any gap between those two dates, and the reason: ......
+Is the reporter also the person affected?  Yes / No / Reporting on behalf of another
+
+2. PARTIES
+Complainant, role and reporting line: ......
+Respondent(s), role and reporting line: ......
+Relationship between them (reporting line / peer / cross-team / customer / contractor): ......
+Anyone else named at this stage, and how they came up: ......
+
+3. THE CONCERN AS RECEIVED
+Record verbatim where possible. Do not summarise into conclusions.
+......
+......
+
+4. ALLEGATIONS AS FRAMED  (complete after Prompt 02)
+No.  |  On or about (date)  |  Alleged conduct (observable)  |  Location/channel  |  Policy clause engaged  |  Specific / Partial / Vague
+1    |                      |                                |                    |                         |
+2    |                      |                                |                    |                         |
+3    |                      |                                |                    |                         |
+
+5. IMMEDIATE RISK SCREEN
+Any safety concern raised or apparent?  Yes / No     Details: ......
+Any allegation of criminal conduct?  Yes / No        Referred to: ......
+Any regulatory or licensing dimension?  Yes / No     Details: ......
+Any protected activity in the background (prior complaint, leave, whistleblowing, union role)?  Yes / No
+Vulnerability or welfare factors for any party: ......
+Parallel process running (grievance, police, tribunal, insurer, media)?  Yes / No  Details: ......
+
+6. INTERIM MEASURES  (complete after Prompt 06)
+Options considered: ......
+Measure taken: ......  Effective from: ......  Review date: ......
+Reason this measure and not a lesser one: ......
+Decided by: ......  Role: ......
+
+7. EVIDENCE PRESERVATION  (complete after Prompt 05)
+Categories notified: ......  Date range: ......
+Notices sent to (role) / date / confirmation received:
+......
+Systems with short retention and their deletion window: ......
+
+8. INVESTIGATOR ASSIGNMENT  (complete after Prompt 03)
+Proposed investigator: ......  Role: ......
+Conflict check completed?  Yes / No   Date: ......  Outcome: ......
+Accepted by investigator on: ......
+
+9. SCOPE  (complete after Prompt 04)
+In scope, by allegation number: ......
+Out of scope, and the route it goes to instead: ......
+Standard of proof, and its source: ......
+Does the investigator determine findings only, or also recommend an outcome? ......
+Report goes to: ......
+Target completion, with review point: ......
+
+10. CONFIRMATIONS MADE TO THE COMPLAINANT
+What was said about confidentiality: ......
+What was said about the process and next steps: ......
+No-retaliation statement given?  Yes / No   Date: ......
+Support signposted: ......
+
+11. AI ASSISTANCE ON THIS CASE
+Any AI assistance used in this case?  Yes / No
+If yes, oversight log started?  Yes / No   Log reference: ......
+
+Signed: ..................  Date: ..................</pre></div>
+        </div></div>
+      </div>
+
+      <div class="acc" id="t-2">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">T2</span>
+          <span class="acc-t"><strong>Investigation plan</strong><span>Template 2</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <p class="p-use">Written before the first interview, revisited at each review point. The disproving-evidence column is not optional.</p>
+          <div class="box"><div class="box-h"><span class="lab">Template 2</span><button class="cp">Copy</button></div><pre>INVESTIGATION PLAN
+Case reference: ..........  Investigator: ..........  Plan version: ....  Date: ..........
+Standard of proof: ..........   Source: ..........
+
+A. SCOPE  (from Template 1, section 9)
+In scope: ......
+Out of scope, and route taken instead: ......
+Decision this investigation will make: findings of fact only / findings and recommended outcome
+Scope variations: date | what changed | approved by
+......
+
+B. PER-ALLEGATION PLAN
+Allegation no.: ....
+  What must be established for this to be proved: ......
+  Evidence tending to PROVE it, and where it sits: ......
+  Evidence tending to DISPROVE it, and where it sits: ......  (mandatory, may not be blank)
+  Documents: reference | confirmed exists / to be confirmed | holder | requested on | received on
+  ......
+  Witnesses: role label | what only they can speak to | direct / context / hearsay | priority
+  ......
+  Order of steps, and why this order: ......
+(repeat per allegation)
+
+C. CONSOLIDATED SEQUENCE
+Step | Who / what | Prerequisite before this step | Expected to open up | Target date | Done
+1    |            |                               |                     |             |
+2    |            |                               |                     |             |
+
+D. WITNESSES NOT BEING INTERVIEWED
+Role label | who suggested them | reason not interviewed (must read fairly to the person who suggested them)
+......
+
+E. RISKS AND CONTINGENCIES
+Key person unavailable, contingency: ......
+Evidence at risk of deletion, action taken: ......
+Anyone who may move from witness to respondent, and the review trigger: ......
+Anything that would require the scope to be varied: ......
+
+F. FAIRNESS CHECKS BUILT INTO THIS PLAN
+Respondent interviewed after the adverse evidence exists?  Yes / No, and why
+Every allegation will be put to the respondent?  Yes / No, and why
+Representation entitlement confirmed against policy?  Yes / No
+Notice period to be given: ......
+
+G. REVIEW POINTS
+Date | what triggered the review | what changed in the plan
+......
+
+H. OPEN QUESTIONS  (things that could not be planned yet)
+......</pre></div>
+        </div></div>
+      </div>
+
+      <div class="acc" id="t-3">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">T3</span>
+          <span class="acc-t"><strong>Interview record with attestation</strong><span>Template 3</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <p class="p-use">One per interview. The attestation block at the foot is what turns a note into a statement the interviewee has adopted.</p>
+          <div class="box"><div class="box-h"><span class="lab">Template 3</span><button class="cp">Copy</button></div><pre>INTERVIEW RECORD
+Case reference: ..........   Record reference: ..........
+Interviewee role label: ..........   Status: complainant / respondent / witness
+Date: ..........  Start: ......  End: ......  Breaks: ......
+Location or platform: ..........
+Present, with roles: ..........
+Companion or representative present?  Yes / No   Name and capacity: ..........
+Recorded?  Yes / No   Method: ..........   Notes taken by: ..........
+
+OPENING STATEMENT READ  (tick each)
+[ ] Purpose of the interview explained
+[ ] Role of the investigator explained: gathering facts, not deciding
+[ ] Confidentiality explained accurately, including its limits
+[ ] No-retaliation statement given
+[ ] How notes will be taken, shared and corrected
+[ ] Right to add anything later, and how
+[ ] Companion role explained, where present
+[ ] Interviewee confirmed they understood: Yes / No
+
+CONVENTIONS USED IN THIS RECORD
+"Quotation marks" = the speaker's actual words, recorded at the time.
+No quotation marks = paraphrase.
+[OBS] = the note-taker's own observation, not part of the account.
+[DOC n] = document shown, by reference.
+[UNCLEAR] = the record is incomplete or illegible at this point.
+
+BODY
+Topic: ......
+  Q asked: ......
+  A: ......
+  [DOC ....] shown at ...... , response: ......
+  [OBS] ......
+(repeat per topic, in the order asked)
+
+DOCUMENTS SHOWN DURING THIS INTERVIEW
+Reference | what it is | time shown | interviewee's response
+
+CLOSING
+[ ] Asked whether there is anything they have not been asked about
+[ ] Asked whether there is anything they wish to add
+[ ] Asked who else they think should be spoken to
+[ ] Next steps explained, in process terms only
+[ ] No-retaliation statement repeated
+[ ] Support signposted
+Commitments made to the interviewee during this interview: ......
+
+INVESTIGATOR DECLARATION
+I confirm this record was made at the time of the interview, or completed on ...... from notes made at the time, and that it has not been altered other than as recorded in the amendments section below.
+Investigator: ..........  Signature: ..........  Date: ..........
+
+INTERVIEWEE ATTESTATION
+I have read this record of my interview held on ..........
+Please tick one:
+[ ] I confirm this is an accurate record of what I said.
+[ ] I confirm it is accurate subject to the amendments I have set out below.
+[ ] I do not accept this as an accurate record. My reasons are set out below.
+
+I understand that this record may be used in the investigation and may be disclosed in accordance with the policy explained to me.
+
+Interviewee: ..........  Signature: ..........  Date: ..........
+
+AMENDMENTS REQUESTED
+Page / paragraph | as recorded | as amended | accepted by investigator Y/N | reason if not accepted
+......
+
+NOTE: where an interviewee declines to sign, record that fact, the date, the reason given if any,
+and take no further step to obtain a signature. A declined attestation is a valid record entry.</pre></div>
+        </div></div>
+      </div>
+
+      <div class="acc" id="t-4">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">T4</span>
+          <span class="acc-t"><strong>Investigation timeline</strong><span>Template 4</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <p class="p-use">Two timelines, kept separately. One is what happened. The other is what you did about it. Merging them is how a process record becomes an argument.</p>
+          <div class="box"><div class="box-h"><span class="lab">Template 4</span><button class="cp">Copy</button></div><pre>INVESTIGATION TIMELINE
+Case reference: ..........   Last updated: ..........   Updated by: ..........
+
+TIMELINE A: EVENTS UNDER INVESTIGATION
+Facts only. Every row carries an evidence reference. A row with no reference is a gap, not a fact.
+
+Date | Time | Event as evidenced | Source of the date | Evidence ref | Allegation no. | Disputed? | Nature of dispute
+     |      |                    |                    |              |                | Y/N       |
+
+Rules for this table:
+- Where two accounts give different dates or sequences for the same event, enter BOTH rows and mark them disputed. Do not pick one.
+- Where a date is approximate, write "on or about" and record how it was established.
+- Where a date comes from memory alone, say so in Source of the date.
+- Never enter an event with no source.
+
+TIMELINE B: PROCESS CHRONOLOGY
+What the organisation did, and when. This is the fairness record.
+
+Date | Time | Step taken | By whom (role) | Document produced | Ref | Notice given to whom
+     |      |            |                |                   |     |
+
+Include as a minimum: concern raised, reached HR, intake completed, risk screen, interim measures decided
+and each review of them, preservation notices sent, investigator appointed and conflict check, scope
+issued, every interview invitation and every interview, every document requested and received or refused,
+every scope variation, report issued, outcome issued, appeal window opened and closed, closure,
+and each post-closure check.
+
+GAP ANALYSIS
+Any interval over ...... days between two rows in Timeline B: date range | length | reason | was the
+delay communicated to the parties? Y/N | how
+
+CONFLICTS SUMMARY  (pulled from Timeline A)
+Disputed point | account 1 (role label) | account 2 (role label) | evidence bearing on it | resolved? | how</pre></div>
+        </div></div>
+      </div>
+
+      <div class="acc" id="t-5">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">T5</span>
+          <span class="acc-t"><strong>Investigation findings report</strong><span>Template 5 &middot; centrepiece</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <p class="p-use">The document everything else feeds. Structured so a reader who was not there can follow every conclusion back to the evidence that produced it.</p>
+          <div class="box"><div class="box-h"><span class="lab">Template 5</span><button class="cp">Copy</button></div><pre>INVESTIGATION REPORT
+CONFIDENTIAL
+
+1. COVER
+Case reference: ..........
+Investigator: ..........   Role: ..........
+Commissioned by: ..........   Role: ..........   Date commissioned: ..........
+Date of report: ..........
+Standard of proof applied: ..........   Source: ..........
+Distribution list: ..........
+Status: this report contains findings of fact. It does / does not recommend an outcome (delete one),
+in accordance with the scope at section 3.
+
+2. EXECUTIVE SUMMARY
+One line per allegation. Conclusions only. No reasoning, no recommendations, nothing that does not
+appear in full in section 6.
+Allegation 1: ......  Conclusion: proved / not proved / insufficient evidence to determine
+Allegation 2: ......  Conclusion: ......
+
+3. SCOPE
+In scope: ......
+Out of scope, and the route each matter took instead: ......
+Scope variations: date | what changed | requested by | approved by
+Standard of proof and its source: ......
+What this investigation was and was not asked to decide: ......
+
+4. PROCESS
+In date order, drawn from Timeline B.
+4.1 Steps taken, with dates.
+4.2 People interviewed, role labels, dates, and whether accompanied.
+4.3 Documents obtained, from where, and when.
+4.4 Requested and not obtained: what, from whom, why not, and what was done instead.
+4.5 Steps taken to be fair to the respondent: when they were told, what detail they received, notice
+    given, representation offered, every allegation put, opportunity to respond, opportunity to
+    provide evidence in their favour, opportunity to name witnesses.
+4.6 Delays: any interval over ...... days, the reason, and whether the parties were told.
+4.7 Human oversight of AI-assisted documents: [standing paragraph from Prompt 30, plus the log reference]
+
+5. EVIDENCE SCHEDULE
+Ref | item | type | date | source | how obtained | any limit on reliability
+Items referenced in this report but not held: ......
+Items held but not relied on, and why: ......
+
+6. FINDINGS
+Repeat this block for every allegation. One block per allegation, never combined.
+
+6.n  ALLEGATION n
+  As framed: ......
+  What had to be established: ......
+  Evidence tending to support, with references, and the weight and limits of each: ......
+  Evidence tending to undermine, with references, and the weight and limits of each: ......
+  Conflicts of account on this allegation, and how each was resolved, or that it was not: ......
+  Reasoning: ......
+     (every inference in this form: because [fact, ref] and [fact, ref], it is more likely than not
+      that [inference]; the alternative explanation considered was [X], which is less likely because [Y])
+  CONCLUSION: proved on the standard applied / not proved on the standard applied / insufficient
+  evidence to determine.
+  Where not proved, include: this means the allegation was not established on the evidence available.
+  It is not a finding that the complainant was untruthful.
+
+7. MATTERS ARISING OUTSIDE THE ALLEGATIONS
+Material found that was not in scope. Stated without conclusion, with the route it has been passed to.
+
+8. RECOMMENDATIONS
+Include this section only if section 3 says the scope asked for it. Otherwise state:
+"The scope of this investigation did not extend to recommending an outcome. Findings of fact only
+are reported."
+Where remediation recommendations are included, they are organisational and are set out under
+immediate / structural / cultural / process, each tied to a finding by reference, with an owner
+by role and a target date.
+
+9. APPENDICES
+A. Scope statement
+B. Investigation plan and each version
+C. Interview records, with attestations
+D. Evidence items, by reference
+E. Timelines A and B
+F. Correspondence with the parties
+G. AI-assistance oversight log
+
+10. DECLARATION
+I confirm that this report sets out my findings, that every factual statement is referenced to the
+evidence schedule, that I have set out the evidence that undermines as well as the evidence that
+supports each finding, and that the conclusions are my own.
+Investigator: ..........  Signature: ..........  Date: ..........
+
+COMPLETENESS CHECK BEFORE ISSUE
+[ ] Every allegation has a conclusion
+[ ] Every factual statement carries an evidence reference
+[ ] No adjective characterising a person survives in the findings
+[ ] Every unresolved conflict is stated, not omitted
+[ ] Every not-proved finding carries the mandatory sentence
+[ ] No recommendation on sanction appears unless the scope asked for one
+[ ] The executive summary contains nothing absent from section 6
+[ ] Language review completed (Prompt 20), and counsel items resolved
+[ ] Every [INVESTIGATOR TO COMPLETE] marker resolved</pre></div>
+        </div></div>
+      </div>
+
+      <div class="acc" id="t-6">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">T6</span>
+          <span class="acc-t"><strong>Outcome letters, both variants</strong><span>Template 6</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <p class="p-use">Two letters, same case, different disclosure limits. Draft them side by side so nothing appears in one that contradicts the other.</p>
+          <div class="box"><div class="box-h"><span class="lab">Template 6A, complainant</span><button class="cp">Copy</button></div><pre>[DATE]
+Private and confidential
+[NAME]
+[ADDRESS OR SECURE DELIVERY METHOD]
+
+Outcome of the investigation into the concerns you raised on [DATE]
+Case reference: [REF]
+
+Dear [NAME],
+
+I am writing to tell you the outcome of the investigation into the concerns you raised on [DATE].
+[NAME, ROLE] investigated. The investigation concluded on [DATE].
+
+What was looked into
+Your concerns were framed as [N] separate matters:
+1. [ALLEGATION AS FRAMED, IN TERMS YOU WOULD RECOGNISE]
+2. ...
+
+How the decision was reached
+The investigator applied the standard of [STANDARD], which means [PLAIN WORDS: THAT SOMETHING IS MORE
+LIKELY THAN NOT TO HAVE HAPPENED]. It does not mean the matter had to be proved beyond doubt.
+
+The conclusions
+1. [ALLEGATION 1]: [PROVED / NOT PROVED / INSUFFICIENT EVIDENCE TO DETERMINE]
+   [ONE OR TWO PLAIN SENTENCES ON WHAT THAT MEANS]
+   [WHERE NOT PROVED, INCLUDE: this means the allegation was not established on the evidence
+   available. It is not a finding that you were untruthful.]
+2. ...
+
+What has happened as a result
+[WHAT CAN BE SAID WITHIN THE DISCLOSURE LIMIT. THEN, HONESTLY:]
+There are limits on what I can tell you about action taken in relation to another employee. That is
+because [REASON]. I am not able to go further than the above.
+
+[WHERE RECOMMENDATIONS WERE MADE THAT AFFECT YOU OR YOUR TEAM, STATE THEM.]
+
+If anything happens that you believe is retaliation
+No one should experience any detriment for raising a concern or taking part in this process. That
+applies whatever the outcome. If you experience anything you believe is retaliation, including changes
+to your duties, hours, reporting line or how your work is described, contact [NAMED CONTACT, ROLE] at
+[CONTACT DETAILS]. If that is not appropriate, contact [ALTERNATIVE ROUTE].
+
+If you disagree with this outcome
+[APPEAL OR REVIEW ROUTE]. You need to do this by [DEADLINE], in writing, to [RECIPIENT].
+
+Support
+[EAP / OCCUPATIONAL HEALTH / UNION / NAMED CONTACT]
+
+[SIGN-OFF]
+[NAME], [ROLE]
+
+
+-------------------------------------------------------------------------------
+CHECK BEFORE SENDING
+[ ] Every allegation appears with its conclusion
+[ ] Every not-proved conclusion carries the mandatory sentence
+[ ] Standard of proof explained in plain words
+[ ] Disclosure limit respected, and the limit itself explained honestly
+[ ] No sanction applied to another employee is disclosed beyond the stated limit
+[ ] No gratitude framing, no "we can now move on", no apology conceding liability
+[ ] No promise about anyone's future behaviour
+[ ] Retaliation route named, with an alternative
+[ ] Appeal route and deadline stated
+[ ] Under one and a half pages
+[ ] Counsel review items resolved</pre></div>
+          <div class="box"><div class="box-h"><span class="lab">Template 6B, respondent</span><button class="cp">Copy</button></div><pre>[DATE]
+Private and confidential
+[NAME]
+[ADDRESS OR SECURE DELIVERY METHOD]
+
+Outcome of the investigation notified to you on [DATE]
+Case reference: [REF]
+
+Dear [NAME],
+
+I am writing to tell you the outcome of the investigation into the allegations notified to you on
+[DATE]. [NAME, ROLE] investigated. The investigation concluded on [DATE].
+
+The allegations and the conclusions
+1. [ALLEGATION AS FRAMED]
+   Conclusion: [PROVED / NOT PROVED / INSUFFICIENT EVIDENCE TO DETERMINE]
+   [WHERE PROVED, THE ESSENTIAL REASONS IN ENOUGH DETAIL THAT YOU CAN IDENTIFY WHAT YOU WOULD BE
+   APPEALING. NAME THE EVIDENCE RELIED ON AND WHY IT WAS PREFERRED.]
+2. ...
+
+[FOR EACH ALLEGATION NOT PROVED, STATE IT PLAINLY AND DO NOT RESTATE IT AS A CONCERN.]
+
+The policy applied
+[QUOTE THE PROVISION RELIED ON]
+
+The decision
+[OUTCOME]. This takes effect from [DATE]. [IF A WARNING: it will remain live until [DATE], after
+which it will [WHAT HAPPENS TO IT] in accordance with [POLICY].]
+This decision was taken by [NAME, ROLE].
+
+What you told us, and how it was taken into account
+[EACH POINT OF MITIGATION ADVANCED, AND WHAT WEIGHT IT WAS GIVEN AND WHY. ADDRESS IT, DO NOT LIST IT.]
+
+What is expected going forward
+[CONDITIONS OR EXPECTATIONS, STATED SO THAT COMPLIANCE IS OBSERVABLE. REVIEW POINT AND WHO REVIEWS.]
+
+Your right of appeal
+You may appeal this decision. Send your appeal in writing to [RECIPIENT, ROLE] by [DEADLINE]. The
+grounds available are [GROUNDS]. Please set out which findings or which part of the decision you are
+appealing and why.
+
+Retaliation
+No one who raised a concern or took part in this process should experience any detriment as a result,
+and that protection applies to you as well. If you experience anything you believe is retaliation,
+contact [NAMED CONTACT] or [ALTERNATIVE ROUTE].
+
+Support
+[EAP / OCCUPATIONAL HEALTH / UNION / NAMED CONTACT]. This is available to you regardless of the outcome.
+
+[SIGN-OFF]
+[NAME], [ROLE]
+
+
+-------------------------------------------------------------------------------
+CHECK BEFORE SENDING
+[ ] Every allegation appears, proved and not proved alike
+[ ] Every proved allegation carries reasons detailed enough to appeal against
+[ ] No unproved allegation is restated as a concern
+[ ] Policy provision quoted
+[ ] Effective date and, for a warning, the live period stated
+[ ] Every point of mitigation addressed, not merely listed
+[ ] Expectations stated observably
+[ ] Appeal route, recipient, deadline and grounds all present
+[ ] No commentary on character, attitude or general performance
+[ ] No reference to a prior matter no longer live
+[ ] Support offered without condition
+[ ] Counsel review items resolved</pre></div>
+        </div></div>
+      </div>
+
+      <div class="acc" id="t-7">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">T7</span>
+          <span class="acc-t"><strong>Performance improvement plan</strong><span>Template 7</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <p class="p-use">For the performance-linked outcome. A plan whose standards are not observable is not a plan, it is a paper trail toward a decision already made, and it reads that way.</p>
+          <div class="box"><div class="box-h"><span class="lab">Template 7</span><button class="cp">Copy</button></div><pre>PERFORMANCE IMPROVEMENT PLAN
+Employee: ..........   Role: ..........   Manager: ..........
+Plan start: ..........   Plan end: ..........   Review dates: ..........
+HR contact: ..........   Policy under which this plan is issued: ..........
+Arising from: [CASE REFERENCE, IF THIS FOLLOWS AN INVESTIGATION] / [PERFORMANCE CONCERN, NOT CONDUCT]
+
+NOTE ON SCOPE OF THIS PLAN
+This plan addresses performance. It does not address conduct. Where an investigation produced a
+conduct finding, that is dealt with under the disciplinary outcome and is not repeated here.
+Anything in the plan below must be a performance standard, not a restatement of a conduct finding.
+
+1. THE CONCERN, STATED OBSERVABLY
+What is happening now: ......
+Evidence this rests on, with dates: ......
+What the required standard is, stated so that meeting it is observable by someone other than the
+manager: ......
+The gap between the two, described without adjectives about the person: ......
+
+2. WHAT HAS ALREADY BEEN TRIED
+Date | what was raised or offered | with whom | outcome
+
+3. OBJECTIVES
+No. | Objective (specific and observable) | How it will be measured | Evidence source | Target date | Met? Y/N
+1   |                                     |                         |                 |             |
+2   |                                     |                         |                 |             |
+
+Each objective must be achievable within the plan period using the support listed at section 4.
+An objective that depends on something outside the employee's control is not a valid objective.
+
+4. SUPPORT PROVIDED BY THE ORGANISATION
+What | who provides it | by when | confirmed in place Y/N
+Training: ......
+Coaching or supervision: ......
+Tools, access or information: ......
+Workload or scheduling adjustment during the plan: ......
+Any adjustment for a health condition or disability, where one is known or disclosed: ......
+     (flag for review: has the need for an adjustment been assessed properly and separately?)
+
+5. CHECK-INS
+Date | attended by | progress against each objective | evidence discussed | support still needed |
+what was agreed | employee comments
+
+6. EMPLOYEE'S RESPONSE
+The employee has had the opportunity to comment on this plan before it started.
+Employee comments: ......
+Changes made to the plan as a result: ......
+Where no change was made, the reason: ......
+Was the employee accompanied at the meeting where this plan was issued?  Yes / No / Not offered
+    (if not offered, record why against the policy)
+
+7. WHAT HAPPENS AT THE END
+If the objectives are met: ......
+If they are partly met: ......  (state what "partly" triggers, do not leave it to discretion)
+If they are not met: ......  and the process that would follow, named
+The decision at the end of this plan will be taken by: ......
+
+8. SIGNATURES
+Employee: ..........  Signature: ..........  Date: ..........
+Employee signature confirms receipt and discussion. It does not indicate agreement with the contents.
+Manager: ..........  Signature: ..........  Date: ..........
+HR: ..........  Signature: ..........  Date: ..........
+
+FAIRNESS CHECK BEFORE ISSUE
+[ ] Every objective is observable and measurable by someone other than the manager
+[ ] Every objective is achievable within the period with the support listed
+[ ] Support is confirmed in place, not merely offered
+[ ] No conduct finding has been imported into a performance objective
+[ ] Any known health condition or disability has had an adjustment assessment, recorded separately
+[ ] The employee commented before the plan started, and the comments are recorded
+[ ] The consequence of each end-state is stated, including "partly met"
+[ ] Comparator check: is a colleague in a materially similar position being managed the same way?</pre></div>
+        </div></div>
+      </div>
+    </section>
+
+    <svg class="stripe" viewBox="0 0 1320 11" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="11" fill="url(#weave)"/></svg>
+    <section class="sec" id="s-checklists">
+      <div class="sec-h">
+        <svg class="dim" width="58" height="22" viewBox="0 0 58 22" aria-hidden="true">
+          <path d="M2 4v14M56 4v14M2 11h54" stroke="#B4741A" stroke-width="1.4" stroke-linecap="round"/>
+          <text x="29" y="9" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6C7891">03</text>
+        </svg>
+        <div>
+          <h2>The three checklists</h2>
+          <p>Run the first before you start, the second before you close, and the third on the finished file. Each is short on purpose, because a checklist nobody finishes protects nobody.</p>
+        </div>
+      </div>
+
+      <div class="acc open" id="c-1">
+        <button class="acc-b" aria-expanded="true">
+          <span class="acc-n">C1</span>
+          <span class="acc-t"><strong>Pre-investigation readiness</strong><span>Checklist 1 &middot; before the first interview</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <div class="box"><div class="box-h"><span class="lab">Checklist 1</span><button class="cp">Copy</button></div><pre>PRE-INVESTIGATION READINESS CHECKLIST
+Case reference: ..........   Completed by: ..........   Date: ..........
+
+FRAMING
+[ ] The complaint has been converted into numbered, individually testable allegations
+[ ] Every allegation describes observable conduct, not a label or a conclusion
+[ ] Every allegation is mapped to a policy clause, or explicitly marked as engaging none
+[ ] Any allegation still marked vague has a named question that would make it specific
+
+AUTHORITY AND INDEPENDENCE
+[ ] The investigator conflict check is complete and recorded in writing
+[ ] Perceived conflict has been considered from both parties' points of view, separately
+[ ] The investigator has the authority to obtain the documents and attendance this case needs
+[ ] The investigator has the time this case will take
+
+SCOPE
+[ ] A written scope statement exists and is signed
+[ ] What is out of scope is stated positively, with the route it goes to instead
+[ ] The standard of proof is stated, with its source
+[ ] It is explicit whether the investigator determines findings only or also recommends an outcome
+[ ] The process for varying scope in writing is named
+
+RISK AND PROTECTION
+[ ] Immediate risk screen completed: safety, criminal, regulatory, vulnerability
+[ ] Interim measures considered, with at least two options less restrictive than suspension recorded
+[ ] The interim measures decision, the alternatives rejected, and the review date are on file
+[ ] No interim measure moves or restricts the complainant without a recorded reason
+[ ] The no-retaliation statement has been given to every participant so far, and logged
+
+EVIDENCE
+[ ] Preservation notices sent, prioritised by shortest retention period first
+[ ] Confirmation of preservation received, or chased, with dates
+[ ] Systems with automatic deletion identified, with their windows
+[ ] Nothing has been collected, reviewed or tidied by a custodian rather than the investigator
+
+PLANNING
+[ ] A written investigation plan exists, dated, before the first interview
+[ ] Every allegation has a populated disproving-evidence row
+[ ] Interview order is set, with the reason for the order
+[ ] The respondent is scheduled after the evidence to be put to them will exist
+[ ] The not-interviewed list has a reason against each name that would read fairly to whoever named them
+
+FAIRNESS
+[ ] The respondent will be told the allegations in enough detail to answer them
+[ ] Notice period and representation entitlement confirmed against the policy in force
+[ ] Nobody who may become a respondent is scheduled as a witness
+
+AI USE
+[ ] The tool being used is approved for this data class, or no case data is entered
+[ ] A pseudonymisation convention is set, and the label map is held outside the tool
+[ ] The oversight log is open for this case
+
+NOT READY: any unticked box above is a reason to pause, not a reason to note and continue.
+Where a box cannot be ticked, record here what is missing, who is chasing it, and by when:
+......</pre></div>
+        </div></div>
+      </div>
+
+      <div class="acc" id="c-2">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">C2</span>
+          <span class="acc-t"><strong>Mid-investigation completeness</strong><span>Checklist 2 &middot; before you write the report</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <div class="box"><div class="box-h"><span class="lab">Checklist 2</span><button class="cp">Copy</button></div><pre>MID-INVESTIGATION COMPLETENESS CHECKLIST
+Case reference: ..........   Completed by: ..........   Date: ..........
+
+Run this before you start writing findings. Anything unticked is work still to do, not a caveat
+to add to the report.
+
+EVERY ALLEGATION
+[ ] Every allegation has been put to the respondent, individually, in terms they could answer
+[ ] Every piece of adverse evidence has been put to the respondent, and their response recorded
+[ ] Every allegation has evidence gathered on both sides, or a recorded reason why not
+[ ] No allegation has been quietly dropped. Anything not pursued is recorded with the reason
+[ ] No new allegation has been absorbed without a written scope variation
+
+INTERVIEWS
+[ ] Every planned interview has happened, or its absence is recorded with the reason
+[ ] Every witness the complainant named has been interviewed, or the reason is recorded
+[ ] Every witness the respondent named has been interviewed, or the reason is recorded
+[ ] Every interview record has been offered to the interviewee for review
+[ ] Every attestation is signed, amended, or its refusal is recorded with the date
+[ ] Every amendment requested has been accepted or refused, with a reason on file
+
+EVIDENCE
+[ ] Every document referenced in any account has been requested
+[ ] Everything requested has been received, or its non-receipt is recorded with the reason
+[ ] Every evidence item has a reference, a source, and a date of receipt
+[ ] Chain of custody is recorded for anything whose origin could be questioned
+[ ] Every conflict between accounts or between an account and a document is identified
+[ ] Nothing relevant has been excluded because it was unhelpful to either party
+
+FAIRNESS
+[ ] The respondent has had a fair opportunity to give evidence in their favour
+[ ] The respondent has been asked who else should be spoken to, and the answer acted on
+[ ] Anyone whose status changed from witness to respondent was re-notified and re-interviewed properly
+[ ] No participant has experienced a change to duties, hours, rota or reporting line during the process
+      without a recorded, reviewed reason
+[ ] Delays over the agreed interval have been communicated to the parties
+
+PROCESS RECORD
+[ ] Timeline A and Timeline B are both current
+[ ] Every interim measure has been reviewed on schedule, and each review is recorded
+[ ] Every no-retaliation reminder issued is logged, with date and recipients
+[ ] Every AI-assisted document has a contemporaneous oversight log entry
+
+READY TO WRITE?  Only when every box above is ticked or carries a recorded reason.
+Outstanding items, owner, and target date:
+......</pre></div>
+        </div></div>
+      </div>
+
+      <div class="acc" id="c-3">
+        <button class="acc-b" aria-expanded="false">
+          <span class="acc-n">C3</span>
+          <span class="acc-t"><strong>Documentation defensibility</strong><span>Checklist 3 &middot; would this file survive being read by someone else</span></span>
+          <svg class="acc-c" width="16" height="10" viewBox="0 0 16 10" aria-hidden="true"><path d="M1 1l7 7 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <div class="acc-p"><div class="p">
+          <div class="box"><div class="box-h"><span class="lab">Checklist 3</span><button class="cp">Copy</button></div><pre>DOCUMENTATION DEFENSIBILITY CHECKLIST
+Case reference: ..........   Completed by: ..........   Date: ..........
+
+Read the finished file as though you did not run the case and do not know the people. Then answer.
+
+THE RECONSTRUCTION TEST
+[ ] A person who was not there can follow every conclusion back to the evidence that produced it
+[ ] Every factual statement in the report carries an evidence reference
+[ ] Every inference shows its structure, including the alternative explanation that was rejected
+[ ] Nothing in the executive summary is absent from the body
+[ ] The reasoning for each allegation stands alone and does not borrow strength from another
+
+LANGUAGE
+[ ] No adjective characterising a person survives anywhere in the findings
+[ ] No statement about what anyone knew, intended, meant or felt, unless they said so and it is referenced
+[ ] No "clearly", "obviously", "evidently", "of course"
+[ ] No passive construction hiding who did what
+[ ] Proxy language reviewed and cleared: cultural fit, professionalism, articulate, aggressive, emotional,
+      difficult, abrasive, attitude, communication style, energy, reliability
+[ ] Every quotation is the speaker's actual words, traceable to a contemporaneous record
+
+BALANCE
+[ ] The undermining evidence for each allegation is set out with the same care as the supporting evidence
+[ ] Every unresolved conflict is stated in the report, not omitted
+[ ] Every not-proved finding carries the sentence distinguishing it from a finding of untruthfulness
+[ ] Credibility, where assessed, is assessed per disputed point and never as a global judgment on a person
+[ ] Demeanour, delay in reporting, seniority, tenure and general record are not used as evidence
+[ ] No unproved allegation has influenced the weight given to a proved one
+
+THE RECORD ITSELF
+[ ] Every document in the file index exists, and everything referenced is in the index
+[ ] Notes were made contemporaneously, or the record says when and how they were completed
+[ ] Every alteration to a record is visible, dated and attributed. Nothing was silently amended
+[ ] Version history is intact. The original notes still exist alongside any formatted version
+[ ] Dates and times are consistent across the report, the timelines and the interview records
+[ ] Nothing in the file was created after the fact and presented as contemporaneous
+
+FAIRNESS ON THE FACE OF IT
+[ ] A reader can see when the respondent was told, what they were told, and that they answered
+[ ] A reader can see that evidence in the respondent's favour was sought, not only received
+[ ] A reader can see what was requested and not obtained, and what was done instead
+[ ] A reader can see why anyone named was not interviewed
+[ ] A reader can see the reason for every delay
+
+DISCLOSURE AND DATA
+[ ] The file contains no personal data beyond what the process required
+[ ] Anything a subject access request would reach has been identified for review
+[ ] Retention period is stated with its source, and destruction dates are recorded
+[ ] Special category data is identified and its handling recorded
+
+AI ASSISTANCE
+[ ] Every AI-assisted document has an oversight log entry naming a competent human reviewer
+[ ] Each entry states what was changed, what was rejected and what was independently verified
+[ ] Each entry states what the reviewer could not verify
+[ ] The report's process section describes the oversight protocol that was actually followed
+[ ] No AI output reached the file without a recorded human review
+
+THE LAST QUESTION
+[ ] If a stranger read this file back to you line by line in two years, is there a line you would
+      want to explain? Write it down now, and fix it while you still can:
+      ......</pre></div>
+        </div></div>
+      </div>
+    </section>
+
+    <svg class="stripe" viewBox="0 0 1320 11" preserveAspectRatio="none" aria-hidden="true"><rect width="1320" height="11" fill="url(#weave)"/></svg>
+
+    <section class="sec" id="s-edge">
+      <div class="sec-h">
+        <svg class="dim" width="58" height="22" viewBox="0 0 58 22" aria-hidden="true">
+          <path d="M2 4v14M56 4v14M2 11h54" stroke="#B4741A" stroke-width="1.4" stroke-linecap="round"/>
+          <text x="29" y="9" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#6C7891">04</text>
+        </svg>
+        <div>
+          <h2>When you hit an edge case</h2>
+          <p>Some cases go outside what any template can carry. Here is how to recognise one, and what to do.</p>
+        </div>
+      </div>
+      <div class="call">
+        <h3>The cases that need a person, not a prompt</h3>
+        <ul>
+          <li>The respondent is more senior than anyone who could realistically hold them to account.</li>
+          <li>The complaint arrives after a performance decision, or a performance decision arrives after a complaint.</li>
+          <li>Two processes are running at once and each is waiting for the other.</li>
+          <li>The evidence is in a system nobody in HR can access, and the person who can access it is a party.</li>
+          <li>The complainant asks for confidentiality that the investigation cannot honour, and will withdraw without it.</li>
+          <li>Every account conflicts and there is no document anywhere.</li>
+          <li>The organisation has done nothing about the same pattern twice before and the file will show that.</li>
+        </ul>
+      </div>
+      <div class="call">
+        <h3>Book a working session</h3>
+        <p>If you are in one of those, or in something this pack does not cover, bring the case and we will work through it. Bring what you have, including the parts that are not tidy. Book here:</p>
+        <p><a href="https://calendly.com/boubacarbarry/ai-governance-assessment-call" rel="noopener"><strong>calendly.com/boubacarbarry/ai-governance-assessment-call</strong></a></p>
+        <p>Bring anonymised facts only. Do not send documents containing personal data ahead of the session.</p>
+        <p>This is not legal advice and it does not replace your employment counsel.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <b>The Employee Relations Investigation Pack</b>
+      <p>Version 1.0. Written by Boubacar Barry, Catalyst Works Consulting, Salt Lake City, Utah.</p>
+      <p style="margin-top:10px">Licensed to the purchaser for use inside their own organisation and their own client engagements. Not for resale or redistribution.</p>
+    </div>
+    <div>
+      <b>Not legal advice</b>
+      <p>This pack is a documentation discipline, not legal advice and not a compliance certification. Whether any specific tool or process in your organisation falls inside a given regulation is a question for your counsel.</p>
+      <p style="margin-top:10px">&copy; 2026 Boubacar Barry / Catalyst Works Consulting.<span style="display:none" data-b="&#8203;&#8204;&#8203;&#8205;&#8204;&#8203;">BB-FOUTA</span></p>
+    </div>
+  </div>
+</footer>
+
+<button class="top" id="totop" aria-label="Back to top">
+  <svg width="11" height="8" viewBox="0 0 11 8" aria-hidden="true"><path d="M1 7l4.5-5L10 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  Top
+</button>
+
+<script>
+(function(){
+  "use strict";
+  /* ── contents rail, built from the document so it can never drift ── */
+  var MAP=[
+    {g:"Start",items:[["s-start","00","Start here"]]},
+    {g:"Prompts",items:[["st-1","01","Intake and triage"],["st-2","02","Planning"],["st-3","03","Interviews"],["st-4","04","Documentation"],["st-5","05","Findings and closure"],["st-6","06","Communications"],["st-7","07","Human oversight record"]]},
+    {g:"Templates",items:[["t-1","T1","Intake form"],["t-2","T2","Investigation plan"],["t-3","T3","Interview record"],["t-4","T4","Timeline"],["t-5","T5","Findings report"],["t-6","T6","Outcome letters"],["t-7","T7","Improvement plan"]]},
+    {g:"Checklists",items:[["c-1","C1","Readiness"],["c-2","C2","Completeness"],["c-3","C3","Defensibility"]]},
+    {g:"Support",items:[["s-edge","04","Edge cases"]]}
+  ];
+  function buildRail(el){
+    var h="";
+    MAP.forEach(function(grp,gi){
+      h+='<h2 class="'+(gi?"grp":"")+'">'+grp.g+'</h2><ol>';
+      grp.items.forEach(function(it){
+        h+='<li><a href="#'+it[0]+'" data-t="'+it[0]+'"><i>'+it[1]+'</i><span>'+it[2]+'</span></a></li>';
+      });
+      h+='</ol>';
+    });
+    el.innerHTML=h;
+  }
+  var railD=document.getElementById("railD"), railM=document.getElementById("railM");
+  buildRail(railD); buildRail(railM);
+
+  /* ── accordions ── */
+  function wire(acc){
+    var btn=acc.querySelector(".acc-b");
+    btn.addEventListener("click",function(){
+      var open=acc.classList.toggle("open");
+      btn.setAttribute("aria-expanded",open?"true":"false");
+    });
+  }
+  var accs=[].slice.call(document.querySelectorAll(".acc"));
+  accs.forEach(wire);
+
+  /* opening a target section from a link must expand it */
+  function openTarget(id){
+    var el=document.getElementById(id);
+    if(!el)return;
+    if(el.classList.contains("acc")&&!el.classList.contains("open")){
+      el.classList.add("open");
+      el.querySelector(".acc-b").setAttribute("aria-expanded","true");
+    }
+  }
+  document.addEventListener("click",function(e){
+    var a=e.target.closest?e.target.closest('a[href^="#"]'):null;
+    if(!a)return;
+    var id=a.getAttribute("href").slice(1);
+    if(!id)return;
+    openTarget(id);
+    closeDrawer();
+  });
+  if(location.hash){openTarget(location.hash.slice(1));}
+
+  /* ── copy buttons ── */
+  document.querySelectorAll(".cp").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".box").querySelector("pre");
+      var txt=pre.innerText;
+      function ok(){
+        var was=b.textContent; b.textContent="Copied"; b.classList.add("ok");
+        setTimeout(function(){b.textContent=was;b.classList.remove("ok");},1600);
+      }
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(ok,fallback);
+      }else{fallback();}
+      function fallback(){
+        var ta=document.createElement("textarea");
+        ta.value=txt; ta.setAttribute("readonly","");
+        ta.style.position="fixed"; ta.style.left="-9999px";
+        document.body.appendChild(ta); ta.select();
+        try{document.execCommand("copy");ok();}catch(err){b.textContent="Select and copy";}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
+  /* ── mobile drawer ── */
+  var draw=document.getElementById("draw"), scrim=document.getElementById("scrim"),
+      burger=document.getElementById("burger"), xb=document.getElementById("xb");
+  function openDrawer(){
+    draw.classList.add("on"); scrim.classList.add("on");
+    draw.setAttribute("aria-hidden","false"); burger.setAttribute("aria-expanded","true");
+    document.body.style.overflow="hidden"; xb.focus();
+  }
+  function closeDrawer(){
+    if(!draw.classList.contains("on"))return;
+    draw.classList.remove("on"); scrim.classList.remove("on");
+    draw.setAttribute("aria-hidden","true"); burger.setAttribute("aria-expanded","false");
+    document.body.style.overflow="";
+  }
+  burger.addEventListener("click",function(){draw.classList.contains("on")?closeDrawer():openDrawer();});
+  xb.addEventListener("click",closeDrawer);
+  scrim.addEventListener("click",closeDrawer);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeDrawer();});
+
+  /* ── back to top ── */
+  var top=document.getElementById("totop");
+  top.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+
+  /* ── scrollspy + top button, one rAF-throttled handler ── */
+  var targets=[];
+  MAP.forEach(function(g){g.items.forEach(function(i){var el=document.getElementById(i[0]);if(el)targets.push({id:i[0],el:el});});});
+  var links=[].slice.call(document.querySelectorAll(".rail a"));
+  var ticking=false;
+  function onScroll(){
+    if(ticking)return; ticking=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY||window.pageYOffset;
+      top.classList.toggle("show",y>560);
+      var cur=null;
+      for(var i=0;i<targets.length;i++){
+        if(targets[i].el.getBoundingClientRect().top<=140)cur=targets[i].id;
+      }
+      links.forEach(function(a){a.classList.toggle("on",a.getAttribute("data-t")===cur);});
+      ticking=false;
+    });
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
