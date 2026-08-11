@@ -28,9 +28,20 @@
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--indigo-deep);color:var(--ink);font-family:var(--sans);
-  font-size:17px;line-height:1.62;overflow-x:hidden;min-height:100dvh}
+  font-size:17px;line-height:1.62;min-height:100dvh}
 img,svg{max-width:100%;height:auto}
 a{color:var(--indigo)}
+
+/* ── no sideways scroll, and no hiding it either ──────────────────────
+   The body deliberately does NOT carry overflow-x:hidden. That rule clips
+   real content and makes documentElement.scrollWidth lie, so a genuine
+   overflow can never be measured. The long access URL below is the one
+   string on this page that can overflow a 375px phone, so it wraps at the
+   source (see .access-u) rather than being hidden at the body.
+   ------------------------------------------------------------------ */
+a,code,kbd,samp{overflow-wrap:anywhere}
+h1,h2,h3{text-wrap:balance}
+p,li{text-wrap:pretty}
 
 /* woven indigo ground */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
