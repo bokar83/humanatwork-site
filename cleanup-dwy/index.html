@@ -211,6 +211,56 @@ main { max-width: 720px; margin: 32px auto; padding: 0 24px; }
 .tos-gate label { cursor: pointer; display: flex; align-items: flex-start; gap: 10px; }
 .tos-gate input[type="checkbox"] { margin-top: 4px; cursor: pointer; }
 .tos-gate a { color: var(--brick); }
+/* SYS-529 capture-before-checkout. The email is taken and persisted on this
+   page before any redirect to Stripe, so a person who abandons the payment
+   screen is still reachable. Email only: the name is collected at checkout
+   and a second field in front of it costs conversion for nothing. */
+.cap-lab {
+  display: block;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.cap-in {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  font-family: var(--body);
+  font-size: 16px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 0;
+  margin-bottom: 8px;
+}
+.cap-in:focus { outline: 2px solid var(--brick); outline-offset: 1px; }
+.cap-msg {
+  display: none;
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--brick-deep);
+  margin-bottom: 10px;
+}
+.checkout-box.err .cap-msg { display: block; }
+.checkout-box.err .cap-in { border-color: var(--brick); }
+.cap-note {
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 16px 0;
+}
+.cap-done, .cap-hold {
+  display: none;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--bone);
+}
+.checkout-box.done .cap-done { display: block; }
+.checkout-box.hold .cap-hold { display: block; }
 .btn-buy {
   display: inline-block;
   padding: 14px 28px;
@@ -374,12 +424,16 @@ footer.site-footer a:hover { color: var(--brick); }
           </label>
         </div>
 
-        <a id="stripe-link"
-           href="https://buy.stripe.com/7sYfZjdpZcc2fzO7QVgEg07"
-           class="btn-buy"
-           onclick="if(!document.getElementById('tos-accept').checked){alert('Please agree to the Terms of Service first.');return false;} if(typeof window.plausible==='function'){window.plausible('CleanupDWY:CheckoutClick');}">
-          Pay $497 via Stripe &rarr;
-        </a>
+        <form id="buyform" novalidate>
+          <label class="cap-lab" for="cap-email">Your email, so I can reach you about your Drive cleanup.</label>
+          <input class="cap-in" type="email" id="cap-email" name="email" placeholder="you@company.com" autocomplete="email" required>
+          <span class="cap-msg" id="cap-msg">Enter a valid email address.</span>
+          <p class="cap-note">Email only. Your name goes on the next screen, at checkout.</p>
+          <button class="btn-buy" type="submit" id="cap-submit">Continue to checkout</button>
+        </form>
+
+        <div class="cap-done"><strong>Got it.</strong> Sending you to checkout now. If nothing happens, use the button again.</div>
+        <div class="cap-hold"><strong>Checkout is not connected yet.</strong> Your email is saved. The payment link is being set up and you will hear from me directly.</div>
 
         <p class="checkout-meta">
           Checkout on Stripe (secure).<br>
@@ -441,6 +495,133 @@ footer.site-footer a:hover { color: var(--brick); }
       });
     }
   } catch (e) { /* ignore */ }
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   SYS-529 . capture the email BEFORE any redirect to Stripe.
+
+   Before this, the page carried one bare buy.stripe.com link and no
+   email field anywhere. Stripe captures no email until the visitor
+   advances on ITS page, so every abandoned checkout here left nothing
+   behind and was unrecoverable. The email is now taken and persisted
+   on our own page first, and the redirect only happens once the
+   RESPONSE BODY confirms the capture.
+
+   Body-asserted, not status-asserted, deliberately (SYS-528): a
+   switched-off capture endpoint answered HTTP 200 with {"ok": false}
+   for 91 days and every front end reading `response.ok` showed a
+   thank-you for a lead nobody had. `duplicate` is a real success:
+   they are already on the list, so let them through.
+
+   If CHECKOUT_URL is ever blanked, the form still captures and shows
+   an honest hold notice rather than redirecting nowhere. That
+   fallback is deliberate, leave it in.
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+
+  var CHECKOUT_URL  = "https://buy.stripe.com/7sYfZjdpZcc2fzO7QVgEg07";
+  var LEAD_ENDPOINT = "https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe";
+
+  var form   = document.getElementById("buyform"),
+      card   = document.getElementById("buy"),
+      input  = document.getElementById("cap-email"),
+      submit = document.getElementById("cap-submit"),
+      msg    = document.getElementById("cap-msg"),
+      tos    = document.getElementById("tos-accept");
+  if (!form || !card || !input || !submit || !msg) { return; }
+
+  var RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function fail(text){
+    card.classList.remove("done");
+    card.classList.add("err");
+    msg.textContent = text;
+    submit.disabled = false;
+    submit.removeAttribute("aria-busy");
+    submit.textContent = "Continue to checkout";
+  }
+
+  input.addEventListener("input", function(){
+    if (RE.test(input.value.trim())) { card.classList.remove("err"); }
+  });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    /* TOS gate preserved from the link this form replaced. */
+    if (tos && !tos.checked) {
+      fail("Please agree to the Terms of Service first.");
+      tos.focus();
+      return;
+    }
+
+    var email = input.value.trim();
+    if (!RE.test(email)) {
+      fail("Enter a valid email address.");
+      input.focus();
+      return;
+    }
+
+    submit.disabled = true;
+    submit.setAttribute("aria-busy", "true");
+    submit.textContent = "One moment";
+
+    var qs = new URLSearchParams(window.location.search || "");
+    var payload = {
+      email: email,
+      utm_source: (qs.get("utm_source") || "cleanup_dwy_direct").slice(0, 64),
+      utm_content: ("page:cleanup_dwy_sales" + (qs.get("utm_content") ? "|" + qs.get("utm_content") : "")).slice(0, 120),
+      form_location: "cleanup_dwy_sales_precheckout",
+      magnet: "cleanup_dwy"
+    };
+
+    function proceed(){
+      card.classList.remove("err");
+      card.classList.add("done");
+      if (typeof window.plausible === "function") {
+        window.plausible("CleanupDWY:CheckoutClick");
+      }
+      if (CHECKOUT_URL && /^https:\/\//.test(CHECKOUT_URL)) {
+        /* Hand Stripe the address they already typed so they do not type
+           it twice. prefilled_email is a documented payment-link
+           parameter and it is additive: if Stripe ever ignores it the
+           checkout still loads, they just retype. */
+        window.location.href = CHECKOUT_URL
+          + (CHECKOUT_URL.indexOf("?") > -1 ? "&" : "?")
+          + "prefilled_email=" + encodeURIComponent(email);
+      } else {
+        card.classList.add("hold");
+        submit.disabled = false;
+        submit.removeAttribute("aria-busy");
+        submit.textContent = "Continue to checkout";
+      }
+    }
+
+    function refused(detail){
+      try { console.error("[haw] cleanup-dwy pre-checkout lead capture FAILED", detail); } catch (err) {}
+      if (typeof window.plausible === "function") {
+        window.plausible("lead_capture_failed", { props: { page: "cleanup-dwy" } });
+      }
+      fail("That did not save. Check your connection and try again, or email boubacar@catalystworks.consulting.");
+    }
+
+    fetch(LEAD_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(function(r){
+        if (!r.ok) { throw new Error("status " + r.status); }
+        return r.json().catch(function(){ throw new Error("unparseable body"); });
+      })
+      .then(function(b){
+        if (b && b.ok === true) { return proceed(); }
+        if (b && b.error === "duplicate") { return proceed(); }
+        throw new Error("capture not confirmed: " + JSON.stringify(b));
+      })
+      .catch(refused);
+  });
 })();
 </script>
 
