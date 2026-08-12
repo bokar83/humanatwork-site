@@ -702,8 +702,25 @@ The four classified lists with rewrites, the flag list, and a clean redraft cont
       submit.textContent="Continue to checkout";
     }
 
+    /* 2026-08-11 SYS-528. This used to proceed to checkout on `r.ok` alone.
+       The subscribe endpoint answers HTTP 200 with {"ok": false} when the
+       list rejects an address, and a switched-off capture endpoint answers
+       200 as well, so a status-only check would send a buyer to Stripe with
+       no lead row behind them -- and the whole point of capturing before the
+       redirect is that the row exists even if they never pay. Success is now
+       the body saying so. A duplicate is a real success: they are already on
+       the list, so let them through to checkout. */
     fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
-      .then(function(r){if(!r.ok)throw new Error("status "+r.status);proceed();})
+      .then(function(r){
+        if(!r.ok) throw new Error("status "+r.status);
+        return r.json().catch(function(){ throw new Error("unparseable body"); });
+      })
+      .then(function(b){
+        if(b && b.ok === true) return proceed();
+        if(b && b.error === "duplicate") return proceed();
+        try { console.error("[haw] pre-checkout lead capture FAILED", b); } catch(e){}
+        throw new Error("capture not confirmed");
+      })
       .catch(failed);
   });
 })();
