@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 prompts for day one . Free . Human at Work</title>
+<meta name="description" content="Five paste-ready prompts for the person who keeps meaning to start with AI. Email triage, meeting prep, document summary, pre-mortem, weekly review. Free. Email only.">
+<link rel="icon" href="/favicon.svg">
+<link rel="canonical" href="https://humanatwork.ai/5-prompts/">
+
+<!-- OpenGraph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://humanatwork.ai/5-prompts/">
+<meta property="og:title" content="5 prompts for day one. Free.">
+<meta property="og:description" content="Five paste-ready prompts for the person who keeps meaning to start with AI. Paste into any chat tool you already have open.">
+<meta property="og:image" content="https://humanatwork.ai/og-store.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Human at Work">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://humanatwork.ai/5-prompts/">
+<meta name="twitter:title" content="5 prompts for day one. Free.">
+<meta name="twitter:description" content="Five paste-ready prompts. Paste into any chat tool you already have open.">
+<meta name="twitter:image" content="https://humanatwork.ai/og-store.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Spectral:ital,wght@0,400;0,500;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Plausible analytics. Tracks Magnet:Click on landing arrival, LeadCapture
+     on signup success, Magnet:Download when the PDF is served. -->
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-IT5MDYbswlLXVYOhAkE_-.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
+<style>
+:root {
+  --ink: #161513;
+  --ink-soft: #2A2620;
+  --paper: #F4EFE6;
+  --bone: #E6DDC8;
+  --brick: #A8341F;
+  --brick-deep: #8A2818;
+  --sage: #3E4A2E;
+  --gold: #C28E26;
+  --muted: #6B655C;
+  --hairline: rgba(20, 18, 16, 0.12);
+  --hairline-strong: rgba(20, 18, 16, 0.32);
+  --serif: "Fraunces", "Iowan Old Style", "Georgia", serif;
+  --body: "Spectral", "Iowan Old Style", "Georgia", serif;
+  --mono: "JetBrains Mono", "Menlo", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 80px;
+}
+a { color: var(--brick); text-decoration: underline; text-decoration-color: var(--hairline-strong); }
+a:hover { text-decoration-color: var(--brick); }
+.site-nav { background: var(--ink); color: var(--paper); padding: 12px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.site-nav-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.site-nav a { color: var(--paper); text-decoration: none; letter-spacing: 0.1em; }
+.site-nav a:hover { color: var(--brick); }
+.site-nav .brand { font-family: var(--serif); font-size: 14px; letter-spacing: 0.04em; text-transform: none; font-weight: 600; }
+.site-nav ul { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+
+main { max-width: 720px; margin: 32px auto; padding: 0 24px; }
+
+.hero { padding: 24px 0 8px 0; }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brick); margin-bottom: 16px; }
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.04;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.hero h1 em { font-style: italic; color: var(--brick); }
+.hero .deck {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 600px;
+}
+
+.body-copy { padding: 28px 0 8px 0; }
+.body-copy p { margin-bottom: 14px; max-width: 620px; }
+.body-copy h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin-top: 22px;
+  margin-bottom: 8px;
+}
+
+.prompt-list {
+  margin: 16px 0 24px 0;
+  padding: 0;
+  list-style: none;
+}
+.prompt-list li {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 8px 0;
+  padding-left: 22px;
+  position: relative;
+  color: var(--ink);
+}
+.prompt-list li::before {
+  content: ".";
+  position: absolute;
+  left: 0;
+  top: -4px;
+  color: var(--brick);
+  font-weight: 700;
+  font-size: 22px;
+}
+.prompt-list li strong {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--brick);
+}
+
+/* Lead-capture form: seamless hardrule (no border), soft drop-shadow lift
+   instead. Same pattern as /store inline form per
+   feedback_seamless_no_frame_lines.md. */
+.lead-capture {
+  background: var(--paper);
+  padding: 28px;
+  max-width: 600px;
+  margin: 28px 0 0 0;
+  box-shadow: 0 8px 32px rgba(20, 18, 16, 0.06);
+}
+.lead-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brick);
+  margin-bottom: 6px;
+}
+.lead-headline {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.lead-sub {
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.haw-lead-form { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.haw-lead-form .lead-email {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  border: 1px solid var(--hairline-strong);
+  box-shadow: inset 0 1px 0 rgba(20, 18, 16, 0.03);
+  outline: none;
+}
+.haw-lead-form .lead-email:focus { border-color: var(--brick); }
+.haw-lead-form .lead-submit {
+  align-self: flex-start;
+  padding: 12px 24px;
+  background: var(--brick);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.haw-lead-form .lead-submit:hover { background: var(--brick-deep); }
+.haw-lead-form .lead-submit:disabled { background: var(--muted); cursor: not-allowed; }
+.haw-lead-form .lead-micro {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.haw-lead-result {
+  font-family: var(--body);
+  font-size: 15px;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.haw-lead-result.ok { color: var(--sage); }
+.haw-lead-result.err { color: var(--brick-deep); }
+.haw-lead-result a {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brick);
+  text-decoration: underline;
+  text-decoration-color: var(--brick);
+  text-underline-offset: 3px;
+}
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+.fallback-note {
+  margin-top: 20px;
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 600px;
+}
+.fallback-note a { color: var(--brick); }
+
+/* Seamless: no border-top on footer. */
+footer.site-footer {
+  max-width: 880px;
+  margin: 80px auto 0;
+  padding: 32px 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+footer.site-footer a { color: var(--muted); text-decoration: none; }
+footer.site-footer a:hover { color: var(--brick); }
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  main { padding: 0 18px; margin: 18px auto; }
+  .hero h1 { font-size: 32px; }
+  .hero .deck { font-size: 17px; }
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="primary">
+    <div class="site-nav-inner">
+      <a href="/" class="brand">Human at Work</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Free . 5 starter prompts</p>
+      <h1>5 prompts for day one. <em>Free.</em></h1>
+      <p class="deck">Five paste-ready prompts for the person who keeps meaning to start with AI. Email triage, meeting prep, document summary, pre-mortem, weekly review. Paste them into any chat tool you already have open.</p>
+    </section>
+
+    <section class="body-copy">
+      <p>You opened a chat tool three times this month and closed it each time without finishing what you came for. That is not a discipline problem. It is a starter-prompt problem.</p>
+      <p>These five come out of the 28 I keep in my own stack. They are paste-ready, they are short enough to run all five in one sitting, and none of them asks you to learn anything before you can use it.</p>
+      <h2>What is inside</h2>
+      <ul class="prompt-list">
+        <li><strong>Email triage.</strong> Paste your inbox subjects. Get ACTION, READ, ARCHIVE, and a one-line reply you can edit.</li>
+        <li><strong>Meeting prep.</strong> Paste tomorrow's calendar. Get the agenda, the questions to ask, and the risk to surface.</li>
+        <li><strong>Document summary.</strong> Paste a doc. Get a three-bullet TLDR and the one decision it is asking you to make.</li>
+        <li><strong>Pre-mortem.</strong> Paste a decision, get three ways it fails before it fails.</li>
+        <li><strong>Weekly review.</strong> Paste your week. Get the one thing you avoided.</li>
+      </ul>
+      <h2>Who it is for</h2>
+      <p>Owners and operators who believe AI belongs in their business and have not started. If you already run prompts every week, this one is too basic for you and I would rather tell you now.</p>
+      <h2>Why these five</h2>
+      <p>They cover a normal week. Run them on real work, not practice. Keep the two that earn it and drop the other three.</p>
+    </section>
+
+    <section class="lead-capture" aria-labelledby="lead-capture-heading" data-plausible-source="lm_5prompts_page">
+      <p class="lead-eyebrow">Email below . PDF opens on the next screen</p>
+      <h2 class="lead-headline" id="lead-capture-heading">Get the 5 prompts.</h2>
+      <p class="lead-sub">Email only. No spam. Unsubscribe in one click. You also get my newsletter.</p>
+      <form class="haw-lead-form" id="lm5p-form" method="post" action="https://agentshq.boubacarbarry.com/api/orc/workshop-register" novalidate>
+        <label class="sr-only" for="lm5p-email">Email address</label>
+        <input class="lead-email" id="lm5p-email" type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <button class="lead-submit" type="submit" id="lm5p-btn">Send me the 5 prompts</button>
+        <p class="lead-micro">Email only. No name, no phone.</p>
+      </form>
+      <div class="haw-lead-result" id="lm5p-result" role="status" aria-live="polite" hidden></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Human at Work . By Boubacar</span>
+  </footer>
+
+<script>
+(function () {
+  /* Single-purpose magnet page. Takes an email, persists it, then and only
+     then hands over the PDF.
+
+     REUSE, not a new capture path: this posts to the SAME live endpoint the
+     paid workshop pages post to, /api/orc/workshop-register. That route is
+     the only public capture endpoint that writes the canonical `leads` CRM
+     row (_persist_workshop_lead) in addition to Beehiiv. /beehiiv-subscribe,
+     which the older magnet pages use, writes to Beehiiv ONLY, so a row can
+     never be read back out of the leads table to prove the capture. The
+     cohort below is deliberately a magnet key and not a workshop key, so
+     these opt-ins are segregated and can never be counted as seat sales. */
+  var CAPTURE_URL = 'https://agentshq.boubacarbarry.com/api/orc/workshop-register';
+  var COHORT = 'lm_ai_starter_5_prompts';
+  var MAGNET = 'ai_starter_5_prompts';
+
+  /* The PDF is NOT reachable around this form. It appears in no href in the
+     HTML of this page, and .htaccess 403s the file unless the request carries
+     this key, which is only ever assembled here, after a write lands. */
+  var PDF_URL = '/magnets/ai-starter-5-prompts.pdf?k=d4f81c7a2e';
+
+  var qs = new URLSearchParams(window.location.search || '');
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  var form = document.getElementById('lm5p-form');
+  var input = document.getElementById('lm5p-email');
+  var btn = document.getElementById('lm5p-btn');
+  var resultEl = document.getElementById('lm5p-result');
+  if (!form || !input || !btn || !resultEl) return;
+
+  try {
+    if (typeof window.plausible === 'function') {
+      window.plausible('Magnet:Click', {
+        props: {
+          magnet: MAGNET,
+          utm_source: qs.get('utm_source') || 'direct',
+          utm_content: qs.get('utm_content') || 'none'
+        }
+      });
+    }
+  } catch (e) { /* a pixel must never cost a capture */ }
+
+  function body(email, ref) {
+    return JSON.stringify({
+      email: email,
+      cohort: COHORT,
+      seat_kind: 'free',
+      reg_ref: ref || '',
+      utm_source: qs.get('utm_source') || 'lm_5prompts',
+      utm_medium: qs.get('utm_medium') || 'organic',
+      utm_campaign: qs.get('utm_campaign') || 'lm_ai_starter_5_prompts',
+      utm_content: qs.get('utm_content') || 'lm_5prompts_page',
+      form_location: 'lm_5prompts_page',
+      magnet: MAGNET,
+      website: (form.querySelector('input[name="website"]') || {}).value || ''
+    });
+  }
+
+  /* Success is the BODY saying so, never the status code. This endpoint
+     answers HTTP 200 with {"ok": false, "error": "invalid_email"} for an
+     address the list refused, so a status-only check would hand over the
+     PDF to somebody whose row was never written (SYS-528). A duplicate is
+     a real success: that person is already on the list. */
+  function post(email, ref) {
+    return fetch(CAPTURE_URL, {
+      method: 'POST',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: body(email, ref)
+    }).then(function (r) {
+      return r.json().then(function (b) {
+        if (b && b.ok === true) return 'ok';
+        if (b && b.error === 'duplicate') return 'ok';
+        if (b && b.error === 'invalid_email') return 'invalid_email';
+        if (b && b.error === 'rate_limited') return 'rate_limited';
+        return 'fail';
+      }).catch(function () { return 'fail'; });
+    });
+  }
+
+  /* Three attempts, backing off 250ms then 750ms. An immediate retry into a
+     server that is briefly busy just fails again at the same instant. */
+  var RETRY_BACKOFF_MS = [250, 750];
+
+  function capture(email, ref) {
+    var attempt = 0;
+    function tryOnce() {
+      return post(email, ref).catch(function () { return 'fail'; })
+        .then(function (state) {
+          if (state !== 'fail') return state;
+          var wait = RETRY_BACKOFF_MS[attempt];
+          attempt++;
+          if (wait == null) return 'fail';
+          return new Promise(function (res) { setTimeout(res, wait); }).then(tryOnce);
+        });
+    }
+    return tryOnce();
+  }
+
+  function showError(msg) {
+    resultEl.hidden = false;
+    resultEl.classList.remove('ok');
+    resultEl.classList.add('err');
+    resultEl.textContent = msg;
+    btn.disabled = false;
+    btn.textContent = 'Send me the 5 prompts';
+  }
+
+  function showSuccess() {
+    resultEl.textContent = '';
+    resultEl.appendChild(document.createTextNode('You are on the list. '));
+    var link = document.createElement('a');
+    link.href = PDF_URL;
+    link.id = 'lm5p-download';
+    link.setAttribute('download', '');
+    link.textContent = 'Download the 5 prompts';
+    resultEl.appendChild(link);
+    resultEl.appendChild(document.createTextNode('.'));
+    resultEl.hidden = false;
+    resultEl.classList.remove('err');
+    resultEl.classList.add('ok');
+    form.style.display = 'none';
+    try {
+      if (typeof window.plausible === 'function') {
+        window.plausible('LeadCapture', { props: { source: 'lm_5prompts_page', magnet: MAGNET } });
+        window.plausible('Magnet:Download', { props: { magnet: MAGNET, via: 'form_success' } });
+      }
+    } catch (e) { /* ignore */ }
+    setTimeout(function () {
+      var l = document.getElementById('lm5p-download');
+      if (l) l.click();
+    }, 300);
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var email = (input.value || '').trim();
+    if (!emailRe.test(email)) {
+      input.setAttribute('aria-invalid', 'true');
+      input.focus();
+      showError('That email does not look right. Have another look at it.');
+      return;
+    }
+    input.removeAttribute('aria-invalid');
+    btn.disabled = true;
+    btn.textContent = 'One moment';
+    resultEl.hidden = true;
+
+    var ref = 'lm5p-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+
+    capture(email, ref).then(function (state) {
+      if (state === 'ok') { showSuccess(); return; }
+      /* A failed write is VISIBLE and the PDF is NOT handed over. Silently
+         serving the file on a failed capture is the exact defect that turns a
+         funnel into a giveaway with nothing to show for it. */
+      if (state === 'invalid_email') {
+        showError('That address did not go through. Check it and try once more.');
+      } else if (state === 'rate_limited') {
+        showError('Too many tries from this connection. Wait a minute and send it again.');
+      } else {
+        showError('That did not save, so I am not going to pretend it did. Try again in a moment. If it keeps failing, email boubacar@catalystworks.consulting and I will send the PDF myself.');
+      }
+      try { console.error('[haw] 5-prompts capture FAILED', state); } catch (e) {}
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

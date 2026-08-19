@@ -11,6 +11,29 @@
 
 RewriteEngine On
 
+# --- Gated magnet files --- must stay AHEAD of every other rule ---
+# A lead magnet is only a lead magnet if the file cannot be reached
+# around the form. These PDFs live in /magnets/ like the others, but
+# a request without the key 403s, so the bare URL is not a download
+# even for somebody who guesses the filename. The key is assembled in
+# the landing page's JS and only after the capture write has landed;
+# it appears in no href in the page's HTML.
+#
+# Deliberately NOT applied to the older magnets: those already ship a
+# public direct-download link on their own landing pages, so gating
+# the file now would break a link that is already out in the world.
+#
+# Emitted by scripts/regenerate_haw_htaccess.py (GATED_MAGNETS). Applied
+# here by hand ON PURPOSE 2026-08-19: a full regeneration today also drops
+# 5 live per-SKU redirect rules, because the Gumroad manifest the generator
+# reads no longer lists agentshq-tripwire, cleanup-prompt-pack,
+# convert-or-kill-rubric, convert-or-kill-workbook or how-we-built-agentshq.
+# Taking live redirects down was not in scope, so only this block was added.
+# That manifest drift is a real separate defect and is reported, not fixed here.
+RewriteCond %{QUERY_STRING} !(^|&)k=d4f81c7a2e($|&)
+RewriteRule ^magnets/ai-starter-5-prompts\.pdf$ - [F,L]
+
+
 # --- Branded shorteners --- preserve UTM behind the scenes ---
 # Pattern: /k/<slug> = email-channel kit links
 # Pattern: /x/<slug> = X-channel post links
