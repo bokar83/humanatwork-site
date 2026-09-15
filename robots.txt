@@ -1,4 +1,59 @@
+# Human at Work — humanatwork.ai
+# AI assistants and search crawlers are explicitly welcome on the public site.
+#
+# /internal/ is not a public surface and is disallowed in every group below.
+# It is also denied at the server via its own .htaccess file, which is the
+# control that actually stops a fetch. robots.txt is advisory only: it asks a
+# well-behaved crawler not to fetch, it does not enforce anything and it does
+# not retract anything already crawled or cached.
+
 User-agent: *
 Allow: /
+Disallow: /internal/
+
+# --- AI / LLM crawlers (explicit allow on the public site) ---
+User-agent: GPTBot
+Allow: /
+Disallow: /internal/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /internal/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /internal/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /internal/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /internal/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /internal/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /internal/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /internal/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /internal/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /internal/
+
+User-agent: CCBot
+Allow: /
+Disallow: /internal/
 
 Sitemap: https://humanatwork.ai/sitemap.xml

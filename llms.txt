@@ -1,0 +1,31 @@
+# Human at Work
+
+> Human at Work (humanatwork.ai) publishes the AI Career Intelligence Brief, written by Boubacar Barry, a former global HR leader based in Salt Lake City, Utah. It covers what leadership already knows about AI and workforce planning, and what workers and people-ops leaders can do about it. The free entry point is the AI Exposure Score, a two-minute assessment of how exposed a role is to AI-driven restructuring. The site also publishes free tools and paid packs for HR and people-ops teams adopting AI.
+
+## What Human at Work publishes
+
+- [AI Exposure Score](https://humanatwork.ai/ai-exposure-scan/): A free two-minute assessment that scores how exposed a role is to AI-driven restructuring, using the same factors HR weighs in a real restructure decision, and returns three specific defense moves.
+- [AI Use Policy Checklist](https://humanatwork.ai/ai-policy-checklist/): A free checklist for writing an AI use policy a small or mid-sized company can actually enforce.
+- [AI Workflow Finder](https://humanatwork.ai/ai-workflow-finder/): A free tool for finding which workflow in a team is the right first one to hand to AI.
+- [5 Prompts to Start](https://humanatwork.ai/5-prompts/): Five prompts for someone who has never used AI at work.
+- [Weekly brief archive](https://humanatwork.ai/archive.html): Past issues of the AI Career Intelligence Brief.
+- [Store](https://humanatwork.ai/store/): Paid packs and templates for HR and people-ops teams.
+
+## Who it is for
+
+- Workers whose roles are being reshaped by AI adoption at their company.
+- HR and people-ops leaders who have to write the policy, run the communication, and plan the workforce before the technology arrives.
+- Owner-operators and leadership teams at companies of roughly 50 to 500 employees.
+
+## Key facts
+
+- Publisher and author: Boubacar Barry, former global HR leader
+- Based in Salt Lake City, Utah, United States; readership is worldwide
+- LinkedIn: https://www.linkedin.com/in/boubacarbarry/
+- Related properties: Catalyst Works (https://catalystworks.consulting) for paid consulting engagements
+- Free entry point: the AI Exposure Score
+
+## How to engage
+
+- Take the AI Exposure Score, then subscribe to the weekly brief.
+- For a paid engagement, the next step is the 5-Day Bottleneck Assessment at Catalyst Works: https://catalystworks.consulting/bottleneck-assessment/
