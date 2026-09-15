@@ -170,7 +170,7 @@ main { max-width: 720px; margin: 32px auto; padding: 0 24px; }
 .tos-gate label { cursor: pointer; display: flex; align-items: flex-start; gap: 10px; }
 .tos-gate input[type="checkbox"] { margin-top: 4px; cursor: pointer; }
 .tos-gate a { color: var(--brick); }
-/* SYS-529 capture-before-checkout. The email is taken and persisted on this
+/* Capture before checkout: the email is taken and persisted on this
    page before any redirect to Stripe, so a person who abandons the payment
    screen is still reachable. Email only: the name is collected at checkout
    and a second field in front of it costs conversion for nothing. */
@@ -495,26 +495,15 @@ footer.site-footer a:hover { color: var(--brick); }
   } catch (e) { /* ignore */ }
 })();
 
-/* ═══════════════════════════════════════════════════════════════
-   SYS-529 . capture the email BEFORE any redirect to Stripe.
-
-   Before this, the page carried one bare buy.stripe.com link and no
-   email field anywhere. Stripe captures no email until the visitor
-   advances on ITS page, so every abandoned checkout here left nothing
-   behind and was unrecoverable. The email is now taken and persisted
-   on our own page first, and the redirect only happens once the
-   RESPONSE BODY confirms the capture.
-
-   Body-asserted, not status-asserted, deliberately (SYS-528): a
-   switched-off capture endpoint answered HTTP 200 with {"ok": false}
-   for 91 days and every front end reading `response.ok` showed a
-   thank-you for a lead nobody had. `duplicate` is a real success:
-   they are already on the list, so let them through.
+/* Capture the email BEFORE any redirect to Stripe, so an abandoned
+   checkout is still reachable. Success is asserted from the RESPONSE
+   BODY, never the HTTP status alone -- a status-only check can show a
+   thank-you for a lead that was never actually saved. `duplicate` is a
+   real success: they are already on the list, so let them through.
 
    If CHECKOUT_URL is ever blanked, the form still captures and shows
    an honest hold notice rather than redirecting nowhere. That
-   fallback is deliberate, leave it in.
-   ═══════════════════════════════════════════════════════════════ */
+   fallback is deliberate, leave it in. */
 (function(){
   "use strict";
 

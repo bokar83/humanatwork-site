@@ -51,7 +51,7 @@
 <meta name="twitter:image" content="https://humanatwork.ai/og-store.png">
 <meta name="twitter:image:alt" content="Human at Work store: operator kits I actually paste, run, and ship.">
 
-<!-- Privacy-friendly analytics by self-hosted Umami (D-20260906-f189b2). -->
+<!-- Privacy-friendly analytics by self-hosted Umami. -->
 <script defer src="https://analytics.boubacarbarry.com/script.js" data-website-id="024fc9d0-454d-439c-93fc-d1267d9e25e3"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,20 +92,17 @@ a:hover { text-decoration-color: var(--brick); }
 .site-nav a:hover { color: var(--brick); }
 .site-nav .brand { font-family: var(--serif); font-size: 14px; letter-spacing: 0.04em; text-transform: none; font-weight: 600; }
 .site-nav ul { list-style: none; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
-/* The backslash below is DOUBLED on purpose. TEMPLATE_HTML is a normal
-   (non-raw) Python string, so a CSS codepoint escape written with a SINGLE
-   backslash is swallowed by Python as an octal escape, and the page ships a
-   literal control character where the glyph should be. This one shipped
-   U+0011 followed by the text 97 instead of a north-east arrow. Same trap as
-   the pilcrow further down. Do not collapse these back to one backslash;
-   test_16 in scripts/tests/test_store_segment_by_utm.py will go red. */
+/* The backslash below is DOUBLED on purpose: the CSS codepoint escape
+   is emitted from a non-raw string, so a single backslash gets swallowed
+   as an octal escape and ships a control character instead of the glyph.
+   Same trap as the pilcrow further down. Do not collapse these back to
+   one backslash. */
 .site-nav .nav-external::after { content: " \2197"; opacity: 0.7; }
 
 /* Compact sticky filter bar (single row, ~58px tall on desktop).
-   Seamless hardrule (feedback_seamless_no_frame_lines.md, 2026-05-18): NO
-   border-bottom hairline; rely on a soft, wide drop-shadow lift instead so
-   the bar blends into the paper bg when at top of page and only lifts off
-   on scroll. */
+   Seamless hardrule: NO border-bottom hairline; rely on a soft, wide
+   drop-shadow lift instead so the bar blends into the paper bg when at
+   top of page and only lifts off on scroll. */
 .filter-bar { position: sticky; top: 0; z-index: 100; background: var(--paper); padding: 12px 24px; box-shadow: 0 8px 24px rgba(20, 18, 16, 0.04); }
 .filter-bar-inner { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
 .filter-title-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
@@ -114,10 +111,10 @@ a:hover { text-decoration-color: var(--brick); }
 .live-tagline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .live-tagline .live-count { color: var(--brick); font-weight: 600; }
 
-/* Counter-positioning hero line (T5 cold-reader proof). Lives inside
-   .filter-bar above .filter-title-row so it occupies the first 100px every
-   cold reader sees. Seamless hardrule: no border, mono uppercase muted
-   text. Names what these kits are NOT, then what they are. */
+/* Counter-positioning hero line. Lives inside .filter-bar above
+   .filter-title-row so it occupies the first 100px every visitor sees.
+   Seamless hardrule: no border, mono uppercase muted text. Names what
+   these kits are NOT, then what they are. */
 .cold-reader-positioning {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--muted);
@@ -199,9 +196,9 @@ main { max-width: 880px; margin: 20px auto; padding: 0 24px; display: flex; flex
 :root[data-segment="cold_pilot"] .icp-tagline { display: block; }
 
 /* Intro aside, sits between card 1 and card 2 below the fold.
-   Seamless hardrule (feedback_seamless_no_frame_lines.md): no border-left
-   accent stripe; italic serif treatment plus the brick paragraph mark
-   carry the aside voice without drawing a frame line. */
+   Seamless hardrule: no border-left accent stripe; italic serif
+   treatment plus the brick paragraph mark carry the aside voice without
+   drawing a frame line. */
 .intro-aside {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: 18px; line-height: 1.5; color: var(--ink-soft);
@@ -225,10 +222,10 @@ main { max-width: 880px; margin: 20px auto; padding: 0 24px; display: flex; flex
 .sku-card.hidden { display: none; }
 .intro-aside.hidden { display: none; }
 
-/* Proof package (T5 cold-reader). Two-tile grid above the first SKU card:
-   companion-v1 pull-quote snippet + Mini-Atlas free magnet. Seamless
-   hardrule: no 1px borders. Soft drop-shadow lift, paper bg, brick
-   accents. Stacks vertically on mobile. */
+/* Proof package. Two-tile grid above the first SKU card: pull-quote
+   snippet + Mini-Atlas free magnet. Seamless hardrule: no 1px borders.
+   Soft drop-shadow lift, paper bg, brick accents. Stacks vertically on
+   mobile. */
 .proof-package {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -289,7 +286,7 @@ main { max-width: 880px; margin: 20px auto; padding: 0 24px; display: flex; flex
 .no-testimonial-note { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .no-results { text-align: center; padding: 60px 20px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); display: none; }
 .no-results.visible { display: block; }
-/* Inline Beehiiv lead-capture form. Seamless hardrule: no border,
+/* Inline lead-capture form. Seamless hardrule: no border,
    soft drop-shadow lift instead. Sits between card 5 and card 6 on
    the catalog to capture intent from readers who engage but do not
    buy on first scroll. */

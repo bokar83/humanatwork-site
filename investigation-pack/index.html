@@ -585,18 +585,9 @@ The four classified lists with rewrites, the flag list, and a clean redraft cont
 (function(){
   "use strict";
 
-  /* ═══════════════════════════════════════════════════════════════
-     Live Stripe payment link, $19 founding price, one time.
-       payment link  plink_1U3KW3QWqcWWuBB02QRTNkCX
-       price         price_1U3KVvQWqcWWuBB0h6G1seTA   1900 usd
-       product       prod_V3ROKeKOGB2j2j
-     After payment Stripe redirects to
-       https://humanatwork.ai/investigation-pack/thank-you/
-     which is where the pack link is handed over.
-     If this is ever blanked out the form still captures and persists
-     the email first, then shows an honest hold notice rather than
-     redirecting nowhere. That fallback is deliberate, leave it in.
-     ═══════════════════════════════════════════════════════════════ */
+  /* If CHECKOUT_URL is ever blanked out, the form still captures and
+     persists the email first, then shows an honest hold notice rather
+     than redirecting nowhere. That fallback is deliberate, leave it in. */
   var CHECKOUT_URL = "https://buy.stripe.com/4gM4gBclVcc24Vab37gEg0p";
 
   var LEAD_ENDPOINT = "https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe";
@@ -702,14 +693,11 @@ The four classified lists with rewrites, the flag list, and a clean redraft cont
       submit.textContent="Continue to checkout";
     }
 
-    /* 2026-08-11 SYS-528. This used to proceed to checkout on `r.ok` alone.
-       The subscribe endpoint answers HTTP 200 with {"ok": false} when the
-       list rejects an address, and a switched-off capture endpoint answers
-       200 as well, so a status-only check would send a buyer to Stripe with
-       no lead row behind them -- and the whole point of capturing before the
-       redirect is that the row exists even if they never pay. Success is now
-       the body saying so. A duplicate is a real success: they are already on
-       the list, so let them through to checkout. */
+    /* Success is the response body, not the HTTP status -- a status-only
+       check can send a buyer to checkout with no lead row behind them,
+       which defeats the whole point of capturing before the redirect.
+       A duplicate is a real success: they are already on the list, so
+       let them through to checkout. */
     fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
       .then(function(r){
         if(!r.ok) throw new Error("status "+r.status);
