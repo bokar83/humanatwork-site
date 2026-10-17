@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your first safe week of AI at work . Free . Human at Work</title>
-<meta name="description" content="A calm, step-by-step way to start using AI at work without risking the company or your reputation. Free kit, any tool. Email only.">
+<meta name="description" content="Not sure where to start with AI at work? A free, calm, day-by-day first week for any tool: check the rules, start where nothing can break, and learn to catch mistakes. Email only.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg">
 <link rel="canonical" href="https://humanatwork.ai/start/">
@@ -82,7 +82,7 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
 <main>
   <p class="eyebrow">Free kit . Any tool</p>
   <h1>Your first safe week of <em>AI at work</em></h1>
-  <p class="deck">A calm, step-by-step way to start. You check the rules first, begin where nothing can go wrong, and build a habit that catches mistakes before anyone else sees them.</p>
+  <p class="deck">Not sure where to start, what to try, or whether you are even allowed? That is a common place to be. This kit gives you the rules first, a first week where nothing can go wrong, and a habit that catches mistakes before anyone else sees them.</p>
 
   <div class="lead-capture">
     <p class="lead-eyebrow">Free . Email only</p>
@@ -98,6 +98,15 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
     <p class="haw-lead-result" id="awk-result" hidden role="status" aria-live="polite"></p>
   </div>
 
+  <h2>What gets in the way</h2>
+  <p>People often do not call it fear. Said out loud, it sounds like this:</p>
+  <ul>
+    <li><b>"What if I break something?"</b> Nothing in the first week can break. Nothing is sent, deleted, or shared.</li>
+    <li><b>"I do not know where to start."</b> Monday has one job: find your company's rules.</li>
+    <li><b>"I do not know what to do with it, or what it could do for me."</b> One small task a day, and a list of the places people find real time.</li>
+    <li><b>"What if I cannot do what I am supposed to do with it?"</b> You do not need to be technical. You need to check the work, and the kit shows you how.</li>
+    <li><b>"Am I even allowed?"</b> The policy check comes first.</li>
+  </ul>
   <h2>What is inside</h2>
   <ul>
     <li><b>A risk ladder.</b> What is safe to try first, what takes care, and what AI should not touch.</li>
@@ -109,7 +118,7 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
   </ul>
 
   <h2>Already have a tool?</h2>
-  <p>The same kit, with the details that matter for the tool you actually use.</p>
+  <p>The same kit, with the details that matter for the tool you use. Copilot is often the easy one to switch on, since many large companies already run on Microsoft, but it is not the only one. Pick the one you have.</p>
   <div class="cards">
     <a class="card" href="/start/copilot/"><b>Copilot</b><span>Which one do you actually have?</span></a>
     <a class="card" href="/start/chatgpt/"><b>ChatGPT</b><span>Personal or work account</span></a>
@@ -118,7 +127,7 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
   </div>
 
   <h2>Who it is for</h2>
-  <p>Anyone who works for someone else, has an AI tool in front of them, and wants to use it well without risking a mistake that lands on their name.</p>
+  <p>Anyone who works for someone else, has an AI tool in front of them or is about to, and wants to start with confidence instead of guessing.</p>
   <p class="small">General information for working people. Not legal, compliance, or HR advice. Your employer's policy decides what you may do.</p>
 </main>
 <footer class="site-footer"><span>Human at Work . By Boubacar</span></footer>
@@ -126,12 +135,12 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
 <script>
 document.getElementById('navtoggle').addEventListener('click',function(){var n=document.getElementById('navlinks');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);});
 (function () {
-  /* Takes an email, persists it, then and only then hands over the PDF.
+  /* Takes an email, persists it, then and only then shows the kit links.
      Success is the BODY saying ok, never the status code. A failed write is
-     visible and the file is not handed over. The PDF url appears in no href. */
+     visible and the links are not shown. The PDF is a convenience copy, no gate. */
   var CAPTURE_URL = 'https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe';
   var MAGNET = 'aw-kit';
-  var PDF_URL = '/magnets/aw-first-safe-week-kit.pdf?k=4b580c7ae9';
+  var PDF_URL = '/magnets/aw-first-safe-week-kit.pdf';
   var qs = new URLSearchParams(window.location.search || '');
   var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var form = document.getElementById('awk-form'), input = document.getElementById('awk-email'),
