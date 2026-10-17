@@ -33,6 +33,11 @@ RewriteEngine On
 RewriteCond %{QUERY_STRING} !(^|&)k=d4f81c7a2e($|&)
 RewriteRule ^magnets/ai-starter-5-prompts\.pdf$ - [F,L]
 
+# AI-at-work kit (magnet aw-kit). Same gate: key assembled in /start/ JS after
+# the capture write lands. Added by hand 2026-10-17 (generator not touched).
+RewriteCond %{QUERY_STRING} !(^|&)k=4b580c7ae9($|&)
+RewriteRule ^magnets/aw-first-safe-week-kit\.pdf$ - [F,L]
+
 
 # --- Branded shorteners --- preserve UTM behind the scenes ---
 # Pattern: /k/<slug> = email-channel kit links
