@@ -168,13 +168,14 @@ document.getElementById('navtoggle').addEventListener('click',function(){var n=d
   }
   function showSuccess() {
     resultEl.textContent = ''; resultEl.appendChild(document.createTextNode('You are on the list. '));
+    var w = document.createElement('a'); w.href = '/start/kit/'; w.id = 'awk-read'; w.textContent = 'Read the kit here';
+    resultEl.appendChild(w); resultEl.appendChild(document.createTextNode('. Or '));
     var a = document.createElement('a'); a.href = PDF_URL; a.id = 'awk-download'; a.setAttribute('download','');
-    a.textContent = 'Download the kit'; resultEl.appendChild(a);
+    a.textContent = 'download a PDF copy'; resultEl.appendChild(a);
     resultEl.appendChild(document.createTextNode('. The tool playbooks are just below.'));
     resultEl.hidden = false; resultEl.className = 'haw-lead-result ok';
     btn.textContent = 'Sent';
     try { if (typeof window.plausible === 'function') { window.plausible('LeadCapture', {props:{magnet:MAGNET}}); window.plausible('Magnet:Download', {props:{magnet:MAGNET}}); } } catch (e) {}
-    setTimeout(function () { a.click(); }, 300);
   }
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
