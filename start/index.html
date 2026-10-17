@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your first safe week of AI at work . Free . Human at Work</title>
-<meta name="description" content="Not sure where to start with AI at work? A free, calm, day-by-day first week for any tool: check the rules, start where nothing can break, and learn to catch mistakes. Email only.">
+<meta name="description" content="Not sure where to start with AI at work? A free, calm, day-by-day first week for any tool: check the rules, start small, and learn to catch errors before anyone else does. Email only.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg">
 <link rel="canonical" href="https://humanatwork.ai/start/">
@@ -77,12 +77,12 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
 <body>
 <nav class="site-nav" aria-label="primary"><div class="site-nav-inner"><a href="/" class="brand">Human at Work</a>
 <button id="navtoggle" class="navtoggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu"><span></span><span></span><span></span></button>
-<ul id="navlinks"><li><a href="/start/">Free kit</a></li><li><a href="/start/copilot/">Copilot</a></li><li><a href="/start/chatgpt/">ChatGPT</a></li><li><a href="/start/gemini/">Gemini</a></li><li><a href="/start/claude/">Claude</a></li><li><a href="/store/">Store</a></li></ul></div></nav>
+<ul id="navlinks"><li><a href="/start/">Free kit</a></li><li><a href="/start/copilot/">Copilot</a></li><li><a href="/start/chatgpt/">ChatGPT</a></li><li><a href="/start/gemini/">Gemini</a></li><li><a href="/start/claude/">Claude</a></li><li><a href="/audit/">Job audit</a></li></ul></div></nav>
 
 <main>
   <p class="eyebrow">Free kit . Any tool</p>
   <h1>Your first safe week of <em>AI at work</em></h1>
-  <p class="deck">Not sure where to start, what to try, or whether you are even allowed? That is a common place to be. This kit gives you the rules first, a first week where nothing can go wrong, and a habit that catches mistakes before anyone else sees them.</p>
+  <p class="deck">Not sure where to start, what to try, or whether you are even allowed? That is a common place to be. This kit gives you the rules first, a first week of small steps, and a habit that catches errors before anyone else sees them.</p>
 
   <div class="lead-capture">
     <p class="lead-eyebrow">Free . Email only</p>
@@ -101,7 +101,7 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
   <h2>What gets in the way</h2>
   <p>People often do not call it fear. Said out loud, it sounds like this:</p>
   <ul>
-    <li><b>"What if I break something?"</b> Nothing in the first week can break. Nothing is sent, deleted, or shared.</li>
+    <li><b>"What if I break something?"</b> The first week asks you to send nothing, delete nothing, and put nothing sensitive in.</li>
     <li><b>"I do not know where to start."</b> Monday has one job: find your company's rules.</li>
     <li><b>"I do not know what to do with it, or what it could do for me."</b> One small task a day, and a list of the places people find real time.</li>
     <li><b>"What if I cannot do what I am supposed to do with it?"</b> You do not need to be technical. You need to check the work, and the kit shows you how.</li>
@@ -113,7 +113,7 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
     <li><b>A policy check.</b> Where to find your employer's rules and what to ask if there are none.</li>
     <li><b>A context note.</b> A short file you own, so every chat starts from your work.</li>
     <li><b>A verification habit.</b> How to catch a wrong answer before it leaves your desk.</li>
-    <li><b>A first week, day by day.</b> Small steps where nothing can break.</li>
+    <li><b>A first week, day by day.</b> Fifteen to twenty minutes a day, small steps.</li>
     <li><b>Beyond email.</b> Where people find the real time.</li>
   </ul>
 
@@ -126,8 +126,10 @@ th,td{display:block;width:100%;padding:8px 12px}th{border-bottom:0;padding-botto
     <a class="card" href="/start/claude/"><b>Claude</b><span>Instructions and projects</span></a>
   </div>
 
+  <h2>Then look at your own job</h2>
+  <p>The <a href="/audit/">job audit worksheet</a> helps you list your tasks, see where AI could safely help and where it must not, and keep a record of what you tried. <a href="/magnets/aw-job-audit-worksheet.pdf" download>Download the worksheet as a PDF</a>.</p>
   <h2>Who it is for</h2>
-  <p>Anyone who works for someone else, has an AI tool in front of them or is about to, and wants to start with confidence instead of guessing.</p>
+  <p>Anyone who works for someone else, has an AI tool in front of them or is about to, and wants to start with confidence instead of guessing. You do not have to be technical, and you do not have to know everything first.</p>
   <p class="small">General information for working people. Not legal, compliance, or HR advice. Your employer's policy decides what you may do.</p>
 </main>
 <footer class="site-footer"><span>Human at Work . By Boubacar</span></footer>
@@ -137,7 +139,7 @@ document.getElementById('navtoggle').addEventListener('click',function(){var n=d
 (function () {
   /* Takes an email, persists it, then and only then shows the kit links.
      Success is the BODY saying ok, never the status code. A failed write is
-     visible and the links are not shown. The PDF is a convenience copy, no gate. */
+     visible and the links are not shown. A duplicate is a success: that person is already on the list. The PDF is a convenience copy, no gate. */
   var CAPTURE_URL = 'https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe';
   var MAGNET = 'aw-kit';
   var PDF_URL = '/magnets/aw-first-safe-week-kit.pdf';
@@ -155,6 +157,7 @@ document.getElementById('navtoggle').addEventListener('click',function(){var n=d
     }).then(function (r) {
       return r.json().then(function (b) {
         if (b && b.ok === true) return 'ok';
+        if (b && b.error === 'duplicate') return 'ok';
         if (b && b.error === 'rate_limited') return 'rate_limited';
         if (b && b.error === 'invalid_email') return 'invalid_email';
         return 'fail';
