@@ -18,7 +18,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .brand:visited{color:var(--ink)}
 .brand small{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .nav ul{list-style:none;display:flex;gap:26px;align-items:center}
-.nav li a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
+.nav li a{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:12px 0;display:inline-block;border-bottom:1px solid transparent}
 .nav li a:visited{color:var(--ink)}
 .nav li a:hover,.nav li a[aria-current]{border-bottom-color:var(--ink)}
 .navtoggle{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px;flex-direction:column;justify-content:center;align-items:center;gap:6px}
@@ -28,7 +28,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .strip-in{max-width:1120px;margin:0 auto;padding:0 var(--gutter)}
 .strip.off .strip-in{padding-left:calc(var(--gutter) + 48px)}
 .seam{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:18px;padding:34px 0 22px}
-.seam b{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);white-space:nowrap}
+.seam h2{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);white-space:nowrap;margin:0}
 .seam i{display:block;height:7px;background:linear-gradient(var(--line),var(--line)) repeat-x left bottom/100% 1px,repeating-linear-gradient(90deg,var(--line-strong) 0 1px,transparent 1px var(--mod)) repeat-x left bottom/100% 7px}
 /* hero */
 .hero{padding:clamp(28px,6vh,72px) 0 40px}
@@ -40,7 +40,7 @@ h1 a,h1 a:visited{color:var(--indigo);text-decoration-thickness:3px;text-decorat
 h1 a:hover{text-decoration-color:var(--indigo)}
 .lede{font-size:clamp(18px,1.6vw,21px);line-height:1.5;max-width:46ch;color:var(--ink)}
 .route{font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;margin:0 0 18px;line-height:1.7}
-.route::before{content:"\2192";color:var(--rust);font-weight:500;margin-right:10px}
+.route::before{content:"\2192";color:var(--indigo);font-weight:500;margin-right:10px}
 /* the form well */
 .well{background:var(--cloth-2);padding:26px 26px 22px;position:relative}
 .well::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--indigo)}
@@ -55,7 +55,7 @@ h1 a:hover{text-decoration-color:var(--indigo)}
 .lead-submit:hover,.btn:hover{background:var(--rust-deep);transform:translateY(-1px)}
 .lead-submit:disabled{background:var(--muted);cursor:not-allowed;transform:none}
 .btn,.btn:visited{color:#fff}
-.lead-micro{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);line-height:1.5}
+.lead-micro{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted);line-height:1.5}
 .haw-lead-result{font-size:15.5px;margin-top:12px;line-height:1.5}
 .haw-lead-result.ok{color:var(--moss)}.haw-lead-result.ok a{color:var(--indigo)}
 .haw-lead-result.err{color:var(--rust-deep)}
@@ -86,7 +86,7 @@ h1 a:hover{text-decoration-color:var(--indigo)}
 .rows a.name:visited{color:var(--ink)}
 .rows a.name:hover{color:var(--indigo)}
 .rows span{font-size:16px;color:var(--muted)}
-.rows .arrow{font-family:var(--mono);color:var(--rust);font-size:14px}
+.rows .arrow{font-family:var(--mono);color:var(--indigo-2);font-size:14px}
 .rows.plain li{grid-template-columns:56px minmax(0,260px) 1fr}
 .rows.plain b{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.01em}
 .line{font-size:18px;max-width:60ch;padding:0 0 10px}
@@ -115,18 +115,18 @@ h1 a:hover{text-decoration-color:var(--indigo)}
 .foot{margin-top:56px;padding:26px 0 40px}
 .foot .strip-in{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:baseline;justify-content:space-between}
 .foot ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px}
-.foot a,.foot a:visited{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:8px 0}
+.foot a,.foot a:visited{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:14px 0;display:inline-block;min-height:44px}
 .foot a:hover{color:var(--indigo);text-decoration:underline}
 .foot .by{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.day{animation:none}.lead-submit,.btn{transition:none}}
 @media (max-width:1000px){.week-grid{grid-template-columns:repeat(2,1fr)}.day:nth-child(even){transform:none}.day{min-height:0}}
-@media (max-width:820px){
+@media (max-width:960px){
 .hero{padding-top:14px}.hero-grid{grid-template-columns:1fr;gap:22px}
 h1{font-size:clamp(32px,9.6vw,42px);max-width:none;margin-bottom:14px}.lede{font-size:17px}
 .eyebrow{margin-bottom:12px}
 .nav-in{padding:12px var(--gutter)}.navtoggle{display:flex}
 .nav ul{display:none;position:absolute;left:0;right:0;top:100%;background:var(--cloth-2);flex-direction:column;align-items:stretch;gap:0;padding:8px var(--gutter) 16px;z-index:40;box-shadow:0 18px 40px rgba(18,26,51,.12)}
-.nav ul.open{display:flex}.nav li a{display:block;padding:14px 0}
+.nav ul.open{display:flex}.nav li a{display:block;padding:14px 0;min-height:44px}
 .strip.off .strip-in{padding-left:calc(var(--gutter) + 16px)}
 .well{padding:18px 18px 16px}.well-h{font-size:21px}.well-sub{font-size:14.5px;margin-bottom:12px}
 .lead-submit,.btn{width:100%}
@@ -144,14 +144,14 @@ h1{font-size:clamp(32px,9.6vw,42px);max-width:none;margin-bottom:14px}.lede{font
 <ul id="navlinks"><li><a href="/start/">Free kit</a></li><li><a href="/start/copilot/">Copilot</a></li><li><a href="/start/chatgpt/" aria-current="page">ChatGPT</a></li><li><a href="/start/gemini/">Gemini</a></li><li><a href="/start/claude/">Claude</a></li><li><a href="/audit/">Job audit</a></li></ul></div></nav>
 <main id="main">
 <section class="strip hero"><div class="strip-in hero-grid">
-  <div><p class="eyebrow">Playbook . ChatGPT</p>
+  <div><p class="eyebrow">Playbook &middot; ChatGPT</p>
   <h1>A first <a href="/start/">Safe Week of AI usage</a> for people who use ChatGPT at work</h1>
   <p class="lede">ChatGPT can be a personal account or one your employer provides. The first question is whose account it is.</p></div>
-  <div class="well"><p class="well-label">Free kit . email only</p><p class="well-h">New here? Start with the free kit</p>
+  <div class="well"><p class="well-label">Free kit &middot; email only</p><p class="well-h">New here? Start with the free kit</p>
   <p class="well-sub">The rules first, one small step a day, nothing from your job goes in. The ChatGPT details on this page sit on top of it.</p>
   <a class="btn" href="/start/">Get the free kit</a></div>
 </div></section>
-<section class="strip off"><div class="strip-in"><div class="seam" role="presentation"><b>01 / ChatGPT</b><i></i></div>
+<section class="strip off"><div class="strip-in"><div class="seam"><h2>01 / ChatGPT</h2><i aria-hidden="true"></i></div>
 <div class="prose">
 <h2>ChatGPT call-outs</h2>
 <ul>
@@ -164,11 +164,11 @@ h1{font-size:clamp(32px,9.6vw,42px);max-width:none;margin-bottom:14px}.lede{font
 <div class="src"><b>Sources, read on 2026-10-17.</b> OpenAI Help Center, "Memory in ChatGPT": help.openai.com/en/articles/8590148-memory-in-chatgpt. OpenAI Help Center, "ChatGPT Custom Instructions": help.openai.com/en/articles/8096356-chatgpt-custom-instructions. Product settings change, so check your own screen.</div>
 <p class="small">Not affiliated with or endorsed by OpenAI. ChatGPT is OpenAI's name.</p>
 </div></div></section>
-<section class="strip"><div class="strip-in"><div class="seam" role="presentation"><b>02 / the full week</b><i></i></div>
+<section class="strip"><div class="strip-in"><div class="seam"><h2>02 / the full week</h2><i aria-hidden="true"></i></div>
 <p class="line">Read the whole <a href="/start/kit/">Safe Week of AI usage</a> day by day, or <a href="/magnets/aw-chatgpt-playbook.pdf" download>download the ChatGPT playbook as a PDF</a>.</p>
 <p class="line"><b>Where your context note goes:</b> In ChatGPT, use Custom Instructions for the note, or paste it at the start of a new chat.</p>
 <p class="small">General information for working people. Not legal, compliance, or HR advice. Your employer's policy decides what you may do.</p></div></section>
-</main><footer class="foot"><div class="strip-in"><span class="by">Human at Work . by Boubacar</span>
+</main><footer class="foot"><div class="strip-in"><span class="by">Human at Work &middot; by Boubacar</span>
 <ul><li><a href="/start/">Free kit</a></li><li><a href="/audit/">Job audit</a></li><li><a href="/">Home</a></li><li><a href="/store/">Store</a></li><li><a href="/tos/">Terms</a></li><li><a href="mailto:signal@humanatwork.ai">Email</a></li></ul></div></footer>
 <script>document.getElementById('navtoggle').addEventListener('click',function(){var n=document.getElementById('navlinks');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);});</script>
 </body></html>
