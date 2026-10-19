@@ -147,17 +147,17 @@ h1{font-size:clamp(32px,9.6vw,42px);max-width:none;margin-bottom:14px}.lede{font
   <div><p class="eyebrow">Free worksheet &middot; any AI tool</p>
   <h1>An AI audit of your own job.</h1>
   <p class="route">New here? <a href="/start/">Start with the Safe Week of AI usage</a></p>
-  <p class="lede">Two pages: which of your tasks AI could help with, which it must not touch, and a dated record of what you tried. Fill it in at the end of your first <a href="/start/#how">Safe Week of AI usage</a> (that link shows how the week works).</p></div>
+  <p class="lede">Two pages: which of your tasks AI could help with, which it must not touch, and a dated record of what you tried. Fill it in at the end of your first Safe Week of AI usage.</p></div>
   <div class="well">
     <p class="well-label">Free &middot; email only</p>
-    <p class="well-h">Send me the worksheet</p>
+    <p class="well-h">The free worksheet</p>
     <p class="well-sub">Print it or fill it in on your own document.</p>
     <form class="haw-lead-form" id="awk-form" method="post" action="https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe" novalidate>
       <label class="sr-only" for="awk-email">Email address</label>
       <input class="lead-email" id="awk-email" type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-      <button class="lead-submit" type="submit" id="awk-btn">Send me the worksheet</button>
-      <p class="lead-micro">Email only. No name, no phone. You also join the weekly brief list; unsubscribe any time.</p>
+      <button class="lead-submit" type="submit" id="awk-btn">Get the free worksheet</button>
+      <p class="lead-micro">Email only. No name, no phone. Unsubscribe any time.</p>
     </form>
     <p class="haw-lead-result" id="awk-result" hidden role="status" aria-live="polite"></p>
   </div>
@@ -215,7 +215,7 @@ document.getElementById('navtoggle').addEventListener('click',function(){var n=d
   }
   function showError(msg) {
     resultEl.hidden = false; resultEl.className = 'haw-lead-result err'; resultEl.textContent = msg;
-    btn.disabled = false; btn.textContent = 'Send me the worksheet';
+    btn.disabled = false; btn.textContent = 'Get the free worksheet';
   }
   function showSuccess() {
     resultEl.textContent = ''; resultEl.appendChild(document.createTextNode('You are on the list. '));var w = document.createElement('a'); w.href = PDF_URL; w.id = 'awk-download'; w.setAttribute('download',''); w.textContent = 'Download the worksheet';resultEl.appendChild(w); resultEl.appendChild(document.createTextNode('. Or '));var a = document.createElement('a'); a.href = '/start/kit/'; a.id = 'awk-read';a.textContent = 'read the free kit'; resultEl.appendChild(a);resultEl.appendChild(document.createTextNode('.'));
