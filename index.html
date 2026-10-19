@@ -236,7 +236,7 @@ h1{font-size:clamp(32px,9.6vw,42px);max-width:none;margin-bottom:14px}.lede{font
 <div class="well" style="max-width:560px" data-plausible-source="root_newsletter_section">
     <p class="well-label">The weekly brief . free</p>
     <p class="well-h">One short read every Sunday.</p>
-    <p class="well-sub">What is changing at work because of AI, in plain language, and the one thing worth trying that week.</p>
+    <p class="well-sub">What is changing at work because of AI, in plain language.</p>
     <form class="haw-lead-form newsletter-lead-form" id="haw-subscribe-newsletter" method="post" action="https://agentshq.boubacarbarry.com/api/orc/beehiiv-subscribe" novalidate>
       <label class="sr-only" for="haw-email-newsletter">Email address</label>
       <input class="lead-email email-input" id="haw-email-newsletter" type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
@@ -334,6 +334,7 @@ h1{font-size:clamp(32px,9.6vw,42px);max-width:none;margin-bottom:14px}.lede{font
           if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
           if (res.data && res.data.ok) {
             showResult(resultEl, 'ok', "You're on the list. Watch your inbox for the next signal.");
+            if (form.id === 'haw-subscribe-hero') { resultEl.innerHTML = 'You are on the list. <a href="/start/kit/">Read the kit here</a> or <a href="/magnets/aw-first-safe-week-kit.pdf" download>download a PDF copy</a>. The weekly brief follows on Sunday.'; }
             form.style.display = 'none';
             if (typeof window.plausible === 'function') {
               window.plausible('LeadCapture', {
@@ -342,6 +343,7 @@ h1{font-size:clamp(32px,9.6vw,42px);max-width:none;margin-bottom:14px}.lede{font
             }
           } else if (res.data && res.data.error === 'duplicate') {
             showResult(resultEl, 'ok', "You're already subscribed. Nothing to do.");
+            if (form.id === 'haw-subscribe-hero') { resultEl.innerHTML = 'You are already on the list. <a href="/start/kit/">Read the kit here</a> or <a href="/magnets/aw-first-safe-week-kit.pdf" download>download a PDF copy</a>.'; }
             form.style.display = 'none';
           } else if (res.data && res.data.error === 'invalid_email') {
             showResult(resultEl, 'err', 'That email did not look right. Try another.');
