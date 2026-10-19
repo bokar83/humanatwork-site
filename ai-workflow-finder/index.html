@@ -451,7 +451,7 @@ footer.site-footer a:hover { color: var(--brick); }
             </defs>
             <rect x="3" y="3" width="194" height="40" filter="url(#stampRough)"/>
           </svg>
-          <span class="stamp-label">Send me the worksheet</span>
+          <span class="stamp-label">Get the free worksheet</span>
         </button>
         <p class="lead-micro">No spam. Unsubscribe in one click.</p>
       </form>
@@ -540,7 +540,7 @@ footer.site-footer a:hover { color: var(--brick); }
         return r.json().then(function(data) { return { status: r.status, data: data }; });
       }).then(function(res) {
         btn.disabled = false;
-        if (btnLabel) btnLabel.textContent = 'Send me the worksheet';
+        if (btnLabel) btnLabel.textContent = 'Get the free worksheet';
         if (res.data && res.data.ok) {
           showSuccessAndServePdf(payload);
         } else if (res.data && res.data.error === 'duplicate') {
@@ -554,7 +554,7 @@ footer.site-footer a:hover { color: var(--brick); }
         }
       }).catch(function() {
         btn.disabled = false;
-        if (btnLabel) btnLabel.textContent = 'Send me the worksheet';
+        if (btnLabel) btnLabel.textContent = 'Get the free worksheet';
         showResult('err', 'Network error. Try again in a moment, or use the direct download link below.');
       });
     });

@@ -309,7 +309,7 @@ footer.site-footer a:hover { color: var(--brick); }
         <input type="hidden" name="utm_content" id="haw-utm-content-atlas-sample" value="">
         <input type="hidden" name="form_location" value="atlas_sample_landing">
         <input type="hidden" name="magnet" value="mini_atlas">
-        <button class="lead-submit" type="submit">Send me the PDF</button>
+        <button class="lead-submit" type="submit">Get the free PDF</button>
         <p class="lead-micro">No spam. Unsubscribe in one click.</p>
       </form>
       <div class="haw-lead-result" id="haw-subscribe-atlas-sample-result" role="status" aria-live="polite" hidden></div>
@@ -403,7 +403,7 @@ footer.site-footer a:hover { color: var(--brick); }
         return r.json().then(function(data) { return { status: r.status, data: data }; });
       }).then(function(res) {
         btn.disabled = false;
-        btn.textContent = 'Send me the PDF';
+        btn.textContent = 'Get the free PDF';
         if (res.data && res.data.ok) {
           showSuccessAndServePdf(payload);
         } else if (res.data && res.data.error === 'duplicate') {
@@ -417,7 +417,7 @@ footer.site-footer a:hover { color: var(--brick); }
         }
       }).catch(function() {
         btn.disabled = false;
-        btn.textContent = 'Send me the PDF';
+        btn.textContent = 'Get the free PDF';
         showResult('err', 'Network error. Try again in a moment, or use the direct download link below.');
       });
     });

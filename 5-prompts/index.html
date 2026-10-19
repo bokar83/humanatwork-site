@@ -338,7 +338,7 @@ footer.site-footer a:hover { color: var(--brick); }
         <label class="sr-only" for="lm5p-email">Email address</label>
         <input class="lead-email" id="lm5p-email" type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <button class="lead-submit" type="submit" id="lm5p-btn">Send me the 5 prompts</button>
+        <button class="lead-submit" type="submit" id="lm5p-btn">Get the free 5 prompts</button>
         <p class="lead-micro">Email only. No name, no phone.</p>
       </form>
       <div class="haw-lead-result" id="lm5p-result" role="status" aria-live="polite" hidden></div>
@@ -447,7 +447,7 @@ footer.site-footer a:hover { color: var(--brick); }
     resultEl.classList.add('err');
     resultEl.textContent = msg;
     btn.disabled = false;
-    btn.textContent = 'Send me the 5 prompts';
+    btn.textContent = 'Get the free 5 prompts';
   }
 
   function showSuccess() {
